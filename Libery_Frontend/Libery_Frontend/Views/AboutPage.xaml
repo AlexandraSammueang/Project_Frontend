@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.AboutPage">
+             x:Class="Libery_Frontend.Views.AboutPage" >
     <ContentPage.Content>
         <StackLayout>
             <AbsoluteLayout>
-                <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.5"  />
+                <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
                 <StackLayout>
 
                     <Frame >
-                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="LightGreen" FontSize="36"/>
+                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
                     </Frame>
 
-                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="LightGreen" />
+                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="White" />
                 </StackLayout>
             </AbsoluteLayout>
         </StackLayout>

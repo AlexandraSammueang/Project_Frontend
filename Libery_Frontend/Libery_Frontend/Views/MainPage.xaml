@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.MainPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
+            x:Class="Libery_Frontend.Views.MainPage">
   <!--Pages can be added as references or inline-->
     <!--  <views:AboutPage />
     <views:ConsolePage />
@@ -13,8 +13,8 @@
     <views:NewsPage Title="Science"></views:NewsPage>
     <views:NewsPage Title="Sports"></views:NewsPage>
     <views:NewsPage Title="Technology"></views:NewsPage> -->
-    
-    <ContentPage Title="Start" />
+
+    <Views:AboutPage Title="Start"></Views:AboutPage> 
     <ContentPage Title="Böcker" />
     <ContentPage Title="E-Medier" />
     <ContentPage Title="Bibliotek och Öppetider" />

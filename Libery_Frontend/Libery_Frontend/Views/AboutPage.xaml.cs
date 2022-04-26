@@ -15,7 +15,7 @@ namespace Libery_Frontend.Views
         public AboutPage()
         {
             InitializeComponent();
-            newsPhoto.Source = $"https://images.pexels.com/photos/3953481/pexels-photo-3953481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+            libraryPhoto.Source = $"https://static1biblioteket.stockholm.se/sites/default/files/Stadsbiblioteket-3.jpg";
         }
     }
 }

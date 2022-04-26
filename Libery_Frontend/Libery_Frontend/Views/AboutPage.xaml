@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <AbsoluteLayout>
-                <Image x:Name="newsPhoto" Source="newsPhoto" Opacity="0.5"  />
+                <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.5"  />
                 <StackLayout>
 
                     <Frame >

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.AboutPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <AbsoluteLayout>
+                <Image x:Name="newsPhoto" Source="newsPhoto" Opacity="0.5"  />
+                <StackLayout>
+
+                    <Frame >
+                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="LightGreen" FontSize="36"/>
+                    </Frame>
+
+                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="LightGreen" />
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

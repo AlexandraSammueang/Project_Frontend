@@ -15,9 +15,10 @@
     <views:NewsPage Title="Technology"></views:NewsPage> -->
     <TabbedPage.Children >
         <Views:AboutPage Title="Start"></Views:AboutPage>
+        <Views:Books Title="Databas exempel"></Views:Books>
     <!--<Views:LibraryPage Title="Start"></Views:LibraryPage> -->
-    <ContentPage Title="Böcker" />
-    <ContentPage Title="E-Medier" />
-    <ContentPage Title="Bibliotek och Öppetider" />
+        <ContentPage Title="Böcker" />
+        <ContentPage Title="E-Medier" />
+        <ContentPage Title="Bibliotek och Öppetider" />
     </TabbedPage.Children>
 </TabbedPage>

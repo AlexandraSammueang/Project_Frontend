@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libery_Frontend.UWP", "Libe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libery_Frontend.Android", "Libery_Frontend\Libery_Frontend.Android\Libery_Frontend.Android.csproj", "{1FF97ACF-EEC3-49FE-9665-78B1419CE295}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Libery_Frontend", "Libery_Frontend\Libery_Frontend\Libery_Frontend.csproj", "{DF952295-761E-4E08-BB80-746BBC46931F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Libery_Frontend", "Libery_Frontend\Libery_Frontend\Libery_Frontend.csproj", "{DF952295-761E-4E08-BB80-746BBC46931F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

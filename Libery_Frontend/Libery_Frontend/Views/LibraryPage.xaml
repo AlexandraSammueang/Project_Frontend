@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Library">
+             x:Class="Libery_Frontend.Views.LibraryPage" BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Label Grid.Row="2" Grid.Column="2"  Text="Vegansk Hemkunskap" FontSize="Subtitle" FontAttributes="Bold" TextColor="Black"/>
+            <Image x:Name="Photo1" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" WidthRequest="160" Source="VeganskHemkunskap" />
+            <Label x:Name="Book1" Grid.Row="0" Grid.Column="0"  Text="VeganskHemkunskap" FontSize="13" TextColor="Black"/>
+
+           
         </StackLayout>
+        
+           <!-- <Image x:Name="Photo2" Source="Ondskan"></Image>
+            <Image x:Name="Photo3" Source="SOR"></Image>
+            <Image x:Name="Photo4" Source="HarryPotter"></Image>
+            <Image x:Name="Photo5" Source="avicci"></Image> -->
+        
+       
+
+
+
     </ContentPage.Content>
 </ContentPage>
+

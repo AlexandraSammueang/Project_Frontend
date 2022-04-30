@@ -4,13 +4,13 @@
              x:Class="Libery_Frontend.Views.Books">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Alla produkter i databasen!"
+            <Label TextColor="Black" Text="Alla produkter i databasen!"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center" />
             <ListView x:Name="ProductListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding ProductName}"></TextCell>
+                        <TextCell TextColor="Black" Text="{Binding ProductName}"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

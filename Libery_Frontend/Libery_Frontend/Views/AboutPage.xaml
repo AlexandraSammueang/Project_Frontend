@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.AboutPage" >
+             x:Class="Libery_Frontend.Views.AboutPage" BackgroundColor="WhiteSmoke" >
     <ContentPage.Content>
         <StackLayout>
             <AbsoluteLayout>
@@ -9,10 +9,10 @@
                 <StackLayout>
 
                     <Frame >
-                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
                     </Frame>
 
-                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="White" />
+                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="Black" />
                 </StackLayout>
             </AbsoluteLayout>
         </StackLayout>

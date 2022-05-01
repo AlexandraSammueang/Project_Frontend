@@ -18,6 +18,6 @@
         <Views:Books Title="Databas exempel"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
             <ContentPage Title="E-Medier" />
-        <Views:LibraryPage Title="Bibliotek och Öppetider"></Views:LibraryPage>
+        <ContentPage Title="Bibliotek och Öppetider"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

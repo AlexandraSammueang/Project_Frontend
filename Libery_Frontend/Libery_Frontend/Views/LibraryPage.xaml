@@ -4,23 +4,37 @@
              x:Class="Libery_Frontend.Views.LibraryPage" BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
 
-        <StackLayout>
+        <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
 
-            <Label Grid.Row="2" Grid.Column="2"  Text="Vegansk Hemkunskap" FontSize="Subtitle" FontAttributes="Bold" TextColor="Black"/>
-            <Image x:Name="Photo1" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" WidthRequest="160" Source="VeganskHemkunskap" />
-            <Label x:Name="Book1" Grid.Row="0" Grid.Column="0"  Text="VeganskHemkunskap" FontSize="13" TextColor="Black"/>
-
-           
-        </StackLayout>
-        
-           <!-- <Image x:Name="Photo2" Source="Ondskan"></Image>
-            <Image x:Name="Photo3" Source="SOR"></Image>
-            <Image x:Name="Photo4" Source="HarryPotter"></Image>
-            <Image x:Name="Photo5" Source="avicci"></Image> -->
-        
-       
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
 
+                <Image x:Name="Photo1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" Source="VeganskHemkunskap" />
+                <Label x:Name="Book1" Grid.Row="2" Grid.Column="1"  Text="VeganskHemkunskap" FontSize="13" TextColor="Black"/>
+                <Button Clicked="ReserveBook" Grid.Row="3" Grid.Column="1" Text="Reservera en bok" TextColor="Black" BackgroundColor="LightGray"/>
+               
+                <!-- <Image x:Name="Photo2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="40" Source="Ondskan" />
+            <Label x:Name="Book2" Grid.Row="4" Grid.Column="2"  Text="Ondskan" FontSize="13" TextColor="Black"/>
+            <Image x:Name="Photo3" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="40" Source="SOR" />
+            <Label x:Name="Book3" Grid.Row="6" Grid.Column="2"  Text="Konungens återkomst" FontSize="13" TextColor="Black"/>
+            <Image x:Name="Photo4" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="40" Source="HarryPotter" />
+            <Label x:Name="Book4" Grid.Row="8" Grid.Column="2"  Text="Hemligheternaskammare" FontSize="13" TextColor="Black"/>
+            <Image x:Name="Photo5" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="40" Source="Avicci" />
+            <Label x:Name="Book5" Grid.Row="10" Grid.Column="2"  Text="Avicci" FontSize="13" TextColor="Black"/> -->
+
+            </Grid >
+        </Frame>
 
     </ContentPage.Content>
 </ContentPage>

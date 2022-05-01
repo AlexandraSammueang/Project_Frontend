@@ -6,12 +6,14 @@
         <StackLayout>
             <AbsoluteLayout>
                 <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
+           
                 <StackLayout>
-
+                    
                     <Frame >
                         <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
+                        
                     </Frame>
-
+                   
                     <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="Black" />
                 </StackLayout>
             </AbsoluteLayout>

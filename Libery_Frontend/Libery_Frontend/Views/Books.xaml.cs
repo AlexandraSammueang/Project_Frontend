@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Libery_Frontend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,15 +28,17 @@ namespace Libery_Frontend.Views
             {
                 
                Products = db.Products.ToList();
-               //Products.ForEach(p => p.ProductInfo()).ToList();
-               //Products = db.Products.Include(p => p.ProductInfo).ToList();
-               
-              
+               //Products = db.Products.Join(db.ProductTypes(p => p.ID = p.ProductTypeID));
+  
+
+
             }
 
             ProductListView.ItemsSource = Products;
 
            
+
+
         }
     }
 

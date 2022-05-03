@@ -15,11 +15,11 @@
     <views:NewsPage Title="Technology"></views:NewsPage> -->
     <TabbedPage.Children >
         <Views:AboutPage Title="Start"></Views:AboutPage>
-        <Views:Books Title="Alla produkter i biblioteket"></Views:Books>
+        <Views:Books Title="Alla produkter"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
-            <ContentPage Title="E-Medier" />
-        <Views:LoginPage Title="Login"/>
-        <Views:RegisterPage Title="Register"/>
-        <ContentPage Title="Bibliotek och Öppetider"></ContentPage>
+            <ContentPage Title="E-medier" />
+        <Views:LoginPage Title="Logga in"/>
+        <Views:RegisterPage Title="Registrera användare"/>
+        <ContentPage Title="Bibliotek och öppetider"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

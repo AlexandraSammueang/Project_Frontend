@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
-            x:Class="Libery_Frontend.Views.MainPage" SelectedTabColor="Red" UnselectedTabColor="White">
+            x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black">
   <!--Pages can be added as references or inline-->
     <!--  <views:AboutPage />
     <views:ConsolePage />
@@ -15,10 +15,9 @@
     <views:NewsPage Title="Technology"></views:NewsPage> -->
     <TabbedPage.Children >
         <Views:AboutPage Title="Start"></Views:AboutPage>
-        <Views:Books Title="Databas exempel"></Views:Books>
-    <!--<Views:LibraryPage Title="Start"></Views:LibraryPage> -->
-        <ContentPage Title="Böcker" />
-        <ContentPage Title="E-Medier" />
-        <ContentPage Title="Bibliotek och Öppetider" />
+        <Views:Books Title="Alla produkter i biblioteket"></Views:Books>
+        <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
+            <ContentPage Title="E-Medier" />
+        <ContentPage Title="Bibliotek och Öppetider"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

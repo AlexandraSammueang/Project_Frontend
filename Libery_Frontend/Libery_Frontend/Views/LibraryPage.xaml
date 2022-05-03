@@ -1,12 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Library">
+             x:Class="Libery_Frontend.Views.LibraryPage" BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+        <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+
+                
+                <Image x:Name="backgroundPic" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
+                <Label x:Name="Book1" Grid.Row="2" Grid.Column="1"  Text="VeganskHemkunskap" FontSize="13" TextColor="Black"/>
+              
+                <Button Clicked="ReserveBook" Grid.Row="3" Grid.Column="1" Text="Reservera en bok" TextColor="Black" BackgroundColor="LightGray"/>
+               
+              
+
+            </Grid >
+        </Frame>
+
     </ContentPage.Content>
 </ContentPage>
+

@@ -17,5 +17,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
             libraryPhoto.Source = $"https://static1biblioteket.stockholm.se/sites/default/files/Stadsbiblioteket-3.jpg";
         }
+
+        
     }
 }

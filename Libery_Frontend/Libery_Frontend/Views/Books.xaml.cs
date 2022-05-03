@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,17 @@ namespace Libery_Frontend.Views
 
             using (var db = new Models.LibraryDBContext())
             {
-                Products = db.Products.ToList();
+                
+               Products = db.Products.ToList();
+               //Products.ForEach(p => p.ProductInfo()).ToList();
+               //Products = db.Products.Include(p => p.ProductInfo).ToList();
+               
+              
             }
 
             ProductListView.ItemsSource = Products;
+
+           
         }
     }
 

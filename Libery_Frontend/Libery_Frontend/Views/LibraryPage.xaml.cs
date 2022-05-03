@@ -11,18 +11,19 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
 
-            Photo1.Source = "https://s1.adlibris.com/images/61836845/vegansk-hemkunskap.jpg";
+            //Photo1.Source = "https://s1.adlibris.com/images/61836845/vegansk-hemkunskap.jpg";
             Book1.Text = "Det här är boken för dig som är nyfiken på vegansk matlagning, men kanske inte riktigt vet var du ska börja." +
                 "Gustav Johansson, som driver Sveriges största veganska blogg ”Jävligt gott”, berättar här om tekniker och råvaror och visar hur du kan använda dem på olika sätt." +
                 "Recepten är enkla – de innehåller sällan fler än sju ingredienser och är klara på omkring 30 minuter – och precis som i Gustavs tidigare böcker är de förstås också jävligt goda." +
                 "Oavsett om du är ny i köket, redan lagar veganskt men vill hitta nya genvägar eller har velat prova men tyckt att det verkar krångligt så finns det något för dig i ”Vegansk hemkunskap”.";
-           
+            backgroundPic.Source = $"Veganskhemkunskap.png";
+
             //Photo2.Source = "https://images.axiellmedia.com/cover/1000178/1000178_202010071345.jpg?height=292";
             //Book2.Text = "Jan Guillous debutroman Ondskan kom 1981 och räknas redan som en klassiker inom den moderna svenska litteraturen. " +
             //    "Ondskan är en berättelse om våldet i den svenska vardagen, " +
             //    "där vi får följa huvudpersonen Eriks fostran i ondska från hemmet med den sadistiske fadern till skolgården med dess gängbildningar.";
-            
-            
+
+
             //Photo3.Source = "https://s3.eu-north-1.amazonaws.com/bookis-se.web.production/books/47360/full.jpg";
             //Book3.Text = "Saruman har besegrats, men kampen är inte över.Mordors styrkor har nämligen siktats in sig på konungarnas gamla stad Minas Tirith i Gondor," +
             //    " och ett slag verkar oundvikligt på Pelennors fält." +

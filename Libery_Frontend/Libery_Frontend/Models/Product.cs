@@ -30,6 +30,7 @@ namespace Libery_Frontend.Models
         public DateTime? BookedTime { get; set; }
         public double? Price { get; set; }
 
+        public string Image { get; set; }
         public virtual Author Author { get; set; }
         public virtual ProductCategory Category { get; set; }
         public virtual Director Director { get; set; }

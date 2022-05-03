@@ -15,7 +15,7 @@
     <views:NewsPage Title="Technology"></views:NewsPage> -->
     <TabbedPage.Children >
         <Views:AboutPage Title="Start"></Views:AboutPage>
-        <Views:Books Title="Databas exempel"></Views:Books>
+        <Views:Books Title="Alla produkter i biblioteket"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
             <ContentPage Title="E-Medier" />
         <ContentPage Title="Bibliotek och Öppetider"></ContentPage>

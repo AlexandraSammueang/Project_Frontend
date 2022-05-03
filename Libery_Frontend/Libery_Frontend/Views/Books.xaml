@@ -4,13 +4,43 @@
              x:Class="Libery_Frontend.Views.Books">
     <ContentPage.Content>
         <StackLayout>
-            <Label TextColor="Black" Text="Alla produkter i databasen!"
+            <Label TextColor="Black" Text="Alla produkter i databasen" FontSize="Medium"
                 VerticalOptions="Start" 
                 HorizontalOptions="Center" />
             <ListView x:Name="ProductListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell TextColor="Black" Text="{Binding ProductName}"></TextCell>
+                        <ViewCell>
+                            <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
+                                <Grid >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+
+
+
+                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="70" />
+                                    <Label Grid.Row="1" Grid.Column="1"  Text="{Binding ProductName}"  FontSize="13" TextColor="Black"/>
+                                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding ProductInfo}" TextColor="Black"/>
+                                    
+
+
+
+
+
+                                </Grid >
+                            </Frame>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

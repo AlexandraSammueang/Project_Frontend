@@ -30,7 +30,7 @@
                                     <Image Source="{Binding p.Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="70" />
                                     <Label Grid.Row="1" Grid.Column="1"  Text="{Binding p.ProductName}"  FontSize="Micro" TextColor="Black"/>
                                     <Label Grid.Row="3" Grid.Column="1" Text="{Binding p.ProductInfo}" TextColor="Black"/>
-                                    <Label Grid.Row="4" Grid.Column="1" Text="{Binding pi.Type}" TextColor="Black"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding pi.Type}" TextColor="Black"/>
                                     
 
                                 </Grid >

@@ -18,6 +18,7 @@ namespace Libery_Frontend.Views
         public Books()
         {
             InitializeComponent();
+
         }
 
         protected override void OnAppearing()

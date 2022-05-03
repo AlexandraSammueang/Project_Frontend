@@ -1,5 +1,6 @@
 ﻿using Libery_Frontend.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,12 @@ namespace Libery_Frontend.Views
             {
                 
                Products = db.Products.ToList();
-               //Products = db.Products.Join(db.ProductTypes(p => p.ID = p.ProductTypeID));
-  
+                //Products = db.Products.Join(db.ProductTypes(p => p.ID = p.ProductTypeID));
+                // ProductBooks = db.Products.Where(x => x.ProductType == 1);
 
+                // var productList = Products;
+                // var BookProducts = db.Products.Join(ProductType == ProductTypeId);
+                
 
             }
 

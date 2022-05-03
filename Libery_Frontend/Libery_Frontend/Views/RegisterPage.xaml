@@ -7,14 +7,20 @@
         <ResourceDictionary Source="ResourcePage.xaml"/>
     </ContentPage.Resources>
     <ContentPage.Content>
+        
+           
+                
+           
         <StackLayout Padding="10,0,10,0">
-            <StackLayout>
+           
+                <StackLayout>
+               
 
-                <Label x:Name="UsernameLabel" Text="Användarnamn"/>
+                    <Label x:Name="UsernameLabel" Text="Användarnamn"/>
                 <Entry x:Name="UsernameEntry"/>
             </StackLayout>
-
-            <StackLayout>
+            
+                <StackLayout>
                 <Label x:Name="PaswordLabel" Text="Lösenord"/>
                 <Entry x:Name="PasswordEntry"/>
             </StackLayout>
@@ -60,6 +66,9 @@
             </StackLayout>
 
             <Button x:Name="RegisterButton" HorizontalOptions="Center" Text="Registrera" Margin="0,30,0,0" Clicked="RegisterButton_Clicked"/>
+           
+
+       
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

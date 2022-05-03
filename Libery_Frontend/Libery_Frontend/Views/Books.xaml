@@ -29,7 +29,9 @@
 
                                     <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="70" />
                                     <Label Grid.Row="1" Grid.Column="1"  Text="{Binding ProductName}"  FontSize="Micro" TextColor="Black"/>
-                                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding ProductInfo}" TextColor="Black"/>
+                                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding ProductType}" FontSize="Micro" TextColor="Black"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding ProductInfo}" TextColor="Black"/>
+                                   
                                     
 
                                 </Grid >

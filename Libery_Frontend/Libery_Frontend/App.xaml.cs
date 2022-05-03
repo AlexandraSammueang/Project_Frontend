@@ -11,7 +11,7 @@ namespace Libery_Frontend
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new AboutPage());
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.RegisterPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,0">
+            <StackLayout>
+
+                <Label x:Name="UsernameLabel" Text="Användarnamn"/>
+                <Entry x:Name="UsernameEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="PaswordLabel" Text="Lösenord"/>
+                <Entry x:Name="PasswordEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="ConfirmPaswordLabel" Text="Bekräfta Lösenord"/>
+                <Entry x:Name="ConfirmPasswordEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="FirstnameLab" Text="Förnamn"/>
+                <Entry x:Name="FirstnameEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="LastnameLab" Text="Efternamn"/>
+                <Entry x:Name="LastnameEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
+                <Entry x:Name="PhonenumberEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="CityLab" Text="Stad"/>
+                <Entry x:Name="CityEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="PostCodeLab" Text="Postkod"/>
+                <Entry x:Name="PostcodeEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="EmailLab" Text="Email"/>
+                <Entry x:Name="EmailEntry"/>
+            </StackLayout>
+
+            <Button x:Name="RegisterButton" HorizontalOptions="Center" Text="Registrera" Margin="0,30,0,0" Clicked="RegisterButton_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

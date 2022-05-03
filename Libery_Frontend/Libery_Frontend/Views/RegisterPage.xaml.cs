@@ -32,7 +32,7 @@ namespace Libery_Frontend.Views
         {
             if (EmailEntry.Text != "" && PostcodeEntry.Text != "" && CityEntry.Text != ""
                 && PhonenumberEntry.Text != "" && LastnameEntry.Text != "" && FirstnameEntry.Text != ""
-                 && ConfirmPasswordEntry.Text != "" && PasswordEntry.Text != "")
+                 && ConfirmPasswordEntry.Text != "" && PasswordEntry.Text != "" && AddressEntry.Text != "")
             {
                 using (var context = new LibraryDBContext())
                 {
@@ -59,6 +59,7 @@ namespace Libery_Frontend.Views
                         user.Lastname = LastnameEntry.Text;
                         user.PhoneNumber = PhonenumberEntry.Text;
                         user.City = CityEntry.Text;
+                        user.Address = AddressEntry.Text;
                         user.PostalCode = PostcodeEntry.Text;
                         user.Email = EmailEntry.Text;
 

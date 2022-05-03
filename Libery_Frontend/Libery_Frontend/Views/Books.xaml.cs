@@ -16,6 +16,7 @@ namespace Libery_Frontend.Views
     public partial class Books : ContentPage
     {
         public List<Models.Product> Products;
+        public List<Models.ProductType> ProdType;
         public Books()
         {
             InitializeComponent();
@@ -29,19 +30,18 @@ namespace Libery_Frontend.Views
             using (var db = new Models.LibraryDBContext())
             {
                 
-               Products = db.Products.ToList();
-                //Products = db.Products.Join(db.ProductTypes(p => p.ID = p.ProductTypeID));
-                // ProductBooks = db.Products.Where(x => x.ProductType == 1);
+                Products = db.Products.ToList();
+                ProdType = db.ProductTypes.ToList();
 
-                // var productList = Products;
-                // var BookProducts = db.Products.Join(ProductType == ProductTypeId);
-                
+                var prodType = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new { p, pi }).ToList();
+
+                ProductListView.ItemsSource = prodType;
 
             }
 
-            ProductListView.ItemsSource = Products;
+            
 
-           
+
 
 
         }

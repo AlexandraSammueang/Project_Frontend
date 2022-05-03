@@ -27,6 +27,7 @@ namespace Libery_Frontend.Views
            
         }
 
+        //Registration
         private async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
             if (EmailEntry.Text != "" && PostcodeEntry.Text != "" && CityEntry.Text != ""

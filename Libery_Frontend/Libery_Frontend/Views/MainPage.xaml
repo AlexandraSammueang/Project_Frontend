@@ -20,6 +20,6 @@
             <ContentPage Title="E-medier" />
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
-        <ContentPage Title="Bibliotek och öppettider"></ContentPage>
+        <ContentPage Title="Sök"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

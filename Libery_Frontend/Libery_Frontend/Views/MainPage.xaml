@@ -18,8 +18,8 @@
         <Views:Books Title="Alla produkter i biblioteket"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
             <ContentPage Title="E-Medier" />
-        <Views:LoginPage Title="Login"/>
+        <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Register"/>
-        <ContentPage Title="Bibliotek och Öppetider"></ContentPage>
+        <ContentPage Title="Sök"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

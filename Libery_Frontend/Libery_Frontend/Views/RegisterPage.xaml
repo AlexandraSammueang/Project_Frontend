@@ -4,62 +4,73 @@
              x:Class="Libery_Frontend.Views.RegisterPage">
 
     <ContentPage.Resources>
-        <ResourceDictionary Source="ResourcePage.xaml"/>
+       
+            <ResourceDictionary Source="ResourcePage.xaml"/>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0">
-            <StackLayout>
+        <ScrollView>
 
-                <Label x:Name="UsernameLabel" Text="Användarnamn"/>
-                <Entry x:Name="UsernameEntry"/>
-            </StackLayout>
 
-            <StackLayout>
-                <Label x:Name="PaswordLabel" Text="Lösenord"/>
-                <Entry x:Name="PasswordEntry"/>
-            </StackLayout>
 
-            <StackLayout>
-                <Label x:Name="ConfirmPaswordLabel" Text="Bekräfta Lösenord"/>
-                <Entry x:Name="ConfirmPasswordEntry"/>
-            </StackLayout>
+            <StackLayout Padding="10,0,10,0">
 
-            <StackLayout>
-                <Label x:Name="FirstnameLab" Text="Förnamn"/>
-                <Entry x:Name="FirstnameEntry"/>
-            </StackLayout>
+                <StackLayout>
 
-            <StackLayout>
-                <Label x:Name="LastnameLab" Text="Efternamn"/>
-                <Entry x:Name="LastnameEntry"/>
-            </StackLayout>
 
-            <StackLayout>
-                <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
-                <Entry x:Name="PhonenumberEntry"/>
-            </StackLayout>
+                    <Label x:Name="UsernameLabel" Text="Användarnamn"/>
+                    <Entry x:Name="UsernameEntry"/>
+                </StackLayout>
 
-            <StackLayout>
-                <Label x:Name="CityLab" Text="Stad"/>
-                <Entry x:Name="CityEntry"/>
-            </StackLayout>
-            
-            <StackLayout>
-                <Label x:Name="AddressLab" Text="Adress"/>
-                <Entry x:Name="AddressEntry"/>
-            </StackLayout>
-            
-            <StackLayout>
-                <Label x:Name="PostCodeLab" Text="Postkod"/>
-                <Entry x:Name="PostcodeEntry"/>
-            </StackLayout>
+                <StackLayout>
+                    <Label x:Name="PaswordLabel" Text="Lösenord"/>
+                    <Entry x:Name="PasswordEntry"/>
+                </StackLayout>
 
-            <StackLayout>
-                <Label x:Name="EmailLab" Text="Email"/>
-                <Entry x:Name="EmailEntry"/>
-            </StackLayout>
+                <StackLayout>
+                    <Label x:Name="ConfirmPaswordLabel" Text="Bekräfta Lösenord"/>
+                    <Entry x:Name="ConfirmPasswordEntry"/>
+                </StackLayout>
 
-            <Button x:Name="RegisterButton" HorizontalOptions="Center" Text="Registrera" Margin="0,30,0,0" Clicked="RegisterButton_Clicked"/>
-        </StackLayout>
+                <StackLayout>
+                    <Label x:Name="FirstnameLab" Text="Förnamn"/>
+                    <Entry x:Name="FirstnameEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="LastnameLab" Text="Efternamn"/>
+                    <Entry x:Name="LastnameEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
+                    <Entry x:Name="PhonenumberEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="CityLab" Text="Stad"/>
+                    <Entry x:Name="CityEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="AddressLab" Text="Adress"/>
+                    <Entry x:Name="AddressEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="PostCodeLab" Text="Postkod"/>
+                    <Entry x:Name="PostcodeEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="EmailLab" Text="Email"/>
+                    <Entry x:Name="EmailEntry"/>
+                </StackLayout>
+
+                <Button x:Name="RegisterButton" HorizontalOptions="Center" Text="Registrera" Margin="0,30,0,0" Clicked="RegisterButton_Clicked"/>
+
+
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

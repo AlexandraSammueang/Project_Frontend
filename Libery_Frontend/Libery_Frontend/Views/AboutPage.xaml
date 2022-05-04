@@ -4,19 +4,26 @@
              x:Class="Libery_Frontend.Views.AboutPage" BackgroundColor="WhiteSmoke" >
     <ContentPage.Content>
         <StackLayout>
-            <AbsoluteLayout>
-                <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
-           
-                <StackLayout>
-                    
-                    <Frame >
-                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
-                        
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
+
+
+            <StackLayout HorizontalOptions="FillAndExpand">
+
+                    <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
+                        <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
                     </Frame>
-                   
-                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="Black" />
+
+
+                <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
+                       HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 
+                       Text="Skapad av Newton_Microsoft" TextColor="Black">
+
+                </Label>
+
                 </StackLayout>
-            </AbsoluteLayout>
-        </StackLayout>
-    </ContentPage.Content>
+            
+        </Grid>
+    </StackLayout>
+        </ContentPage.Content>
 </ContentPage>

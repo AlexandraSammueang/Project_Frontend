@@ -2,24 +2,14 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black">
-  <!--Pages can be added as references or inline-->
-    <!--  <views:AboutPage />
-    <views:ConsolePage />
-    <views:NewsPage Title="Business"></views:NewsPage>
-    <views:NewsPage Title="Entertainment"></views:NewsPage>
-
-    <views:NewsPage Title="General"></views:NewsPage>
-    <views:NewsPage Title="Health"></views:NewsPage>
-    <views:NewsPage Title="Science"></views:NewsPage>
-    <views:NewsPage Title="Sports"></views:NewsPage>
-    <views:NewsPage Title="Technology"></views:NewsPage> -->
+ 
     <TabbedPage.Children >
         <Views:AboutPage Title="Start"></Views:AboutPage>
-        <Views:Books Title="Alla produkter i biblioteket"></Views:Books>
+        <Views:Books Title="Alla produkter"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
-            <ContentPage Title="E-Medier" />
-        <Views:LoginPage Title="Login"/>
-        <Views:RegisterPage Title="Register"/>
-        <ContentPage Title="Bibliotek och Öppetider"></ContentPage>
+            <ContentPage Title="E-medier" />
+        <Views:LoginPage Title="Logga in"/>
+        <Views:RegisterPage Title="Registrera användare"/>
+        <ContentPage Title="Sök"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

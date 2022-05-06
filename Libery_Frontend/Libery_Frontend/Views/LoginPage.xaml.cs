@@ -22,23 +22,30 @@ namespace Libery_Frontend.Views
 
             using (var context = new LibraryDBContext())
             {
-                userPassword = context.Users.Where(x => x.Username == userName).Select(x => new User() { Password = x.Password }).ToList();
+                userPassword = context.Users
+                    .Where(x => x.Username == userName)
+                    .Select(x => new User() { Password = x.Password })
+                    .ToList();
                 var usernameToCheck = context.Users.Where(x => x.Username == userName);
                 if (usernameToCheck.Any())
                 {
                     string password = PasswordEntry.Text;
-                    bool correctPassword = BCrypt.Net.BCrypt.Verify(password, userPassword[0].Password);
+                    bool correctPassword = BCrypt.Net.BCrypt.Verify(
+                        password,
+                        userPassword[0].Password
+                    );
                     if (correctPassword == true)
                     {
                         await Navigation.PushAsync(new MainPage());
                     }
-
-                    else await DisplayAlert("Felaktigt Login", "Användarnamn eller lösenord finns inte. Var vänlig försök igen", "OK");
+                    else
+                        await DisplayAlert(
+                            "Felaktigt Login",
+                            "Användarnamn eller lösenord finns inte. Var vänlig försök igen",
+                            "OK"
+                        );
                 }
-
-
             }
-
         }
     }
 }

@@ -15,7 +15,7 @@
                     </Frame>
 
 
-                    <Label  x:Name="labelTest" HorizontalOptions="Start" VerticalOptions="Start" 
+                    <Label  x:Name="timeLabel" HorizontalOptions="Start" VerticalOptions="Start" 
                             TextColor="Black" FontSize="16" FontAttributes="Italic" 
                             WidthRequest="150" Text=""/>
 

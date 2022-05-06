@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.AboutPage" BackgroundColor="WhiteSmoke" >
+             x:Class="Libery_Frontend.Views.AboutPage"  BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
         <StackLayout>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -15,13 +15,21 @@
                     </Frame>
 
 
-                <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
+                    <Label  x:Name="labelTest" HorizontalOptions="Start" VerticalOptions="Start" 
+                            TextColor="Black" FontSize="16" FontAttributes="Italic" 
+                            WidthRequest="150" Text=""/>
+
+                                   
+
+
+
+                    <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
                        HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 
                        Text="Skapad av Newton_Microsoft" TextColor="Black">
 
-                </Label>
+                    </Label>
 
-                </StackLayout>
+            </StackLayout>
             
         </Grid>
     </StackLayout>

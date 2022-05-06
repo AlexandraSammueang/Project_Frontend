@@ -30,7 +30,7 @@ namespace Libery_Frontend.Views
                     bool correctPassword = BCrypt.Net.BCrypt.Verify(password, userPassword[0].Password);
                     if (correctPassword == true)
                     {
-                        await Navigation.PushAsync(new AboutPage());
+                        await Navigation.PushAsync(new MainPage());
                     }
 
                     else await DisplayAlert("Felaktigt Login", "Användarnamn eller lösenord finns inte. Var vänlig försök igen", "OK");

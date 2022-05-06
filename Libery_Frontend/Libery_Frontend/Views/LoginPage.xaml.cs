@@ -35,7 +35,7 @@ namespace Libery_Frontend.Views
 
                     else await DisplayAlert("Felaktigt Login", "Användarnamn eller lösenord finns inte. Var vänlig försök igen", "OK");
                 }
-
+                else await DisplayAlert("Felaktigt Login", "Användarnamn eller lösenord finns inte. Var vänlig försök igen", "OK");
 
             }
 

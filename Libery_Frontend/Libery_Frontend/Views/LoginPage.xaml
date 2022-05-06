@@ -18,7 +18,7 @@
                 <Entry x:Name="PasswordEntry"/>
             </StackLayout>
 
-            <Button x:Name="LoginButton" HorizontalOptions="Center" Text="Login" Margin="0,30,0,0" Clicked="LoginButton_Clicked"/>
+            <Button x:Name="LoginButton" HorizontalOptions="Center" Text="Logga in" Margin="0,30,0,0" Clicked="LoginButton_Clicked"/>
 
         </StackLayout>
     </ContentPage.Content>

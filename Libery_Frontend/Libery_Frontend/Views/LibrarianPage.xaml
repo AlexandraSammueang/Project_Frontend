@@ -3,10 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibrarianPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame  BackgroundColor="Green" Grid.Column="0" WidthRequest="200">
+                <StackLayout x:Name="ButtonMenu" IsVisible="true">
+                    <Button x:Name="AddProdButton" Text="Lägg till produkt" FontAttributes="Bold" BackgroundColor="Aqua" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
+                    <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="Aqua" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
+                    <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="Aqua" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
+                    <Entry x:Name="SearchBar" BackgroundColor="White"/>
+
+                </StackLayout>
+                
+            </Frame>
+
+            <Frame  Grid.Column="1">
+                <StackLayout x:Name="ActionFrame" IsVisible="true">
+                    <Label x:Name="DefaultFrameText" Text="Default text before action is chosen"
+                           FontAttributes="Bold"
+                           FontSize="Large"/>
+
+
+                    <StackLayout x:Name="AddProdFrame" IsVisible="false">
+                        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
+                        <Label Text="Add product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                        <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5">
+                                            <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                                    <Image Source="{Binding Image}" WidthRequest="80" Aspect="AspectFill"/>
+                                                    <StackLayout BackgroundColor="Transparent">
+                                                        <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
+                                                        <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" />
+                                                        <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
+
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <StackLayout x:Name="RemoveProdFrame" IsVisible="false">
+                        <Label Text="Remove product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                    </StackLayout>
+
+                    <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
+                        <Label Text="Update product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Frame>
+
+
+          
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

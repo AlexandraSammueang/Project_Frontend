@@ -11,5 +11,6 @@
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
         <ContentPage Title="Sök"></ContentPage>
+        <ContentPage Title="Admin test"></ContentPage>
     </TabbedPage.Children>
 </TabbedPage>

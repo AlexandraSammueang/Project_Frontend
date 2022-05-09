@@ -15,9 +15,7 @@
             <StackLayout Padding="10,0,10,0">
 
                 <StackLayout>
-
-
-                    <Label x:Name="UsernameLabel" Text="Användarnamn"/>
+                   <Label x:Name="UsernameLabel" Text="Användarnamn"/>
                     <Entry x:Name="UsernameEntry"/>
                 </StackLayout>
 

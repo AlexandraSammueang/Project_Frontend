@@ -26,8 +26,9 @@ namespace Libery_Frontend.Views
                            "LÖR  11:00-15:00 \n" +
                            "SÖN  12:00-15:00";
 
+          
         }
 
-        
+
     }
 }

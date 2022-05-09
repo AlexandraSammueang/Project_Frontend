@@ -10,16 +10,15 @@
 
             <StackLayout HorizontalOptions="FillAndExpand">
 
-                    <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
+                    <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
                         <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
                     </Frame>
 
+                
 
-                    <Label  x:Name="timeLabel" HorizontalOptions="Start" VerticalOptions="Start" 
+                    <Label  x:Name="timeLabel" HorizontalOptions="End" 
                             TextColor="Black" FontSize="16" FontAttributes="Italic" 
-                            WidthRequest="150" Text=""/>
-
-                                   
+                            WidthRequest="150" Text="" Margin="0,0,50,0" />
 
 
 

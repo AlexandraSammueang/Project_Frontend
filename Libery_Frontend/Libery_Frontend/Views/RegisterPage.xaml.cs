@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Libery_Frontend.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Libery_Frontend.Models;
-using BCrypt.Net;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -24,53 +21,71 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
 
-           
+
         }
 
         //Registration
         private async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
-            if (EmailEntry.Text != "" && PostcodeEntry.Text != "" && CityEntry.Text != ""
-                && PhonenumberEntry.Text != "" && LastnameEntry.Text != "" && FirstnameEntry.Text != ""
-                 && ConfirmPasswordEntry.Text != "" && PasswordEntry.Text != "" && AddressEntry.Text != "")
+            //if (!string.IsNullOrWhiteSpace(EmailEntry.Text) && PostcodeEntry.Text != "" && CityEntry.Text != ""
+            //    && PhonenumberEntry.Text != "" && LastnameEntry.Text != "" && FirstnameEntry.Text != ""
+            //     && ConfirmPasswordEntry.Text != "" && PasswordEntry.Text != "" && AddressEntry.Text != "")
+            //{
+            using (var context = new LibraryDBContext())
             {
-                using (var context = new LibraryDBContext())
+                var checkUsernameAvailability = context.Users.Where(x => x.Username == UsernameEntry.Text);
+                if (checkUsernameAvailability.Any())
                 {
-                    var checkUsernameAvailability = context.Users.Where(x => x.Username == UsernameEntry.Text);
-                    if (checkUsernameAvailability.Any())
-                    {
-                        await DisplayAlert("Upptaget användarnamn", "Användarnamnet upptaget. Var vänlig välj ett annat.", "OK");
-                        return;
-                    }
+                    await DisplayAlert("Upptaget användarnamn", "Användarnamnet upptaget. Var vänlig välj ett annat.", "OK");
+                    return;
+                }
 
-                    else if (ConfirmPasswordEntry.Text != PasswordEntry.Text)
-                    {
-                        await DisplayAlert("Felaktigt lösenord", "Lösenord matchar inte. Försök igen", "OK");
-                        return;
-                    }
+                else if (ConfirmPasswordEntry.Text != PasswordEntry.Text)
+                {
+                    await DisplayAlert("Felaktigt lösenord", "Lösenord matchar inte. Försök igen", "OK");
+                    return;
+                }
 
-                    else
+
+
+                else
+                {
+                    try
                     {
                         user.Username = UsernameEntry.Text;
                         user.Password = PasswordEntry.Text;
                         user.Password = BCrypt.Net.BCrypt.HashPassword(PasswordEntry.Text, 10);
-                        user.Firstname = FirstnameEntry.Text;
-                        user.Lastname = LastnameEntry.Text;
-                        user.Lastname = LastnameEntry.Text;
-                        user.PhoneNumber = PhonenumberEntry.Text;
-                        user.City = CityEntry.Text;
-                        user.Address = AddressEntry.Text;
-                        user.PostalCode = PostcodeEntry.Text;
-                        user.Email = EmailEntry.Text;
+                        user.Firstname = FirstnameEntry.Text ?? FirstnameEntry.Placeholder;
+                        user.Lastname = LastnameEntry.Text ?? LastnameEntry.Placeholder;
+                        user.PhoneNumber = PhonenumberEntry.Text ?? PhonenumberEntry.Placeholder;
+                        user.City = CityEntry.Text ?? CityEntry.Placeholder;
+                        user.Address = AddressEntry.Text ?? AddressEntry.Placeholder;
+                        user.PostalCode = PostcodeEntry.Text ?? PostcodeEntry.Placeholder;
+                        user.Email = EmailEntry.Text ?? EmailEntry.Placeholder;
 
                         context.Users.Add(user);
                         context.SaveChanges();
 
                         await DisplayAlert("Registrerad", "Registrering klar", "OK");
                     }
+                    catch (ArgumentNullException)
+                    {
+                        await DisplayAlert($"Felaktig info",
+                                            $"Du måste fylla i alla fält",
+                                            "OK");
+                    }
+
+                    catch (InvalidOperationException)
+                    {
+                        await DisplayAlert($"Felaktigt användarnamn",
+                                           $"Du måste fylla ange ett användarnamn",
+                                           "OK");
+                    }
                 }
+
+                //}
             }
-            else await DisplayAlert("Information saknas", "Ett eller flera fält fattas", "OK");
+            // else await DisplayAlert("Information saknas", "Ett eller flera fält fattas", "OK");
         }
     }
 }

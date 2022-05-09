@@ -11,5 +11,7 @@
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
         <ContentPage Title="Sök"></ContentPage>
+        <Views:LibrarianPage Title="Bibliotekschef metoder"></Views:LibrarianPage>
+        <Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>
     </TabbedPage.Children>
 </TabbedPage>

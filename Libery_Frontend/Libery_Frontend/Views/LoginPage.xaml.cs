@@ -45,6 +45,13 @@ namespace Libery_Frontend.Views
                             "OK"
                         );
                 }
+                else
+                {
+                    await DisplayAlert(
+                        "Felaktig Login", 
+                        "Användarnamn eller lösenord finns inte. Var vänlig försöker igen",
+                        "OK");
+                }
             }
         }
     }

@@ -4,9 +4,10 @@
              x:Class="Libery_Frontend.Views.Books">
     <ContentPage.Content>
         <StackLayout>
-            <Label TextColor="Black" Text="Alla produkter i databasen" FontSize="Medium"
-                VerticalOptions="Start" 
-                HorizontalOptions="Center" />
+            <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
+                <Label Text="Alla produkter" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
+            </Frame>
+            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"></ActivityIndicator>
             <ListView x:Name="ProductListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -18,18 +19,19 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
 
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="20" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
 
-                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="70" />
-                                    <Label Grid.Row="1" Grid.Column="1"  Text="{Binding ProductName}"  FontSize="Micro" TextColor="Black"/>
-                                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding ProductInfo}" TextColor="Black"/>
+                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
+                                    <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Large" TextColor="Black"/>
+                                    <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}" TextColor="Black"/>
+                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Type}" TextColor="DarkGray"/>
                                     
 
                                 </Grid >

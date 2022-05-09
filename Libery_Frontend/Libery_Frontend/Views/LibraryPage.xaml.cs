@@ -11,8 +11,9 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
 
-
         }
+
+       
     }
     
 }

@@ -5,14 +5,10 @@
     <ContentPage.Content>
 
         <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
+   
 
+        </Frame>
 
-
-
-
-
-
-            </Frame>
     </ContentPage.Content>
 </ContentPage>
 

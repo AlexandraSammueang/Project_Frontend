@@ -11,7 +11,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-            
+        public string username = null;
 
         public LoginPage()
         {
@@ -41,19 +41,44 @@ namespace Libery_Frontend.Views
 
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
-                        await Navigation.PushAsync(new MainPage());
 
+                        Page pageToAdd = new LibraryBossPage();
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Bibliotekschef";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
+
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
+
+                    }
+
+                    else if (correctPassword == true && userPassword[0].UserGroup == "bibliotekarie")
+                    {
+
+                        Page pageToAdd = new LibrarianPage();
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Bibliotekarie";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
+
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
                     }
 
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
-                        //NavigationPage pag = new NavigationPage(new LibrarianPage());
-                        //var pagadd = new MainPage();
-                        //pag.Title = "testsida";
-                        //pagadd.Children.Add(pag);
-                        await Navigation.PushAsync(new MainPage());
-                        
+                        Page pageToAdd = new UserAccountPage(userName);
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Kundkorg";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
 
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
                     }
 
                     else

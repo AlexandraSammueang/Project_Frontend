@@ -2,8 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black"
-         >
- 
+             >
+
+
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
         <Views:Books Title="Alla produkter"></Views:Books>
@@ -13,4 +14,6 @@
         <Views:RegisterPage Title="Registrera användare"/>
         <ContentPage Title="Sök"></ContentPage>
     </TabbedPage.Children>
+
+
 </TabbedPage>

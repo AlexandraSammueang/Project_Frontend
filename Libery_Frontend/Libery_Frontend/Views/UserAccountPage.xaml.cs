@@ -10,12 +10,18 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : TabbedPage
+    public partial class UserAccountPage : ContentPage
     {
 
-        public MainPage()
+        public UserAccountPage(string username)
         {
-           InitializeComponent();
+            InitializeComponent();
+            BindingContext = username;
+        }
+        public UserAccountPage()
+        {
+            
+            InitializeComponent();
         }
     }
 }

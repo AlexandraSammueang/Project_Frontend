@@ -63,6 +63,8 @@ namespace Libery_Frontend.Views
                         user.PostalCode = PostcodeEntry.Text ?? PostcodeEntry.Placeholder;
                         user.Email = EmailEntry.Text ?? EmailEntry.Placeholder;
 
+                        user.UserGroup = "användare";
+
                         context.Users.Add(user);
                         context.SaveChanges();
 

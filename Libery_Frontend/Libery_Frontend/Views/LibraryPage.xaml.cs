@@ -12,8 +12,8 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LibraryPage : ContentPage
     {
-   
-  
+
+
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
 
@@ -49,7 +49,7 @@ namespace Libery_Frontend.Views
 
 
                 }
-                
+
 
                 catch (Exception ex)
                 {
@@ -68,5 +68,6 @@ namespace Libery_Frontend.Views
         }
 
     }
+}
     
 }

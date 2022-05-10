@@ -5,6 +5,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -24,7 +25,7 @@ namespace Libery_Frontend.Views
             {
                 userPassword = context.Users
                     .Where(x => x.Username == userName)
-                    .Select(x => new User() { Password = x.Password })
+                    .Select(x => new User() { Password = x.Password, UserGroup = x.UserGroup})
                     .ToList();
                 var usernameToCheck = context.Users.Where(x => x.Username == userName);
                 if (usernameToCheck.Any())
@@ -34,10 +35,19 @@ namespace Libery_Frontend.Views
                         password,
                         userPassword[0].Password
                     );
-                    if (correctPassword == true)
+
+                    if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
                         await Navigation.PushAsync(new MainPage());
+                        
                     }
+
+                    else if(correctPassword == true && userPassword[0].UserGroup == "användare")
+                    {
+                        await Navigation.PushAsync(new MainPage());
+                        
+                    }
+
                     else
                         await DisplayAlert(
                             "Felaktigt Login",

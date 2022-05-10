@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,8 +11,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LibraryBossPage : ContentPage
     {
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
+        public List<Models.User> Users;
         public LibraryBossPage()
         {
             InitializeComponent();
@@ -26,22 +24,27 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
         }
 
-        public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
+        public async Task<List<UserModel>> GetProductsAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            Task<List<UserModel>> databaseTask = Task<List<UserModel>>.Factory.StartNew(() =>
             {
-                List<ProductModel> result = null;
+                List<UserModel> result = null;
                 try
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
 
-                        Products = db.Products.ToList();
-                        ProdType = db.ProductTypes.ToList();
+                        Users = db.Users.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Users.Select(x => new UserModel
+                        {
+                            Username = x.Username,
+                            Firstname = x.Firstname,
+                            Lastname = x.Lastname,
+                            UserGroup = x.UserGroup
+                        }).ToList();
                     }
                 }
 
@@ -68,6 +71,18 @@ namespace Libery_Frontend.Views
             DefaultFrameText.IsVisible = false;
 
             AddProdFrame.IsVisible = true;
+
+            UserModel item = ProductListView.SelectedItem as UserModel;
+
+            if (item != null)
+            {
+                using (var context = new Models.LibraryDBContext())
+                {
+                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    personToUpdate.UserGroup = "bibliotekarie";
+                    context.SaveChanges();
+                }
+            }
         }
 
         private void RemoveProdButton_Clicked(object sender, EventArgs e)
@@ -87,5 +102,13 @@ namespace Libery_Frontend.Views
 
             UpdateProdFrame.IsVisible = true;
         }
+        public class UserModel
+        {
+            public string Username { get; set; } = default;
+            public string Firstname { get; set; } = default;
+            public string Lastname { get; set; } = default;
+            public string UserGroup { get; set; } = default;
+        }
+
     }
 }

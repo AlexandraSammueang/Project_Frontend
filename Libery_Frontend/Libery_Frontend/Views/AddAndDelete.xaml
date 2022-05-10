@@ -19,26 +19,26 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label x:Name="PaswordLabel" Text="Lösenord"/>
-                    <Entry x:Name="PasswordEntry"/>
+                    <Label x:Name="ProductInfo" Text="Titelinfo"/>
+                    <Entry x:Name="ProductInfoEntry"/>
                 </StackLayout>
 
                 <StackLayout>
-                    <Label x:Name="ConfirmPaswordLabel" Text="Bekräfta Lösenord"/>
-                    <Entry x:Name="ConfirmPasswordEntry"/>
+                    <Label x:Name="ISBN" Text="ISBN-nummer"/>
+                    <Entry x:Name="ISBNEntry"/>
                 </StackLayout>
 
                 <StackLayout>
-                    <Label x:Name="FirstnameLab" Text="Förnamn"/>
-                    <Entry x:Name="FirstnameEntry" Placeholder="Karin"/>
+                    <Label x:Name="FirstnameLab" Text="Författare förnamn"/>
+                    <Entry x:Name="AFirstnameEntry" Placeholder="Jan"/>
                 </StackLayout>
 
                 <StackLayout>
-                    <Label x:Name="LastnameLab" Text="Efternamn"/>
-                    <Entry x:Name="LastnameEntry" Placeholder="Ekström"/>
+                    <Label x:Name="LastnameLab" Text="Författare efternamn"/>
+                    <Entry x:Name="ALastnameEntry" Placeholder="Guillou"/>
                 </StackLayout>
 
-                <StackLayout>
+                <!-- <StackLayout>
                     <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
                     <Entry x:Name="PhonenumberEntry" Placeholder="0761611369"/>
                 </StackLayout>
@@ -61,9 +61,9 @@
                 <StackLayout>
                     <Label x:Name="EmailLab" Text="Email"/>
                     <Entry x:Name="EmailEntry" Placeholder="Example@gmail.com"/>
-                </StackLayout>
+                </StackLayout> -->
 
-               
+                <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

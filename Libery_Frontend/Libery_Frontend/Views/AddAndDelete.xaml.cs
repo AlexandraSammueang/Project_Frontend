@@ -15,28 +15,36 @@ namespace Libery_Frontend.Views
         public AddAndDelete()
         {
             InitializeComponent();
+        }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
+        private async void AddButton_Clicked(object sender, System.EventArgs e)
+        {
             using (var db = new Models.LibraryDBContext())
             {
                 var newProduct = new Product
                 {
                     ProductName = ProductNameEntry.Text,
-                    ProductCategory = ProductCategory.Text;
-                    Name = FirstnameEntry.Text;
-
-
-
+                    ProductInfo = ProductInfoEntry.Text,
+                    Isbn = ISBNEntry.Text
+                    //AuthorId = Convert.ToInt32(ProductInfoEntry.Text),
+                };
 
                 try
                 {
                     db.Add(newProduct);
                     db.SaveChanges();
-                    Console.WriteLine("You have added 1 new product");
+                    // Console.WriteLine("You have added 1 new product");
                 }
                 catch (Exception)
                 {
                     Console.WriteLine("You failed to add a product");
                 }
             }
+        }
     }
 }

@@ -13,37 +13,28 @@ namespace Libery_Frontend.Views
     public partial class MainPage : TabbedPage
     {
 
-        public MainPage(int index)
+        public MainPage(string authority)
         {
-            if (index == 1)
+            if (authority.ToLower() == "bib")
             {
-                //NavigationPage pag = new NavigationPage(new LibrarianPage());
-                //var pagadd = this;
-                //pag.Title = "testsida";
-                //pagadd.Children.Add(pag);
-                //Children.Add(pag);
-                //Children.Add(new LibrarianPage());
-
-
                 Page pag = new LibrarianPage();
-                pag.Title = "test";
+                pag.Title = "Bibliotekarie";
                 Children.Add(pag);
+            }
 
+            if (authority.ToLower() == "chef")
+            {
+                Page pag = new LibraryBossPage();
+                pag.Title = "Chef";
+                Children.Add(pag);
+                var a = 0;
             }
             
             InitializeComponent();
         }
         public MainPage()
         {
-            //NavigationPage navpag = new NavigationPage(new LibrarianPage());
-            //navpag.Title = "testsida";
-            //Children.Add(navpag);
-
-            //Page pag = new LibrarianPage();
-            //pag.Title = "aaaaaaaaaa";
-            //Children.Add(pag);
-
-            InitializeComponent();
+           InitializeComponent();
         }
     }
 }

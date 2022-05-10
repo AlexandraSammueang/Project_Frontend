@@ -47,11 +47,11 @@ namespace Libery_Frontend.Views
 
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
-                        NavigationPage pag = new NavigationPage(new LibrarianPage());
-                        var pagadd = new MainPage();
-                        pag.Title = "testsida";
-                        pagadd.Children.Add(pag);
-                        await Navigation.PushAsync(new MainPage(1));
+                        //NavigationPage pag = new NavigationPage(new LibrarianPage());
+                        //var pagadd = new MainPage();
+                        //pag.Title = "testsida";
+                        //pagadd.Children.Add(pag);
+                        await Navigation.PushAsync(new MainPage());
                         
 
                     }

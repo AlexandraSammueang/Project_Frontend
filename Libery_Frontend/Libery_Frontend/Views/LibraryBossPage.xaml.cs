@@ -12,8 +12,8 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LibraryBossPage : ContentPage
     {
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
+        public List<Models.User> User;
+       
         public LibraryBossPage()
         {
             InitializeComponent();
@@ -23,25 +23,27 @@ namespace Libery_Frontend.Views
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator); });
         }
 
-        public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
+        public async Task<List<UserModel>> GetUserAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            Task<List<UserModel>> databaseTask = Task<List<UserModel>>.Factory.StartNew(() =>
             {
-                List<ProductModel> result = null;
+                List<UserModel> result = null;
                 try
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
 
-                        Products = db.Products.ToList();
-                        ProdType = db.ProductTypes.ToList();
+                        User = db.Users.ToList();
+                        result = User.Select(x => new UserModel
+                        {Firstname = x.Firstname, Lastname = x.Lastname, Username = x.Username, UserGroup = x.UserGroup }).ToList();
+                        //ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        //result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
                     }
                 }
 
@@ -86,6 +88,14 @@ namespace Libery_Frontend.Views
             DefaultFrameText.IsVisible = false;
 
             UpdateProdFrame.IsVisible = true;
+        }
+
+        public class UserModel
+        {
+            public string Username { get; set; } = default;
+            public string Firstname { get; set; } = default;
+            public string Lastname { get; set; } = default;
+            public string UserGroup { get; set; } = default;
         }
     }
 }

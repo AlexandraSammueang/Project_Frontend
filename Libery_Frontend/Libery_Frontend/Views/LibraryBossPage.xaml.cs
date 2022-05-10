@@ -41,9 +41,7 @@ namespace Libery_Frontend.Views
                         User = db.Users.ToList();
                         result = User.Select(x => new UserModel
                         {Firstname = x.Firstname, Lastname = x.Lastname, Username = x.Username, UserGroup = x.UserGroup }).ToList();
-                        //ProdType = db.ProductTypes.ToList();
-
-                        //result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        
                     }
                 }
 
@@ -63,13 +61,67 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        private void AddProdButton_Clicked(object sender, EventArgs e)
+        private async void AddProdButton_Clicked(object sender, EventArgs e)
         {
             RemoveProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
             DefaultFrameText.IsVisible = false;
 
             AddProdFrame.IsVisible = true;
+
+            UserModel item = ProductListView.SelectedItem as UserModel;
+
+            if (item != null)
+            {
+                using (var context = new Models.LibraryDBContext())
+                {
+                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    personToUpdate.UserGroup = "bibliotekarie";
+                    context.SaveChanges();
+
+                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+                }
+            }
+            else 
+            {
+                await DisplayAlert("Ingen vald användare", "Välj en användare för att uppdatera behörighet", "Ok");
+            }
+            
+            
+        }
+
+        private async void RemoveLiberianButton_Clicked(object sender, EventArgs e)
+        {
+            RemoveProdFrame.IsVisible = false;
+            UpdateProdFrame.IsVisible = false;
+            DefaultFrameText.IsVisible = false;
+
+            AddProdFrame.IsVisible = true;
+
+            UserModel item = ProductListView.SelectedItem as UserModel;
+
+            if (item != null)
+            {
+                using (var context = new Models.LibraryDBContext())
+                {
+                    //var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    //personToUpdate.UserGroup = "bibliotekarie";
+
+                    //context.SaveChanges();
+                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
+                    var removePost = context.Users.Where(x => x.UserGroup == item.UserGroup).FirstOrDefault();
+                    context.Users.Remove(removePost);
+                    context.SaveChanges();
+
+                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ingen vald användare", "Välj en användare för att ta bort behörighet", "Ok");
+            }
+
+
         }
 
         private void RemoveProdButton_Clicked(object sender, EventArgs e)

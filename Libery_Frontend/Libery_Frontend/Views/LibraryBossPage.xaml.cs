@@ -104,14 +104,14 @@ namespace Libery_Frontend.Views
             {
                 using (var context = new Models.LibraryDBContext())
                 {
-                    //var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-                    //personToUpdate.UserGroup = "bibliotekarie";
+                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    personToUpdate.UserGroup = "användare";
 
-                    //context.SaveChanges();
-                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
-                    var removePost = context.Users.Where(x => x.UserGroup == item.UserGroup).FirstOrDefault();
-                    context.Users.Remove(removePost);
                     context.SaveChanges();
+                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
+                    //var removePost = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    //context.Users.Remove(removePost);
+                    //context.SaveChanges();
 
                     ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
                 }
@@ -131,6 +131,7 @@ namespace Libery_Frontend.Views
             DefaultFrameText.IsVisible = false;
 
             RemoveProdFrame.IsVisible = true;
+
         }
 
         private void UpdateProdButton_Clicked(object sender, EventArgs e)

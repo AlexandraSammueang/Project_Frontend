@@ -64,7 +64,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        private void AddProdButton_Clicked(object sender, EventArgs e)
+        private async void AddProdButton_Clicked(object sender, EventArgs e)
         {
             RemoveProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
@@ -81,7 +81,13 @@ namespace Libery_Frontend.Views
                     var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
                     personToUpdate.UserGroup = "bibliotekarie";
                     context.SaveChanges();
+
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
                 }
+            }
+            else
+            {
+                await DisplayAlert("Ingen användare vald", "Välj en användare för att uppgradera behörighet", "OK");
             }
         }
 
@@ -102,6 +108,8 @@ namespace Libery_Frontend.Views
 
             UpdateProdFrame.IsVisible = true;
         }
+
+
         public class UserModel
         {
             public string Username { get; set; } = default;

@@ -27,10 +27,7 @@ namespace Libery_Frontend.Views
         //Registration
         private async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
-            //if (!string.IsNullOrWhiteSpace(EmailEntry.Text) && PostcodeEntry.Text != "" && CityEntry.Text != ""
-            //    && PhonenumberEntry.Text != "" && LastnameEntry.Text != "" && FirstnameEntry.Text != ""
-            //     && ConfirmPasswordEntry.Text != "" && PasswordEntry.Text != "" && AddressEntry.Text != "")
-            //{
+     
             using (var context = new LibraryDBContext())
             {
                 var checkUsernameAvailability = context.Users.Where(x => x.Username == UsernameEntry.Text);
@@ -85,9 +82,8 @@ namespace Libery_Frontend.Views
                     }
                 }
 
-                //}
+                
             }
-            // else await DisplayAlert("Information saknas", "Ett eller flera fält fattas", "OK");
         }
     }
 }

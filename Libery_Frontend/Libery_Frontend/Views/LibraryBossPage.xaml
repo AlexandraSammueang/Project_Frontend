@@ -32,7 +32,7 @@
                     <StackLayout x:Name="AddProdFrame" IsVisible="true">
                         <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
                         <Label Text="Add product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
-                        <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True" ItemSelected="ProductListView_ItemSelected">
+                        <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

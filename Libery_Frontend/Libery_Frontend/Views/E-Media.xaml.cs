@@ -1,7 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -10,18 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LibraryPage : ContentPage
+    public partial class E_Media : ContentPage
     {
-   
-  
+        public E_Media()
+        {
+            InitializeComponent();
+        }
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
 
-        public LibraryPage()
-        {
-            InitializeComponent();
-
-        }
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -41,7 +39,7 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
-                        Products = db.Products.Where(x => x.EVersion == false).ToList();
+                        Products = db.Products.Where(x => x.EVersion == true).ToList();
                         ProdType = db.ProductTypes.ToList();
 
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
@@ -49,7 +47,7 @@ namespace Libery_Frontend.Views
 
 
                 }
-                
+
 
                 catch (Exception ex)
                 {
@@ -67,5 +65,9 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            
+        }
     }
-    
+}

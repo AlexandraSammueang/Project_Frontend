@@ -12,6 +12,8 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddAndDelete : ContentPage
     {
+        public List<Models.Author> Authors;
+
         public AddAndDelete()
         {
             InitializeComponent();
@@ -20,6 +22,11 @@ namespace Libery_Frontend.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+
+            using (var db = new Models.LibraryDBContext())
+            {
+                Authors = db.Authors.ToList();
+            }
         }
 
         private async void AddButton_Clicked(object sender, System.EventArgs e)
@@ -30,15 +37,16 @@ namespace Libery_Frontend.Views
                 {
                     ProductName = ProductNameEntry.Text,
                     ProductInfo = ProductInfoEntry.Text,
-                    Isbn = ISBNEntry.Text
+                    Isbn = ISBNEntry.Text,
                     //AuthorId = Convert.ToInt32(ProductInfoEntry.Text),
+                    AuthorId = Authors.Last().Id,
                 };
 
                 try
                 {
                     db.Add(newProduct);
                     db.SaveChanges();
-                    // Console.WriteLine("You have added 1 new product");
+                    Console.WriteLine("You have added 1 new product");
                 }
                 catch (Exception)
                 {

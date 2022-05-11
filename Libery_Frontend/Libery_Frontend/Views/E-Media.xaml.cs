@@ -82,6 +82,10 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
 
         }
+        private async void BackToList_Clicked(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        }
         public async Task<List<ProductModel>> GetBooksAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -154,6 +158,8 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+
+        
     }
 
 

@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibraryBossPage">
-    <ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content >
         <Grid>
             <Grid.RowDefinitions>
 
@@ -26,7 +30,7 @@
                 <StackLayout x:Name="ActionFrame" IsVisible="true">
                     <Label x:Name="DefaultFrameText" Text="Default text before action is chosen"
                            FontAttributes="Bold"
-                           FontSize="Large"/>
+                           FontSize="Medium"/>
 
 
                     <StackLayout x:Name="AddProdFrame" IsVisible="true">

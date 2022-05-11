@@ -75,8 +75,6 @@ namespace Libery_Frontend.Views
 
         }
 
-
-
         private async void Movie_Clicked(object sender, EventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });

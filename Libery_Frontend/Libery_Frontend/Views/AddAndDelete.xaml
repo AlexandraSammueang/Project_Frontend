@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.AddAndDelete">
+    <ContentPage.Resources>
+
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+
+
+
+            <StackLayout Padding="10,0,10,0">
+
+                <StackLayout>
+                    <Label x:Name="ProductName" Text="Titel"/>
+                    <Entry x:Name="ProductNameEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="ProductInfo" Text="Titelinfo"/>
+                    <Entry x:Name="ProductInfoEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="ISBN" Text="ISBN-nummer"/>
+                    <Entry x:Name="ISBNEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="FirstnameLab" Text="Författare förnamn"/>
+                    <Entry x:Name="AFirstnameEntry" Placeholder="Jan"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="LastnameLab" Text="Författare efternamn"/>
+                    <Entry x:Name="ALastnameEntry" Placeholder="Guillou"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Picker x:Name="SelectAuthorPicker" Title="Välj författare" ItemsSource="{Binding Authors}" ItemDisplayBinding="{Binding Lastname}"
+        SelectedItem="{Binding SelectedAuthor}" />
+
+                    <Label Text="{Binding SelectedAuthor.Id}" IsVisible="True" x:Name="SelectedAuthorId" Margin="0,100,0,0"/>
+                    <Label Text="{Binding SelectedAuthor.Lastname}" IsVisible="True" x:Name="SelectedAuthorName"/>
+                </StackLayout>
+    
+                <!-- <StackLayout>
+                    <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
+                    <Entry x:Name="PhonenumberEntry" Placeholder="0761611369"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="CityLab" Text="Stad"/>
+                    <Entry x:Name="CityEntry" Placeholder="Stockholm"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="AddressLab" Text="Adress"/>
+                    <Entry x:Name="AddressEntry" Placeholder="Hittepågatan 1337"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="PostCodeLab" Text="Postkod"/>
+                    <Entry x:Name="PostcodeEntry" Placeholder="12939"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="EmailLab" Text="Email"/>
+                    <Entry x:Name="EmailEntry" Placeholder="Example@gmail.com"/>
+                </StackLayout> -->
+
+                <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

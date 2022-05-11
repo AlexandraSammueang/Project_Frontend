@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibrarianPage">
+
+    <ContentPage.Resources><ResourceDictionary Source="ResourcePage.xaml"/></ContentPage.Resources>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -44,7 +46,6 @@
                                                         <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
                                                         <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" />
                                                         <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
-
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>
@@ -62,6 +63,8 @@
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
                         <Label Text="Update product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
+                    
+
 
                 </StackLayout>
 

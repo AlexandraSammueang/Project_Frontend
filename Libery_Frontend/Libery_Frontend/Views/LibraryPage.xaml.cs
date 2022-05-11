@@ -70,4 +70,3 @@ namespace Libery_Frontend.Views
     }
 }
     
-}

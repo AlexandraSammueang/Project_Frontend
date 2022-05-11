@@ -26,6 +26,7 @@ namespace Libery_Frontend.Views
 
             // Load products asynchronously
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
@@ -64,10 +65,19 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+       
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Books_Clicked(object sender, EventArgs e)
         {
-            
+
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        }
+
+
+
+        private void Movie_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -3,17 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black"
              >
-
-
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
+        <Views:SearchPage Title="Sök"/>
         <Views:Books Title="Alla produkter"></Views:Books>
         <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
           
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
-        <ContentPage Title="Sök"></ContentPage>
         <Views:LibrarianPage Title="Bibliotekschef metoder"></Views:LibrarianPage>
         <Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>
         <Views:AddAndDelete Title="Lägga till/ta bort böcker"></Views:AddAndDelete>

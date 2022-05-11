@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Libery_Frontend.Models;
 
 namespace Libery_Frontend.Views
 {
@@ -66,14 +67,5 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-    }
-
-    public class ProductModel
-    {
-        public string Image { get; set; } = default;
-        public string Name { get; set; } = default;
-        public string Info { get; set; } = default;
-        public string Type { get; set; } = default;
-      
     }
 }

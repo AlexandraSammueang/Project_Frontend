@@ -3,46 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.E_Media">
     <ContentPage.Content>
-        <StackLayout>
-            <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
-                <Label Text="E-media" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
-            </Frame>
-            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"></ActivityIndicator>
-            <ListView x:Name="BookListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
-                                <Grid >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-
-                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
-                                    <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Large" TextColor="Black"/>
-                                    <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}" TextColor="Black"/>
-                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Type}" TextColor="DarkGray"/>
+        <Grid>
+            <Frame BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start"  Grid.Column="0" WidthRequest="100">
+                <StackLayout x:Name="Menu" IsVisible="true">
+                    <Button x:Name="Books" Text="E-böcker" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="Books_Clicked"></Button>
+                    <Button x:Name="Movie" Text="Filmer" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="Movie_Clicked"></Button>
 
 
 
+                </StackLayout>
+            
+        </Frame>
+        <Frame  Grid.Column="1">
+          
 
 
-                                </Grid >
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+                <StackLayout x:Name="AddProdFrame" IsVisible="true">
+                    <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
+                   
+                        <ListView x:Name="BookListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Padding="5">
+                                        <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                            <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                                <Image Source="{Binding Image}" WidthRequest="80" Aspect="AspectFill"/>
+                                                <StackLayout BackgroundColor="Transparent">
+                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
+                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
+
+                                                </StackLayout>
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+               
+
+        </Frame>
+
+
+
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

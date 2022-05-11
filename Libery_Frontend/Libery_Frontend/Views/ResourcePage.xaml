@@ -15,7 +15,9 @@
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="Gray"/>
         <Setter Property="FontAttributes" Value="Bold"/>
-        <Setter Property="FontSize" Value="Large"/>
+        <Setter Property="FontSize" Value="Small"/>
+        <Setter Property="TextColor" Value="Black"/>
+
     </Style>
     
 </ResourceDictionary>

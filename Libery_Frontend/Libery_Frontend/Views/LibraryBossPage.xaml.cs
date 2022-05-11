@@ -21,10 +21,10 @@ namespace Libery_Frontend.Views
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator); });
         }
 
-        public async Task<List<UserModel>> GetProductsAsync(ActivityIndicator indicator)
+        public async Task<List<UserModel>> GetUserAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
@@ -82,7 +82,7 @@ namespace Libery_Frontend.Views
                     personToUpdate.UserGroup = "bibliotekarie";
                     context.SaveChanges();
 
-                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
                 }
             }
             else
@@ -109,7 +109,42 @@ namespace Libery_Frontend.Views
             UpdateProdFrame.IsVisible = true;
         }
 
+        private async void RemoveLiberianButton_Clicked(object sender, EventArgs e)
+        {
+            RemoveProdFrame.IsVisible = false;
+            UpdateProdFrame.IsVisible = false;
+            DefaultFrameText.IsVisible = false;
 
+            AddProdFrame.IsVisible = true;
+
+            UserModel item = ProductListView.SelectedItem as UserModel;
+
+            if (item != null)
+            {
+                using (var context = new Models.LibraryDBContext())
+                {
+                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    personToUpdate.UserGroup = "användare";
+
+                    context.SaveChanges();
+
+                    //REMOVES USER FROM DATABASE
+                    //
+                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
+                    //var removePost = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    //context.Users.Remove(removePost);
+                    //context.SaveChanges();
+
+                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ingen vald användare", "Välj en användare för att ta bort behörighet", "Ok");
+            }
+
+
+        }
         public class UserModel
         {
             public string Username { get; set; } = default;

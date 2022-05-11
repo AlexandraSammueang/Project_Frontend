@@ -60,6 +60,7 @@
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
                         <Label Text="Update product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
+                    <Button x:Name="RemoveLiberianButton" Text="Ta bort en bibliotikarie" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveLiberianButton_Clicked"/>
 
                 </StackLayout>
 

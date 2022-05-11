@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.UserAccountPage"
+             x:Name="UserHome">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackLayout BackgroundColor="Goldenrod" Grid.Column="0">
+                <StackLayout Orientation="Vertical">
+
+                    <Label Text="REKLAM MOTHERFUCKER"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           WidthRequest="30"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,100,0,0" Grid.Column="1">
+            <Label Text="{Binding ., StringFormat='Grattis {0}!'}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label Text="Du lyckades logga in, din smarta jävel!" FontSize="Large" FontAttributes="Bold"/>
+
+
+            </StackLayout>
+            <StackLayout BackgroundColor="Pink" Grid.Column="2">
+                <Label Text="REKLAM MOTHERFUCKER"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="FillAndExpand"
+                           WidthRequest="30"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

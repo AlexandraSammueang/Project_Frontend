@@ -5,22 +5,19 @@
     <ContentPage.Content>
         <StackLayout>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
+            <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6" />
 
 
             <StackLayout HorizontalOptions="FillAndExpand">
+                    <Button x:Name="LogoutButton" Text="Logga ut" Clicked="LogoutButton_Clicked"/>
 
                     <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
                         <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
                     </Frame>
 
-                
-
-                    <Label  x:Name="timeLabel" HorizontalOptions="End" 
+                            <Label  x:Name="timeLabel" HorizontalOptions="End"
                             TextColor="Black" FontSize="16" FontAttributes="Italic" 
                             WidthRequest="150" Text="" Margin="0,0,50,0" />
-
-
 
                     <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
                        HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 

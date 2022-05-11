@@ -11,7 +11,7 @@ namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AboutPage : ContentPage
-    {
+    {   
         public AboutPage()
         {
             InitializeComponent();
@@ -29,6 +29,9 @@ namespace Libery_Frontend.Views
           
         }
 
-
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
+        {
+            await  Navigation.PopAsync();
+        }
     }
 }

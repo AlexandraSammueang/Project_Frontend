@@ -19,7 +19,6 @@
             <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200">
                 <StackLayout x:Name="ButtonMenu" IsVisible="true">
                     <Button x:Name="AddProdButton" Text="Lägg till bibliotikarie" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
-                    <Button x:Name="RemoveLiberianButton" Text="Ta bort en bibliotikarie" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveLiberianButton_Clicked"/>
                     <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
                     <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
                     <Entry x:Name="SearchBar" BackgroundColor="White"/>
@@ -43,16 +42,13 @@
                                     <ViewCell>
                                         <Grid Padding="5">
                                             <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
-                                                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                    <Image Source="{Binding Image}" WidthRequest="80" Aspect="AspectFill"/>
                                                     <StackLayout BackgroundColor="Transparent">
-                                                        <Label VerticalOptions="Center" Text="{Binding Username, StringFormat='Användarnamn: {0}'}" FontSize="18" FontAttributes="Bold"   />
+                                                        <Label VerticalOptions="Center" Text="{Binding Username, StringFormat='Användarnamn: {0}'}" FontSize="Large" FontAttributes="Bold"   />
                                                         <Label VerticalOptions="Center" Text="{Binding Firstname, StringFormat='Förnamn: {0}'}" FontSize="18" />
-                                                        <Label VerticalOptions="Center" Text="{Binding Lastname,StringFormat='Efternamn: {0}'}" FontSize="18" />
-                                                        <Label VerticalOptions="Center" Text="{Binding UserGroup,StringFormat='Behörighet: {0}'}" FontSize="18" />
+                                                        <Label VerticalOptions="Center" Text="{Binding Lastname, StringFormat='Efternamn: {0}'}" FontSize="18" />
+                                                        <Label VerticalOptions="Center" Text="{Binding UserGroup, StringFormat='Behörighet: {0}'}" FontSize="18" />
 
                                                     </StackLayout>
-                                                </StackLayout>
                                             </Frame>
                                         </Grid>
                                     </ViewCell>
@@ -68,6 +64,7 @@
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
                         <Label Text="Update product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
+                    <Button x:Name="RemoveLiberianButton" Text="Ta bort en bibliotikarie" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveLiberianButton_Clicked"/>
 
                 </StackLayout>
 

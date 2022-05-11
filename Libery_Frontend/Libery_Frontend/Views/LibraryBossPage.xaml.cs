@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -12,8 +11,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LibraryBossPage : ContentPage
     {
-        public List<Models.User> User;
-       
+        public List<Models.User> Users;
         public LibraryBossPage()
         {
             InitializeComponent();
@@ -38,10 +36,15 @@ namespace Libery_Frontend.Views
                     using (var db = new Models.LibraryDBContext())
                     {
 
-                        User = db.Users.ToList();
-                        result = User.Select(x => new UserModel
-                        {Firstname = x.Firstname, Lastname = x.Lastname, Username = x.Username, UserGroup = x.UserGroup }).ToList();
-                        
+                        Users = db.Users.ToList();
+
+                        result = Users.Select(x => new UserModel
+                        {
+                            Username = x.Username,
+                            Firstname = x.Firstname,
+                            Lastname = x.Lastname,
+                            UserGroup = x.UserGroup
+                        }).ToList();
                     }
                 }
 
@@ -82,46 +85,10 @@ namespace Libery_Frontend.Views
                     ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
                 }
             }
-            else 
-            {
-                await DisplayAlert("Ingen vald användare", "Välj en användare för att uppdatera behörighet", "Ok");
-            }
-            
-            
-        }
-
-        private async void RemoveLiberianButton_Clicked(object sender, EventArgs e)
-        {
-            RemoveProdFrame.IsVisible = false;
-            UpdateProdFrame.IsVisible = false;
-            DefaultFrameText.IsVisible = false;
-
-            AddProdFrame.IsVisible = true;
-
-            UserModel item = ProductListView.SelectedItem as UserModel;
-
-            if (item != null)
-            {
-                using (var context = new Models.LibraryDBContext())
-                {
-                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-                    personToUpdate.UserGroup = "användare";
-
-                    context.SaveChanges();
-                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
-                    //var removePost = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-                    //context.Users.Remove(removePost);
-                    //context.SaveChanges();
-
-                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
-                }
-            }
             else
             {
-                await DisplayAlert("Ingen vald användare", "Välj en användare för att ta bort behörighet", "Ok");
+                await DisplayAlert("Ingen användare vald", "Välj en användare för att uppgradera behörighet", "OK");
             }
-
-
         }
 
         private void RemoveProdButton_Clicked(object sender, EventArgs e)
@@ -143,6 +110,42 @@ namespace Libery_Frontend.Views
             UpdateProdFrame.IsVisible = true;
         }
 
+        private async void RemoveLiberianButton_Clicked(object sender, EventArgs e)
+        {
+            RemoveProdFrame.IsVisible = false;
+            UpdateProdFrame.IsVisible = false;
+            DefaultFrameText.IsVisible = false;
+
+            AddProdFrame.IsVisible = true;
+
+            UserModel item = ProductListView.SelectedItem as UserModel;
+
+            if (item != null)
+            {
+                using (var context = new Models.LibraryDBContext())
+                {
+                    var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    personToUpdate.UserGroup = "användare";
+
+                    context.SaveChanges();
+
+                    //REMOVES USER FROM DATABASE
+                    //
+                    //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
+                    //var removePost = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
+                    //context.Users.Remove(removePost);
+                    //context.SaveChanges();
+
+                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+                }
+            }
+            else
+            {
+                await DisplayAlert("Ingen vald användare", "Välj en användare för att ta bort behörighet", "Ok");
+            }
+
+
+        }
         public class UserModel
         {
             public string Username { get; set; } = default;
@@ -150,5 +153,6 @@ namespace Libery_Frontend.Views
             public string Lastname { get; set; } = default;
             public string UserGroup { get; set; } = default;
         }
+
     }
 }

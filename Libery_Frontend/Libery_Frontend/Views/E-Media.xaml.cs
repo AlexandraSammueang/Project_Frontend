@@ -1,7 +1,4 @@
-﻿using Libery_Frontend.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,22 +10,23 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Books : ContentPage
+    public partial class E_Media : ContentPage
     {
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
-        public Books()
+        public E_Media()
         {
             InitializeComponent();
-
         }
+        public List<Models.Product> Products;
+        public List<Models.ProductType> ProdType;
 
-        protected  override void OnAppearing()
+        
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
@@ -42,13 +40,15 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
-
-                        Products = db.Products.ToList();
+                        Products = db.Products.Where(x => x.EVersion == true).ToList();
                         ProdType = db.ProductTypes.ToList();
 
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
                     }
+
+
                 }
+
 
                 catch (Exception ex)
                 {
@@ -58,22 +58,26 @@ namespace Libery_Frontend.Views
             }
             );
 
-            var taskResult =  await databaseTask;
+            var taskResult = await databaseTask;
 
             indicator.IsRunning = false;
             indicator.IsVisible = false;
 
             return taskResult;
         }
+       
 
-    }
+        private async void Books_Clicked(object sender, EventArgs e)
+        {
 
-    public class ProductModel
-    {
-        public string Image { get; set; } = default;
-        public string Name { get; set; } = default;
-        public string Info { get; set; } = default;
-        public string Type { get; set; } = default;
-      
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        }
+
+
+
+        private void Movie_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

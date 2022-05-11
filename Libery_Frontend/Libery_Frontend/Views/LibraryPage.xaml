@@ -6,10 +6,10 @@
 
         <StackLayout>
             <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
-                <Label Text="Alla produkter" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
+                <Label Text="Böcker" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
             </Frame>
-          
-            <ListView x:Name="ProductListView">
+            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"></ActivityIndicator>
+            <ListView x:Name="BookListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -33,6 +33,8 @@
                                     <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Large" TextColor="Black"/>
                                     <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}" TextColor="Black"/>
                                     
+
+
 
 
                                 </Grid >

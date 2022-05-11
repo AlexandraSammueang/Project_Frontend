@@ -11,9 +11,12 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        public string username = null;
+
         public LoginPage()
         {
             InitializeComponent();
+
         }
 
         private async void LoginButton_Clicked(object sender, EventArgs e)
@@ -25,7 +28,7 @@ namespace Libery_Frontend.Views
             {
                 userPassword = context.Users
                     .Where(x => x.Username == userName)
-                    .Select(x => new User() { Password = x.Password, UserGroup = x.UserGroup})
+                    .Select(x => new User() { Password = x.Password, UserGroup = x.UserGroup })
                     .ToList();
                 var usernameToCheck = context.Users.Where(x => x.Username == userName);
                 if (usernameToCheck.Any())
@@ -38,14 +41,44 @@ namespace Libery_Frontend.Views
 
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
-                        await Navigation.PushAsync(new MainPage());
-                        
+
+                        Page pageToAdd = new LibraryBossPage();
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Bibliotekschef";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
+
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
+
                     }
 
-                    else if(correctPassword == true && userPassword[0].UserGroup == "användare")
+                    else if (correctPassword == true && userPassword[0].UserGroup == "bibliotekarie")
                     {
-                        await Navigation.PushAsync(new MainPage());
-                        
+
+                        Page pageToAdd = new LibrarianPage();
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Bibliotekarie";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
+
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
+                    }
+
+                    else if (correctPassword == true && userPassword[0].UserGroup == "användare")
+                    {
+                        Page pageToAdd = new UserAccountPage(userName);
+                        var homePage = new MainPage();
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Kundkorg";
+                        homePage.Children.Add(pageToAdd);
+                        await Navigation.PushAsync(homePage);
+
+                        UsernameEntry.Text = "";
+                        PasswordEntry.Text = "";
                     }
 
                     else
@@ -58,11 +91,36 @@ namespace Libery_Frontend.Views
                 else
                 {
                     await DisplayAlert(
-                        "Felaktig Login", 
+                        "Felaktig Login",
                         "Användarnamn eller lösenord finns inte. Var vänlig försöker igen",
                         "OK");
+                }
+
+
+            }
+        }
+        
+        public void HideTab(int index)
+        {
+            TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;
+
+             if (index < theTabbedPage.Children.Count())
+            {
+                theTabbedPage.Children.RemoveAt(index);
+            }
+        }
+
+        public async void AddTab(int index)
+        {
+            TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;
+
+            var page = new LibrarianPage();
+
+                if (theTabbedPage.Children.Contains(page))
+                {
+                    theTabbedPage.Children.Insert(index, page);
                 }
             }
         }
     }
-}
+

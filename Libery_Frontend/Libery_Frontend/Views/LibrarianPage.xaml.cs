@@ -14,10 +14,10 @@ namespace Libery_Frontend.Views
     {
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
+
         public LibrarianPage()
         {
             InitializeComponent();
-
         }
 
         protected override void OnAppearing()
@@ -25,34 +25,52 @@ namespace Libery_Frontend.Views
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+            );
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
-            {
-                List<ProductModel> result = null;
-                try
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    List<ProductModel> result = null;
+                    try
                     {
+                        using (var db = new Models.LibraryDBContext())
+                        {
+                            Products = db.Products.ToList();
+                            ProdType = db.ProductTypes.ToList();
 
-                        Products = db.Products.ToList();
-                        ProdType = db.ProductTypes.ToList();
-
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                            result = Products
+                                .Join(
+                                    ProdType,
+                                    p => p.ProductTypeId,
+                                    pi => pi.Id,
+                                    (p, pi) =>
+                                        new ProductModel
+                                        {
+                                            Image = p.Image,
+                                            Name = p.ProductName,
+                                            Info = p.ProductInfo,
+                                            Type = pi.Type
+                                        }
+                                )
+                                .ToList();
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return result;
                 }
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return result;
-            }
             );
 
             var taskResult = await databaseTask;

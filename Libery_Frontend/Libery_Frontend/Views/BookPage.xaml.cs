@@ -10,14 +10,14 @@ using Libery_Frontend.Models;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LibraryPage : ContentPage
+    public partial class BookPage : ContentPage
     {
 
 
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
 
-        public LibraryPage()
+        public BookPage()
         {
             InitializeComponent();
 

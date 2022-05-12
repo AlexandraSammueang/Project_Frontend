@@ -7,7 +7,7 @@
         <Views:AboutPage Title="Start"></Views:AboutPage>
        
         <!--<Views:Books Title="Alla produkter"></Views:Books>-->
-          <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
+          <Views:BookPage Title="Böcker"></Views:BookPage>
 
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>

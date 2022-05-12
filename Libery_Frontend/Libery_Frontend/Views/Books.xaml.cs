@@ -71,13 +71,4 @@ namespace Libery_Frontend.Views
         {
         }
     }
-
-    public class ProductModel
-    {
-        public string Image { get; set; } = default;
-        public string Name { get; set; } = default;
-        public string Info { get; set; } = default;
-        public string Type { get; set; } = default;
-      
-    }
 }

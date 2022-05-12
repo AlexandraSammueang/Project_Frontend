@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
 
 namespace Libery_Frontend.Views
 {
@@ -46,7 +47,7 @@ namespace Libery_Frontend.Views
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, Stock = p.StockValue }).ToList();
                     }
                 }
 
@@ -66,6 +67,17 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        private async void LendFunction(object sender, EventArgs e)
+        {
+            bool input = await DisplayAlert("Bekräftelse", "vill du låna boken?", "Ja", "Nej"); 
+
+            if (input) // om man trycker ja, ska boken lånas. och stock value ska sänkas med 1, när stock = 0 ska knappen inte kunna tryckas
+            {
+                
+            }
+
+            Debug.WriteLine(input);
+        }
     }
 
     public class ProductModel
@@ -74,6 +86,7 @@ namespace Libery_Frontend.Views
         public string Name { get; set; } = default;
         public string Info { get; set; } = default;
         public string Type { get; set; } = default;
-      
+        public int? Stock { get; set; } = default;
+
     }
 }

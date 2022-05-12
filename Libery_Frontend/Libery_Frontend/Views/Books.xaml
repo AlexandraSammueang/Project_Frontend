@@ -20,6 +20,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
 
+
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
@@ -28,11 +29,13 @@
                                     </Grid.ColumnDefinitions>
 
 
-                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
-                                    <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Large" TextColor="Black"/>
-                                    <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}" TextColor="Black"/>
-                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Type}" TextColor="DarkGray"/>
-                                    
+                                    <Image Source="{Binding Image}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
+                                    <Label Grid.Row="0" Grid.Column="2"  Text="{Binding Name}"  FontSize="Large" TextColor="Black"/>
+                                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding Info}" TextColor="Black"/>
+                                    <Label Grid.Row="1" Grid.Column="2" Text="{Binding Type}" TextColor="DarkGray"/>
+                                    <Label Grid.Row="3" Grid.Column="2" Text="{Binding Stock, StringFormat='Antal: {0} tillgänglig'}" TextColor="Black"/>
+                                    <Button Grid.Row="3" Grid.Column="0" BackgroundColor="teal" Text="Låna" Clicked="LendFunction"></Button>
+
 
                                 </Grid >
                             </Frame>

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,14 +10,14 @@ using Libery_Frontend.Models;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LibraryPage : ContentPage
+    public partial class BookPage : ContentPage
     {
 
 
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
 
-        public LibraryPage()
+        public BookPage()
         {
             InitializeComponent();
 

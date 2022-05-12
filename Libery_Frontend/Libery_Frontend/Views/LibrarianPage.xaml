@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibrarianPage">
 
-    <ContentPage.Resources><ResourceDictionary Source="ResourcePage.xaml"/></ContentPage.Resources>
-   
-    <ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content >
         <Grid>
             <Grid.RowDefinitions>
-                
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -17,7 +19,7 @@
 
             <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200">
                 <StackLayout x:Name="ButtonMenu" IsVisible="true">
-                    <Button x:Name="AddProdButton" Text="Lägg till produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
+                    <Button x:Name="AddProdButton" Text="Lägg till en produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
                     <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
                     <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
                     <Entry x:Name="SearchBar" BackgroundColor="White"/>
@@ -29,25 +31,25 @@
                 <StackLayout x:Name="ActionFrame" IsVisible="true">
                     <Label x:Name="DefaultFrameText" Text="Default text before action is chosen"
                            FontAttributes="Bold"
-                           FontSize="Large"/>
+                           FontSize="Medium"/>
 
 
                     <StackLayout x:Name="AddProdFrame" IsVisible="true">
                         <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
-                        <Label Text="Add product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+
                         <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
                                         <Grid Padding="5">
                                             <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
-                                                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                    <Image Source="{Binding Image}" WidthRequest="80" Aspect="AspectFill"/>
-                                                    <StackLayout BackgroundColor="Transparent">
-                                                        <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
-                                                        <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" />
-                                                        <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
-                                                    </StackLayout>
+                                                <StackLayout BackgroundColor="Transparent">
+                                                    <Image Source="{Binding Image}" WidthRequest="100"/>
+                                                    <Label VerticalOptions="Center" Text="{Binding Products, StringFormat='Produkter: {0}'}" FontSize="Large" FontAttributes="Bold"   />
+                                                    <Label VerticalOptions="Center" Text="{Binding Name, StringFormat='Titel: {0}'}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Info, StringFormat='Info: {0}'}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Type, StringFormat='Typ: {0}'}" FontSize="18" />
+
                                                 </StackLayout>
                                             </Frame>
                                         </Grid>
@@ -58,22 +60,19 @@
                     </StackLayout>
 
                     <StackLayout x:Name="RemoveProdFrame" IsVisible="false">
-                        <Label Text="Remove product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                        <Label Text="Du har tagit bort en produkt" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
 
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
-                        <Label Text="Update product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                        <Label Text="Du har nu updaterat en produkt" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
-                    
-
+                    <Button x:Name="RemoveProductButton" Text="Ta bort en product" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProductButton_Clicked"/>
 
                 </StackLayout>
 
             </Frame>
 
 
-          
-            
         </Grid>
     </ContentPage.Content>
 </ContentPage>

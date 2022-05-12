@@ -35,16 +35,13 @@
     <EmbeddedResource Update="Views\E-Media.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\LibraryPage.xaml">
+    <EmbeddedResource Update="Views\BookPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductDelete2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\RegisterPage.xaml">
@@ -62,8 +59,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\LibraryPage.xaml.cs">
-      <DependentUpon>LibraryPage.xaml</DependentUpon>
+    <Compile Update="Views\BookPage.xaml.cs">
+      <DependentUpon>BookPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

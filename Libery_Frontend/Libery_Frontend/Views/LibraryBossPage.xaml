@@ -18,6 +18,7 @@
                     <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
                     <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
                     <Entry x:Name="SearchBar" BackgroundColor="White"/>
+                    <Button x:Name="LogoutButton" Text="Logga ut" VerticalOptions="EndAndExpand" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="LogoutButton_Clicked"/>
 
                 </StackLayout>
             </Frame>

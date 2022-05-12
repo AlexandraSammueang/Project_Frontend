@@ -42,11 +42,13 @@ namespace Libery_Frontend.Views
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
                         
-                        Page books = new Books();
                         Page pageToAdd = new LibraryBossPage();
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekschef";
+                        homePage.Children.RemoveAt(2);
+                        homePage.Children.RemoveAt(1);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
                         
@@ -60,6 +62,7 @@ namespace Libery_Frontend.Views
                     {
 
                         Page pageToAdd = new LibrarianPage();
+                        //Page AddorRemove
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";

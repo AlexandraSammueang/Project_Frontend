@@ -8,7 +8,6 @@
             <!-- Search result-->
 
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="true" HorizontalOptions="FillAndExpand"></ActivityIndicator>
-            <Label x:Name="LabelDebug" Text="---"></Label>
 
             <ListView x:Name="SearchListView" IsGroupingEnabled="true" HasUnevenRows="true" Margin="0, 10, 0, 0">
                 <ListView.GroupHeaderTemplate>

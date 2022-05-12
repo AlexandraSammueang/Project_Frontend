@@ -66,7 +66,7 @@ namespace Libery_Frontend.Views
         public async Task Search(String input)
         {
 
-            await Task.Delay(800);
+            await Task.Delay(600);
 
             if (!input.Equals(SearchBarInput.Text))
             {

@@ -75,7 +75,10 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
 
         }
-
+        private async void BackToList_Clicked(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        }
 
 
         private async void Movie_Clicked(object sender, EventArgs e)

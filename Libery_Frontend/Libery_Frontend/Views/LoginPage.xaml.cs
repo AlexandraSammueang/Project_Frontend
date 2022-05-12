@@ -42,12 +42,14 @@ namespace Libery_Frontend.Views
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
 
+                        Page books = new Books();
                         Page pageToAdd = new LibraryBossPage();
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekschef";
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
+                        
 
                         UsernameEntry.Text = "";
                         PasswordEntry.Text = "";

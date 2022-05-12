@@ -65,19 +65,55 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
-       
 
-        private async void Books_Clicked(object sender, EventArgs e)
+        public async void Books_Clicked(object sender, EventArgs e)
         {
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
 
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
         }
-
 
 
         private void Movie_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+
+        public async Task<List<ProductModel>> GetBooksAsync(ActivityIndicator indicator)
+        {
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            {
+                List<ProductModel> result = null;
+                try
+                {
+                    using (var db = new Models.LibraryDBContext())
+                    {
+                        Products = db.Products.Where(x => x.ProductTypeId == 3).ToList();
+                        ProdType = db.ProductTypes.ToList();
+
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                    }
+
+
+                }
+
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
+            }
+            );
+
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
         }
     }
 }

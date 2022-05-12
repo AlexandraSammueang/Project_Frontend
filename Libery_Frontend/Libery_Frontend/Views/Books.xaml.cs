@@ -15,12 +15,13 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Books : ContentPage
     {
+        
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
         public Books()
         {
             InitializeComponent();
-
+            
         }
 
         protected  override void OnAppearing()
@@ -45,7 +46,7 @@ namespace Libery_Frontend.Views
 
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
-
+                       
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
                     }
                 }
@@ -66,6 +67,9 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        private void BookProductButton_Clicked(object sender, EventArgs e)
+        {
+        }
     }
 
     public class ProductModel

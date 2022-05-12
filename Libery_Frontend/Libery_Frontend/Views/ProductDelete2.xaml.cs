@@ -21,11 +21,11 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
 
-            // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator); });
+            
+            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductAsync(ActivityIndicator); });
         }
 
-        public async Task<List<ProductModel>> GetUserAsync(ActivityIndicator indicator)
+        public async Task<List<ProductModel>> GetProductAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
@@ -36,16 +36,6 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
-
-                        //Products = db.Products.ToList();
-
-                        //result = Products.Select(x => new ProductModel
-                        //{
-                        //    Image = x.Image,
-                        //    Name = x.ProductName,
-                        //    Info = x.ProductInfo,
-                        //    Type = x.ProductType
-                        //}).ToList();
 
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
@@ -74,7 +64,7 @@ namespace Libery_Frontend.Views
         {
             RemoveProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
-            DefaultFrameText.IsVisible = false;
+            //DefaultFrameText.IsVisible = false;
 
             AddProdFrame.IsVisible = true;
 
@@ -88,7 +78,7 @@ namespace Libery_Frontend.Views
                     personToUpdate.ProductName = "";
                     context.SaveChanges();
 
-                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+                    ProductListView.ItemsSource = await GetProductAsync(ActivityIndicator);
                 }
             }
             else
@@ -101,7 +91,7 @@ namespace Libery_Frontend.Views
         {
             AddProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
-            DefaultFrameText.IsVisible = false;
+            //DefaultFrameText.IsVisible = false;
 
             RemoveProdFrame.IsVisible = true;
 
@@ -111,16 +101,17 @@ namespace Libery_Frontend.Views
         {
             AddProdFrame.IsVisible = false;
             RemoveProdFrame.IsVisible = false;
-            DefaultFrameText.IsVisible = false;
+            //DefaultFrameText.IsVisible = false;
 
             UpdateProdFrame.IsVisible = true;
         }
 
         private async void RemoveProductButton_Clicked(object sender, EventArgs e)
         {
+
             RemoveProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
-            DefaultFrameText.IsVisible = false;
+           // DefaultFrameText.IsVisible = false;
 
             AddProdFrame.IsVisible = true;
 
@@ -129,14 +120,20 @@ namespace Libery_Frontend.Views
             if (item != null)
             {
                 using (var context = new Models.LibraryDBContext())
-                {
-                   
-                    //var removePost = context.Products.SingleOrDefault(x => x.Products.ToList() == x.Products.ToString());
-                     var removePost = context.Products.Where(x => x.ProductName == x.ProductName).FirstOrDefault();
-                    context.Products.Remove(removePost);
-                    context.SaveChanges();
+                {                    
+                        var removePost = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
+                        context.Products.Remove(removePost);
+                        var svar = await DisplayAlert("Ta bort vald produkt", "Är du helt säker?", "Ja", "Nej");
+                    if (svar == true)
+                    {
+                        context.SaveChanges();
+                        ProductListView.ItemsSource = await GetProductAsync(ActivityIndicator);
+                    }
+                    else
+                    {  }
 
-                    ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
+
+
                 }
             }
             else

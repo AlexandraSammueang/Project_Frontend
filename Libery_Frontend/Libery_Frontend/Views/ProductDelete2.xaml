@@ -35,7 +35,7 @@
 
                     <StackLayout x:Name="AddProdFrame" IsVisible="true">
                         <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
-                        <Label Text="Add product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                       
                         <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -59,13 +59,13 @@
                     </StackLayout>
 
                     <StackLayout x:Name="RemoveProdFrame" IsVisible="false">
-                        <Label Text="Du har nu lagt till en produkt" FontAttributes="Bold" FontSize="Large"/>
+                        <Label Text="Du har tagit bort en produkt" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
 
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
                         <Label Text="Du har nu updaterat en produkt" FontAttributes="Bold" FontSize="Large"/>
                     </StackLayout>
-                    <Button x:Name="RemoveLiberianButton" Text="Ta bort en product" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProductButton_Clicked"/>
+                    <Button x:Name="RemoveProductButton" Text="Ta bort en product" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProductButton_Clicked"/>
 
                 </StackLayout>
 

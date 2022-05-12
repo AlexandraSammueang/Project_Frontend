@@ -8,16 +8,20 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Libery_Frontend.Models;
+using System.Threading;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
+        private CancellationTokenSource _tokenSource;
         public SearchPage()
         {
             InitializeComponent();
         }
+
+        public int i = 0;
 
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
@@ -42,9 +46,6 @@ namespace Libery_Frontend.Views
                                       select g;
                                       //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
-
-                        Debug.WriteLine($"Found {grouped.Count()} Products");
-
                         groupedResult = grouped;
                     }
                 }
@@ -62,25 +63,46 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        private async void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        public async Task Search(String input)
         {
-            string input = e.NewTextValue;
+
+            await Task.Delay(800);
+
+            if (!input.Equals(SearchBarInput.Text))
+            {
+                return;
+            }
 
             if (!string.IsNullOrEmpty(input))
             {
+                SearchListView.BeginRefresh();
                 ActivityIndicator.IsRunning = true;
                 ActivityIndicator.IsVisible = true;
 
-                var result  = await SearchProductsAsync(input);
+                var result = await SearchProductsAsync(input);
                 SearchListView.ItemsSource = result ?? null;
 
                 ActivityIndicator.IsVisible = false;
                 ActivityIndicator.IsRunning = false;
+                SearchListView.EndRefresh();
             }
             else
             {
                 SearchListView.ItemsSource = null;
             }
+        }
+
+        private async void Entry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string input = e.NewTextValue;
+            await Search(input);
+
+        }
+
+        private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+            string input = SearchBarInput.Text;
+            await Search(input);
         }
     }
 }

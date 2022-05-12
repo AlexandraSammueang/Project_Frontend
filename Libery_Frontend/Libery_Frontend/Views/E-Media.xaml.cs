@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Libery_Frontend.Models;
 
 
 namespace Libery_Frontend.Views
@@ -74,6 +75,12 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
 
         }
+        private async void BackToList_Clicked(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        }
+
+
 
         private async void Movie_Clicked(object sender, EventArgs e)
         {

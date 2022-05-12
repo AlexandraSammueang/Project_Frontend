@@ -29,11 +29,11 @@
                                     <Grid Padding="5">
                                         <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
                                             <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                <Image Source="{Binding Image}" WidthRequest="100"/>
+                                                <Image Source="{Binding Image}" WidthRequest="50" Aspect="AspectFill"/>
                                                 <StackLayout BackgroundColor="Transparent">
-                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
-                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" />
-                                                    <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
+                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
 
                                                 </StackLayout>
                                             </StackLayout>

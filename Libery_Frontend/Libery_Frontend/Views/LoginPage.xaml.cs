@@ -99,7 +99,6 @@ namespace Libery_Frontend.Views
 
             }
         }
-        
         public void HideTab(int index)
         {
             TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;

@@ -99,12 +99,12 @@ namespace Libery_Frontend.Views
 
             }
         }
-        
+
         public void HideTab(int index)
         {
             TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;
 
-             if (index < theTabbedPage.Children.Count())
+            if (index < theTabbedPage.Children.Count())
             {
                 theTabbedPage.Children.RemoveAt(index);
             }
@@ -116,11 +116,11 @@ namespace Libery_Frontend.Views
 
             var page = new LibrarianPage();
 
-                if (theTabbedPage.Children.Contains(page))
-                {
-                    theTabbedPage.Children.Insert(index, page);
-                }
+            if (theTabbedPage.Children.Contains(page))
+            {
+                theTabbedPage.Children.Insert(index, page);
             }
         }
     }
+}
 

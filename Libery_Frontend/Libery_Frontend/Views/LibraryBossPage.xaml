@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200">
+            <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200" Margin="5">
                 <StackLayout x:Name="ButtonMenu" IsVisible="true">
                     <Button x:Name="AddProdButton" Text="Lägg till bibliotikarie" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
                     <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>

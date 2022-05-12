@@ -108,5 +108,10 @@ namespace Libery_Frontend.Views
 
             UpdateProdFrame.IsVisible = true;
         }
+
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

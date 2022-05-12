@@ -1,10 +1,9 @@
-﻿using Libery_Frontend.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Libery_Frontend.SecondModels;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -16,12 +15,11 @@ namespace Libery_Frontend.Views
     public partial class UserAccountProductsPage : ContentPage
     {
 
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
+        public List<Product> Products;
+        public List<ProductType> ProdType;
         public UserAccountProductsPage()
         {
             InitializeComponent();
-
         }
 
         protected override void OnAppearing()
@@ -41,13 +39,12 @@ namespace Libery_Frontend.Views
                 List<ProductModel> result = null;
                 try
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
-
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, ProId = (int)p.Id }).ToList();
                     }
                 }
 
@@ -67,8 +64,41 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        private void BookProductButton_Clicked(object sender, EventArgs e)
+        private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
+            ShoppingCart cart = new ShoppingCart();
+            ProductModel item = ProductListView.SelectedItem as ProductModel;
+            DateTime returnDate = DateTime.Now.AddDays(30);
+            CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
+
+            if (item != null)
+            {
+
+
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    using (var context = new LibraryDBContext())
+                    {
+
+                        cart.ProductId = item.ProId;
+                        cart.UserId = LoginPage.Username;
+                        cart.DateBooked = DateTime.Now;
+                        cart.ReturnDate = DateTime.Now.AddDays(30);
+
+                        context.Add(cart);
+                        context.SaveChanges();
+                    }
+                    ProductListView.SelectedItem = null;
+                });
+
+                var typeOfProduct = item.Type;
+                await DisplayAlert($"{typeOfProduct} bokad",
+                    $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+            }
+
+            else await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
+
+
         }
     }
 }

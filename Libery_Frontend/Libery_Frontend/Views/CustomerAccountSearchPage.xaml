@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.SearchPage"
-             xmlns:view="using:Libery_Frontend.Views">
+             x:Class="Libery_Frontend.Views.CustomerAccountSearchPage">
     <ContentPage.Content>
         <StackLayout Margin="0,10,0,0">
             <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged"   SearchButtonPressed="SearchBar_SearchButtonPressed"></SearchBar>
@@ -21,8 +20,8 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
                         <ViewCell>
                             <Grid Padding="5">
                                 <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
@@ -35,8 +34,7 @@
                                             <Label Grid.Row="2" Grid.Column="2" Text="{Binding ProductInfo}" TextColor="Black"/>
                                         </StackLayout>
                                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
-                                            <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"
-                                                        CommandParameter="{x:Type view:LoginPage }"/>
+                                            <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
 
                                         </StackLayout>
                                     </StackLayout>
@@ -44,8 +42,8 @@
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
-                    </ListView.ItemTemplate>    
-                </ListView>
+                </ListView.ItemTemplate>
+            </ListView>
 
         </StackLayout>
     </ContentPage.Content>

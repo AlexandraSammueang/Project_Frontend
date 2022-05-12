@@ -15,14 +15,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200">
-                <StackLayout x:Name="ButtonMenu" IsVisible="true">
-                    <Button x:Name="AddProdButton" Text="Lägg till produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
-                    <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
-                    <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
-                    <Entry x:Name="SearchBar" BackgroundColor="White"/>
-
+            <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200"  Margin="5">
+                <StackLayout x:Name="ButtonMenu" IsVisible="true" >
+                    <StackLayout>
+                        <Button x:Name="AddProdButton" Text="Lägg till produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
+                        <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
+                        <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
+                        <Entry x:Name="SearchBar" BackgroundColor="White"/>
+                    </StackLayout>
+                    <Button x:Name="LogoutButton" Text="Logga ut" VerticalOptions="EndAndExpand" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="LogoutButton_Clicked"/>
                 </StackLayout>
+
             </Frame>
 
             <Frame  Grid.Column="1">

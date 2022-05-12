@@ -41,7 +41,7 @@ namespace Libery_Frontend.Views
 
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
-
+                        
                         Page books = new Books();
                         Page pageToAdd = new LibraryBossPage();
                         var homePage = new MainPage();

@@ -13,7 +13,7 @@
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
-        <Views:Search Title="Sök"></Views:Search>
+        <ContentPage Title="Sök"></ContentPage>
         <Views:AddAndDelete Title="Lägga till/ta bort böcker"></Views:AddAndDelete>
         <Views:ProductDelete2 Title="Ta bort böcker"></Views:ProductDelete2>
     </TabbedPage.Children>

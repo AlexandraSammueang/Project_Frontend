@@ -9,12 +9,12 @@
         <StackLayout>
             <StackLayout>
 
-                <Label x:Name="UsernameLabel" Text="Användarnamn"/>
+                <Label x:Name="UsernameLabel" Text="Användarnamn" FontSize="Small" FontAttributes="Bold"/>
                 <Entry x:Name="UsernameEntry"/>
             </StackLayout>
 
             <StackLayout>
-                <Label x:Name="PaswordLabel" Text="Lösenord"/>
+                <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
                 <Entry x:Name="PasswordEntry"/>
             </StackLayout>
 

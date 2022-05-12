@@ -98,6 +98,7 @@ namespace Libery_Frontend.Views
             DefaultFrameText.IsVisible = false;
 
             RemoveProdFrame.IsVisible = true;
+
         }
 
         private void UpdateProdButton_Clicked(object sender, EventArgs e)

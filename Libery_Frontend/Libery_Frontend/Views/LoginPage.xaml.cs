@@ -110,7 +110,8 @@ namespace Libery_Frontend.Views
                     {
                         Page pageToAdd = new UserAccountPage(userName);
                         Page pageToAddSecond = new UserAccountProductsPage();
-                        Page pageToAddThird = new CustomerAccountSearchPage();
+                        Page pageToAddThird = new UserSearchPage();
+
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Kundkorg";

@@ -11,6 +11,7 @@ namespace Libery_Frontend.SecondModels
         public string Info { get; set; } = default;
         public string Type { get; set; } = default;
         public int ProId { get; set; } = default;
+        public int UnitPrice { get; set; } = default;
 
     }
 

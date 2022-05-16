@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Libery_Frontend.SecondModels
+namespace DBPService.SecondModels
 {
     public partial class LibraryDBContext : DbContext
     {
@@ -67,9 +67,7 @@ namespace Libery_Frontend.SecondModels
 
             modelBuilder.Entity<Order>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.CustomerAddress).HasMaxLength(50);
 
@@ -89,9 +87,7 @@ namespace Libery_Frontend.SecondModels
 
             modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.OrderId)
                     .HasMaxLength(10)

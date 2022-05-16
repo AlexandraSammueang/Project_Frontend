@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Libery_Frontend.SecondModels
+namespace DBPService.SecondModels
 {
     public partial class ShoppingCart
     {

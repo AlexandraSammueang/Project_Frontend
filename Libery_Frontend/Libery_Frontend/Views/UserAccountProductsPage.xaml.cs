@@ -17,6 +17,7 @@ namespace Libery_Frontend.Views
 
         public List<Product> Products;
         public List<ProductType> ProdType;
+        public List<ShoppingCart> ShoppingCarts;
         public UserAccountProductsPage()
         {
             InitializeComponent();
@@ -74,8 +75,7 @@ namespace Libery_Frontend.Views
             if (item != null)
             {
 
-
-                MainThread.BeginInvokeOnMainThread(() =>
+                MainThread.BeginInvokeOnMainThread(async () =>
                 {
                     using (var context = new LibraryDBContext())
                     {
@@ -85,18 +85,28 @@ namespace Libery_Frontend.Views
                         cart.DateBooked = DateTime.Now;
                         cart.ReturnDate = DateTime.Now.AddDays(30);
 
-                        context.Add(cart);
-                        context.SaveChanges();
+                        ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.ProId && x.UserId == LoginPage.Username).ToList();
+
+                        if (ShoppingCarts.Any())
+                        {
+                            await DisplayAlert("Redan bokad", "Du har redan bokat denna produkt", "OK");
+
+                        }
+                        else
+                        {
+                            context.Add(cart);
+                            context.SaveChanges();
+
+                            var typeOfProduct = item.Type;
+                            await DisplayAlert($"{typeOfProduct} bokad",
+                                $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                        }
                     }
                     ProductListView.SelectedItem = null;
                 });
-
-                var typeOfProduct = item.Type;
-                await DisplayAlert($"{typeOfProduct} bokad",
-                    $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
             }
-
-            else await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
+            else 
+                await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
 
 
         }

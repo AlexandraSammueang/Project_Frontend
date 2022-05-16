@@ -25,10 +25,35 @@
                            WidthRequest="30"/>
                 </StackLayout>
             </StackLayout>
+            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"></ActivityIndicator>
 
-            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,100,0,0" Grid.Column="1">
-            <Label Text="{Binding ., StringFormat='Grattis {0}!'}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+            <StackLayout HorizontalOptions="CenterAndExpand" Grid.Column="1">
+                <Label Text="{Binding ., StringFormat='Grattis {0}!'}" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
                 <Label Text="Du lyckades logga in, din smarta jävel!" FontSize="Large" FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" Margin="0,100,0,0" Grid.Column="1">
+
+                <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5">
+                                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10,5,15">
+                                      
+                                            <StackLayout HorizontalOptions="Start" BackgroundColor="Transparent">
+                                                <Label VerticalOptions="Center" Text="{Binding ProductName, StringFormat='{0}'}" FontAttributes="Bold"   />
+                                                <Label VerticalOptions="Center" Text="{Binding prodType, StringFormat='Product Type: {0}'}" FontSize="18" />
+                                                <Label VerticalOptions="Center" Text="{Binding DateBooked, StringFormat='Bokad: {0}'}" FontSize="18" />
+                                                <Label VerticalOptions="Center" Text="{Binding ReturnDate, StringFormat='Återlämnas senast: {0}'}" FontSize="18" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
 
             </StackLayout>

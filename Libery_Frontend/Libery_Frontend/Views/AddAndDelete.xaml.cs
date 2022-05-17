@@ -28,7 +28,7 @@ namespace Libery_Frontend.Views
 
             using (var db = new Models.LibraryDBContext())
             {
-                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname }).ToList();
+                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
 
                 pickerarray.ItemsSource = aut;
 
@@ -40,20 +40,27 @@ namespace Libery_Frontend.Views
 
         private async void AddButton_Clicked(object sender, System.EventArgs e)
         {
+
+            AuthorName item = pickerarray.SelectedItem as AuthorName;
+            Author aut;
+
             using (var db = new Models.LibraryDBContext())
             {
+                 aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
+
+
                 var newProduct = new Product
                 {
                     ProductName = ProductNameEntry.Text,
                     ProductInfo = ProductInfoEntry.Text,
                     Isbn = ISBNEntry.Text,
-                    //AuthorId = Convert.ToInt32(ProductInfoEntry.Text),
+                    AuthorId = aut.Id,
                     //AuthorId = Authors.Last().Id,
-                   // ProductTypeId = ProducTypeIdEntry.Text,
+                    ProductTypeId = Convert.ToInt32(ProductTypeIdEntry.Text),
                     Image = ImageEntry.Text,
-                   CategoryId = TryParse().CategoryIdEntry.Text,
-                    //Price = PriceEntry.Text,
-                    //BookPages = BookPagesEntry.Text
+                    CategoryId = Convert.ToInt32(CategoryIdEntry.Text),
+                    Price = Convert.ToDouble(PriceEntry.Text),
+                    BookPages = Convert.ToInt32(BookPagesEntry.Text)
 
 
 

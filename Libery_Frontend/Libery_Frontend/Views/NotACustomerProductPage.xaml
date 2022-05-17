@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.Books">
+             x:Class="Libery_Frontend.Views.NotACustomerProductPage">
     <ContentPage.Content>
         <StackLayout>
             <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
@@ -20,14 +20,13 @@
                                                 <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" />
                                             </StackLayout>
                                             <StackLayout HorizontalOptions="Start" BackgroundColor="Transparent">
-                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
-                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" WidthRequest="800"/>
-                                                    <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
+                                                <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Large" FontAttributes="Bold"   />
+                                                <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="18" WidthRequest="800"/>
+                                                <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="18" />
                                             </StackLayout>
-                                                    <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
-                                                        <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
+                                            <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
 
-                                                    </StackLayout>
+                                            </StackLayout>
                                         </StackLayout>
                                     </Frame>
                                 </Grid>

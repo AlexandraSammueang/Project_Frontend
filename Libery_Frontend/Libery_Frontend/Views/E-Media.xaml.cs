@@ -68,9 +68,7 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
-
-
-        private async void Books_Clicked(object sender, EventArgs e)
+        private void Books_Clicked(object sender, EventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
 
@@ -81,7 +79,7 @@ namespace Libery_Frontend.Views
         }
 
 
-        private async void Movie_Clicked(object sender, EventArgs e)
+        private void Movie_Clicked(object sender, EventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
         }

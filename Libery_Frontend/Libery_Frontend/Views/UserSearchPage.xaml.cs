@@ -7,16 +7,21 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.SecondModels;
 using System.Threading;
+using System.Globalization;
+using Xamarin.Essentials;
+using Libery_Frontend.SecondModels;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchPage : ContentPage
+    public partial class UserSearchPage : ContentPage
     {
         private CancellationTokenSource _tokenSource;
-        public SearchPage()
+        public List<Product> Products;
+        public List<ProductType> ProdType;
+        public List<ShoppingCart> ShoppingCarts;
+        public UserSearchPage()
         {
             InitializeComponent();
         }
@@ -32,7 +37,8 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new LibraryDBContext())
                     {
-                        var query = from product in db.Products where product.ProductName.ToLower().Contains(input.ToLower())
+                        var query = from product in db.Products
+                                    where product.ProductName.ToLower().Contains(input.ToLower())
                                     join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
 
                                     select new
@@ -44,7 +50,7 @@ namespace Libery_Frontend.Views
                         var grouped = from item in query.ToList()
                                       group item.Product by item.ProductType into g
                                       select g;
-                                      //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
+                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
                         groupedResult = grouped;
                     }
@@ -105,17 +111,56 @@ namespace Libery_Frontend.Views
             await Search(input);
         }
 
-        private async void BookProductButton_Clicked(object sender, EventArgs e)
-        {            
-          bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
-            if (answer)
-            {
-                var tab = new MainPage();
-                tab.CurrentPage = tab.Children[5];
+        private async void BookProductButton_Clicked_1(object sender, EventArgs e)
+        {
+            ShoppingCart cart = new ShoppingCart();
+            Product item = SearchListView.SelectedItem as Product;
+            DateTime returnDate = DateTime.Now.AddDays(30);
+            CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
 
-               await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+            if (item != null)
+            {
+
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    using (var context = new LibraryDBContext())
+                    {
+                        ProdType = context.ProductTypes.ToList();
+                        Products = context.Products.ToList();
+
+                        cart.ProductId = item.Id;
+                        cart.UserId = LoginPage.Username;
+                        cart.DateBooked = DateTime.Now;
+                        cart.ReturnDate = DateTime.Now.AddDays(30);
+
+                        ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.Id && x.UserId == LoginPage.Username).ToList();
+
+                        if (ShoppingCarts.Any())
+                        {
+                            await DisplayAlert("Redan bokad", "Du har redan bokat denna produkt", "OK");
+
+                        }
+                        else
+                        {
+                            context.Add(cart);
+                            context.SaveChanges();
+
+                            var typeOfProduct = context.ProductTypes.Where(x => x.Id == item.ProductTypeId).FirstOrDefault();
+                            var ProdTypeName = new ProductType
+                            {
+                                Type = typeOfProduct.Type
+                            };
+
+                            await DisplayAlert($"{ProdTypeName.Type} bokad",
+                                $"{item.ProductName} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                        }
+                    }
+                    SearchListView.SelectedItem = null;
+                });
             }
-            else return;
+            else
+                await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
+
         }
     }
 }

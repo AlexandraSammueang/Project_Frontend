@@ -19,7 +19,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -29,7 +29,7 @@ namespace Libery_Frontend.Views
             }
         }
 
-        private async void AddButton_Clicked(object sender, System.EventArgs e)
+        private void AddButton_Clicked(object sender, System.EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
             {
@@ -46,11 +46,10 @@ namespace Libery_Frontend.Views
                 {
                     db.Add(newProduct);
                     db.SaveChanges();
-                    Console.WriteLine("You have added 1 new product");
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("You failed to add a product");
+                    //Display modal errors
                 }
             }
         }

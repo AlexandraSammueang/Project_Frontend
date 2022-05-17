@@ -1,11 +1,9 @@
-﻿using Libery_Frontend.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Libery_Frontend.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -13,18 +11,18 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Books : ContentPage
+    public partial class NotACustomerProductPage : ContentPage
     {
-        
+
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
-        public Books()
+        public NotACustomerProductPage()
         {
             InitializeComponent();
-            
+
         }
 
-        protected  override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -46,7 +44,7 @@ namespace Libery_Frontend.Views
 
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
-                       
+
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
                     }
                 }
@@ -59,25 +57,12 @@ namespace Libery_Frontend.Views
             }
             );
 
-            var taskResult =  await databaseTask;
+            var taskResult = await databaseTask;
 
             indicator.IsRunning = false;
             indicator.IsVisible = false;
 
             return taskResult;
-        }
-
-        private async void BookProductButton_Clicked(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
-            if (answer)
-            {
-                var tab = new MainPage();
-                tab.CurrentPage = tab.Children[5];
-
-                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
-            }
-            else return;
         }
     }
 }

@@ -10,14 +10,13 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
-        public List<Models.User> UserRegisterInfo;
         User user = new User();
         public RegisterPage()
         {
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 

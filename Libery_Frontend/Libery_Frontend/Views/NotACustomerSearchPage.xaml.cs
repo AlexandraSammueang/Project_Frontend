@@ -7,16 +7,16 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.SecondModels;
+using Libery_Frontend.Models;
 using System.Threading;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SearchPage : ContentPage
+    public partial class NotACustomerSearchPage : ContentPage
     {
         private CancellationTokenSource _tokenSource;
-        public SearchPage()
+        public NotACustomerSearchPage()
         {
             InitializeComponent();
         }
@@ -30,9 +30,10 @@ namespace Libery_Frontend.Views
                 IEnumerable<IGrouping<string, Product>> groupedResult = null;
                 try
                 {
-                    using (var db = new LibraryDBContext())
+                    using (var db = new Models.LibraryDBContext())
                     {
-                        var query = from product in db.Products where product.ProductName.ToLower().Contains(input.ToLower())
+                        var query = from product in db.Products
+                                    where product.ProductName.ToLower().Contains(input.ToLower())
                                     join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
 
                                     select new
@@ -44,7 +45,7 @@ namespace Libery_Frontend.Views
                         var grouped = from item in query.ToList()
                                       group item.Product by item.ProductType into g
                                       select g;
-                                      //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
+                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
                         groupedResult = grouped;
                     }
@@ -106,14 +107,14 @@ namespace Libery_Frontend.Views
         }
 
         private async void BookProductButton_Clicked(object sender, EventArgs e)
-        {            
-          bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
+        {
+            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
             if (answer)
             {
                 var tab = new MainPage();
                 tab.CurrentPage = tab.Children[5];
 
-               await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
             }
             else return;
         }

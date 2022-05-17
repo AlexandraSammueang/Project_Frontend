@@ -15,6 +15,8 @@ namespace Libery_Frontend.Models
         public int Id { get; set; }
         public string Type { get; set; }
 
+        public override string ToString() => $"{Type}";
+
         public virtual ICollection<Product> Products { get; set; }
     }
 }

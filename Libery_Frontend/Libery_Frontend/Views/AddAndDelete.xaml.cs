@@ -19,7 +19,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -30,7 +30,7 @@ namespace Libery_Frontend.Views
             }
         }
 
-        private async void AddButton_Clicked(object sender, System.EventArgs e)
+        private void AddButton_Clicked(object sender, System.EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
             {

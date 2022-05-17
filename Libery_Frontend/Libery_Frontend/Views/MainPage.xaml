@@ -5,18 +5,13 @@
              >
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
-       
-        <!--<Views:Books Title="Alla produkter"></Views:Books>-->
-          <Views:BookPage Title="Böcker"></Views:BookPage>
-
+        <Views:SearchPage Title="Sök"/>
+        <Views:Books Title="Alla produkter"></Views:Books>
+        <Views:BookPage Title="Böcker"></Views:BookPage>
+        <!--här ändrade jag från LibraryPage-->  
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
-        <Views:SearchPage Title="Sök"/>
-        <!--  <Views:LibraryBossPage Title="Bibliotekschef metoder"></Views:LibraryBossPage>-->
-        <!--<Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>-->
-        <Views:AddAndDelete Title="Lägga till/ta bort böcker"></Views:AddAndDelete>
-        <!-- <Views:ProductDelete2 Title="Ta bort böcker"></Views:ProductDelete2>-->
     </TabbedPage.Children>
 
 

@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Globalization;
 
 namespace Libery_Frontend
 {
@@ -12,6 +13,8 @@ namespace Libery_Frontend
             InitializeComponent();
 
             MainPage = new NavigationPage(new MainPage());
+            CultureInfo sweCulture = new CultureInfo("sv-SE");
+            CultureInfo.DefaultThreadCurrentCulture = sweCulture;
         }
 
         protected override void OnStart()

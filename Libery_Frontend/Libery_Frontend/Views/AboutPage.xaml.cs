@@ -32,6 +32,10 @@ namespace Libery_Frontend.Views
         private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
             await  Navigation.PopAsync();
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[0];
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+
         }
     }
 }

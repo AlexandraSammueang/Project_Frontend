@@ -23,6 +23,7 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
 
+
             using (var db = new Models.LibraryDBContext())
             {
                 Authors = db.Authors.ToList();
@@ -46,11 +47,15 @@ namespace Libery_Frontend.Views
                 {
                     db.Add(newProduct);
                     db.SaveChanges();
-                    Console.WriteLine("You have added 1 new product");
+                    
+                    var svar = await DisplayAlert("Lägga till en produkt", "Är du helt säker?", "Ja", "Nej");
+                   
+
+                    
                 }
                 catch (Exception)
                 {
-                    Console.WriteLine("You failed to add a product");
+                    Console.WriteLine("Ingen produkt tillagd");
                 }
             }
         }

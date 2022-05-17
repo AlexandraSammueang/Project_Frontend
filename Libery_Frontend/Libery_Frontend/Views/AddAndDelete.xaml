@@ -27,6 +27,31 @@
                     <Label x:Name="ISBN" Text="ISBN-nummer"/>
                     <Entry x:Name="ISBNEntry"/>
                 </StackLayout>
+                <StackLayout>
+                    <Label x:Name="CategoryId" Text="Kategori"/>
+                    <Entry x:Name="CategoryIdEntry"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label x:Name="Image" Text="Lägg in bildlänk"/>
+                    <Entry x:Name="ImageEntry"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label x:Name="ProductTypeId" Text="Produkttyp"/>
+                    <Entry x:Name="ProductTypeIdEntry"/>
+                </StackLayout>
+               
+                
+                
+                <StackLayout>
+                    <Label x:Name="Price" Text="Pris"/>
+                    <Entry x:Name="PriceEntry"/>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Label x:Name="BookPages" Text="Antal boksidor"/>
+                    <Entry x:Name="BookPagesEntry"/>
+                </StackLayout>
 
                 <StackLayout>
                     <Label x:Name="FirstnameLab" Text="Författare förnamn"/>

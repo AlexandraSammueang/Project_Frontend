@@ -31,7 +31,11 @@ namespace Libery_Frontend.Views
                 aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname }).ToList();
 
                 pickerarray.ItemsSource = aut;
+
+
             }
+
+          
         }
 
         private async void AddButton_Clicked(object sender, System.EventArgs e)
@@ -44,7 +48,14 @@ namespace Libery_Frontend.Views
                     ProductInfo = ProductInfoEntry.Text,
                     Isbn = ISBNEntry.Text,
                     //AuthorId = Convert.ToInt32(ProductInfoEntry.Text),
-                    AuthorId = Authors.Last().Id,
+                    //AuthorId = Authors.Last().Id,
+                   // ProductTypeId = ProducTypeIdEntry.Text,
+                    Image = ImageEntry.Text,
+                   CategoryId = TryParse().CategoryIdEntry.Text,
+                    //Price = PriceEntry.Text,
+                    //BookPages = BookPagesEntry.Text
+
+
 
 
                 };
@@ -82,6 +93,7 @@ namespace Libery_Frontend.Views
 
             }
         }
+       
 
 
 

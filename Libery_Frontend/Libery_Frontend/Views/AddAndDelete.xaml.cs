@@ -13,20 +13,24 @@ namespace Libery_Frontend.Views
     public partial class AddAndDelete : ContentPage
     {
         public List<Models.Author> Authors;
-
+        public List<AuthorName> aut;
         public AddAndDelete()
         {
+
             InitializeComponent();
+
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
 
             using (var db = new Models.LibraryDBContext())
             {
-                Authors = db.Authors.ToList();
+                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname }).ToList();
+
+                pickerarray.ItemsSource = aut;
             }
         }
 
@@ -41,23 +45,46 @@ namespace Libery_Frontend.Views
                     Isbn = ISBNEntry.Text,
                     //AuthorId = Convert.ToInt32(ProductInfoEntry.Text),
                     AuthorId = Authors.Last().Id,
-                };
 
-                try
+
+                };
+                var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+
+
+                if (svar == true)
                 {
                     db.Add(newProduct);
                     db.SaveChanges();
-                    
-                    var svar = await DisplayAlert("Lägga till en produkt", "Är du helt säker?", "Ja", "Nej");
-                   
+                }
+                else { }
 
-                    
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Ingen produkt tillagd");
-                }
             }
         }
+        private void picker_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+            var s = (Picker)sender;
+            if (s.SelectedIndex == -1) return;
+
+            AuthorName author = (AuthorName)s.SelectedItem;
+
+            string personsAsString = s.Items[s.SelectedIndex];
+            AuthorName author2 = (AuthorName)s.ItemsSource[s.SelectedIndex];
+
+            AFirstnameEntry.Text = personsAsString;
+
+            if (personsAsString.Contains(' '))
+            {
+                var split = personsAsString.Split(' ');
+               AFirstnameEntry.Text = split[0];
+              ALastnameEntry.Text = split[1];
+
+
+            }
+        }
+
+
+
     }
+
 }

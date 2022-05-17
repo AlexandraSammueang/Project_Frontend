@@ -38,14 +38,12 @@
                     <Entry x:Name="ALastnameEntry" Placeholder="Guillou"/>
                 </StackLayout>
 
-                <StackLayout>
-                    <Picker x:Name="SelectAuthorPicker" Title="Välj författare" ItemsSource="{Binding Authors}" ItemDisplayBinding="{Binding Lastname}"
-        SelectedItem="{Binding SelectedAuthor}" />
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                    SelectedIndexChanged="picker_SelectedIndexChanged"/>
 
-                    <Label Text="{Binding SelectedAuthor.Id}" IsVisible="True" x:Name="SelectedAuthorId" Margin="0,100,0,0"/>
-                    <Label Text="{Binding SelectedAuthor.Lastname}" IsVisible="True" x:Name="SelectedAuthorName"/>
                 </StackLayout>
-    
+
                 <!-- <StackLayout>
                     <Label x:Name="PhonenumberLab" Text="Telefonnummer"/>
                     <Entry x:Name="PhonenumberEntry" Placeholder="0761611369"/>

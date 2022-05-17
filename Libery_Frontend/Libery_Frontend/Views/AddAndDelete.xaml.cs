@@ -30,7 +30,7 @@ namespace Libery_Frontend.Views
             }
         }
 
-        private void AddButton_Clicked(object sender, System.EventArgs e)
+        private async void AddButton_Clicked(object sender, System.EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
             {

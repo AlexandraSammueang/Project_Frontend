@@ -55,7 +55,7 @@ namespace Libery_Frontend.Views
                     ProductInfo = ProductInfoEntry.Text,
                     Isbn = ISBNEntry.Text,
                     AuthorId = aut.Id,
-                    //AuthorId = Authors.Last().Id,
+                    
                     ProductTypeId = Convert.ToInt32(ProductTypeIdEntry.Text),
                     Image = ImageEntry.Text,
                     CategoryId = Convert.ToInt32(CategoryIdEntry.Text),

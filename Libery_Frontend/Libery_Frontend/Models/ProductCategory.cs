@@ -11,7 +11,6 @@ namespace Libery_Frontend.Models
         {
             Products = new HashSet<Product>();
         }
-
         public int Id { get; set; }
         public string Category { get; set; }
 

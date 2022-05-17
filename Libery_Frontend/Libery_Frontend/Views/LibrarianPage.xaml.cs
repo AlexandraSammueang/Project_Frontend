@@ -153,5 +153,9 @@ namespace Libery_Frontend.Views
             public string Type { get; set; } = default;
         }
 
+        private void LogoutButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

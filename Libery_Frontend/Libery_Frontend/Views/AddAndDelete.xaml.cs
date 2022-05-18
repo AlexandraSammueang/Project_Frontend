@@ -179,6 +179,16 @@ namespace Libery_Frontend.Views
             }
         }
 
+        private void GetISBN_Clicked(object sender, System.EventArgs e)
+        {
+            WebSite();
+        }
+        public void WebSite()
+        {
+
+            webSite.Source = $"http://libris.kb.se/hitlist?q=linkisxn:{ISBN_kod.Text}";
+        }
+
     }
 
 }

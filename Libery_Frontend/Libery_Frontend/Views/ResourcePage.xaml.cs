@@ -10,13 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainPage : TabbedPage
+    public partial class ResourcePage : ResourceDictionary
     {
-
-        public MainPage()
+        public ResourcePage()
         {
-           InitializeComponent();
+            InitializeComponent();
         }
-
     }
 }

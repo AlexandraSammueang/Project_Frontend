@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.ProductDelete2">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content >
+        <Grid>
+            <Grid.RowDefinitions>
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Frame  BackgroundColor="LightGray" Grid.Column="0" WidthRequest="200">
+                <StackLayout x:Name="ButtonMenu" IsVisible="true">
+                    <Button x:Name="AddProdButton" Text="Lägg till en produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="AddProdButton_Clicked"/>
+                    <Button x:Name="RemoveProdButton" Text="Ta bort produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProdButton_Clicked"/>
+                    <Button x:Name="UpdateProdButton" Text="Uppdatera produkt" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="UpdateProdButton_Clicked"/>
+                    <Entry x:Name="SearchBar" BackgroundColor="White"/>
+
+                </StackLayout>
+            </Frame>
+
+            <Frame  Grid.Column="1">
+                <StackLayout x:Name="ActionFrame" IsVisible="true">
+                    <Label x:Name="DefaultFrameText" Text="Default text before action is chosen"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+
+
+                    <StackLayout x:Name="AddProdFrame" IsVisible="true">
+                        <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
+                       
+                        <ListView x:Name="ProductListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5">
+                                            <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <StackLayout BackgroundColor="Transparent">
+                                                    <Image Source="{Binding Image}" WidthRequest="100"/>
+                                                    <Label VerticalOptions="Center" Text="{Binding Products, StringFormat='Produkter: {0}'}" FontSize="Large" FontAttributes="Bold"   />
+                                                    <Label VerticalOptions="Center" Text="{Binding Name, StringFormat='Titel: {0}'}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Info, StringFormat='Info: {0}'}" FontSize="18" />
+                                                    <Label VerticalOptions="Center" Text="{Binding Type, StringFormat='Typ: {0}'}" FontSize="18" />
+
+                                                </StackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                    <StackLayout x:Name="RemoveProdFrame" IsVisible="false">
+                        <Label Text="Du har tagit bort en produkt" FontAttributes="Bold" FontSize="Large"/>
+                    </StackLayout>
+
+                    <StackLayout x:Name="UpdateProdFrame" IsVisible="false">
+                        <Label Text="Du har nu updaterat en produkt" FontAttributes="Bold" FontSize="Large"/>
+                    </StackLayout>
+                    <Button x:Name="RemoveProductButton" Text="Ta bort en product" FontAttributes="Bold" BackgroundColor="LightPink" CornerRadius="10" Clicked="RemoveProductButton_Clicked"/>
+
+                </StackLayout>
+
+            </Frame>
+
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

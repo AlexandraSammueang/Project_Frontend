@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+
+                <Label x:Name="UsernameLabel" Text="Användarnamn" FontSize="Small" FontAttributes="Bold"/>
+                <Entry x:Name="UsernameEntry"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
+                <Entry x:Name="PasswordEntry"/>
+            </StackLayout>
+
+            <Button x:Name="LoginButton" HorizontalOptions="Center" Text="Logga in" Margin="0,30,0,0" Clicked="LoginButton_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,22 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.AboutPage" BackgroundColor="WhiteSmoke" >
+             x:Class="Libery_Frontend.Views.AboutPage"  BackgroundColor="WhiteSmoke">
     <ContentPage.Content>
         <StackLayout>
-            <AbsoluteLayout>
-                <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6"  />
-           
-                <StackLayout>
-                    
-                    <Frame >
-                        <Label Text="Welcome to Newtons Library!" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
-                        
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6" />
+
+
+            <StackLayout HorizontalOptions="FillAndExpand">
+                    <Button x:Name="LogoutButton" Text="Logga ut" TextColor="Black" Clicked="LogoutButton_Clicked"/>
+
+                    <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
+                        <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
                     </Frame>
-                   
-                    <Label Text="Created by Microsoft_Newton" VerticalTextAlignment="End" FlowDirection="RightToLeft"  FontSize="Small" FontAttributes="Italic" TextColor="Black" />
-                </StackLayout>
-            </AbsoluteLayout>
-        </StackLayout>
-    </ContentPage.Content>
+
+                            <Label  x:Name="timeLabel" HorizontalOptions="End"
+                            TextColor="Black" FontSize="16" FontAttributes="Italic" 
+                            WidthRequest="150" Text="" Margin="0,0,50,0" />
+
+                    <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
+                       HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 
+                       Text="Skapad av Newton_Microsoft" TextColor="Black">
+
+                    </Label>
+
+            </StackLayout>
+            
+        </Grid>
+    </StackLayout>
+        </ContentPage.Content>
 </ContentPage>

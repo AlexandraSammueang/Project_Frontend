@@ -14,7 +14,7 @@ namespace Libery_Frontend.Views
         public List<AuthorName> aut;
         public AddAndDelete()
         {
-            
+
             InitializeComponent();
 
         }
@@ -30,23 +30,15 @@ namespace Libery_Frontend.Views
 
                 pickerarray.ItemsSource = aut;
 
-            }
-
-            using (var db = new Models.LibraryDBContext())
-            {
                 var type = db.ProductTypes.Select(x => new ProductType { Id = x.Id, Type = x.Type }).ToList();
 
                 PickerProductType.ItemsSource = type;
 
-            }
-            using (var db = new Models.LibraryDBContext())
-            {
                 var category = db.ProductCategories.Select(x => new ProductCategory { Id = x.Id, Category = x.Category }).ToList();
 
                 PickerCategoryID.ItemsSource = category;
 
             }
-
 
         }
 
@@ -58,35 +50,68 @@ namespace Libery_Frontend.Views
             ProductType type = PickerProductType.SelectedItem as ProductType;
             ProductCategory category = PickerCategoryID.SelectedItem as ProductCategory;
 
-
-            using (var db = new Models.LibraryDBContext())
+            if (item != null)
             {
-                aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
-
-
-                var newProduct = new Product
+                using (var db = new Models.LibraryDBContext())
                 {
-                    ProductName = ProductNameEntry.Text,
-                    ProductInfo = ProductInfoEntry.Text,
-                    Isbn = ISBNEntry.Text,
-                    AuthorId = aut.Id,
-                    ProductTypeId = type.Id,
-                    Image = ImageEntry.Text,
-                    CategoryId = category.Id,
-                    Price = Convert.ToDouble(PriceEntry.Text),
-                    BookPages = Convert.ToInt32(BookPagesEntry.Text)
                     
-                };
-                var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+                    aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
 
 
-                if (svar == true)
-                {
-                    db.Add(newProduct);
-                    db.SaveChanges();
+                    var newProduct = new Product
+                    {
+                        ProductName = ProductNameEntry.Text,
+                        ProductInfo = ProductInfoEntry.Text,
+                        Isbn = ISBNEntry.Text,
+                        AuthorId = aut.Id,
+                        ProductTypeId = type.Id,
+                        Image = ImageEntry.Text,
+                        CategoryId = category.Id,
+                        Price = Convert.ToDouble(PriceEntry.Text),
+                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
+
+                    };
+                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+
+
+                    if (svar == true)
+                    {
+                        db.Add(newProduct);
+                        db.SaveChanges();
+                    }
+                    else { }
+
+
                 }
-                else { }
 
+            }
+            else
+            {
+                using (var db = new Models.LibraryDBContext())
+                {
+                    var newProduct = new Product
+                    {
+                        ProductName = ProductNameEntry.Text,
+                        ProductInfo = ProductInfoEntry.Text,
+                        Isbn = ISBNEntry.Text,
+                        AuthorId = InsertAuthor(),
+                        ProductTypeId = type.Id,
+                        Image = ImageEntry.Text,
+                        CategoryId = category.Id,
+                        Price = Convert.ToDouble(PriceEntry.Text),
+                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
+
+                    };
+                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+
+
+                    if (svar == true)
+                    {
+                        db.Add(newProduct);
+                        db.SaveChanges();
+                    }
+                    else { }
+                }
             }
         }
         private void picker_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -137,6 +162,23 @@ namespace Libery_Frontend.Views
 
             CategoryIdEntry.Text = personsAsString;
         }
+
+        private int? InsertAuthor()
+        {
+            using (var db = new Models.LibraryDBContext())
+            {
+
+                var newAuthor = new Author
+                {
+                    Firstname = AFirstnameEntry.Text,
+                    Lastname = ALastnameEntry.Text
+                };
+                db.Add(newAuthor);
+                db.SaveChanges();
+                return newAuthor.Id;
+            }
+        }
+
     }
-    
+
 }

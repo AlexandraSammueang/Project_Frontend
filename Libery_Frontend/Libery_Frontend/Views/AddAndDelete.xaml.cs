@@ -75,10 +75,7 @@ namespace Libery_Frontend.Views
                     CategoryId = category.Id,
                     Price = Convert.ToDouble(PriceEntry.Text),
                     BookPages = Convert.ToInt32(BookPagesEntry.Text)
-
-
-
-
+                    
                 };
                 var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
 

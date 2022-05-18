@@ -57,12 +57,12 @@
                                 <StackLayout Orientation="Horizontal">
                                     <Grid>
                                         <Frame Grid.Column="0">
-                                    <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="0, 0" WidthRequest="200"
+                                            <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="0, 0" WidthRequest="200"
                     SelectedIndexChanged="picker_SelectedIndexChanged"/>
                                         </Frame>
                                         <Frame Grid.Column="1">
-                                            
-<BoxView />
+
+                                            <BoxView />
                                         </Frame>
                                     </Grid>
 
@@ -78,7 +78,7 @@
                                     <Picker x:Name="PickerCategoryID" Title="Välj kategori" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
                             SelectedIndexChanged="PickerCategoryID_SelectedIndexChanged"></Picker>
 
-                                   
+
                                 </StackLayout>
                                 <StackLayout>
                                     <Label x:Name="Image" Text="Lägg in bildlänk"/>
@@ -113,7 +113,40 @@
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1">
+                    <AbsoluteLayout>
+                        <ScrollView >
 
+                            <Grid>
+                                <Grid.RowDefinitions>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+
+
+                                <Frame Grid.Column="1" Grid.Row="0" WidthRequest="1100" HorizontalOptions="End" Grid.RowSpan="15">
+
+                                    <WebView x:Name="webSite"/>
+
+
+                                </Frame>
+
+                                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="Aquamarine">
+
+                                    <Button x:Name="isbn" Clicked="GetISBN_Clicked"/>
+                                </Frame>
+
+                                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="DarkCyan" WidthRequest="200">
+
+                                    <Entry x:Name="ISBN_kod"  Placeholder="" BackgroundColor="Bisque" />
+
+                                </Frame>
+                            </Grid>
+                        </ScrollView>
+                    </AbsoluteLayout>
                 </Frame>
             </Grid>
         </ScrollView>

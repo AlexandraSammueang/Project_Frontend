@@ -11,9 +11,10 @@ namespace Libery_Frontend.Models
         {
             Products = new HashSet<Product>();
         }
-
         public int Id { get; set; }
         public string Category { get; set; }
+
+        public override string ToString() => $"{Category}";
 
         public virtual ICollection<Product> Products { get; set; }
     }

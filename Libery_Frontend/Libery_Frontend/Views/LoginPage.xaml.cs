@@ -173,6 +173,11 @@ namespace Libery_Frontend.Views
             {
                 theTabbedPage.Children.Insert(index, page);
             }
+
+            async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+            {
+                await Navigation.PushAsync(new RegisterPage());
+            }
         }
     }
 }

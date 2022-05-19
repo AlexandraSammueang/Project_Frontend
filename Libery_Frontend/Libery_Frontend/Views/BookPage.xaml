@@ -32,7 +32,7 @@
                                     <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
                                     <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
                                     <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}"  FontSize="16" TextColor="Black"/>
-                                    
+                                    <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" BackgroundColor="LightPink" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
 
 
 

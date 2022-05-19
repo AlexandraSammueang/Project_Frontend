@@ -66,6 +66,18 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        private async void BookProductButton_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
+            if (answer)
+            {
+                var tab = new MainPage();
+                tab.CurrentPage = tab.Children[5];
+
+                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+            }
+            else return;
+        }
 
     }
 }

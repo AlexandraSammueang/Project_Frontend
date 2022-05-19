@@ -40,7 +40,7 @@ namespace Libery_Frontend.Views
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, Id = p.Id }).ToList();
                     }
                 }
 
@@ -121,7 +121,7 @@ namespace Libery_Frontend.Views
             {
                 using (var context = new Models.LibraryDBContext())
                 {                    
-                        var removePost = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
+                        var removePost = context.Products.Where(x => x.Id == item.Id).FirstOrDefault();
                         context.Products.Remove(removePost);
                         var svar = await DisplayAlert("Ta bort vald produkt", "Är du helt säker?", "Ja", "Nej");
                     if (svar == true)
@@ -149,6 +149,7 @@ namespace Libery_Frontend.Views
             public string Name { get; set; } = default;
             public string Info { get; set; } = default;
             public string Type { get; set; } = default;
+            public int? Id { get; set; } = default;
         }
 
     }

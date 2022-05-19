@@ -1,4 +1,5 @@
 ﻿using Libery_Frontend.Views;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

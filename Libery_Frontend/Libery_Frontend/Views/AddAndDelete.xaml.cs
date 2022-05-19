@@ -30,23 +30,15 @@ namespace Libery_Frontend.Views
 
                 pickerarray.ItemsSource = aut;
 
-            }
-
-            using (var db = new Models.LibraryDBContext())
-            {
                 var type = db.ProductTypes.Select(x => new ProductType { Id = x.Id, Type = x.Type }).ToList();
 
                 PickerProductType.ItemsSource = type;
 
-            }
-            using (var db = new Models.LibraryDBContext())
-            {
                 var category = db.ProductCategories.Select(x => new ProductCategory { Id = x.Id, Category = x.Category }).ToList();
 
                 PickerCategoryID.ItemsSource = category;
 
             }
-
 
         }
 
@@ -74,7 +66,8 @@ namespace Libery_Frontend.Views
                     Image = ImageEntry.Text,
                     CategoryId = category.Id,
                     Price = Convert.ToDouble(PriceEntry.Text),
-                    BookPages = Convert.ToInt32(BookPagesEntry.Text)
+                    BookPages = Convert.ToInt32(BookPagesEntry.Text),
+                    StockValue =Convert.ToInt32(StockValueEntry.Text)
 
 
 

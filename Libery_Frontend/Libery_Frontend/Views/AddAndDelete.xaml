@@ -68,6 +68,11 @@
                     <Picker x:Name="PickerProductType" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
                           SelectedIndexChanged="PickerProductType_SelectedIndexChanged"></Picker>
                 </StackLayout>
+                <StackLayout>
+                    <Label x:Name="StockValue" Text="Antal böcker"/>
+                    <Entry x:Name="StockValueEntry"/>
+
+                </StackLayout>
 
                 <StackLayout>
                     <Label x:Name="Price" Text="Pris"/>

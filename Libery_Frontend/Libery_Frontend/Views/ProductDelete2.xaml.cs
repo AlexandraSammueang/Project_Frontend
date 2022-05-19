@@ -123,7 +123,7 @@ namespace Libery_Frontend.Views
                 {                    
                         var removePost = context.Products.Where(x => x.Id == item.Id).FirstOrDefault();
                         context.Products.Remove(removePost);
-                        var svar = await DisplayAlert("Ta bort vald produkt", "Är du helt säker?", "Ja", "Nej");
+                        var svar = await DisplayAlert($"Vill du ta bort {removePost.ProductName}", "Är du helt säker?", "Ja", "Nej");
                     if (svar == true)
                     {
                         context.SaveChanges();

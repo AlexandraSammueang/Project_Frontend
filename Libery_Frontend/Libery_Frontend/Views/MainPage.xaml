@@ -15,7 +15,10 @@
         <Views:SearchPage Title="Sök"/>
         <!--  <Views:LibraryBossPage Title="Bibliotekschef metoder"></Views:LibraryBossPage>-->
         <!--<Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>-->
-        <Views:AddAndDelete Title="Lägga till/ta bort böcker"></Views:AddAndDelete>
+        <Views:AddAndDelete Title="Lägg till produkter"></Views:AddAndDelete>
+        <Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>
+        <Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>
+        <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
         <Views:ProductDelete2 Title="Ta bort böcker"></Views:ProductDelete2>
     </TabbedPage.Children>
 

@@ -19,7 +19,7 @@
         <Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>
         <Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>
         <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
-        <Views:ProductDelete2 Title="Ta bort böcker"></Views:ProductDelete2>
+        
     </TabbedPage.Children>
 
 

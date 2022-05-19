@@ -56,8 +56,8 @@ namespace Libery_Frontend.Views
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
 
-                        homePage.Children.RemoveAt(6);
                         homePage.Children.RemoveAt(5);
+                        homePage.Children.RemoveAt(4);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
@@ -89,8 +89,8 @@ namespace Libery_Frontend.Views
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
 
-                        homePage.Children.RemoveAt(6);
                         homePage.Children.RemoveAt(5);
+                        homePage.Children.RemoveAt(4);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
@@ -109,17 +109,17 @@ namespace Libery_Frontend.Views
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
                         Page pageToAdd = new UserAccountPage(userName);
-                        Page pageToAddSecond = new UserAccountProductsPage();
+                        Page pageToAddSecond = new Books();
                         Page pageToAddThird = new UserSearchPage();
 
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Kundkorg";
-                        pageToAddSecond.Title = "Alla produkter";
+                        pageToAddSecond.Title = "Böcker";
                         pageToAddThird.Title = "Sök";
 
-                        homePage.Children.RemoveAt(6);
                         homePage.Children.RemoveAt(5);
+                        homePage.Children.RemoveAt(4);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
                         homePage.Children.Insert(1, pageToAddThird);

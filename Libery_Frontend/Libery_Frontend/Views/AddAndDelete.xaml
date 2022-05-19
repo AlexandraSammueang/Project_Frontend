@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:Libery_Frontend.Models"
              x:Class="Libery_Frontend.Views.AddAndDelete">
+
     <ContentPage.Resources>
 
         <ResourceDictionary Source="ResourcePage.xaml"/>
@@ -9,70 +10,145 @@
     <ContentPage.Content>
         <ScrollView>
 
+            <Grid BackgroundColor="#C4D4DF">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
+                <Frame Grid.Column="0">
+                    <Grid BackgroundColor="#C4D4DF">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Frame BackgroundColor="#4B806F" Grid.Column="0">
 
-            <StackLayout Padding="10,0,10,0">
+                            <StackLayout>
+                                <StackLayout Margin="0">
+                                    <Label x:Name="ProductName" Text="Titel" />
+                                    <Entry x:Name="ProductNameEntry"/>
+                                </StackLayout>
 
-                <StackLayout>
-                    <Label x:Name="ProductName" Text="Titel"/>
-                    <Entry x:Name="ProductNameEntry"/>
-                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="ProductInfo" Text="Titelinfo" />
+                                    <Entry x:Name="ProductInfoEntry"/>
+                                </StackLayout>
 
-                <StackLayout>
-                    <Label x:Name="ProductInfo" Text="Titelinfo"/>
-                    <Entry x:Name="ProductInfoEntry"/>
-                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="ISBN" Text="ISBN-nummer"/>
+                                    <Entry x:Name="ISBNEntry"/>
+                                </StackLayout>
 
-                <StackLayout>
-                    <Label x:Name="ISBN" Text="ISBN-nummer"/>
-                    <Entry x:Name="ISBNEntry"/>
-                </StackLayout>
-                <StackLayout>
-                    <Label x:Name="CategoryId" Text="Kategori"/>
-                    <Entry x:Name="CategoryIdEntry"/>
-                </StackLayout>
-                <StackLayout>
-                    <Label x:Name="Image" Text="Lägg in bildlänk"/>
-                    <Entry x:Name="ImageEntry"/>
-                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="FirstnameLab" Text="Författare förnamn"/>
+                                    <Entry x:Name="AFirstnameEntry" Placeholder="Jan"/>
+                                </StackLayout>
 
-                <StackLayout>
-                    <Label x:Name="ProductTypeId" Text="Produkttyp"/>
-                    <Entry x:Name="ProductTypeIdEntry"/>
-                </StackLayout>
-               
-                
-                
-                <StackLayout>
-                    <Label x:Name="Price" Text="Pris"/>
-                    <Entry x:Name="PriceEntry"/>
-                </StackLayout>
-                
-                <StackLayout>
-                    <Label x:Name="BookPages" Text="Antal boksidor"/>
-                    <Entry x:Name="BookPagesEntry"/>
-                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="LastnameLab" Text="Författare efternamn"/>
+                                    <Entry x:Name="ALastnameEntry" Placeholder="Guillou"/>
+                                </StackLayout>
 
-                <StackLayout>
-                    <Label x:Name="FirstnameLab" Text="Författare förnamn"/>
-                    <Entry x:Name="AFirstnameEntry" Placeholder="Jan"/>
-                </StackLayout>
-
-                <StackLayout>
-                    <Label x:Name="LastnameLab" Text="Författare efternamn"/>
-                    <Entry x:Name="ALastnameEntry" Placeholder="Guillou"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid>
+                                        <Frame Grid.Column="0">
+                                            <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="0, 0" WidthRequest="200"
                     SelectedIndexChanged="picker_SelectedIndexChanged"/>
+                                        </Frame>
+                                        <Frame Grid.Column="1">
 
-                </StackLayout>
+                                            <BoxView />
+                                        </Frame>
+                                    </Grid>
 
-                
+                                </StackLayout>
 
-                <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
-            </StackLayout>
+
+                                <StackLayout>
+                                    <Label x:Name="CategoryId" Text="Kategori"/>
+                                    <Entry x:Name="CategoryIdEntry"/>
+                                </StackLayout>
+
+                                <StackLayout>
+                                    <Picker x:Name="PickerCategoryID" Title="Välj kategori" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                            SelectedIndexChanged="PickerCategoryID_SelectedIndexChanged"></Picker>
+
+
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label x:Name="Image" Text="Lägg in bildlänk"/>
+                                    <Entry x:Name="ImageEntry"/>
+                                </StackLayout>
+
+                                <StackLayout>
+                                    <Label x:Name="ProductTypeId" Text="Produkttyp"/>
+                                    <Entry x:Name="ProductTypeIdEntry"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Picker x:Name="PickerProductType" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                          SelectedIndexChanged="PickerProductType_SelectedIndexChanged"></Picker>
+                                </StackLayout>
+
+                                <StackLayout>
+                                    <Label x:Name="Price" Text="Pris"/>
+                                    <Entry x:Name="PriceEntry"/>
+                                </StackLayout>
+
+                                <StackLayout>
+                                    <Label x:Name="BookPages" Text="Antal sidor"/>
+                                    <Entry x:Name="BookPagesEntry"/>
+                                </StackLayout>
+
+                                <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame Grid.Column="1">
+
+                        </Frame>
+                    </Grid>
+                </Frame>
+                <Frame Grid.Column="1">
+                    <AbsoluteLayout>
+                        <ScrollView >
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+
+
+                                <Frame Grid.Column="1" Grid.Row="0" WidthRequest="1100" HorizontalOptions="End" Grid.RowSpan="15">
+
+                                    <WebView x:Name="webSite"/>
+
+
+                                </Frame>
+
+                                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="Aquamarine">
+
+                                    <Button x:Name="isbn" Clicked="GetISBN_Clicked"/>
+                                </Frame>
+
+                                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="DarkCyan" WidthRequest="200">
+
+                                    <Entry x:Name="ISBN_kod"  Placeholder="" BackgroundColor="Bisque" />
+
+                                </Frame>
+                            </Grid>
+                        </ScrollView>
+                    </AbsoluteLayout>
+                </Frame>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

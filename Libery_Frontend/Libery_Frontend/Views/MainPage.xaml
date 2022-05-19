@@ -12,7 +12,13 @@
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage Title="Registrera användare"/>
-        <Views:AddAndDelete Title="Test"/>
+        <Views:SearchPage Title="Sök"/>
+        <!--  <Views:LibraryBossPage Title="Bibliotekschef metoder"></Views:LibraryBossPage>-->
+        <!--<Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>-->
+        <Views:AddAndDelete Title="Lägg till produkter"></Views:AddAndDelete>
+        <Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>
+        <Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>
+        <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
         
     </TabbedPage.Children>
 

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.AddProduct">
+    <ContentPage.Resources>
+
+        <ResourceDictionary Source="ResourcePage.xaml"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="10,0,10,0">
+
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="Allproducttype" Title="Se alla typer" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                            SelectedIndexChanged="Allproducttype_SelectedIndexChanged">
+
+                    </Picker>
+
+                </StackLayout>
+                <StackLayout>
+                    <Label x:Name="Producttype" Text="Skriv in typ"
+                           />
+                    <Entry x:Name="TypeEntry">
+                        
+                    </Entry>
+
+                </StackLayout>
+                <Button x:Name="AddProducttype" HorizontalOptions="Center" Text="Lägg till produkttyp" Margin="0,30,0,0" Clicked="AddProducttype_Clicked"  ></Button>
+
+
+            </StackLayout>
+        </ScrollView>
+
+
+    </ContentPage.Content>
+</ContentPage>

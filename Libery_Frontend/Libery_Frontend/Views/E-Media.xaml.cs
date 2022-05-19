@@ -79,10 +79,13 @@ namespace Libery_Frontend.Views
         }
 
 
-        private void Movie_Clicked(object sender, EventArgs e)
+
+        private async void Movie_Clicked(object sender, EventArgs e)
         {
             MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
+
         }
+      
         public async Task<List<ProductModel>> GetBooksAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -155,6 +158,8 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+
+        
     }
 
 

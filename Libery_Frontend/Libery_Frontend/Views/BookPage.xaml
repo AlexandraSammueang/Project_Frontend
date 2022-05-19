@@ -33,6 +33,8 @@
                                     <Label Grid.Row="1" Grid.Column="2"  Text="{Binding Name}"  FontSize="Medium" FontAttributes="Bold" TextColor="Black"/>
                                     <Label Grid.Row="3" Grid.Column="2" Text="{Binding Info}"  FontSize="16" TextColor="Black"/>
                                     
+                                    <Button Grid.Row="4" x:Name="BookProductButton" Text="Boka" FontSize="Medium" BackgroundColor="LightPink" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
+                                    
 
 
 

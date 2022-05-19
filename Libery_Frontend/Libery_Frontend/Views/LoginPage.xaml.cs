@@ -66,7 +66,7 @@ namespace Libery_Frontend.Views
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
-                        
+
                         UsernameEntry.Text = "";
                         PasswordEntry.Text = "";
 
@@ -76,7 +76,7 @@ namespace Libery_Frontend.Views
                     {
 
                         Page pageToAdd = new LibrarianPage();
-                       // Page pageToAddSecond = new ProductDelete2();
+                        // Page pageToAddSecond = new ProductDelete2();
                         Page pageToAddThird = new AddAndDelete();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
@@ -84,7 +84,7 @@ namespace Libery_Frontend.Views
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
-                      //  pageToAddSecond.Title = "Ta bort/Lägg till";
+                        //  pageToAddSecond.Title = "Ta bort/Lägg till";
                         pageToAddThird.Title = "Test";
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
@@ -152,7 +152,7 @@ namespace Libery_Frontend.Views
 
             }
         }
-        
+
         public void HideTab(int index)
         {
             TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;
@@ -174,10 +174,11 @@ namespace Libery_Frontend.Views
                 theTabbedPage.Children.Insert(index, page);
             }
 
-            async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
-            {
-                await Navigation.PushAsync(new RegisterPage());
-            }
+
+        }
+        async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new RegisterPage());
         }
     }
 }

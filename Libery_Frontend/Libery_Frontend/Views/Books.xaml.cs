@@ -47,7 +47,7 @@ namespace Libery_Frontend.Views
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
                        
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).Where(p => p.Type == "Bok").ToList();
                     }
                 }
 

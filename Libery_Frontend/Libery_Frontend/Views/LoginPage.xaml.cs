@@ -109,21 +109,25 @@ namespace Libery_Frontend.Views
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
                         Page pageToAdd = new UserAccountPage(userName);
-                        Page pageToAddSecond = new Books();
+                        Page pageToAddSecond = new UserBooksPage();
                         Page pageToAddThird = new UserSearchPage();
+                        Page pageToAddFourth = new UserEProductsPage();
 
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Kundkorg";
                         pageToAddSecond.Title = "Böcker";
                         pageToAddThird.Title = "Sök";
+                        pageToAddFourth.Title = "E-Media";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
                         homePage.Children.Insert(1, pageToAddThird);
                         homePage.Children.Insert(2, pageToAddSecond);
+                        homePage.Children.Insert(3, pageToAddFourth);
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);

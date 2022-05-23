@@ -18,6 +18,8 @@ namespace Libery_Frontend.SecondModels
         public bool? IsBookable { get; set; } = default;
         public int? CategoryID { get; set; } = default;
         public string ISBN { get; set; } = default;
+        public int? Pages { get; set; } = default;
+        public string Category { get; set; } = default;
 
 
     }

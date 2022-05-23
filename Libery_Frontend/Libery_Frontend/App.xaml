@@ -6,5 +6,26 @@
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Olive" ></Setter>
+        </Style>
+
+        <Style TargetType="AbsoluteLayout">
+            <Setter Property="BackgroundColor" Value="SandyBrown"></Setter> 
+        </Style>
+
+        <Style TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="Olive"></Setter>
+        </Style>
+
+        <Style TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+        </Style>
+
+        
     </Application.Resources>
 </Application>

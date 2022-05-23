@@ -17,6 +17,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
             libraryPhoto.Source = $"https://static1biblioteket.stockholm.se/sites/default/files/Stadsbiblioteket-3.jpg";
 
+            timeLabel.BackgroundColor = new Color (0.95,0.64, 0.38, 0.7);
             timeLabel.Text =
                            "MÅN  10:00-16:00 \n" +
                            "TIS  9:00-18:00 \n" +

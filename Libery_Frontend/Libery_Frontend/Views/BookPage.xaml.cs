@@ -72,7 +72,7 @@ namespace Libery_Frontend.Views
             if (answer)
             {
                 var tab = new MainPage();
-                tab.CurrentPage = tab.Children[5];
+                tab.CurrentPage = tab.Children[4];
 
                 await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
             }

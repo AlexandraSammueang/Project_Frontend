@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.E_Media">
+             x:Class="Libery_Frontend.Views.UserEProductsPage">
     <ContentPage.Content>
         <Grid>
             <Frame BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start"  Grid.Column="0" WidthRequest="100">
@@ -13,17 +13,17 @@
 
 
                 </StackLayout>
-                
-            
-        </Frame>
-        <Frame  Grid.Column="1">
-          
+
+
+            </Frame>
+            <Frame  Grid.Column="1">
+
 
 
                 <StackLayout x:Name="AddProdFrame" IsVisible="true">
                     <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
-                   
-                        <ListView x:Name="BookListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+
+                    <ListView x:Name="BookListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -47,9 +47,9 @@
                     </ListView>
                 </StackLayout>
 
-               
 
-        </Frame>
+
+            </Frame>
 
 
 

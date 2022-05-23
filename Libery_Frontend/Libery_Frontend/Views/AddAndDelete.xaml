@@ -10,7 +10,7 @@
     <ContentPage.Content>
         <ScrollView>
 
-            <Grid BackgroundColor="#C4D4DF">
+            <Grid BackgroundColor="SandyBrown">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
@@ -19,14 +19,14 @@
                 </Grid.RowDefinitions>
 
                 <Frame Grid.Column="0">
-                    <Grid BackgroundColor="#C4D4DF">
+                    <Grid BackgroundColor="SandyBrown">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Frame BackgroundColor="#4B806F" Grid.Column="0">
+                        <Frame BackgroundColor="Olive" Grid.Column="0">
 
                             <StackLayout>
                                 <StackLayout Margin="0">
@@ -134,12 +134,12 @@
 
                                 </Frame>
 
-                                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="Aquamarine">
+                                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="Olive">
 
-                                    <Button x:Name="isbn" Clicked="GetISBN_Clicked"/>
+                                    <Button x:Name="isbn" Clicked="GetISBN_Clicked" BackgroundColor="Bisque"/>
                                 </Frame>
 
-                                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="DarkCyan" WidthRequest="200">
+                                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="Olive" WidthRequest="200">
 
                                     <Entry x:Name="ISBN_kod"  Placeholder="" BackgroundColor="Bisque" />
 

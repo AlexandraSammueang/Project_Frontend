@@ -85,7 +85,7 @@ namespace Libery_Frontend.Views
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
                         //  pageToAddSecond.Title = "Ta bort/Lägg till";
-                        pageToAddThird.Title = "Test";
+                        pageToAddThird.Title = "Lägg till";
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
 
@@ -100,6 +100,7 @@ namespace Libery_Frontend.Views
                         homePage.Children.Add(pageToAdd);
                         //homePage.Children.Add(pageToAddSecond);
                         homePage.Children.Add(pageToAddThird);
+
                         await Navigation.PushAsync(homePage);
 
                         UsernameEntry.Text = "";

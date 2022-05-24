@@ -28,9 +28,8 @@
                 <Button x:Name="AddProducttype" HorizontalOptions="Center" Text="Lägg till produkttyp" Margin="0,30,0,0" Clicked="AddProducttype_Clicked"  ></Button>
                 <StackLayout >
 
-
-                     
                 </StackLayout>
+                
                 <StackLayout>
 
                     <StackLayout Orientation="Horizontal">

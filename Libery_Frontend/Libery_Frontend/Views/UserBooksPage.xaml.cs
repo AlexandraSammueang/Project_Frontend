@@ -68,9 +68,11 @@ namespace Libery_Frontend.Views
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
-            ProductModel item = ProductListView.SelectedItem as ProductModel;
             DateTime returnDate = DateTime.Now.AddDays(30);
             CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
+
+            Button btn = sender as Button;
+            ProductModel item = btn.BindingContext as ProductModel;
 
             if (item != null)
             {

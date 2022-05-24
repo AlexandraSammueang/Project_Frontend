@@ -5,7 +5,7 @@
              xmlns:view="using:Libery_Frontend.Views">
     <ContentPage.Content>
         <StackLayout Margin="0,10,0,0">
-            <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Skriv titel,författare ect" TextChanged="Entry_TextChanged"   SearchButtonPressed="SearchBar_SearchButtonPressed"></SearchBar>
+            <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque" SearchButtonPressed="SearchBar_SearchButtonPressed"></SearchBar>
             <!-- Search result-->
 
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="true" HorizontalOptions="FillAndExpand"></ActivityIndicator>

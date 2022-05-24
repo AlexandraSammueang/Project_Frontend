@@ -10,8 +10,17 @@ namespace Libery_Frontend.SecondModels
         public string Name { get; set; } = default;
         public string Info { get; set; } = default;
         public string Type { get; set; } = default;
-        public int ProId { get; set; } = default;
-        public int UnitPrice { get; set; } = default;
+        public int? ProId { get; set; } = default;
+        public double? UnitPrice { get; set; } = default;
+        public int? AuthorID { get; set; } = default;
+        public int? DirectorID { get; set; } = default;
+        public DateTime? ReleaseDate { get; set; } = default;
+        public bool? IsBookable { get; set; } = default;
+        public int? CategoryID { get; set; } = default;
+        public string ISBN { get; set; } = default;
+        public int? Pages { get; set; } = default;
+        public string Category { get; set; } = default;
+
 
     }
 

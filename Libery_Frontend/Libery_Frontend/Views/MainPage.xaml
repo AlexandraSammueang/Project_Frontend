@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
-            x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black"
+            x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="SandyBrown" SelectedTabColor="White" UnselectedTabColor="Black"
              >
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
@@ -15,13 +15,12 @@
         <!--  <Views:LibraryBossPage Title="Bibliotekschef metoder"></Views:LibraryBossPage>-->
         <!--<Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>-->
         
-        <!--
+        
         <Views:AddAndDelete Title="Lägg till produkter"></Views:AddAndDelete>
         <Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>
         <Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>
         <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
-        -->
-        
+        <Views:UpdateProductPage Title="Uppdatera produkt"/>
     </TabbedPage.Children>
 
 

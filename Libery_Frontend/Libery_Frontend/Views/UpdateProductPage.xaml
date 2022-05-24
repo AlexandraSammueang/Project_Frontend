@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Frame  BackgroundColor="Wheat" Grid.Column="0" WidthRequest="200" Margin="5">
+            <Frame Grid.Column="0" WidthRequest="200" Margin="5">
                 <StackLayout x:Name="ButtonMenu" IsVisible="true">
                 </StackLayout>
             </Frame>
@@ -35,7 +35,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
                                                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10,5,15" Margin="0,5,5,0">
                                                         <StackLayout HorizontalOptions="Start" Orientation="Vertical">
                                                             <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" Margin="10" />

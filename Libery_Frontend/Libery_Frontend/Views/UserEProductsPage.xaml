@@ -6,9 +6,9 @@
         <Grid>
             <Frame BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="Start"  Grid.Column="0" WidthRequest="100">
                 <StackLayout x:Name="Menu" IsVisible="true">
-                    <Button x:Name="BackToList" Text="Tillbaka" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="BackToList_Clicked"></Button>
-                    <Button x:Name="Books" Text="E-böcker" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="Books_Clicked"></Button>
-                    <Button x:Name="Movie" Text="Filmer" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="Movie_Clicked"></Button>
+                    <Button x:Name="BackToList" Text="Tillbaka" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="BackToList_Clicked"></Button>
+                    <Button x:Name="Books" Text="E-böcker" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="Books_Clicked"></Button>
+                    <Button x:Name="Movie" Text="Filmer" FontAttributes="Bold"  TextColor="White" WidthRequest="50" Clicked="Movie_Clicked"></Button>
 
 
 

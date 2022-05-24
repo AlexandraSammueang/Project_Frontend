@@ -25,7 +25,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid Padding="5">
-                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
                                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10,5,15">
                                         <StackLayout HorizontalOptions="Start" Orientation="Vertical">
                                             <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" />
@@ -35,7 +35,7 @@
                                             <Label Grid.Row="2" Grid.Column="2" Text="{Binding ProductInfo}" TextColor="Black"/>
                                         </StackLayout>
                                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
-                                            <Button x:Name="BookProductButton" BackgroundColor="LightPink" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1"/>
+                                            <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1"/>
 
                                         </StackLayout>
                                     </StackLayout>

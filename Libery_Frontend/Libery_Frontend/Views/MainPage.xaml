@@ -17,8 +17,8 @@
         
         
         <Views:AddAndDelete Title="Lägg till produkter"></Views:AddAndDelete>
-        <Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>
-        <Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>
+        <!--<Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>-->
+        <!--<Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>-->
         <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
         <Views:UpdateProductPage Title="Uppdatera produkt"></Views:UpdateProductPage>
     </TabbedPage.Children>

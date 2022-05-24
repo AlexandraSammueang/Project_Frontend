@@ -60,6 +60,7 @@
 
                     <StackLayout x:Name="RemoveProdFrame" IsVisible="false">
                         <Label Text="Remove product frame is now visible" FontAttributes="Bold" FontSize="Large"/>
+                   
                     </StackLayout>
 
                     <StackLayout x:Name="UpdateProdFrame" IsVisible="false">

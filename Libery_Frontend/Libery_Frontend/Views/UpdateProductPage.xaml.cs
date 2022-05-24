@@ -15,6 +15,7 @@ namespace Libery_Frontend.Views
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<AuthorName> aut;
+        public List<Director> dir;
         public ProductModel pModel;
         public UpdateProductPage()
         {
@@ -29,9 +30,9 @@ namespace Libery_Frontend.Views
             {
                 using (var db = new LibraryDBContext())
                 {
-                    AuthorIDPicker.ItemsSource = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
                     ProductTypePicker.ItemsSource = db.ProductTypes.Select(x => new ProductType { Id = x.Id, Type = x.Type }).ToList();
                     CategoryIDPicker.ItemsSource = db.ProductCategories.Select(x => new ProductCategory { Id = x.Id, Category = x.Category }).ToList();
+                   // DirectorIDPicker.ItemsSource = db.Directors.Select(x => new Director { Firstname = x.Firstname, Lastname = x.Lastname, Id = x.Id }).ToList();
                 }
                 ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
             });
@@ -155,7 +156,22 @@ namespace Libery_Frontend.Views
                 prod = db.Products.Where(x => x.AuthorId == model.AuthorID).FirstOrDefault();
                 cat = db.ProductCategories.Where(x => x.Id == model.CategoryID).FirstOrDefault();
                 prodType = db.ProductTypes.Where(x => x.Type == model.Type).FirstOrDefault();
+                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
+                dir = db.Directors.Select(x => new Director { Firstname = x.Firstname, Lastname = x.Lastname, Id = x.Id }).ToList();
+
             }
+
+            if (model.Type.ToLower() == "bok" || model.Type.ToLower() == "e-bok")
+            {
+                AuthorIDPicker.ItemsSource = aut;
+                AuthorLab.Text = "Författare";
+            }
+            if (model.Type.ToLower() == "film" || model.Type.ToLower() == "e-film")
+            {
+                AuthorIDPicker.ItemsSource = dir;
+                AuthorLab.Text = "Regissör";
+            }
+
             var authorIDPicker = AuthorIDPicker;
 
             for (int i = 0; i < AuthorIDPicker.Items.Count; i++)
@@ -199,8 +215,6 @@ namespace Libery_Frontend.Views
         private void EditButton_Clicked(object sender, EventArgs e)
         {
             EntryView.IsVisible = true;
-
-
         }
 
         private async void BackToListButton_Clicked(object sender, EventArgs e)

@@ -118,15 +118,16 @@
                     <Entry x:Name="ImageURLEntry"/>
                 </StackLayout>
 
-                <StackLayout>
-                    <Label Text="Författare"/>
-                    <Picker x:Name="AuthorIDPicker">
+                <StackLayout x:Name="AuthorSL">
+                    <Label Text="Författare" x:Name="AuthorLab"/>
+                    <Picker x:Name="AuthorIDPicker" >
                     </Picker>
                 </StackLayout>
 
+
                 <StackLayout>
                     <Label Text="Kategori"/>
-                    <Picker x:Name="CategoryIDPicker">
+                    <Picker x:Name="CategoryIDPicker" HorizontalOptions="Start">
                     </Picker>
                 </StackLayout>
 
@@ -137,20 +138,23 @@
                     </Picker>
                 </StackLayout>
 
-                <StackLayout HorizontalOptions="Start">
+                <StackLayout HorizontalOptions="Start" Orientation="Horizontal">
+                    <StackLayout Orientation="Vertical">
                     <Label Text="Utgivningsdatum"/>
-                    <DatePicker x:Name="RealeseDatePicker">
-
-                    </DatePicker>
+                        <DatePicker x:Name="RealeseDatePicker">
+                        </DatePicker>
+                    </StackLayout>
+                    
+                    <Label Text="Går att boka?" HorizontalOptions="End"/>
+                    <CheckBox x:Name="BookableCBX"/>
                 </StackLayout>
 
-                <StackLayout HeightRequest="150">
+                <StackLayout HeightRequest="150" Padding="0,10,0,0">
                     <Label x:Name="DescriptionLab" Text="Beskrivning"/>
                     <Entry x:Name="DescriptionEntry" HeightRequest="100"/>
                 </StackLayout>
 
                     <Button x:Name="UpdateButton" Text="Uppdatera" Clicked="UpdateButton_Clicked"/>
-                    <Button x:Name="CancelButton" Text="Avbryt"/>
 
             </StackLayout>
             

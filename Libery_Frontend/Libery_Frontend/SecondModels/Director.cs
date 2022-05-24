@@ -16,6 +16,7 @@ namespace Libery_Frontend.SecondModels
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public DateTime? Birthday { get; set; }
+        public override string ToString() => $"{Firstname} {Lastname}, ID {Id}";
 
         public virtual ICollection<Product> Products { get; set; }
     }

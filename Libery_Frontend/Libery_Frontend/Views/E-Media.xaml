@@ -3,40 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.E_Media">
     <ContentPage.Content>
-        <Grid>
-            <Frame BackgroundColor="Bisque" HorizontalOptions="Center" VerticalOptions="Start"  Grid.Column="0" WidthRequest="100">
-                <StackLayout x:Name="Menu" IsVisible="true">
-                    <Button x:Name="BackToList" Text="Tillbaka" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="BackToList_Clicked"></Button>
-                    <Button x:Name="Books" Text="E-böcker" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="Books_Clicked"></Button>
-                    <Button x:Name="Movie" Text="Filmer" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="Movie_Clicked"></Button>
-
-
-
-                </StackLayout>
+        <Grid HorizontalOptions="CenterAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
                 
-            
-        </Frame>
-        <Frame  Grid.Column="1">
-          
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="auto" />
+                
+            </Grid.RowDefinitions>
 
-
+            <Frame CornerRadius="0" HorizontalOptions="Center" Grid.Row="0" >
+                <Label Text="E-Medier" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
+            </Frame>
+            <Frame BackgroundColor="Bisque" HorizontalOptions="Center" VerticalOptions="Center"  Grid.Row="1" WidthRequest="375" HeightRequest="30"  Padding="5">
+                <StackLayout x:Name="Menu" IsVisible="true">
+                    <Grid HeightRequest="50" HorizontalOptions="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="120" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="BackToList" Text="Alla E-Medier" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="BackToList_Clicked" Grid.Column="0"></Button>
+                        <Button x:Name="Books" Text="E-böcker" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="Books_Clicked" Grid.Column="1"></Button>
+                        <Button x:Name="Movie" Text="Filmer" FontAttributes="Bold" TextColor="White" WidthRequest="50" Clicked="Movie_Clicked" Grid.Column="2"></Button>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            <Frame  Grid.Row="2">
                 <StackLayout x:Name="AddProdFrame" IsVisible="true">
                     <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
-                   
-                        <ListView x:Name="BookListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                    <ListView x:Name="BookListView" BackgroundColor="Transparent" RowHeight="200" HasUnevenRows="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Grid Padding="5">
+                                    <Grid Padding="2">
                                         <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
                                             <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                <Image Source="{Binding Image}" WidthRequest="50" Aspect="AspectFill"/>
-                                                <StackLayout BackgroundColor="Transparent">
-                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
+                                                <Image Source="{Binding Image}" WidthRequest="70"/>
+                                                <StackLayout BackgroundColor="Transparent" >
+                                                    <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" />
                                                     <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
                                                     <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
                                                     <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
-
                                                 </StackLayout>
                                             </StackLayout>
                                         </Frame>
@@ -46,14 +62,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-
-               
-
-        </Frame>
-
-
-
-
+            </Frame>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

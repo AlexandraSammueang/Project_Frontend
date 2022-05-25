@@ -7,15 +7,17 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
                 
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="45" />
                 <RowDefinition Height="auto" />
                 
             </Grid.RowDefinitions>
 
-            <Frame CornerRadius="0" HorizontalOptions="Center" Grid.Row="0" >
+            <Frame CornerRadius="1" HorizontalOptions="Center" Grid.Row="0">
                 <Label Text="E-Medier" HorizontalTextAlignment="Center" TextColor="Black" FontSize="36"/>
             </Frame>
             <Frame BackgroundColor="Bisque" HorizontalOptions="Center" VerticalOptions="Center"  Grid.Row="1" WidthRequest="375" HeightRequest="30"  Padding="5">

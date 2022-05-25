@@ -25,7 +25,13 @@
         <Style TargetType="Entry">
             <Setter Property="BackgroundColor" Value="Bisque"></Setter>
         </Style>
+        <Style TargetType="Image">
+            <Setter Property="HeightRequest" Value="130" ></Setter>
+        </Style>
 
+        <!--<Style TargetType="Image">
+            <Setter Property="WidthRequest" Value="90"></Setter>
+        </Style>-->
         
     </Application.Resources>
 </Application>

@@ -21,6 +21,7 @@
         <!--<Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>-->
         <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
         <Views:UpdateProductPage Title="Uppdatera produkt"/>
+        <Views:Stats Title="Statestik"></Views:Stats>
     </TabbedPage.Children>
 
 

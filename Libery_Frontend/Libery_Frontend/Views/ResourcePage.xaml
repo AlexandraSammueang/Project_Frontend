@@ -9,12 +9,12 @@
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="Beige"/>
+       
         <Setter Property="TextColor" Value="Black"/>
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="Gray"/>
+        <Setter Property="BackgroundColor" Value="Olive"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontSize" Value="Small"/>
         <Setter Property="TextColor" Value="Black"/>

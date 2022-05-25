@@ -30,7 +30,7 @@
 
 
                     <StackLayout>
-                        <Picker x:Name="PickerCategory" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"/>
+                        <Picker x:Name="PickerCategory" Title="Välj Kategori" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"/>
                     </StackLayout>
                     <StackLayout>
                         <Label x:Name="CategoryLabel" Text="Kategori"/>

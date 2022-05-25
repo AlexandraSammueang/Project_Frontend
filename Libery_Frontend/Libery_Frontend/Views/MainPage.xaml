@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="SandyBrown" SelectedTabColor="White" UnselectedTabColor="Black"
              >
+    <TabbaedPage.ToolbarItems>
+        <ToolbarItem Text="Logga ut"></ToolbarItem>
+    </TabbaedPage.ToolbarItems>
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
         <Views:SearchPage Title="Sök"/>
@@ -18,7 +21,7 @@
         
         <!--<Views:AddAndDelete Title="Lägg till produkter"></Views:AddAndDelete>
         --><!--<Views:AddAuthor Title="Lägg till författare"></Views:AddAuthor>-->
-        <!--<Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>--><!--
+        <!--<Views:AddCategory Title="Lägg till kategori"></Views:AddCategory>-->
         <Views:AddProduct Title="Lägg till produkttyp"></Views:AddProduct>
         <Views:UpdateProductPage Title="Uppdatera produkt"/>
         <Views:Stats Title="Statestik"></Views:Stats>

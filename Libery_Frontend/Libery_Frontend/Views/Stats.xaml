@@ -58,47 +58,7 @@
 
 
         </Grid>
-        <!--<StackLayout>
-            <Frame Padding="36" CornerRadius="0" HorizontalOptions="FillAndExpand" >
-                <Label Text="Mest lånade produkter" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
-            </Frame>
-            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"></ActivityIndicator>
-            <ListView x:Name="StatsListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" WidthRequest="450" HeightRequest="200" CornerRadius="10" Margin="20,10,20,10">
-                                <Grid >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="20" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Source="{Binding Image}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Grid.RowSpan="3" WidthRequest="100" />
-                                    <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductID, StringFormat='Productid: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                    <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produktnamn: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                    <Label Grid.Row="3" Grid.Column="2"  Text="{Binding orderCount, StringFormat='Antal: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                    <Label Grid.Row="4" Grid.Column="2"  Text="{Binding ProductInfo, StringFormat='Info: {0}'}"  FontSize="Medium" TextColor="Black"/>
-
-
-
-
-
-                                </Grid >
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>-->
+        
         
     </ContentPage.Content>
 </ContentPage>

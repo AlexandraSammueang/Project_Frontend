@@ -65,29 +65,31 @@ namespace Libery_Frontend.Views
 
         private async void AddProdButton_Clicked(object sender, EventArgs e)
         {
+            var Add = new AddAndDelete();
+
             RemoveProdFrame.IsVisible = false;
             UpdateProdFrame.IsVisible = false;
             //DefaultFrameText.IsVisible = false;
 
             AddProdFrame.IsVisible = true;
 
-            ProductModel item = ProductListView.SelectedItem as ProductModel;
+            //ProductModel item = ProductListView.SelectedItem as ProductModel;
 
-            if (item != null)
-            {
-                using (var context = new Models.LibraryDBContext())
-                {
-                    var personToUpdate = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
-                    personToUpdate.ProductName = "";
-                    context.SaveChanges();
+            //if (item != null)
+            //{
+            //    using (var context = new Models.LibraryDBContext())
+            //    {
+            //        var personToUpdate = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
+            //        personToUpdate.ProductName = "";
+            //        context.SaveChanges();
 
-                    ProductListView.ItemsSource = await GetProductAsync(ActivityIndicator);
-                }
-            }
-            else
-            {
-                await DisplayAlert("Ingen product vald", "Välj en product att uppdatera", "OK");
-            }
+            //        ProductListView.ItemsSource = await GetProductAsync(ActivityIndicator);
+            //    }
+            //}
+            //else
+            //{
+            //    await DisplayAlert("Ingen product vald", "Välj en product att uppdatera", "OK");
+            //}
         }
 
         private void RemoveProdButton_Clicked(object sender, EventArgs e)

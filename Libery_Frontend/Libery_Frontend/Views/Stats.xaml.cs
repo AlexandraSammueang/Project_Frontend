@@ -20,7 +20,6 @@ namespace Libery_Frontend.Views
         public List<OrderDetail> orderDetails;
         public List<Product> produtcs;
 
-        static string connstring = "Server=tcp:newtonlibrary.database.windows.net,1433;Initial Catalog=LibraryDB;Persist Security Info=False;User ID=teammars;Password=!ilY7e&L$X6Sbr6;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         
         public Stats()
         {
@@ -29,34 +28,12 @@ namespace Libery_Frontend.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            MainThread.BeginInvokeOnMainThread(async () => { StatsListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-
+           
 
         }
-        //public static List<OrderDetail> orders()
-        //{
-        //    var orders = new List<OrderDetail>();
-        //    string sql = "SELECT TOP(3) COUNT(OrderDetails.ProductID) AS antal" +
-        //                "FROM OrderDetails " +
-        //                "Where ProductID =10"
-        //                ;
-        //    List<OrderDetail> orderDetails = new List<OrderDetail>();
-        //    using (var connection = new SqlConnection(connstring))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            orderDetails = connection.Query<OrderDetail>(sql).ToList();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            Console.WriteLine(ex.Message);
-        //        }
-        //        return orders;
-        //    }
-        //}
 
-        public async Task<List<TopProduct>> GetProductsAsync(ActivityIndicator indicator)
+
+        public async Task<List<TopProduct>> GetTopProductAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
@@ -67,19 +44,10 @@ namespace Libery_Frontend.Views
                     using (var db = new Models.LibraryDBContext())
                     {
 
-
-
                         orderDetails = db.OrderDetails.ToList();
                         produtcs = db.Products.ToList();
 
-                        //result = db.OrderDetails.Join(produtcs, p=> p.ProductId, pi => pi.ProductName,(p,pi) => p.ProductId).ToList();
-                        //result = db.OrderDetails.Select(x => new OrderDetail { ProductId = x.ProductId }).ToList();
-                        //var resulttmp = from order in db.OrderDetails
-                        //         select order;
-                        //var resulttmp2 = resulttmp.GroupBy(x => x.ProductId).OrderByDescending(x=> x.Count());
-                        Debug.WriteLine(".............................");
-
-                        var newresult = db.OrderDetails.ToList()
+                         var newresult = db.OrderDetails.ToList()
                             .GroupBy(l => l.ProductId)
                                   .Select(g => new TopProduct
                                   {
@@ -89,22 +57,59 @@ namespace Libery_Frontend.Views
                         var top3 = newresult.OrderByDescending(x => x.orderCount).Take(3).ToList();
 
                         var top3withname = (from ob in top3
+                                            join prod in db.Products on ob.ProductID equals prod.Id
+                                            join type in db.ProductTypes on prod.CategoryId equals type.Id
                                             
-                                           select new TopProduct { ProductID = ob.ProductID, orderCount = ob.orderCount, ProductName = db.Products.Where(x=> x.Id==ob.ProductID).FirstOrDefault().ProductName }).ToList();
+                                           select new TopProduct { ProductID = ob.ProductID, orderCount = ob.orderCount, ProductName = prod.ProductName, Image = prod.Image, ProductInfo = prod.ProductInfo }).ToList();
 
-                        //Debug.WriteLine(top3.FirstOrDefault().orderCount.ToString() ?? "Hej");
+                        return top3withname;
 
-
-
-                        //var top3 = resulttmp2.Take(3).ToList();
+                    }
 
 
 
-                        //foreach (var item in top3)
-                        //{
+                }
+            }
+            );
 
-                        //    Debug.WriteLine(item.ToString());
-                        //}
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
+        }
+
+
+        public async Task<List<TopProduct>> GetLessLendProductAsync(ActivityIndicator indicator)
+        {
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
+            {
+                List<TopProduct> result = null;
+                {
+                    using (var db = new Models.LibraryDBContext())
+                    {
+
+                        orderDetails = db.OrderDetails.ToList();
+                        produtcs = db.Products.ToList();
+
+                        var newresult = db.OrderDetails.ToList()
+                           .GroupBy(l => l.ProductId)
+                                 .Select(g => new TopProduct
+                                 {
+                                     ProductID = g.Key,
+                                     orderCount = g.Select(l => l.ProductId).Count()
+                                 });
+                        var top3 = newresult.OrderBy(x => x.orderCount).Take(3).ToList();
+
+                        var top3withname = (from ob in top3
+                                            join prod in db.Products on ob.ProductID equals prod.Id
+                                           
+
+                                            select new TopProduct { ProductID = ob.ProductID, orderCount = ob.orderCount, ProductName = prod.ProductName, Image =prod.Image, ProductInfo = prod.ProductInfo }).ToList();
+
                         return top3withname;
 
                     }
@@ -128,9 +133,22 @@ namespace Libery_Frontend.Views
             public int? ProductID { get; set; }
             public int orderCount { get; set; }
             public string ProductName { get; set; }
+            public string ProductInfo { get; set; }
+            public string Image { get; set; }
+
         }
 
+        private async void TopProduct_Clicked(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => { StatsListView.ItemsSource = await GetTopProductAsync(ActivityIndicator); });
 
+        }
+
+        private async void LastProduct_Clicked(object sender, EventArgs e)
+        {
+            MainThread.BeginInvokeOnMainThread(async () => { StatsListView.ItemsSource = await GetLessLendProductAsync(ActivityIndicator); });
+
+        }
     }
    
 

@@ -3,6 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="SandyBrown" SelectedTabColor="White" UnselectedTabColor="Black"
              >
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="logga Ut" Clicked="LoggaUt"/>
+
+    </TabbedPage.ToolbarItems>
+    
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
         <Views:SearchPage Title="Sök"/>
@@ -23,6 +28,7 @@
         <Views:UpdateProductPage Title="Uppdatera produkt"/>
         <Views:Stats Title="Statestik"></Views:Stats>
     </TabbedPage.Children>
+    
 
 
 </TabbedPage>

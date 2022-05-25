@@ -4,7 +4,7 @@
              x:Class="Libery_Frontend.Views.Stats">
     <ContentPage.Content>
         <Grid>
-            <Frame BackgroundColor="Bisque" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="200">
+            <Frame HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="200">
                 <StackLayout x:Name="Menu" IsVisible="true">
                     <Label Text="Vilken statisk du vill se?" FontSize="Small" WidthRequest="100"  TextColor="Black"></Label>
                     <!--<Button x:Name="BackToList" Text="Tillbaka" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="BackToList_Clicked"></Button>-->

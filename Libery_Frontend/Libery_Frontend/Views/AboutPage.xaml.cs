@@ -15,7 +15,7 @@ namespace Libery_Frontend.Views
         public AboutPage()
         {
             InitializeComponent();
-            libraryPhoto.Source = $"https://static1biblioteket.stockholm.se/sites/default/files/Stadsbiblioteket-3.jpg";
+            //libraryPhoto.Source = $"https://static1biblioteket.stockholm.se/sites/default/files/Stadsbiblioteket-3.jpg";
 
             timeLabel.BackgroundColor = new Color (0.95,0.64, 0.38, 0.7);
             timeLabel.Text =

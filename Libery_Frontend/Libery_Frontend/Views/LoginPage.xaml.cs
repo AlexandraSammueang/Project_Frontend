@@ -45,7 +45,7 @@ namespace Libery_Frontend.Views
 
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
-                        Page pageToAdd = new LibraryBossPage();
+                        Page pageToAdd = new LibrarianBossTabbedPage();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
 
@@ -77,7 +77,6 @@ namespace Libery_Frontend.Views
 
                         Page pageToAdd = new LibrarianTabbedPage();
                         // Page pageToAddSecond = new ProductDelete2();
-                        Page pageToAddThird = new AddAndDelete();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
 
@@ -85,7 +84,6 @@ namespace Libery_Frontend.Views
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
                         //  pageToAddSecond.Title = "Ta bort/Lägg till";
-                        pageToAddThird.Title = "Test";
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
 
@@ -99,7 +97,6 @@ namespace Libery_Frontend.Views
 
                         homePage.Children.Add(pageToAdd);
                         //homePage.Children.Add(pageToAddSecond);
-                        homePage.Children.Add(pageToAddThird);
                         await Navigation.PushAsync(homePage);
 
                         UsernameEntry.Text = "";

@@ -22,7 +22,7 @@ namespace Libery_Frontend.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            WebSite();
 
             using (var db = new Models.LibraryDBContext())
             {
@@ -186,7 +186,7 @@ namespace Libery_Frontend.Views
         public void WebSite()
         {
 
-            webSite.Source = $"http://libris.kb.se/hitlist?q=linkisxn:{ISBN_kod.Text}";
+            webSite.Source = $"http://libris.kb.se/hitlist?q=Greatest%20hits";
         }
 
     }

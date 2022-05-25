@@ -279,17 +279,25 @@ namespace Libery_Frontend.Views
 
         private async void UpdateButton_Clicked(object sender, EventArgs e)
         {
-            try
+            string[] authorname = new string[5];
+            if (AuthorIDPicker.SelectedItem != null)
             {
+                authorname = AuthorIDPicker.SelectedItem.ToString().Split(' ');
+            }
+            else
+            {
+                await DisplayAlert("Ingen författare/regissör vald", "Välj en författare eller regissör", "OK");
+                return;
+            }
 
-                var prodToRecieve = ProductListView.SelectedItem as ProductModel;
+            var prodToRecieve = ProductListView.SelectedItem as ProductModel;
                 string prodType = ProductTypePicker.SelectedItem.ToString();
-                var authorname = AuthorIDPicker.SelectedItem.ToString().Split(' ');
                 var cat = CategoryIDPicker.SelectedItem.ToString();
                 ProductCategory catID;
                 ProductType prodID;
-
                 Product prodToUpdate;
+            try
+            {
                 using (var db = new LibraryDBContext())
                 {
                     prodID = db.ProductTypes.Where(x => x.Type == prodType).FirstOrDefault();

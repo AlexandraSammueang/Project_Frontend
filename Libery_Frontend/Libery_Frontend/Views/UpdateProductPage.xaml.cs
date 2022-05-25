@@ -13,8 +13,10 @@ namespace Libery_Frontend.Views
     public partial class UpdateProductPage : ContentPage
     {
         public List<Product> Products;
+        public List<ProductCategory> Category;
         public List<ProductType> ProdType;
         public List<AuthorName> aut;
+        public List<Director> dir;
         public ProductModel pModel;
         public UpdateProductPage()
         {
@@ -29,7 +31,6 @@ namespace Libery_Frontend.Views
             {
                 using (var db = new LibraryDBContext())
                 {
-                    AuthorIDPicker.ItemsSource = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
                     ProductTypePicker.ItemsSource = db.ProductTypes.Select(x => new ProductType { Id = x.Id, Type = x.Type }).ToList();
                     CategoryIDPicker.ItemsSource = db.ProductCategories.Select(x => new ProductCategory { Id = x.Id, Category = x.Category }).ToList();
                 }
@@ -44,11 +45,12 @@ namespace Libery_Frontend.Views
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
                 List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
                 try
                 {
                     using (var db = new LibraryDBContext())
                     {
-
+                        Category = db.ProductCategories.ToList();
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
@@ -62,8 +64,31 @@ namespace Libery_Frontend.Views
                             ProId = p.Id,
                             Pages = p.BookPages,
                             AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
                             CategoryID = p.CategoryId,
-                            ReleaseDate = p.ReleaseDate
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable,
+                        }).ToList();
+
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            AuthorID = p.AuthorID,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
                         }).ToList();
                     }
                 }
@@ -83,7 +108,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        public async Task<List<ProductModel>> GetProductsFullListAsync(ActivityIndicator indicator, string prodName, string prodCategory)
+        public async Task<List<ProductModel>> GetProductsFullListAsync(ActivityIndicator indicator, string prodName, string prodType, string prodCat)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
@@ -97,6 +122,9 @@ namespace Libery_Frontend.Views
 
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
+                        Category = db.ProductCategories.ToList();
+
+                        var pCat = Category.Where(x => x.Id == Products.FirstOrDefault().CategoryId).ToList();
 
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
                         new ProductModel
@@ -111,9 +139,9 @@ namespace Libery_Frontend.Views
                             DirectorID = p.DirectorId,
                             ReleaseDate = p.ReleaseDate,
                             IsBookable = p.IsBookable,
-                            Category = prodCategory,
+                            Category = prodCat,
                             ISBN = p.Isbn
-                        }).Where(x => x.Name == prodName && x.Type == prodCategory).ToList();
+                        }).Where(x => x.Name == prodName && x.Type == prodType).ToList();
                     }
                 }
 
@@ -136,11 +164,12 @@ namespace Libery_Frontend.Views
 
 
             Product prod;
+            Product dirProd;
             ProductCategory cat;
             ProductType prodType;
 
             ProductModel model = ProductListView.SelectedItem as ProductModel;
-            SecondProductListView.ItemsSource = await GetProductsFullListAsync(ActivityIndicator, model.Name, model.Type);
+            SecondProductListView.ItemsSource = await GetProductsFullListAsync(ActivityIndicator, model.Name, model.Type, model.Category);
             AllProdsFrame.IsVisible = false;
             SingleProdFrame.IsVisible = true;
 
@@ -153,30 +182,12 @@ namespace Libery_Frontend.Views
             using (var db = new LibraryDBContext())
             {
                 prod = db.Products.Where(x => x.AuthorId == model.AuthorID).FirstOrDefault();
+                dirProd = db.Products.Where(x => x.DirectorId == model.DirectorID).FirstOrDefault();
                 cat = db.ProductCategories.Where(x => x.Id == model.CategoryID).FirstOrDefault();
                 prodType = db.ProductTypes.Where(x => x.Type == model.Type).FirstOrDefault();
-            }
-            var authorIDPicker = AuthorIDPicker;
+                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
+                dir = db.Directors.Select(x => new Director { Firstname = x.Firstname, Lastname = x.Lastname, Id = x.Id }).ToList();
 
-            for (int i = 0; i < AuthorIDPicker.Items.Count; i++)
-            {
-                string authorID = authorIDPicker.Items[i].ToString();
-                string[] autID = authorID.Split('(', ')', ' ');
-                if (Convert.ToInt32(autID[3]) == prod.AuthorId)
-                {
-                    AuthorIDPicker.SelectedIndex = i;
-                }
-            }
-
-            var categoryIDPicker = CategoryIDPicker;
-
-            for (int i = 0; i < CategoryIDPicker.Items.Count; i++)
-            {
-                string category = categoryIDPicker.Items[i].ToString();
-                if (category.ToLower() == cat.Category.ToLower())
-                {
-                    CategoryIDPicker.SelectedIndex = i;
-                }
             }
 
             var prodTypePicker = ProductTypePicker;
@@ -190,17 +201,70 @@ namespace Libery_Frontend.Views
                 }
             }
 
+            if (model.Type.ToLower() == "bok" || model.Type.ToLower() == "e-bok")
+            {
+                AuthorIDPicker.ItemsSource = aut;
+                AuthorLab.Text = "Författare";
+                var authorIDPicker = AuthorIDPicker;
+
+                for (int i = 0; i < AuthorIDPicker.Items.Count; i++)
+                {
+                    string authorID = authorIDPicker.Items[i].ToString();
+                    string[] autID = authorID.Split('(', ')', ' ');
+                    if (Convert.ToInt32(autID[3]) == prod.AuthorId)
+                    {
+                        AuthorIDPicker.SelectedIndex = i;
+                    }
+                }
+            }
+            if (model.Type.ToLower() == "film" || model.Type.ToLower() == "e-film")
+            {
+                AuthorIDPicker.ItemsSource = dir;
+                AuthorLab.Text = "Regissör";
+
+                var authorIDPicker = AuthorIDPicker;
+
+                for (int i = 0; i < AuthorIDPicker.Items.Count; i++)
+                {
+                    string authorID = authorIDPicker.Items[i].ToString();
+                    string[] autID = authorID.Split('(', ')', ' ');
+                    if (Convert.ToInt32(autID[3]) == dirProd.DirectorId)
+                    {
+                        AuthorIDPicker.SelectedIndex = i;
+                    }
+                }
+
+            }
+
+
+
+
+            var categoryIDPicker = CategoryIDPicker;
+
+            for (int i = 0; i < CategoryIDPicker.Items.Count; i++)
+            {
+                string category = categoryIDPicker.Items[i].ToString();
+                if (category.ToLower() == cat.Category.ToLower())
+                {
+                    CategoryIDPicker.SelectedIndex = i;
+                }
+            }
+
+
             if (prod.ReleaseDate != null)
             {
                 RealeseDatePicker.Date = (DateTime)prod.ReleaseDate;
+            }
+
+            if (model.IsBookable != null)
+            {
+                BookableCBX.IsChecked = model.IsBookable.Value;
             }
         }
 
         private void EditButton_Clicked(object sender, EventArgs e)
         {
             EntryView.IsVisible = true;
-
-
         }
 
         private async void BackToListButton_Clicked(object sender, EventArgs e)
@@ -215,18 +279,103 @@ namespace Libery_Frontend.Views
 
         private async void UpdateButton_Clicked(object sender, EventArgs e)
         {
-            var prodToRecieve = ProductListView.SelectedItem as ProductModel;
-
-            Product prodToUpdate;
-            using (var db = new LibraryDBContext())
+            try
             {
-                prodToUpdate = db.Products.Single(x => x.Id == prodToRecieve.ProId);
-                prodToUpdate.ProductInfo = DescriptionEntry.Text;
-                db.SaveChanges();
+
+                var prodToRecieve = ProductListView.SelectedItem as ProductModel;
+                string prodType = ProductTypePicker.SelectedItem.ToString();
+                var authorname = AuthorIDPicker.SelectedItem.ToString().Split(' ');
+                var cat = CategoryIDPicker.SelectedItem.ToString();
+                ProductCategory catID;
+                ProductType prodID;
+
+                Product prodToUpdate;
+                using (var db = new LibraryDBContext())
+                {
+                    prodID = db.ProductTypes.Where(x => x.Type == prodType).FirstOrDefault();
+                    catID = db.ProductCategories.Where(x => x.Category == cat).FirstOrDefault();
+
+                    prodToUpdate = db.Products.Single(x => x.Id == prodToRecieve.ProId);
+                    prodToUpdate.ProductInfo = DescriptionEntry.Text;
+                    prodToUpdate.Isbn = ISBNEntry.Text;
+                    prodToUpdate.BookPages = Convert.ToInt32(AmountOfPagesEntry.Text);
+                    prodToUpdate.Price = Convert.ToInt32(PriceEntry.Text);
+                    prodToUpdate.ProductTypeId = prodID.Id;
+                    prodToUpdate.CategoryId = catID.Id;
+                    prodToUpdate.ReleaseDate = RealeseDatePicker.Date;
+
+                    if (authorname[1].Contains("."))
+                    {
+                        prodToUpdate.AuthorId = Convert.ToInt32(authorname[3]);
+                        prodToUpdate.DirectorId = null;
+                    }
+                    else
+                    {
+                        prodToUpdate.DirectorId = Convert.ToInt32(authorname[3]);
+                        prodToUpdate.AuthorId = null;
+                    }
+
+                    if (BookableCBX.IsChecked)
+                    {
+                        prodToUpdate.IsBookable = true;
+                    }
+                    else prodToUpdate.IsBookable = false;
+
+                    db.SaveChanges();
+
+                    await DisplayAlert("Uppdaterad", $"Produkten har uppdaterats!", "OK");
+                }
+                ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                SecondProductListView.ItemsSource = await GetProductsFullListAsync(ActivityIndicator, prodToUpdate.ProductName, prodID.Type, catID.Category);
+
             }
-            ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
-            SecondProductListView.ItemsSource = await GetProductsFullListAsync(ActivityIndicator, prodToUpdate.ProductName, prodToRecieve.Type);
+            catch (Exception ex)
+            {
+                await DisplayAlert("Felaktiga fält", "Alla fält måste fyllas i för att kunna uppdateras." +
+                                                      "\nVar vänlig försök igen", "OK");
+            }
+        }
+
+        private void DescriptionEntry_Focused(object sender, FocusEventArgs e)
+        {
+            DescriptionEntry.BackgroundColor = Color.Beige;
+        }
+
+        private void DescriptionEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+            DescriptionEntry.BackgroundColor = Color.Wheat;
+        }
+
+        private void ProductTypePicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var s = (Picker)sender;
+            if (s.SelectedIndex == -1) return;
+
+            ProductType producttype = (ProductType)s.SelectedItem;
+
+            string typeSelected = s.Items[s.SelectedIndex];
+
+            if (producttype.Type.ToLower() == "bok" || producttype.Type.ToLower() == "e-bok")
+            {
+                using (var db = new LibraryDBContext())
+                {
+                    aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
+                }
+                AuthorIDPicker.ItemsSource = aut;
+                AuthorLab.Text = "Författare";
+            }
+
+            if (producttype.Type.ToLower() == "film" || producttype.Type.ToLower() == "e-film")
+            {
+                using (var db = new LibraryDBContext())
+                {
+                    dir = db.Directors.Select(x => new Director { Firstname = x.Firstname, Lastname = x.Lastname, Id = x.Id }).ToList();
+                }
+                AuthorIDPicker.ItemsSource = dir;
+                AuthorLab.Text = "Regissör";
+            }
 
         }
+
     }
 }

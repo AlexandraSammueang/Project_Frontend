@@ -71,6 +71,7 @@ namespace Libery_Frontend.Views
             UpdateProdFrame.IsVisible = false;
             //DefaultFrameText.IsVisible = false;
 
+            
             AddProdFrame.IsVisible = true;
 
             //ProductModel item = ProductListView.SelectedItem as ProductModel;

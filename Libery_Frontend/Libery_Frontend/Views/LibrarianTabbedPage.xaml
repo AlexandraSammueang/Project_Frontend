@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Libery_Frontend.Views.LibrarianTabbedPage"
+             xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend">
+    <TabbedPage.Children>
+        <mypages:AddAndDelete Title="AddDelete"/>
+        <mypages:UpdateProductPage Title="Update"/>
+        <mypages:AddCategoryPage Title="AddCategory"/>
+        <mypages:MainPage Title="Home"/>
+        <mypages:LibrarianPage Title="Librarian Page"/>
+    </TabbedPage.Children>
+</TabbedPage>

@@ -75,7 +75,7 @@ namespace Libery_Frontend.Views
                     else if (correctPassword == true && userPassword[0].UserGroup == "bibliotekarie")
                     {
 
-                        Page pageToAdd = new LibrarianPage();
+                        Page pageToAdd = new LibrarianTabbedPage();
                         // Page pageToAddSecond = new ProductDelete2();
                         Page pageToAddThird = new AddAndDelete();
                         Page pageToAddFourth = new NotACustomerSearchPage();

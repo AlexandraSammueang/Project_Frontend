@@ -193,7 +193,7 @@ namespace Libery_Frontend.Views
         //        {
         //            using (var db = new Models.LibraryDBContext())
         //            {
-                    
+
         //                shoppings = db.ShoppingCarts.ToList();
         //                //var shopping = db.ShoppingCarts.ToList().GroupBy(x=> x.
 
@@ -287,9 +287,7 @@ namespace Libery_Frontend.Views
                         var rest = (from ob in newresult
                                     select new TopProduct { OrderId = ob.OrderId }).ToList();
 
-                                            select new TopProduct { ProductID = ob.ProductID, orderCount = ob.orderCount, ProductName = prod.ProductName, Image = prod.Image, ProductInfo = prod.ProductInfo }).ToList();
 
-                        return top3withname;
 
                         return rest;
 
@@ -369,17 +367,17 @@ namespace Libery_Frontend.Views
 
         }
 
-        //private void BooksToReturn_Clicked(object sender, EventArgs e)
-        //{
+        private void BooksToReturnButton_Clicked(object sender, EventArgs e)
+        {
 
-        //    BooksToReturnListView.IsVisible = true;
-        //    ProductsListView.IsVisible = false;
-        //    CategoryListView.IsVisible = false;
-        //    UserListView.IsVisible = false;
-        //    MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
+            //BooksToReturnListView.IsVisible = true;
+            //ProductsListView.IsVisible = false;
+            //CategoryListView.IsVisible = false;
+            //UserListView.IsVisible = false;
+            //MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
 
 
-        //}
+        }
     }
 
 

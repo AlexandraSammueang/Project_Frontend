@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-//#nullable disable
+#nullable disable
 
-namespace Libery_Frontend.Models
+namespace DBPService.Models
 {
     public partial class OrderDetail
     {

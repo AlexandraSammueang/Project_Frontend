@@ -138,6 +138,8 @@ namespace Libery_Frontend.Views
                         cart.ProductId = item.ProductID;
                         cart.OrderId = LoginPage.Username;
                         cart.UnitPrice = item.UnitPrice;
+                        cart.CustomerDateBooked = item.DateBooked;
+                        cart.CustomerReturnBooked = item.ReturnDate;
 
                         var orderList = context.Users.Where(x => x.Username == LoginPage.Username).FirstOrDefault();
 

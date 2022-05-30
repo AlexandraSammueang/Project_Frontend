@@ -12,6 +12,7 @@
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage IsEnabled="False"/>
     </TabbedPage.Children>
+    
 
 
 </TabbedPage>

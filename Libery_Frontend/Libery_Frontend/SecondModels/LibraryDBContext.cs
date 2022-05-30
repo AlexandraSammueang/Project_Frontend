@@ -89,6 +89,10 @@ namespace Libery_Frontend.SecondModels
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.CustomerDateBooked).HasColumnType("date");
+
+                entity.Property(e => e.CustomerReturnBooked).HasColumnType("date");
+
                 entity.Property(e => e.OrderId)
                     .HasMaxLength(10)
                     .HasColumnName("OrderID");

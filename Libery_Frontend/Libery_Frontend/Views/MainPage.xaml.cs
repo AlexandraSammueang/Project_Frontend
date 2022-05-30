@@ -15,7 +15,13 @@ namespace Libery_Frontend.Views
         public MainPage()
         {
            InitializeComponent();
+           
         }
 
+        async void LoggaUt(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new MainPage());
+        }
+        
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Libery_Frontend.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Libery_Frontend.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,7 +26,18 @@ namespace Libery_Frontend.Views
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                try
+                {
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Någonting hände", "Ett fel som gör att sidan inte kan laddas har uppstått." +
+                                        "\nVar vänlig försök igen", "OK");
+                }
+            });
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)

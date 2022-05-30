@@ -14,6 +14,7 @@ namespace Libery_Frontend.SecondModels
 
         public int Id { get; set; }
         public string Category { get; set; }
+        public override string ToString() => $"{Category}";
 
         public virtual ICollection<Product> Products { get; set; }
     }

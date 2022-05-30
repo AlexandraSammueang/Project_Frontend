@@ -8,7 +8,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="10,0,10,0">
+            <StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Picker x:Name="Allproducttype" Title="Se alla typer" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
@@ -21,14 +21,48 @@
                     <Label x:Name="Producttype" Text="Skriv in typ"
                            />
                     <Entry x:Name="TypeEntry">
-                        
+
                     </Entry>
 
                 </StackLayout>
                 <Button x:Name="AddProducttype" HorizontalOptions="Center" Text="Lägg till produkttyp" Margin="0,30,0,0" Clicked="AddProducttype_Clicked"  ></Button>
+                <StackLayout >
 
 
+                    <StackLayout>
+                        <Picker x:Name="PickerCategory" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label x:Name="CategoryLabel" Text="Kategori"/>
+                        <Entry x:Name="CategoryEntry"/>
+                    </StackLayout>
+
+                    <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till kategori" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
+                </StackLayout>
+                <StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Picker x:Name="AllAuthor" Title="Se alla författare" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                            SelectedIndexChanged="AllAuthor_SelectedIndexChanged">
+
+                        </Picker>
+
+                    </StackLayout>
+                   
+
+                    <StackLayout>
+                        <Label x:Name="FirstName" Text="Författare förnamn"/>
+                        <Entry x:Name="FirstNameEntry"/>
+                        <Label x:Name="LastName" Text="Författare efternamn"/>
+                        <Entry x:Name="LastNameEntry"/>
+                    </StackLayout>
+                    <Button x:Name="AddAuthorButton" HorizontalOptions="Center" Text="Lägg till författare" Margin="0,30,0,0" Clicked="AddAuthor_Clicked" ></Button>
+
+
+                </StackLayout>
             </StackLayout>
+
+
         </ScrollView>
 
 

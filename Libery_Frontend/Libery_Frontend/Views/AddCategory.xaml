@@ -23,7 +23,7 @@
                     
                 </StackLayout>
 
-                <Button x:Name="Addcategory" HorizontalOptions="Center" Text="Lägg till kategori" Margin="0,30,0,0" Clicked="Addcategory_Clicked" ></Button>
+                <Button x:Name="Addcategory" HorizontalOptions="Center" Text="Lägg till kategori" Margin="0,30,0,0" Clicked="Addcategory_Clicked" TextColor="Black" ></Button>
 
 
             </StackLayout>

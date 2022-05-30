@@ -1,33 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:models="clr-namespace:Libery_Frontend.Models"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:models="clr-namespace:Libery_Frontend.Models"
              x:Class="Libery_Frontend.Views.AddAndDelete">
 
     <ContentPage.Resources>
-
         <ResourceDictionary Source="ResourcePage.xaml"/>
     </ContentPage.Resources>
+    
     <ContentPage.Content>
         <ScrollView>
-
-            <Grid BackgroundColor="#C4D4DF">
+            <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
                 <Frame Grid.Column="0">
-                    <Grid BackgroundColor="#C4D4DF">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Frame BackgroundColor="#4B806F" Grid.Column="0">
-
+                    <Grid>
+                        <Frame BackgroundColor="Olive"  WidthRequest="300">
                             <StackLayout>
                                 <StackLayout Margin="0">
                                     <Label x:Name="ProductName" Text="Titel" />
@@ -55,16 +46,8 @@
                                 </StackLayout>
 
                                 <StackLayout Orientation="Horizontal">
-                                    <Grid>
-                                        <Frame Grid.Column="0">
                                             <Picker x:Name="pickerarray" Title="Välj författare" VerticalOptions="CenterAndExpand" Margin="0, 0" WidthRequest="200"
-                    SelectedIndexChanged="picker_SelectedIndexChanged"/>
-                                        </Frame>
-                                        <Frame Grid.Column="1">
-
-                                            <BoxView />
-                                        </Frame>
-                                    </Grid>
+                                                SelectedIndexChanged="picker_SelectedIndexChanged"/>
 
                                 </StackLayout>
 
@@ -75,7 +58,7 @@
                                 </StackLayout>
 
                                 <StackLayout>
-                                    <Picker x:Name="PickerCategoryID" Title="Välj kategori" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                                    <Picker x:Name="PickerCategoryID" Title="Välj kategori" VerticalOptions="CenterAndExpand" Margin="0, 0" WidthRequest="100"
                             SelectedIndexChanged="PickerCategoryID_SelectedIndexChanged"></Picker>
 
 
@@ -90,7 +73,7 @@
                                     <Entry x:Name="ProductTypeIdEntry"/>
                                 </StackLayout>
                                 <StackLayout>
-                                    <Picker x:Name="PickerProductType" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="10, 0" WidthRequest="300"
+                                    <Picker x:Name="PickerProductType" Title="Välj produkttyp" VerticalOptions="CenterAndExpand" Margin="00, 0" WidthRequest="300"
                           SelectedIndexChanged="PickerProductType_SelectedIndexChanged"></Picker>
                                 </StackLayout>
 
@@ -107,46 +90,10 @@
                                 <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
                             </StackLayout>
                         </Frame>
-                        <Frame Grid.Column="1">
-
-                        </Frame>
                     </Grid>
                 </Frame>
                 <Frame Grid.Column="1">
-                    <AbsoluteLayout>
-                        <ScrollView >
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-
-
-                                <Frame Grid.Column="1" Grid.Row="0" WidthRequest="1100" HorizontalOptions="End" Grid.RowSpan="15">
-
-                                    <WebView x:Name="webSite"/>
-
-
-                                </Frame>
-
-                                <Frame Grid.Column="0" Grid.Row="1" BackgroundColor="Aquamarine">
-
-                                    <Button x:Name="isbn" Clicked="GetISBN_Clicked"/>
-                                </Frame>
-
-                                <Frame Grid.Column="0" Grid.Row="0" BackgroundColor="DarkCyan" WidthRequest="200">
-
-                                    <Entry x:Name="ISBN_kod"  Placeholder="" BackgroundColor="Bisque" />
-
-                                </Frame>
-                            </Grid>
-                        </ScrollView>
-                    </AbsoluteLayout>
+                    <WebView x:Name="webSite"/>
                 </Frame>
             </Grid>
         </ScrollView>

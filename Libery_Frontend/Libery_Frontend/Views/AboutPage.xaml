@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.AboutPage"  BackgroundColor="WhiteSmoke">
+             x:Class="Libery_Frontend.Views.AboutPage">
     <ContentPage.Content>
         <StackLayout>
+            <Button x:Name="LogoutButton" Text="Logga ut" FontAttributes="Bold" BackgroundColor="Olive" TextColor="Black" IsVisible="true" Clicked="LogoutButton_Clicked"/>
+
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <Image x:Name="libraryPhoto" Source="libraryPhoto" Opacity="0.6" />
 
 
             <StackLayout HorizontalOptions="FillAndExpand">
-                    <Button x:Name="LogoutButton" Text="Logga ut" TextColor="Black" Clicked="LogoutButton_Clicked"/>
+                    
 
                     <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
                         <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
@@ -17,7 +18,7 @@
 
                             <Label  x:Name="timeLabel" HorizontalOptions="End"
                             TextColor="Black" FontSize="16" FontAttributes="Italic" 
-                            WidthRequest="150" Text="" Margin="0,0,50,0" />
+                            WidthRequest="150" Text="" Margin="0,0,50,0" BackgroundColor="SandyBrown" Padding="10,0,0,0" />
 
                     <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
                        HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 

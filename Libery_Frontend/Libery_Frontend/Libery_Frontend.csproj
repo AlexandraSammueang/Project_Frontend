@@ -47,7 +47,10 @@
 	<EmbeddedResource Update="Views\E-Media.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
-	<EmbeddedResource Update="Views\BookPage.xaml">
+	<EmbeddedResource Update="Views\LibrarianBossTabbedPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\LibrarianTabbedPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\LoginPage.xaml">
@@ -74,10 +77,22 @@
 	<EmbeddedResource Update="Views\SearchPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
+	<EmbeddedResource Update="Views\Stats.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\UpdateProductPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
 	<EmbeddedResource Update="Views\UserAccountPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\UserAccountProductsPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\UserBooksPage.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
+	<EmbeddedResource Update="Views\UserEProductsPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
 	<EmbeddedResource Update="Views\UserSearchPage.xaml">

@@ -179,7 +179,11 @@ namespace Libery_Frontend.Views
         }
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage());
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[5];
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+
         }
     }
 }

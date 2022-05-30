@@ -10,7 +10,7 @@
         <Views:Books Title="Böcker"></Views:Books>
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
-        <Views:RegisterPage Title="Registrering"/>
+        <Views:RegisterPage IsEnabled="False"/>
     </TabbedPage.Children>
 
 

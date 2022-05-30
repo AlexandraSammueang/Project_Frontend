@@ -3,8 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.App">
     <Application.Resources>
+
+        <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundImageSource" Value="Bibliotekbakgrund.jpg"/>
+            <Setter Property="SelectedTabColor" Value="DarkGoldenrod"/>
+            <Setter Property="UnselectedTabColor" Value="Black"/>
+        </Style>
+        
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="Black" />
         </Style>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Olive" ></Setter>
+        </Style>
+
+        <Style TargetType="BoxView">
+            <Setter Property="BackgroundColor" Value="Olive"></Setter>
+        </Style>
+
+        <Style TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+        </Style>
+        
+        <!--<Style TargetType="Image">
+            <Setter Property="HeightRequest" Value="130" ></Setter>
+        </Style>-->
+
+        <!--<Style TargetType="Image">
+            <Setter Property="WidthRequest" Value="90"></Setter>
+        </Style>-->
+        
     </Application.Resources>
 </Application>

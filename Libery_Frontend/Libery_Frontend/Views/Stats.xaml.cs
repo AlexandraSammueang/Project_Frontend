@@ -1,4 +1,5 @@
 ﻿using Libery_Frontend.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Diagnostics;
 
 
 namespace Libery_Frontend.Views
@@ -285,7 +287,9 @@ namespace Libery_Frontend.Views
                         var rest = (from ob in newresult
                                     select new TopProduct { OrderId = ob.OrderId }).ToList();
 
+                                            select new TopProduct { ProductID = ob.ProductID, orderCount = ob.orderCount, ProductName = prod.ProductName, Image = prod.Image, ProductInfo = prod.ProductInfo }).ToList();
 
+                        return top3withname;
 
                         return rest;
 

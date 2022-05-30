@@ -14,28 +14,24 @@ namespace Libery_Frontend.Views
     public partial class E_Media : ContentPage
     {
         
+        public List<Models.Product> Products;
+        public List<Models.ProductType> ProdType;
         public E_Media()
         {
             InitializeComponent();
         }
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
-        
 
+        //protected override void OnAppearing()
+        //{
+        //    base.OnAppearing();
 
-        protected override void OnAppearing()
+        //    // Load products asynchronously
+        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+
+        //}
+
+        public async Task<List<ProductModel>> GetProductsAsync()
         {
-            base.OnAppearing();
-
-            // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-
-        }
-
-        public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
-        {
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
                 List<ProductModel> result = null;
@@ -43,7 +39,7 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
-                        Products = db.Products.Where(x => x.EVersion == true).ToList();
+                        Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
@@ -63,35 +59,30 @@ namespace Libery_Frontend.Views
 
             var taskResult = await databaseTask;
 
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
 
             return taskResult;
         }
+        //private void Books_Clicked(object sender, EventArgs e)
+        //{
+        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
+
+        //}
+        //private async void BackToList_Clicked(object sender, EventArgs e)
+        //{
+        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+        //}
 
 
-        private async void Books_Clicked(object sender, EventArgs e)
+
+        //private async void Movie_Clicked(object sender, EventArgs e)
+        //{
+        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
+
+        //}
+
+        public async Task<List<ProductModel>> GetBooksAsync()
         {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
 
-        }
-        private async void BackToList_Clicked(object sender, EventArgs e)
-        {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-        }
-
-
-
-        private async void Movie_Clicked(object sender, EventArgs e)
-        {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
-
-        }
-      
-        public async Task<List<ProductModel>> GetBooksAsync(ActivityIndicator indicator)
-        {
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
                 List<ProductModel> result = null;
@@ -119,15 +110,11 @@ namespace Libery_Frontend.Views
 
             var taskResult = await databaseTask;
 
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
-
             return taskResult;
         }
-        public async Task<List<ProductModel>> GetMovieAsync(ActivityIndicator indicator)
+        public async Task<List<ProductModel>> GetMovieAsync()
         {
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
+
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
                 List<ProductModel> result = null;
@@ -155,13 +142,57 @@ namespace Libery_Frontend.Views
 
             var taskResult = await databaseTask;
 
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
-
             return taskResult;
         }
 
-        
+        private async void BookProductButton_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
+            if (answer)
+            {
+                var tab = new MainPage();
+                tab.CurrentPage = tab.Children[4];
+
+                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+            }
+            else return;
+        }
+
+        private async void AllProdButton_Clicked(object sender, EventArgs e)
+        {
+            FirstListView.Opacity = 0;
+            FirstListView.IsVisible = true;
+
+            FirstListView.ItemsSource = await GetProductsAsync();
+            await Task.WhenAll(FirstListView.FadeTo(1, 1000), SecondListView.FadeTo(0, 500), ThirdListView.FadeTo(0, 500));
+
+            SecondListView.IsVisible = false;
+            ThirdListView.IsVisible = false;
+
+        }
+        private async void EBooksButton_Clicked(object sender, EventArgs e)
+        {
+            SecondListView.Opacity = 0;
+            SecondListView.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { SecondListView.ItemsSource = await GetBooksAsync(); });
+
+            await Task.WhenAll(SecondListView.FadeTo(1, 1000), FirstListView.FadeTo(0, 500), ThirdListView.FadeTo(0, 500));
+
+            FirstListView.IsVisible = false;
+            ThirdListView.IsVisible = false;
+        }
+
+        private async void EMoviesButton_Clicked(object sender, EventArgs e)
+        {
+            ThirdListView.Opacity = 0;
+            ThirdListView.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { ThirdListView.ItemsSource = await GetMovieAsync(); });
+
+            await Task.WhenAll(ThirdListView.FadeTo(1, 1000), SecondListView.FadeTo(0, 500), FirstListView.FadeTo(0, 500));
+
+            SecondListView.IsVisible = false;
+            FirstListView.IsVisible = false;
+        }
     }
 
 

@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.Models;
+using Libery_Frontend.SecondModels;
 using System.Threading;
 
 namespace Libery_Frontend.Views
@@ -30,7 +30,7 @@ namespace Libery_Frontend.Views
                 IEnumerable<IGrouping<string, Product>> groupedResult = null;
                 try
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
                         var query = from product in db.Products where product.ProductName.ToLower().Contains(input.ToLower())
                                     join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
@@ -103,6 +103,19 @@ namespace Libery_Frontend.Views
         {
             string input = SearchBarInput.Text;
             await Search(input);
+        }
+
+        private async void BookProductButton_Clicked(object sender, EventArgs e)
+        {            
+          bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
+            if (answer)
+            {
+                var tab = new MainPage();
+                tab.CurrentPage = tab.Children[4];
+
+               await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+            }
+            else return;
         }
     }
 }

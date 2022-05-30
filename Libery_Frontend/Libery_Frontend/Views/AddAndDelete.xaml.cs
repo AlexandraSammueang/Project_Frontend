@@ -14,15 +14,15 @@ namespace Libery_Frontend.Views
         public List<AuthorName> aut;
         public AddAndDelete()
         {
-            
+
             InitializeComponent();
 
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            WebSite();
 
             using (var db = new Models.LibraryDBContext())
             {
@@ -50,39 +50,68 @@ namespace Libery_Frontend.Views
             ProductType type = PickerProductType.SelectedItem as ProductType;
             ProductCategory category = PickerCategoryID.SelectedItem as ProductCategory;
 
-
-            using (var db = new Models.LibraryDBContext())
+            if (item != null)
             {
-                aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
-
-
-                var newProduct = new Product
+                using (var db = new Models.LibraryDBContext())
                 {
-                    ProductName = ProductNameEntry.Text,
-                    ProductInfo = ProductInfoEntry.Text,
-                    Isbn = ISBNEntry.Text,
-                    AuthorId = aut.Id,
-                    ProductTypeId = type.Id,
-                    Image = ImageEntry.Text,
-                    CategoryId = category.Id,
-                    Price = Convert.ToDouble(PriceEntry.Text),
-                    BookPages = Convert.ToInt32(BookPagesEntry.Text),
-                    StockValue =Convert.ToInt32(StockValueEntry.Text)
+                    
+                    aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
 
 
+                    var newProduct = new Product
+                    {
+                        ProductName = ProductNameEntry.Text,
+                        ProductInfo = ProductInfoEntry.Text,
+                        Isbn = ISBNEntry.Text,
+                        AuthorId = aut.Id,
+                        ProductTypeId = type.Id,
+                        Image = ImageEntry.Text,
+                        CategoryId = category.Id,
+                        Price = Convert.ToDouble(PriceEntry.Text),
+                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
+
+                    };
+                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
 
 
-                };
-                var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+                    if (svar == true)
+                    {
+                        db.Add(newProduct);
+                        db.SaveChanges();
+                    }
+                    else { }
 
 
-                if (svar == true)
-                {
-                    db.Add(newProduct);
-                    db.SaveChanges();
                 }
-                else { }
 
+            }
+            else
+            {
+                using (var db = new Models.LibraryDBContext())
+                {
+                    var newProduct = new Product
+                    {
+                        ProductName = ProductNameEntry.Text,
+                        ProductInfo = ProductInfoEntry.Text,
+                        Isbn = ISBNEntry.Text,
+                        AuthorId = InsertAuthor(),
+                        ProductTypeId = type.Id,
+                        Image = ImageEntry.Text,
+                        CategoryId = category.Id,
+                        Price = Convert.ToDouble(PriceEntry.Text),
+                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
+
+                    };
+                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+
+
+                    if (svar == true)
+                    {
+                        db.Add(newProduct);
+                        db.SaveChanges();
+                    }
+                    else { }
+                }
             }
         }
         private void picker_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -133,6 +162,33 @@ namespace Libery_Frontend.Views
 
             CategoryIdEntry.Text = personsAsString;
         }
+
+        private int? InsertAuthor()
+        {
+            using (var db = new Models.LibraryDBContext())
+            {
+
+                var newAuthor = new Author
+                {
+                    Firstname = AFirstnameEntry.Text,
+                    Lastname = ALastnameEntry.Text
+                };
+                db.Add(newAuthor);
+                db.SaveChanges();
+                return newAuthor.Id;
+            }
+        }
+
+        private void GetISBN_Clicked(object sender, System.EventArgs e)
+        {
+            WebSite();
+        }
+        public void WebSite()
+        {
+
+            webSite.Source = $"http://libris.kb.se/hitlist?q=Greatest%20hits";
+        }
+
     }
-    
+
 }

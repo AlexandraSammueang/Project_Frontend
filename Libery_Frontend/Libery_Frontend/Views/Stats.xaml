@@ -23,9 +23,11 @@
             </Frame>
             <Frame  Grid.Column="1">
                 <StackLayout>
-                    
-              
 
+
+
+                <StackLayout x:Name="AddProdFrame" IsVisible="true">
+                    <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
 
                 <StackLayout x:Name="Books" IsVisible="true">
                     <ListView x:Name="ProductsListView" BackgroundColor="Transparent"  HasUnevenRows="True">
@@ -53,7 +55,7 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                    
+
                     <StackLayout x:Name="Order" IsVisible="true">
                         <ListView x:Name="UserListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                             <ListView.ItemTemplate>
@@ -64,19 +66,19 @@
                                                 <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                     <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                     <StackLayout BackgroundColor="Transparent">
-                                                    
+
                                                         <Label  Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                    </StackLayout>
                                                 </StackLayout>
-                                            </Frame>
-                                        </Grid>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                    
-                    
+                                            </StackLayout>
+                                        </Frame>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+
                     <StackLayout x:Name="BooksToReturn" IsVisible="true">
                         <ListView x:Name="BooksToReturnListView" BackgroundColor="Transparent"  HasUnevenRows="True">
                             <ListView.ItemTemplate>
@@ -96,7 +98,7 @@
                                                         <Label Grid.Row="7" Grid.Column="2"  Text="{Binding Type, StringFormat='Typ: {0}'}"  FontSize="Medium" TextColor="Black"/>
                                                     </StackLayout>
                                                 </StackLayout>
-                                            </Frame>
+            </Frame>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
@@ -106,9 +108,9 @@
 
                     <StackLayout x:Name="Category" IsVisible="true">
                         <ListView x:Name="CategoryListView" BackgroundColor="Transparent"  HasUnevenRows="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
                                         <Grid Padding="5">
                                             <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
                                                 <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
@@ -139,7 +141,14 @@
 
 
         </Grid>
-        
-        
+
+                                </Grid >
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>-->
+
     </ContentPage.Content>
 </ContentPage>

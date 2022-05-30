@@ -16,6 +16,17 @@ namespace Libery_Frontend.Views
         {
            InitializeComponent();
         }
+        async Task Loggaut()
+        {
+            await Navigation.PopAsync();
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[0];
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+        }
 
+        async Task Add()
+        {
+
+        }
     }
 }

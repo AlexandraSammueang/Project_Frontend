@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="SandyBrown" SelectedTabColor="White" UnselectedTabColor="Black"
              >
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="Logga ut" Command="{Binding LoggautCommand}" IsDestructive="True"></ToolbarItem>
+
+        <ToolbarItem Text="Sök" Command="{Binding SearchPage }" IsDestructive="True"></ToolbarItem>
+
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}" IsDestructive="True"></ToolbarItem>
+    </TabbedPage.ToolbarItems>
+
+   
     <TabbedPage.Children>
         <Views:AboutPage Title="Start"></Views:AboutPage>
         <Views:SearchPage Title="Sök"/>

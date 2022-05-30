@@ -154,5 +154,9 @@ namespace Libery_Frontend.Views
             public string UserGroup { get; set; } = default;
         }
 
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Libery_Frontend.Models
             ShoppingCarts = new HashSet<ShoppingCart>();
         }
 
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public int? AuthorId { get; set; }
         public int? DirectorId { get; set; }
         public string Isbn { get; set; }

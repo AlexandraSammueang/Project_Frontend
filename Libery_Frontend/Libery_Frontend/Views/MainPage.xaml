@@ -1,23 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:Views="clr-namespace:Libery_Frontend.Views"
-            x:Class="Libery_Frontend.Views.MainPage" BackgroundColor="WhiteSmoke" SelectedTabColor="Red" UnselectedTabColor="Black"
-             >
-    <TabbedPage.Children>
-        <Views:AboutPage Title="Start"></Views:AboutPage>
-       
-        <!--<Views:Books Title="Alla produkter"></Views:Books>-->
-          <Views:LibraryPage Title="Böcker"></Views:LibraryPage>
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:Views="clr-namespace:Libery_Frontend.Views"
+            x:Class="Libery_Frontend.Views.MainPage">
 
+    <TabbedPage.Children>
+        <Views:AboutPage Title="Hem"></Views:AboutPage>
+        <Views:SearchPage Title="Sök"/>
+        <Views:Books Title="Böcker"></Views:Books>
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
-        <Views:RegisterPage Title="Registrera användare"/>
-        <Views:SearchPage Title="Sök"/>
-        <!--  <Views:LibraryBossPage Title="Bibliotekschef metoder"></Views:LibraryBossPage>-->
-        <!--<Views:LibrarianPage Title="Bibliotikarie metoder"></Views:LibrarianPage>-->
-        <Views:AddAndDelete Title="Lägga till/ta bort böcker"></Views:AddAndDelete>
-        <Views:ProductDelete2 Title="Ta bort böcker"></Views:ProductDelete2>
+        <Views:RegisterPage Title="Registrering"/>
     </TabbedPage.Children>
+    
 
 
 </TabbedPage>

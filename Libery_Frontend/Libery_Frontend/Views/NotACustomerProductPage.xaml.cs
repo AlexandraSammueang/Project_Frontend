@@ -1,4 +1,4 @@
-﻿
+﻿using Libery_Frontend.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,29 +6,38 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.Models;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LibraryPage : ContentPage
+    public partial class NotACustomerProductPage : ContentPage
     {
-
 
         public List<Models.Product> Products;
         public List<Models.ProductType> ProdType;
-
-        public LibraryPage()
+        public NotACustomerProductPage()
         {
             InitializeComponent();
 
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                try
+                {
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Någonting hände", "Ett fel som gör att sidan inte kan laddas har uppstått." +
+                                        "\nVar vänlig försök igen", "OK");
+                }
+            });
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
@@ -42,15 +51,13 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new Models.LibraryDBContext())
                     {
-                        Products = db.Products.Where(x => x.EVersion == false).ToList();
+
+                        Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
                     }
-
-
                 }
-
 
                 catch (Exception ex)
                 {
@@ -67,7 +74,5 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
-
     }
 }
-    

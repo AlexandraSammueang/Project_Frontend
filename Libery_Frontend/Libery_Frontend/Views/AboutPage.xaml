@@ -14,8 +14,8 @@
 
                     <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
                         <StackLayout>
-                        <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
-                            <Label Text="Skapad av Newton_Microsoft" FontSize="15" FontAttributes="Italic" HorizontalOptions="CenterAndExpand"/>
+                            <Label Text="Välkommen till Newtons bibliotek" TextDecorations="Underline" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
+                            <Label Text="Skapad av Newton_Microsoft"  FontSize="15" FontAttributes="Italic" HorizontalOptions="CenterAndExpand"/>
                         </StackLayout>
                     </Frame>
 

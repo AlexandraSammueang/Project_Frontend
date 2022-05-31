@@ -28,7 +28,7 @@
 
                 <StackLayout Grid.Column="0">
 
-                    <Button x:Name="BooksButton" Text="Böcker" Clicked="BooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="Wheat"/>
+                    <Button x:Name="BooksButton" Text="Böcker" FontAttributes="Bold" Clicked="BooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="Wheat"/>
                     <Frame Grid.Column="0" Margin="0,-10,0,0"  Padding="0,0,-10,0">
                         <StackLayout>
      
@@ -102,7 +102,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="2">
-                    <Button Text="Filmer" x:Name="MovieButtons" Clicked="MovieButtons_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="Wheat"/>
+                    <Button Text="Filmer" x:Name="MovieButtons" FontAttributes="Bold" Clicked="MovieButtons_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="Wheat"/>
                     <Frame CornerRadius="20">
 
                         <ListView  Margin="-20" x:Name="EbooksListview" IsVisible="false" ItemSelected="EbooksListview_ItemSelected">

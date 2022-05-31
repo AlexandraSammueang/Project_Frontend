@@ -48,21 +48,25 @@ namespace Libery_Frontend.Views
                         Page pageToAdd = new LibrarianBossTabbedPage();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
+                        Page pageToAddThird = new NotACustomerEProductsPage();
 
                         var homePage = new MainPage();
 
+                        pageToAddThird.Title = "E-Media";
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekschef";
                         pageToAddFourth.Title = "Sök";
-                        pageToAddFifth.Title = "Alla produkter";
+                        pageToAddFifth.Title = "Böcker & Filmer";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
                         homePage.Children.Insert(1, pageToAddFourth);
                         homePage.Children.Insert(2, pageToAddFifth);
+                        homePage.Children.Insert(3, pageToAddThird);
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
@@ -78,20 +82,25 @@ namespace Libery_Frontend.Views
                         Page pageToAdd = new LibrarianTabbedPage();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
+                        Page pageToAddThird = new NotACustomerEProductsPage();
 
                         var homePage = new MainPage();
+
+                        pageToAddThird.Title = "E-Media";
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
                         pageToAddFourth.Title = "Sök";
-                        pageToAddFifth.Title = "Alla produkter";
+                        pageToAddFifth.Title = "Böcker & Filmer";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
                         homePage.Children.Insert(1, pageToAddFourth);
                         homePage.Children.Insert(2, pageToAddFifth);
+                        homePage.Children.Insert(3, pageToAddThird);
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);

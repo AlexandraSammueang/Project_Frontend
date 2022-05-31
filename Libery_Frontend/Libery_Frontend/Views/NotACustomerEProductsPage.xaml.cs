@@ -1,36 +1,26 @@
-﻿using Libery_Frontend.SecondModels;
-using Microsoft.EntityFrameworkCore.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Libery_Frontend.SecondModels;
+
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NotACustomerProductPage : ContentPage
+    public partial class NotACustomerEProductsPage : ContentPage
     {
         public List<ProductCategory> Category;
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<Author> autName;
         public List<Director> dirName;
-        public NotACustomerProductPage()
+        public NotACustomerEProductsPage()
         {
             InitializeComponent();
-
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetBooksAsync(); });
-            MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
         }
 
         public async Task<List<ProductModel>> GetBooksAsync()
@@ -108,7 +98,7 @@ namespace Libery_Frontend.Views
                             Category = p.Category,
                             DirectorID = p.DirectorID,
                             AuthorName = pi.Firstname + " " + pi.Lastname
-                        }).Where(x => x.Type == "Bok").ToList();
+                        }).Where(x => x.Type == "E-Bok").ToList();
 
 
                         for (int i = 0; i < result.Count; i++)
@@ -131,7 +121,7 @@ namespace Libery_Frontend.Views
         }
 
 
-        public async Task<List<ProductModel>> GetMoviesAsync()
+        public async Task<List<ProductModel>> GetEMoviesAsync()
         {
 
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
@@ -183,7 +173,7 @@ namespace Libery_Frontend.Views
                             IsBookable = p.IsBookable,
                             Category = pi.Category,
                             DirectorID = p.DirectorID
-                        }).ToList();
+                        }).Where(x => x.Type == "E-Film").ToList();
 
 
                         result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
@@ -204,7 +194,7 @@ namespace Libery_Frontend.Views
                             Category = p.Category,
                             DirectorID = p.DirectorID,
                             AuthorName = pi.Firstname + " " + pi.Lastname
-                        }).Where(x => x.Type == "Film").ToList();
+                        }).ToList();
 
 
                         for (int i = 0; i < result.Count; i++)
@@ -274,54 +264,44 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        private async void BookProductButton_Clicked(object sender, EventArgs e)
+        private async void EBooksButton_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
-            if (answer)
-            {
-                var tab = new MainPage();
-                tab.CurrentPage = tab.Children[4];
+            EBooksListview.Opacity = 0;
+            EBooksListview.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { EBooksListview.ItemsSource = await GetBooksAsync(); });
 
-                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
-            }
-            else return;
+            await Task.WhenAll(EBooksListview.FadeTo(1, 1000), EMoviesListview.FadeTo(0, 500));
+
+            EMoviesListview.IsVisible = false;
+            EMoviesListview.IsVisible = false;
         }
 
-        private async void ProductListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void EMoviesButton_Clicked(object sender, EventArgs e)
         {
+            EMoviesListview.Opacity = 0;
+            EMoviesListview.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { EMoviesListview.ItemsSource = await GetEMoviesAsync(); });
 
-            ProductModel model = ProductListView.SelectedItem as ProductModel;
+            await Task.WhenAll(EMoviesListview.FadeTo(1, 1000), EBooksListview.FadeTo(0, 500));
+
+            EBooksListview.IsVisible = false;
+            EBooksListview.IsVisible = false;
+        }
+
+        private async void EBooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (InspectProductListView.Opacity == 0)
+            {
+                await Task.WhenAll(InspectProductListView.FadeTo(1, 1000));
+            }
+
+
+            ProductModel model = EBooksListview.SelectedItem as ProductModel;
             InspectProductListView.ItemsSource = await GetBooksFullListAsync(model.Name, model.Type, model.Category, "Författare: " + model.AuthorName);
 
-            if (InspectProductListView.Opacity == 0)
-            {
-                await Task.WhenAll(InspectProductListView.FadeTo(1, 1000));
-            }
         }
 
-        private async void MovieButtons_Clicked(object sender, EventArgs e)
-        {
-            EbooksListview.Opacity = 0;
-            EbooksListview.IsVisible = true;
-
-            ProductListView.ItemsSource = await GetBooksAsync();
-            await Task.WhenAll(EbooksListview.FadeTo(1, 1000), ProductListView.FadeTo(0, 500));
-
-            ProductListView.IsVisible = false;
-        }
-
-        private async void BooksButton_Clicked(object sender, EventArgs e)
-        {
-            ProductListView.Opacity = 0;
-            ProductListView.IsVisible = true;
-
-            ProductListView.ItemsSource = await GetBooksAsync();
-            await Task.WhenAll(ProductListView.FadeTo(1, 1000), EbooksListview.FadeTo(0, 500));
-
-            EbooksListview.IsVisible = false;
-        }
-
-        private async void EbooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void EMoviesListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (InspectProductListView.Opacity == 0)
             {
@@ -329,9 +309,12 @@ namespace Libery_Frontend.Views
             }
 
 
-            ProductModel model = EbooksListview.SelectedItem as ProductModel;
+            ProductModel model = EMoviesListview.SelectedItem as ProductModel;
             InspectProductListView.ItemsSource = await GetBooksFullListAsync(model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
+
 
         }
     }
+
+
 }

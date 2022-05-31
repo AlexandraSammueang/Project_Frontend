@@ -7,7 +7,7 @@
     <TabbedPage.Children>
         <Views:AboutPage Title="Hem"></Views:AboutPage>
         <Views:SearchPage Title="Sök"/>
-        <Views:Books Title="Böcker"></Views:Books>
+        <Views:Books Title="Böcker &amp; Filmer"></Views:Books>
         <Views:E_Media Title ="E-medier"></Views:E_Media>
         <Views:LoginPage Title="Logga in"/>
         <Views:RegisterPage IsEnabled="False"/>

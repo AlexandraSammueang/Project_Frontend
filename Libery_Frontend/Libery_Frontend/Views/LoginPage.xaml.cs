@@ -76,14 +76,12 @@ namespace Libery_Frontend.Views
                     {
 
                         Page pageToAdd = new LibrarianTabbedPage();
-                        // Page pageToAddSecond = new ProductDelete2();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
 
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
-                        //  pageToAddSecond.Title = "Ta bort/Lägg till";
                         pageToAddFourth.Title = "Sök";
                         pageToAddFifth.Title = "Alla produkter";
 
@@ -96,7 +94,6 @@ namespace Libery_Frontend.Views
                         homePage.Children.Insert(2, pageToAddFifth);
 
                         homePage.Children.Add(pageToAdd);
-                        //homePage.Children.Add(pageToAddSecond);
                         await Navigation.PushAsync(homePage);
 
                         UsernameEntry.Text = "";

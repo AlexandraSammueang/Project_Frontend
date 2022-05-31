@@ -29,10 +29,12 @@
                                     <Grid Padding="5">
                                         <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
                                             <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                <Image Source="{Binding Image}" WidthRequest="50" Aspect="AspectFill"/>
-                                                <StackLayout BackgroundColor="Transparent">
+                                                    <StackLayout HorizontalOptions="Start" Orientation="Vertical"  VerticalOptions="End" >
+                                                        <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" Margin="10" />
+                                                    </StackLayout>
+                                                    <StackLayout BackgroundColor="Transparent">
                                                     <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
-                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
+                                                    <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="16" />
                                                     <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
                                                     <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
 
@@ -58,10 +60,12 @@
                                     <Grid Padding="5">
                                         <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
                                             <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                <Image Source="{Binding Image}" WidthRequest="50" Aspect="AspectFill"/>
-                                                <StackLayout BackgroundColor="Transparent">
+                                                    <StackLayout HorizontalOptions="Start" Orientation="Vertical"  VerticalOptions="End" >
+                                                        <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" Margin="10" />
+                                                    </StackLayout>
+                                                    <StackLayout BackgroundColor="Transparent">
                                                     <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
-                                                    <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
+                                                        <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="16" />
                                                     <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
                                                     <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
 
@@ -86,14 +90,18 @@
                                     <ViewCell>
                                         <Grid Padding="5">
                                             <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
-                                                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                    <Image Source="{Binding Image}" WidthRequest="50" Aspect="AspectFill"/>
-                                                    <StackLayout BackgroundColor="Transparent">
-                                                        <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
-                                                        <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
-                                                        <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
+                                                <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="0,0,5,0">
+                                                    <StackLayout HorizontalOptions="Start" Orientation="Vertical" >
+                                                        <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" />
+                                                    </StackLayout>
+                                                    <StackLayout HorizontalOptions="Start" BackgroundColor="Transparent">
+                                                        <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="22" FontAttributes="Bold"   />
+                                                        <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" FontAttributes="Italic"   />
+                                                        <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="15" WidthRequest="800"/>
+                                                        <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="15" FontAttributes="Bold"/>
+                                                    </StackLayout>
+                                                    <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
                                                         <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
-
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.Models;
+using Libery_Frontend.SecondModels;
 
 
 namespace Libery_Frontend.Views
@@ -14,21 +14,13 @@ namespace Libery_Frontend.Views
     public partial class E_Media : ContentPage
     {
         
-        public List<Models.Product> Products;
-        public List<Models.ProductType> ProdType;
+        public List<Product> Products;
+        public List<ProductType> ProdType;
         public E_Media()
         {
             InitializeComponent();
         }
 
-        //protected override void OnAppearing()
-        //{
-        //    base.OnAppearing();
-
-        //    // Load products asynchronously
-        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-
-        //}
 
         public async Task<List<ProductModel>> GetProductsAsync()
         {
@@ -37,12 +29,17 @@ namespace Libery_Frontend.Views
                 List<ProductModel> result = null;
                 try
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
                         Products = db.Products.ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                       
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, InfoConcat = p.ProductInfo }).ToList();
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 100), "...");
+                        }
                     }
 
 
@@ -62,23 +59,6 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
-        //private void Books_Clicked(object sender, EventArgs e)
-        //{
-        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
-
-        //}
-        //private async void BackToList_Clicked(object sender, EventArgs e)
-        //{
-        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-        //}
-
-
-
-        //private async void Movie_Clicked(object sender, EventArgs e)
-        //{
-        //    MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
-
-        //}
 
         public async Task<List<ProductModel>> GetBooksAsync()
         {
@@ -88,12 +68,16 @@ namespace Libery_Frontend.Views
                 List<ProductModel> result = null;
                 try
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
                         Products = db.Products.Where(x => x.ProductTypeId == 3).ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, InfoConcat = p.ProductInfo }).ToList();
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 100), "...");
+                        }
                     }
 
 
@@ -120,12 +104,16 @@ namespace Libery_Frontend.Views
                 List<ProductModel> result = null;
                 try
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
                         Products = db.Products.Where(x => x.ProductTypeId == 2).ToList();
                         ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type }).ToList();
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, InfoConcat = p.ProductInfo }).ToList();
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 100), "...");
+                        }
                     }
 
 

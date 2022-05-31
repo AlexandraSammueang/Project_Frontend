@@ -80,6 +80,7 @@ namespace Libery_Frontend.Views
                 ActivityIndicator.IsVisible = true;
 
                 var result = await SearchProductsAsync(input);
+
                 SearchListView.ItemsSource = result ?? null;
 
                 ActivityIndicator.IsVisible = false;

@@ -71,14 +71,14 @@ namespace Libery_Frontend.Views
                     cartResultone = ShoppingCarts.Join(Products, p => p.ProductId, pi => pi.Id, (p, pi) => new shoppingCartTestModel
                     {
                         AccountName = p.UserId,
-                        Image = pi.Image,
+                        Image = pi.Image ?? "Ingen bild",
                         ID = p.Id,
                         UnitPrice = (double)pi.Price,
                         ProductID = pi.Id,
-                        AuthorID = (int)pi?.AuthorId,
-                        ISBN = pi.Isbn,
+                        AuthorID = pi?.AuthorId,
+                        ISBN = pi.Isbn ?? "Inget ISBN",
                         ProductTypeID = (int)pi?.ProductTypeId,
-                        ProductName = pi.ProductName,
+                        ProductName = pi.ProductName ?? "Ingen titel",
                         CategoryID = (int)pi?.CategoryId,
                         ProductInfo = pi.ProductInfo,
                         ReleaseDate = pi.ReleaseDate.Value,
@@ -93,7 +93,7 @@ namespace Libery_Frontend.Views
                         UnitPrice = p.UnitPrice,
                         ID = p.ID,
                         ProductID = p.ProductID,
-                        AuthorID = (int)p.AuthorID,
+                        AuthorID = p.AuthorID,
                         ISBN = p.ISBN,
                         ProductTypeID = (int)p.ProductTypeID,
                         ProductName = p.ProductName,
@@ -182,20 +182,20 @@ namespace Libery_Frontend.Views
 
     public class shoppingCartTestModel
     {
-        public int ID { get; set; } = default;
+        public int? ID { get; set; } = default;
         public string Image { get; set; } = default;
-        public double UnitPrice { get; set; }
-        public int AuthorID { get; set; } = default;
+        public double? UnitPrice { get; set; }
+        public int? AuthorID { get; set; } = default;
         public string ISBN { get; set; } = default;
-        public int ProductTypeID { get; set; } = default;
-        public int CategoryID { get; set; } = default;
+        public int? ProductTypeID { get; set; } = default;
+        public int? CategoryID { get; set; } = default;
         public string ProductName { get; set; } = default;
         public string ProductInfo { get; set; } = default;
-        public DateTime ReleaseDate { get; set; } = default;
-        public DateTime DateBooked { get; set; } = default;
-        public DateTime ReturnDate { get; set; } = default;
+        public DateTime? ReleaseDate { get; set; } = default;
+        public DateTime? DateBooked { get; set; } = default;
+        public DateTime? ReturnDate { get; set; } = default;
         public string UserID { get; set; } = default;
-        public int ProductID { get; set; } = default;
+        public int? ProductID { get; set; } = default;
         public string AccountName { get; set; }
         public string prodType { get; set; }
 

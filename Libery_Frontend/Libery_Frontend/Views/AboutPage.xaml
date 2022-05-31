@@ -13,20 +13,78 @@
                     
 
                     <Frame Padding="36" CornerRadius="0" HorizontalOptions="Center" >
+                        <StackLayout>
                         <Label Text="Välkommen till Newtons bibliotek" HorizontalTextAlignment="Start" TextColor="Black" FontSize="36"/>
+                            <Label Text="Skapad av Newton_Microsoft" FontSize="15" FontAttributes="Italic" HorizontalOptions="CenterAndExpand"/>
+                        </StackLayout>
                     </Frame>
 
-                            <Label  x:Name="timeLabel" HorizontalOptions="End"
-                            TextColor="Black" FontSize="16" FontAttributes="Italic" 
-                            WidthRequest="150" Text="" Margin="0,0,50,0" BackgroundColor="SandyBrown" Padding="10,0,0,0" />
+                            
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
 
-                    <Label FontSize="16" FontAttributes="Italic" Padding="20, 10, 10, 20" Margin="20, 10, 10, 20" 
-                       HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" 
-                       Text="Skapad av Newton_Microsoft" TextColor="Black">
 
-                    </Label>
+                        <StackLayout Margin="0,100,0,0">
 
-            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Margin="0,0,10,10" VerticalOptions="End">
+
+                                <Frame Grid.Column="0" Grid.Row="2"  Padding="0" WidthRequest="350">
+                                    <Image Source="bookpic1done.jpg"  Aspect="Fill">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+
+                                <Frame Grid.Column="0" Grid.Row="2"  Padding="0">
+                                    <Image Source="bookpic2done.jpg"  Aspect="Fill">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal" Grid.Row="2" >
+
+                                <Frame Grid.Column="1" Grid.Row="1"  Padding="0" >
+                                    <Image Source="bookpic3done.jpg" Aspect="Fill">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+
+                                <Frame Grid.Column="1" Grid.Row="1"  Padding="0" WidthRequest="350">
+                                    <Image Source="bookpic4done.png" Aspect="Fill">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" NumberOfTapsRequired="1"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </Frame>
+                            </StackLayout>
+
+                        </StackLayout>
+                        <Frame Grid.Column="3" Grid.RowSpan="2" Padding="0">
+                                    <Label  x:Name="timeLabel" HorizontalOptions="CenterAndExpand"
+                            TextColor="Black" FontSize="16" FontAttributes="Italic,Bold" 
+                            WidthRequest="150" Text=""  BackgroundColor="Transparent" Padding="0,0,0,0" />
+                                </Frame>
+
+
+                            </Grid>
+
+
+
+                </StackLayout>
             
         </Grid>
     </StackLayout>

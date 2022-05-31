@@ -60,7 +60,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid Padding="5">
-                                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque" Padding="0">
+                                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite" Padding="0">
                                         <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="0">
                                             <StackLayout HorizontalOptions="Start" Orientation="Vertical" Padding="8,8,0,8" >
                                                 <Image Source="{Binding Image}" HorizontalOptions="CenterAndExpand" WidthRequest="90" />

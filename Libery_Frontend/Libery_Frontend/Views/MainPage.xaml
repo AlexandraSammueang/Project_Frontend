@@ -13,5 +13,5 @@
         <Views:UserSettingsPage IconImageSource="keyicon.png"  Title="Inställningar"/>
         <Views:RegisterPage IsEnabled="False"/>
     </TabbedPage.Children>
-
+    
 </TabbedPage>

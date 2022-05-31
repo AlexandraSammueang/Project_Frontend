@@ -37,7 +37,7 @@
                                 <DataTemplate>
                                     <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10,5,15" Margin="0,5,5,0">
                                                         <StackLayout HorizontalOptions="Start" Orientation="Vertical">
                                                             <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" Margin="10" />
@@ -63,7 +63,7 @@
                                     <DataTemplate>
                                             <ViewCell>
                                                 <Grid Padding="5">
-                                                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
+                                                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                         <StackLayout  HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="10,10,5,15">
                                                             <StackLayout HorizontalOptions="Start" Orientation="Vertical">
                                                                 <Image Source="{Binding Image}" HorizontalOptions="Start" WidthRequest="90" Margin="10" />

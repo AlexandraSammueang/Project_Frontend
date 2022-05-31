@@ -70,19 +70,19 @@ namespace Libery_Frontend.Views
 
                     cartResultone = ShoppingCarts.Join(Products, p => p.ProductId, pi => pi.Id, (p, pi) => new shoppingCartTestModel
                     {
-                        AccountName = p.UserId,
+                        AccountName = p?.UserId,
                         Image = pi.Image ?? "Ingen bild",
-                        ID = p.Id,
-                        UnitPrice = (double)pi.Price,
-                        ProductID = pi.Id,
+                        ID = p?.Id,
+                        UnitPrice = pi.Price,
+                        ProductID = pi?.Id,
                         AuthorID = pi?.AuthorId,
                         ISBN = pi.Isbn ?? "Inget ISBN",
-                        ProductTypeID = (int)pi?.ProductTypeId,
+                        ProductTypeID = pi?.ProductTypeId,
                         ProductName = pi.ProductName ?? "Ingen titel",
-                        CategoryID = (int)pi?.CategoryId,
+                        CategoryID = pi?.CategoryId,
                         ProductInfo = pi.ProductInfo,
-                        ReleaseDate = pi.ReleaseDate.Value,
-                        DateBooked = p.DateBooked.Value, //can use this syntax to get date
+                        ReleaseDate = pi?.ReleaseDate,
+                        DateBooked = p?.DateBooked, //can use this syntax to get date
                         ReturnDate = (DateTime)p.ReturnDate //and this syntax
                     }).Where(x => x.AccountName == LoginPage.Username).ToList();
 
@@ -90,18 +90,18 @@ namespace Libery_Frontend.Views
                     {
                         AccountName = p.AccountName,
                         Image = p.Image,
-                        UnitPrice = p.UnitPrice,
-                        ID = p.ID,
-                        ProductID = p.ProductID,
-                        AuthorID = p.AuthorID,
+                        UnitPrice = p?.UnitPrice,
+                        ID = p?.ID,
+                        ProductID = p?.ProductID,
+                        AuthorID = p?.AuthorID,
                         ISBN = p.ISBN,
-                        ProductTypeID = (int)p.ProductTypeID,
+                        ProductTypeID = p?.ProductTypeID,
                         ProductName = p.ProductName,
-                        CategoryID = (int)p.CategoryID,
+                        CategoryID = p?.CategoryID,
                         ProductInfo = p.ProductInfo,
-                        ReleaseDate = p.ReleaseDate,
-                        DateBooked = p.DateBooked,
-                        ReturnDate = (DateTime)p.ReturnDate,
+                        ReleaseDate = p?.ReleaseDate,
+                        DateBooked = p?.DateBooked,
+                        ReturnDate = p?.ReturnDate,
                         prodType = pi.Type
                     }).ToList();
 

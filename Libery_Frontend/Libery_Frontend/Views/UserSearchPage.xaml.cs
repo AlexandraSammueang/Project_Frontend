@@ -21,6 +21,7 @@ namespace Libery_Frontend.Views
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<ShoppingCart> ShoppingCarts;
+
         public UserSearchPage()
         {
             InitializeComponent();
@@ -30,38 +31,38 @@ namespace Libery_Frontend.Views
 
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
-            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(() =>
-            {
-                IEnumerable<IGrouping<string, Product>> groupedResult = null;
-                try
+            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<
+                IEnumerable<IGrouping<string, Product>>
+            >.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new LibraryDBContext())
+                    IEnumerable<IGrouping<string, Product>> groupedResult = null;
+                    try
                     {
-                        var query = from product in db.Products
-                                    where product.ProductName.ToLower().Contains(input.ToLower())
-                                    join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
+                        using (var db = new LibraryDBContext())
+                        {
+                            var query =
+                                from product in db.Products
+                                where product.ProductName.ToLower().Contains(input.ToLower())
+                                join prodType in db.ProductTypes
+                                    on product.ProductType.Id equals prodType.Id
+                                select new { ProductType = prodType.Type, Product = product };
 
-                                    select new
-                                    {
-                                        ProductType = prodType.Type,
-                                        Product = product
-                                    };
+                            var grouped =
+                                from item in query.ToList()
+                                group item.Product by item.ProductType into g
+                                select g;
+                            //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
-                        var grouped = from item in query.ToList()
-                                      group item.Product by item.ProductType into g
-                                      select g;
-                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
-
-                        groupedResult = grouped;
+                            groupedResult = grouped;
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return groupedResult;
                 }
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return groupedResult;
-            }
             );
 
             var taskResult = await databaseTask;
@@ -71,7 +72,6 @@ namespace Libery_Frontend.Views
 
         public async Task Search(String input)
         {
-
             await Task.Delay(600);
 
             if (!input.Equals(SearchBarInput.Text))
@@ -102,7 +102,6 @@ namespace Libery_Frontend.Views
         {
             string input = e.NewTextValue;
             await Search(input);
-
         }
 
         private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
@@ -122,47 +121,56 @@ namespace Libery_Frontend.Views
 
             if (item != null)
             {
-
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    using (var context = new LibraryDBContext())
+                MainThread.BeginInvokeOnMainThread(
+                    async () =>
                     {
-                        ProdType = context.ProductTypes.ToList();
-                        Products = context.Products.ToList();
-
-                        cart.ProductId = item.Id;
-                        cart.UserId = LoginPage.Username;
-                        cart.DateBooked = DateTime.Now;
-                        cart.ReturnDate = DateTime.Now.AddDays(30);
-
-                        ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.Id && x.UserId == LoginPage.Username).ToList();
-
-                        if (ShoppingCarts.Any())
+                        using (var context = new LibraryDBContext())
                         {
-                            await DisplayAlert("Redan bokad", "Du har redan bokat denna produkt", "OK");
+                            ProdType = context.ProductTypes.ToList();
+                            Products = context.Products.ToList();
 
-                        }
-                        else
-                        {
-                            context.Add(cart);
-                            context.SaveChanges();
+                            cart.ProductId = item.Id;
+                            cart.UserId = LoginPage.Username;
+                            cart.DateBooked = DateTime.Now;
+                            cart.ReturnDate = DateTime.Now.AddDays(30);
 
-                            var typeOfProduct = context.ProductTypes.Where(x => x.Id == item.ProductTypeId).FirstOrDefault();
-                            var ProdTypeName = new ProductType
+                            ShoppingCarts = context.ShoppingCarts
+                                .Where(
+                                    x => x.ProductId == item.Id && x.UserId == LoginPage.Username
+                                )
+                                .ToList();
+
+                            if (ShoppingCarts.Any())
                             {
-                                Type = typeOfProduct.Type
-                            };
+                                await DisplayAlert(
+                                    "Redan lånad",
+                                    "Du har redan lånat denna produkt",
+                                    "OK"
+                                );
+                            }
+                            else
+                            {
+                                context.Add(cart);
+                                context.SaveChanges();
 
-                            await DisplayAlert($"{ProdTypeName.Type} bokad",
-                                $"{item.ProductName} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                                var typeOfProduct = context.ProductTypes
+                                    .Where(x => x.Id == item.ProductTypeId)
+                                    .FirstOrDefault();
+                                var ProdTypeName = new ProductType { Type = typeOfProduct.Type };
+
+                                await DisplayAlert(
+                                    $"{ProdTypeName.Type} lånad",
+                                    $"{item.ProductName} är lånad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}",
+                                    "OK"
+                                );
+                            }
                         }
+                        SearchListView.SelectedItem = null;
                     }
-                    SearchListView.SelectedItem = null;
-                });
+                );
             }
             else
-                await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
-
+                await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
         }
     }
 }

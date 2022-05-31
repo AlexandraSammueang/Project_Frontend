@@ -17,26 +17,30 @@ namespace Libery_Frontend.Views
         public List<ProductType> ProdType;
         public List<User> Users;
         public List<ShoppingCart> ShoppingCarts;
+
         public UserAccountPage(string username)
         {
             InitializeComponent();
             BindingContext = username;
         }
+
         public UserAccountPage()
         {
-
             InitializeComponent();
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () =>
-            {
-                ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
-                ListViewEmptyLabel.Text = await GetUserProductList();
-            });
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                    ListViewEmptyLabel.Text = await GetUserProductList();
+                }
+            );
         }
 
         public async Task<string> GetUserProductList()
@@ -45,10 +49,10 @@ namespace Libery_Frontend.Views
 
             userCart = await GetProductsAsync(ActivityIndicator);
 
-            if (userCart.Count == 0) return $"Du har inga bokade produkter";
-
-            else return $"Dina bokade produkter";
-
+            if (userCart.Count == 0)
+                return $"Du har inga lånade produkter";
+            else
+                return $"Dina lånade produkter";
         }
 
         public async Task<List<shoppingCartTestModel>> GetProductsAsync(ActivityIndicator indicator)
@@ -57,61 +61,76 @@ namespace Libery_Frontend.Views
             indicator.IsRunning = true;
             CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
 
-            Task<List<shoppingCartTestModel>> databaseTask = Task<List<shoppingCartTestModel>>.Factory.StartNew(() =>
-            {
-                List<shoppingCartTestModel> cartResultone = null;
-                using (var db = new LibraryDBContext())
+            Task<List<shoppingCartTestModel>> databaseTask = Task<
+                List<shoppingCartTestModel>
+            >.Factory.StartNew(
+                () =>
                 {
-                    Products = db.Products.ToList();
-                    ProdType = db.ProductTypes.ToList();
-                    Users = db.Users.ToList();
-                    ShoppingCarts = db.ShoppingCarts.ToList();
-
-
-                    cartResultone = ShoppingCarts.Join(Products, p => p.ProductId, pi => pi.Id, (p, pi) => new shoppingCartTestModel
+                    List<shoppingCartTestModel> cartResultone = null;
+                    using (var db = new LibraryDBContext())
                     {
-                        AccountName = p.UserId,
-                        Image = pi.Image,
-                        ID = p.Id,
-                        UnitPrice = (double)pi.Price,
-                        ProductID = pi.Id,
-                        AuthorID = (int)pi?.AuthorId,
-                        ISBN = pi.Isbn,
-                        ProductTypeID = (int)pi?.ProductTypeId,
-                        ProductName = pi.ProductName,
-                        CategoryID = (int)pi?.CategoryId,
-                        ProductInfo = pi.ProductInfo,
-                        ReleaseDate = pi.ReleaseDate.Value,
-                        DateBooked = p.DateBooked.Value, //can use this syntax to get date
-                        ReturnDate = (DateTime)p.ReturnDate //and this syntax
-                    }).Where(x => x.AccountName == LoginPage.Username).ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        Users = db.Users.ToList();
+                        ShoppingCarts = db.ShoppingCarts.ToList();
 
-                    cartResultone = cartResultone.Join(ProdType, p => p.ProductTypeID, pi => pi.Id, (p, pi) => new shoppingCartTestModel
-                    {
-                        AccountName = p.AccountName,
-                        Image = p.Image,
-                        UnitPrice = p.UnitPrice,
-                        ID = p.ID,
-                        ProductID = p.ProductID,
-                        AuthorID = (int)p.AuthorID,
-                        ISBN = p.ISBN,
-                        ProductTypeID = (int)p.ProductTypeID,
-                        ProductName = p.ProductName,
-                        CategoryID = (int)p.CategoryID,
-                        ProductInfo = p.ProductInfo,
-                        ReleaseDate = p.ReleaseDate,
-                        DateBooked = p.DateBooked,
-                        ReturnDate = (DateTime)p.ReturnDate,
-                        prodType = pi.Type
-                    }).ToList();
+                        cartResultone = ShoppingCarts
+                            .Join(
+                                Products,
+                                p => p.ProductId,
+                                pi => pi.Id,
+                                (p, pi) =>
+                                    new shoppingCartTestModel
+                                    {
+                                        AccountName = p.UserId,
+                                        Image = pi.Image,
+                                        ID = p.Id,
+                                        UnitPrice = (double)pi.Price,
+                                        ProductID = pi.Id,
+                                        AuthorID = (int)pi?.AuthorId,
+                                        ISBN = pi.Isbn,
+                                        ProductTypeID = (int)pi?.ProductTypeId,
+                                        ProductName = pi.ProductName,
+                                        CategoryID = (int)pi?.CategoryId,
+                                        ProductInfo = pi.ProductInfo,
+                                        ReleaseDate = pi.ReleaseDate.Value,
+                                        DateBooked = p.DateBooked.Value, //can use this syntax to get date
+                                        ReturnDate = (DateTime)p.ReturnDate //and this syntax
+                                    }
+                            )
+                            .Where(x => x.AccountName == LoginPage.Username)
+                            .ToList();
 
+                        cartResultone = cartResultone
+                            .Join(
+                                ProdType,
+                                p => p.ProductTypeID,
+                                pi => pi.Id,
+                                (p, pi) =>
+                                    new shoppingCartTestModel
+                                    {
+                                        AccountName = p.AccountName,
+                                        Image = p.Image,
+                                        UnitPrice = p.UnitPrice,
+                                        ID = p.ID,
+                                        ProductID = p.ProductID,
+                                        AuthorID = (int)p.AuthorID,
+                                        ISBN = p.ISBN,
+                                        ProductTypeID = (int)p.ProductTypeID,
+                                        ProductName = p.ProductName,
+                                        CategoryID = (int)p.CategoryID,
+                                        ProductInfo = p.ProductInfo,
+                                        ReleaseDate = p.ReleaseDate,
+                                        DateBooked = p.DateBooked,
+                                        ReturnDate = (DateTime)p.ReturnDate,
+                                        prodType = pi.Type
+                                    }
+                            )
+                            .ToList();
+                    }
 
+                    return cartResultone;
                 }
-
-                return cartResultone;
-
-
-            }
             );
 
             var taskResult = await databaseTask;
@@ -130,54 +149,60 @@ namespace Libery_Frontend.Views
 
             if (item != null)
             {
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    using (var context = new LibraryDBContext())
+                MainThread.BeginInvokeOnMainThread(
+                    async () =>
                     {
-
-                        cart.ProductId = item.ProductID;
-                        cart.OrderId = LoginPage.Username;
-                        cart.UnitPrice = item.UnitPrice;
-                        cart.CustomerDateBooked = item.DateBooked;
-                        cart.CustomerReturnBooked = item.ReturnDate;
-
-                        var orderList = context.Users.Where(x => x.Username == LoginPage.Username).FirstOrDefault();
-
-                        var order = new Order
+                        using (var context = new LibraryDBContext())
                         {
-                            CustomerUsername = LoginPage.Username,
-                            CustomerId = orderList.Id,
-                            CustomerAddress = orderList.Address,
-                            CustomerPostalCode = orderList.PostalCode,
-                            CustomerCity = orderList.City
-                        };
+                            cart.ProductId = item.ProductID;
+                            cart.OrderId = LoginPage.Username;
+                            cart.UnitPrice = item.UnitPrice;
+                            cart.CustomerDateBooked = item.DateBooked;
+                            cart.CustomerReturnBooked = item.ReturnDate;
 
+                            var orderList = context.Users
+                                .Where(x => x.Username == LoginPage.Username)
+                                .FirstOrDefault();
 
-                        cartToRemove = context.ShoppingCarts.Where(x => x.Id == item.ID).FirstOrDefault();
+                            var order = new Order
+                            {
+                                CustomerUsername = LoginPage.Username,
+                                CustomerId = orderList.Id,
+                                CustomerAddress = orderList.Address,
+                                CustomerPostalCode = orderList.PostalCode,
+                                CustomerCity = orderList.City
+                            };
 
-                        context.Remove(cartToRemove);
-                        context.Add(order);
-                        context.Add(cart);
-                        context.SaveChanges();
+                            cartToRemove = context.ShoppingCarts
+                                .Where(x => x.Id == item.ID)
+                                .FirstOrDefault();
 
-                        ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
-                        ListViewEmptyLabel.Text = await GetUserProductList();
+                            context.Remove(cartToRemove);
+                            context.Add(order);
+                            context.Add(cart);
+                            context.SaveChanges();
+
+                            ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                            ListViewEmptyLabel.Text = await GetUserProductList();
+                        }
+                        ProductListView.SelectedItem = null;
                     }
-                    ProductListView.SelectedItem = null;
-                });
+                );
 
                 var typeOfProduct = item.prodType;
-                await DisplayAlert($"{typeOfProduct} återlämnad",
-                    $"{item.ProductName} är återlämnad.\nTack!", "Gå vidare");
-
-                
+                await DisplayAlert(
+                    $"{typeOfProduct} återlämnad",
+                    $"{item.ProductName} är återlämnad.\nTack!",
+                    "Gå vidare"
+                );
             }
-
-            else await DisplayAlert("Produkt ej vald", "Välj en produkt för att lämna tillbaka", "OK");
-
+            else
+                await DisplayAlert(
+                    "Produkt ej vald",
+                    "Välj en produkt för att lämna tillbaka",
+                    "OK"
+                );
         }
-
-
     }
 
     public class shoppingCartTestModel
@@ -198,7 +223,6 @@ namespace Libery_Frontend.Views
         public int ProductID { get; set; } = default;
         public string AccountName { get; set; }
         public string prodType { get; set; }
-
     }
 
     public class UserShoppingCartModel

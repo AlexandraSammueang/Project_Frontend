@@ -35,7 +35,7 @@
                                                     <Label VerticalOptions="Center" Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold"   />
                                                     <Label VerticalOptions="Center" Text="{Binding Info}" FontSize="16" />
                                                     <Label VerticalOptions="Center" Text="{Binding Type}" FontSize="16" />
-                                                    <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" BackgroundColor="LightPink" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
+                                                    <Button x:Name="BookProductButton" Text="Låna" FontSize="Medium" BackgroundColor="LightPink" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
 
                                                 </StackLayout>
                                             </StackLayout>

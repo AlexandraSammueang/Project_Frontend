@@ -13,53 +13,67 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserEProductsPage : ContentPage
     {
-
         public UserEProductsPage()
         {
             InitializeComponent();
         }
+
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<ShoppingCart> ShoppingCarts;
-
-
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             // Load products asynchronously
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
-
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+            );
         }
 
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
-            {
-                List<ProductModel> result = null;
-                try
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new LibraryDBContext())
+                    List<ProductModel> result = null;
+                    try
                     {
-                        Products = db.Products.Where(x => x.EVersion == true).ToList();
-                        ProdType = db.ProductTypes.ToList();
+                        using (var db = new LibraryDBContext())
+                        {
+                            Products = db.Products.Where(x => x.EVersion == true).ToList();
+                            ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, ProId = p.Id }).ToList();
+                            result = Products
+                                .Join(
+                                    ProdType,
+                                    p => p.ProductTypeId,
+                                    pi => pi.Id,
+                                    (p, pi) =>
+                                        new ProductModel
+                                        {
+                                            Image = p.Image,
+                                            Name = p.ProductName,
+                                            Info = p.ProductInfo,
+                                            Type = pi.Type,
+                                            ProId = p.Id
+                                        }
+                                )
+                                .ToList();
+                        }
                     }
-
-
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return result;
                 }
-
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return result;
-            }
             );
 
             var taskResult = await databaseTask;
@@ -69,51 +83,76 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+
         private void Books_Clicked(object sender, EventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator); });
-
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    BookListView.ItemsSource = await GetBooksAsync(ActivityIndicator);
+                }
+            );
         }
+
         private async void BackToList_Clicked(object sender, EventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator); });
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    BookListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+            );
         }
-
-
 
         private async void Movie_Clicked(object sender, EventArgs e)
         {
-            MainThread.BeginInvokeOnMainThread(async () => { BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator); });
-
+            MainThread.BeginInvokeOnMainThread(
+                async () =>
+                {
+                    BookListView.ItemsSource = await GetMovieAsync(ActivityIndicator);
+                }
+            );
         }
 
         public async Task<List<ProductModel>> GetBooksAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
-            {
-                List<ProductModel> result = null;
-                try
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new LibraryDBContext())
+                    List<ProductModel> result = null;
+                    try
                     {
-                        Products = db.Products.Where(x => x.ProductTypeId == 3).ToList();
-                        ProdType = db.ProductTypes.ToList();
+                        using (var db = new LibraryDBContext())
+                        {
+                            Products = db.Products.Where(x => x.ProductTypeId == 3).ToList();
+                            ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, ProId = p.Id }).ToList();
+                            result = Products
+                                .Join(
+                                    ProdType,
+                                    p => p.ProductTypeId,
+                                    pi => pi.Id,
+                                    (p, pi) =>
+                                        new ProductModel
+                                        {
+                                            Image = p.Image,
+                                            Name = p.ProductName,
+                                            Info = p.ProductInfo,
+                                            Type = pi.Type,
+                                            ProId = p.Id
+                                        }
+                                )
+                                .ToList();
+                        }
                     }
-
-
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return result;
                 }
-
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return result;
-            }
             );
 
             var taskResult = await databaseTask;
@@ -123,33 +162,46 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+
         public async Task<List<ProductModel>> GetMovieAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
             indicator.IsRunning = true;
-            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
-            {
-                List<ProductModel> result = null;
-                try
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new LibraryDBContext())
+                    List<ProductModel> result = null;
+                    try
                     {
-                        Products = db.Products.Where(x => x.ProductTypeId == 2).ToList();
-                        ProdType = db.ProductTypes.ToList();
+                        using (var db = new LibraryDBContext())
+                        {
+                            Products = db.Products.Where(x => x.ProductTypeId == 2).ToList();
+                            ProdType = db.ProductTypes.ToList();
 
-                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) => new ProductModel { Image = p.Image, Name = p.ProductName, Info = p.ProductInfo, Type = pi.Type, ProId = p.Id }).ToList();
+                            result = Products
+                                .Join(
+                                    ProdType,
+                                    p => p.ProductTypeId,
+                                    pi => pi.Id,
+                                    (p, pi) =>
+                                        new ProductModel
+                                        {
+                                            Image = p.Image,
+                                            Name = p.ProductName,
+                                            Info = p.ProductInfo,
+                                            Type = pi.Type,
+                                            ProId = p.Id
+                                        }
+                                )
+                                .ToList();
+                        }
                     }
-
-
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return result;
                 }
-
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return result;
-            }
             );
 
             var taskResult = await databaseTask;
@@ -159,6 +211,7 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
@@ -169,47 +222,49 @@ namespace Libery_Frontend.Views
             ProductModel item = btn.BindingContext as ProductModel;
             if (item != null)
             {
-
-                MainThread.BeginInvokeOnMainThread(async () =>
-                {
-                    using (var context = new LibraryDBContext())
+                MainThread.BeginInvokeOnMainThread(
+                    async () =>
                     {
-
-                        cart.ProductId = item.ProId;
-                        cart.UserId = LoginPage.Username;
-                        cart.DateBooked = DateTime.Now;
-                        cart.ReturnDate = DateTime.Now.AddDays(30);
-
-                        ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.ProId && x.UserId == LoginPage.Username).ToList();
-
-                        if (ShoppingCarts.Any())
+                        using (var context = new LibraryDBContext())
                         {
-                            await DisplayAlert("Redan bokad", "Du har redan bokat denna produkt", "OK");
+                            cart.ProductId = item.ProId;
+                            cart.UserId = LoginPage.Username;
+                            cart.DateBooked = DateTime.Now;
+                            cart.ReturnDate = DateTime.Now.AddDays(30);
 
-                        }
-                        else
-                        {
-                            context.Add(cart);
-                            context.SaveChanges();
+                            ShoppingCarts = context.ShoppingCarts
+                                .Where(
+                                    x => x.ProductId == item.ProId && x.UserId == LoginPage.Username
+                                )
+                                .ToList();
 
-                            var typeOfProduct = item.Type;
-                            await DisplayAlert($"{typeOfProduct} bokad",
-                                $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                            if (ShoppingCarts.Any())
+                            {
+                                await DisplayAlert(
+                                    "Redan lånad",
+                                    "Du har redan lånat denna produkt",
+                                    "OK"
+                                );
+                            }
+                            else
+                            {
+                                context.Add(cart);
+                                context.SaveChanges();
+
+                                var typeOfProduct = item.Type;
+                                await DisplayAlert(
+                                    $"{typeOfProduct} lånad",
+                                    $"{item.Name} är lånad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}",
+                                    "OK"
+                                );
+                            }
                         }
+                        BookListView.SelectedItem = null;
                     }
-                    BookListView.SelectedItem = null;
-                });
+                );
             }
             else
-                await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
-
-
+                await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
         }
     }
-
-
-
-
 }
-
-

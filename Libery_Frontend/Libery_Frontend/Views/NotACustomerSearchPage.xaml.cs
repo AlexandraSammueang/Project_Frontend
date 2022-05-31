@@ -16,6 +16,7 @@ namespace Libery_Frontend.Views
     public partial class NotACustomerSearchPage : ContentPage
     {
         private CancellationTokenSource _tokenSource;
+
         public NotACustomerSearchPage()
         {
             InitializeComponent();
@@ -25,38 +26,38 @@ namespace Libery_Frontend.Views
 
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
-            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(() =>
-            {
-                IEnumerable<IGrouping<string, Product>> groupedResult = null;
-                try
+            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<
+                IEnumerable<IGrouping<string, Product>>
+            >.Factory.StartNew(
+                () =>
                 {
-                    using (var db = new Models.LibraryDBContext())
+                    IEnumerable<IGrouping<string, Product>> groupedResult = null;
+                    try
                     {
-                        var query = from product in db.Products
-                                    where product.ProductName.ToLower().Contains(input.ToLower())
-                                    join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
+                        using (var db = new Models.LibraryDBContext())
+                        {
+                            var query =
+                                from product in db.Products
+                                where product.ProductName.ToLower().Contains(input.ToLower())
+                                join prodType in db.ProductTypes
+                                    on product.ProductType.Id equals prodType.Id
+                                select new { ProductType = prodType.Type, Product = product };
 
-                                    select new
-                                    {
-                                        ProductType = prodType.Type,
-                                        Product = product
-                                    };
+                            var grouped =
+                                from item in query.ToList()
+                                group item.Product by item.ProductType into g
+                                select g;
+                            //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
-                        var grouped = from item in query.ToList()
-                                      group item.Product by item.ProductType into g
-                                      select g;
-                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
-
-                        groupedResult = grouped;
+                            groupedResult = grouped;
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        // Display modal for error
+                    }
+                    return groupedResult;
                 }
-
-                catch (Exception ex)
-                {
-                    // Display modal for error
-                }
-                return groupedResult;
-            }
             );
 
             var taskResult = await databaseTask;
@@ -66,7 +67,6 @@ namespace Libery_Frontend.Views
 
         public async Task Search(String input)
         {
-
             await Task.Delay(600);
 
             if (!input.Equals(SearchBarInput.Text))
@@ -97,7 +97,6 @@ namespace Libery_Frontend.Views
         {
             string input = e.NewTextValue;
             await Search(input);
-
         }
 
         private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
@@ -108,15 +107,23 @@ namespace Libery_Frontend.Views
 
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
+            bool answer = await DisplayAlert(
+                "Inloggning krävs",
+                "Du måste logga in för att kunna låna en produkt.\n Vill du logga in?",
+                "Logga in",
+                "Avbryt"
+            );
             if (answer)
             {
                 var tab = new MainPage();
                 tab.CurrentPage = tab.Children[5];
 
-                await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+                await Application.Current.MainPage.Navigation.PushModalAsync(
+                    new NavigationPage(tab)
+                );
             }
-            else return;
+            else
+                return;
         }
     }
 }

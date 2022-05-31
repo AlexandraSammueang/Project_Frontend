@@ -35,7 +35,7 @@
                                             <Label Grid.Row="2" Grid.Column="2" Text="{Binding ProductInfo}" TextColor="Black"/>
                                         </StackLayout>
                                         <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
-                                            <Button x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1"/>
+                                            <Button x:Name="BookProductButton" Text="Låna" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1"/>
 
                                         </StackLayout>
                                     </StackLayout>

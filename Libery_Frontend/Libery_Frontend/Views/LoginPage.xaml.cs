@@ -110,7 +110,7 @@ namespace Libery_Frontend.Views
                         pageToAdd.IconImageSource = "adminicon.png";
                         pageToAddFifth.IconImageSource = "booksicon.png";
                         pageToAddThird.IconImageSource = "digitalicon.png";
-                        pageToAddFourth.IconImageSource = "searcicon.png";
+                        pageToAddFourth.IconImageSource = "searchicon.png";
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);

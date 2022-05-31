@@ -326,7 +326,16 @@ namespace Libery_Frontend.Views
 
             Button btn = sender as Button;
             ProductModel item = btn.BindingContext as ProductModel;
-            if (item != null)
+
+
+
+            if (item.IsBookable != true)
+            {
+                await DisplayAlert("Går ej att boka", "Denna produkt går för tillfället inte att boka", "OK");
+                return;
+            }
+
+            else if (item != null)
             {
 
                 MainThread.BeginInvokeOnMainThread(async () =>

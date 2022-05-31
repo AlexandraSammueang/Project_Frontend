@@ -132,6 +132,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="babarip.jpg" />
     <Content Include="Bibliotekbakgrund.jpg" />
     <Content Include="bookpic1done.jpg" />
     <Content Include="bookpic2done.jpg" />
@@ -142,9 +143,11 @@
     <Content Include="digitalicon.png" />
     <Content Include="homeicon.png" />
     <Content Include="keyicon.png" />
+    <Content Include="lolpic.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="searchicon.png" />
     <Content Include="shoppingcarticon.png" />
+    <Content Include="trollpic.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

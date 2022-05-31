@@ -177,7 +177,31 @@ namespace Libery_Frontend.Views
 
         }
 
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+                baba1.IsVisible = true;
+                baba2.IsVisible = true;
+                baba3.IsVisible = true;
+                baba4.IsVisible = true;
+                baba5.IsVisible = true;
+                baba6.IsVisible = true;
 
+            trollpic.IsVisible = false;
+            lolpic.IsVisible = true;
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            baba1.IsVisible = false;
+            baba2.IsVisible = false;
+            baba3.IsVisible = false;
+            baba4.IsVisible = false;
+            baba5.IsVisible = false;
+            baba6.IsVisible = false;
+
+            trollpic.IsVisible = true;
+            lolpic.IsVisible=false;
+        }
     }
 
     public class shoppingCartTestModel

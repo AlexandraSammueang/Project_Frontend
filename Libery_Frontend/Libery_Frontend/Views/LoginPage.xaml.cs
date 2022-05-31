@@ -64,6 +64,11 @@ namespace Libery_Frontend.Views
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
+                        pageToAdd.IconImageSource = "adminicon.png";
+                        pageToAddFifth.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "digitalicon.png";
+                        pageToAddFourth.IconImageSource = "searchicon.png";
+
                         homePage.Children.Insert(1, pageToAddFourth);
                         homePage.Children.Insert(2, pageToAddFifth);
                         homePage.Children.Insert(3, pageToAddThird);
@@ -102,6 +107,11 @@ namespace Libery_Frontend.Views
                         homePage.Children.Insert(2, pageToAddFifth);
                         homePage.Children.Insert(3, pageToAddThird);
 
+                        pageToAdd.IconImageSource = "adminicon.png";
+                        pageToAddFifth.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "digitalicon.png";
+                        pageToAddFourth.IconImageSource = "searcicon.png";
+
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
 
@@ -122,6 +132,11 @@ namespace Libery_Frontend.Views
                         pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";
                         pageToAddFourth.Title = "E-Media";
+
+                        pageToAdd.IconImageSource = "shoppingcarticon.png";
+                        pageToAddSecond.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "searchicon.png";
+                        pageToAddFourth.IconImageSource = "digitalicon.png";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);

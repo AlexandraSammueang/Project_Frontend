@@ -385,5 +385,9 @@ namespace Libery_Frontend.Views
 
         }
 
+        private void EBooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+        }
     }
 }

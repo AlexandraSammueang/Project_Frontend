@@ -110,7 +110,7 @@ namespace Libery_Frontend.Views
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Kundkorg";
-                        pageToAddSecond.Title = "Böcker";
+                        pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";
                         pageToAddFourth.Title = "E-Media";
 

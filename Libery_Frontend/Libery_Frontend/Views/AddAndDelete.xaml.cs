@@ -50,144 +50,148 @@ namespace Libery_Frontend.Views
             ProductType type = PickerProductType.SelectedItem as ProductType;
             ProductCategory category = PickerCategoryID.SelectedItem as ProductCategory;
 
-
-            if (item != null)
+            try
             {
 
-                using (var db = new Models.LibraryDBContext())
+                if (item != null && type != null && category != null)
                 {
 
-                    aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
-
-
-                    var newProduct = new Product
+                    using (var db = new Models.LibraryDBContext())
                     {
-                        ProductName = ProductNameEntry.Text,
-                        ProductInfo = ProductInfoEntry.Text,
-                        Isbn = ISBNEntry.Text,
-                        AuthorId = aut.Id,
-                        ProductTypeId = type.Id,
-                        Image = ImageEntry.Text,
-                        CategoryId = category.Id,
-                        Price = Convert.ToDouble(PriceEntry.Text),
-                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
 
-                    };
-                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+                        aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
 
 
-                    if (svar == true)
-                    {
-                        db.Add(newProduct);
-                        db.SaveChanges();
-                        await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
+                        var newProduct = new Product
+                        {
+                            ProductName = ProductNameEntry.Text,
+                            ProductInfo = ProductInfoEntry.Text,
+                            Isbn = ISBNEntry.Text,
+                            AuthorId = aut.Id,
+                            ProductTypeId = type.Id,
+                            Image = ImageEntry.Text,
+                            CategoryId = category.Id,
+                            Price = Convert.ToDouble(PriceEntry.Text),
+                            BookPages = Convert.ToInt32(BookPagesEntry.Text)
+
+                        };
+                        var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+
+
+                        if (svar == true)
+                        {
+                            db.Add(newProduct);
+                            db.SaveChanges();
+                            await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
+                        }
+                        else return;
+
+
                     }
-                    else { }
-
 
                 }
+                else await DisplayAlert("Fält saknas", "Var vänlig fyll i alla fält", "OK");
+            }catch (Exception ex) { await DisplayAlert("Fel", "Kunde inte lägga till produkt", "OK"); }
+            //else
+            //{
 
-            }
-            else
-            {
+            //    using (var db = new Models.LibraryDBContext())
+            //    {
 
-                using (var db = new Models.LibraryDBContext())
-                {
+            //        var newProduct = new Product
+            //        {
+            //            ProductName = ProductNameEntry.Text,
+            //            ProductInfo = ProductInfoEntry.Text,
+            //            Isbn = ISBNEntry.Text,
+            //            AuthorId = InsertAuthor(),
+            //            ProductTypeId = type.Id,
+            //            Image = ImageEntry.Text,
+            //            CategoryId = category.Id,
+            //            Price = Convert.ToDouble(PriceEntry.Text),
+            //            BookPages = Convert.ToInt32(BookPagesEntry.Text)
 
-                    var newProduct = new Product
-                    {
-                        ProductName = ProductNameEntry.Text,
-                        ProductInfo = ProductInfoEntry.Text,
-                        Isbn = ISBNEntry.Text,
-                        AuthorId = InsertAuthor(),
-                        ProductTypeId = type.Id,
-                        Image = ImageEntry.Text,
-                        CategoryId = category.Id,
-                        Price = Convert.ToDouble(PriceEntry.Text),
-                        BookPages = Convert.ToInt32(BookPagesEntry.Text)
+            //        };
 
-                    };
-
-                    var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
+            //        var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
 
 
-                    if (svar == true)
-                    {
-                        db.Add(newProduct);
-                        db.SaveChanges();
+            //        if (svar == true)
+            //        {
+            //            db.Add(newProduct);
+            //            db.SaveChanges();
 
-                        await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
-                    }
-                    else { }
-                }
-            }
+            //            await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
+            //        }
+            //        else { }
+            //    }
+            //}
 
         }
 
         private void picker_SelectedIndexChanged(object sender, System.EventArgs e)
         {
 
-            var s = (Picker)sender;
-            if (s.SelectedIndex == -1) return;
+            //var s = (Picker)sender;
+            //if (s.SelectedIndex == -1) return;
 
-            AuthorName author = (AuthorName)s.SelectedItem;
+            //AuthorName author = (AuthorName)s.SelectedItem;
 
-            string personsAsString = s.Items[s.SelectedIndex];
-            AuthorName author2 = (AuthorName)s.ItemsSource[s.SelectedIndex];
+            //string personsAsString = s.Items[s.SelectedIndex];
+            //AuthorName author2 = (AuthorName)s.ItemsSource[s.SelectedIndex];
 
-            AFirstnameEntry.Text = personsAsString;
+            //AFirstnameEntry.Text = personsAsString;
 
-            if (personsAsString.Contains(' '))
-            {
-                var split = personsAsString.Split(' ');
-                AFirstnameEntry.Text = split[0];
-                ALastnameEntry.Text = split[1];
+            //if (personsAsString.Contains(' '))
+            //{
+            //    var split = personsAsString.Split(' ');
+            //    AFirstnameEntry.Text = split[0];
+            //    ALastnameEntry.Text = split[1];
 
 
-            }
+            //}
         }
 
         private void PickerProductType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var s = (Picker)sender;
-            if (s.SelectedIndex == -1) return;
+            //var s = (Picker)sender;
+            //if (s.SelectedIndex == -1) return;
 
-            ProductType producttype = (ProductType)s.SelectedItem;
+            //ProductType producttype = (ProductType)s.SelectedItem;
 
-            string personsAsString = s.Items[s.SelectedIndex];
-            ProductType author2 = (ProductType)s.ItemsSource[s.SelectedIndex];
+            //string personsAsString = s.Items[s.SelectedIndex];
+            //ProductType author2 = (ProductType)s.ItemsSource[s.SelectedIndex];
 
-            ProductTypeIdEntry.Text = personsAsString;
+            //ProductTypeIdEntry.Text = personsAsString;
         }
 
         private void PickerCategoryID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var s = (Picker)sender;
-            if (s.SelectedIndex == -1) return;
+            //var s = (Picker)sender;
+            //if (s.SelectedIndex == -1) return;
 
-            ProductCategory categorytype = (ProductCategory)s.SelectedItem;
+            //ProductCategory categorytype = (ProductCategory)s.SelectedItem;
 
-            string personsAsString = s.Items[s.SelectedIndex];
-            ProductCategory author2 = (ProductCategory)s.ItemsSource[s.SelectedIndex];
+            //string personsAsString = s.Items[s.SelectedIndex];
+            //ProductCategory author2 = (ProductCategory)s.ItemsSource[s.SelectedIndex];
 
-            CategoryIdEntry.Text = personsAsString;
+            //CategoryIdEntry.Text = personsAsString;
         }
 
-        private int? InsertAuthor()
-        {
-            using (var db = new Models.LibraryDBContext())
-            {
+        //private int? InsertAuthor()
+        //{
+        //    using (var db = new Models.LibraryDBContext())
+        //    {
 
-                var newAuthor = new Author
-                {
-                    Firstname = AFirstnameEntry.Text,
-                    Lastname = ALastnameEntry.Text
-                };
-                db.Add(newAuthor);
-                db.SaveChanges();
-                return newAuthor.Id;
-            }
-        }
+        //        var newAuthor = new Author
+        //        {
+        //            Firstname = AFirstnameEntry.Text,
+        //            Lastname = ALastnameEntry.Text
+        //        };
+        //        db.Add(newAuthor);
+        //        db.SaveChanges();
+        //        return newAuthor.Id;
+        //    }
+        //}
 
         private void GetISBN_Clicked(object sender, System.EventArgs e)
         {

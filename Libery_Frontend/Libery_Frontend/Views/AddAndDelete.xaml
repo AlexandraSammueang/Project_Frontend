@@ -6,6 +6,9 @@
 
     <ContentPage.Resources>
         <ResourceDictionary Source="ResourcePage.xaml"/>
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
     </ContentPage.Resources>
     
     <ContentPage.Content>
@@ -18,7 +21,7 @@
 
                 <Frame Grid.Column="0">
                     <Grid>
-                        <Frame BackgroundColor="Olive"  WidthRequest="300">
+                        <Frame BackgroundColor="AntiqueWhite"  WidthRequest="300">
                             <StackLayout>
                                 <StackLayout Margin="0">
                                     <Label x:Name="ProductName" Text="Titel" />
@@ -87,7 +90,7 @@
                                     <Entry x:Name="BookPagesEntry"/>
                                 </StackLayout>
 
-                                <Button x:Name="AddButton" HorizontalOptions="Center" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
+                                <Button CornerRadius="5" x:Name="AddButton" BackgroundColor="SeaGreen"  HorizontalOptions="Center" FontAttributes="Bold" Text="Lägg till produkt" Margin="0,30,0,0" Clicked="AddButton_Clicked"/>
                             </StackLayout>
                         </Frame>
                     </Grid>

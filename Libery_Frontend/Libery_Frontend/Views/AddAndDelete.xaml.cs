@@ -26,7 +26,7 @@ namespace Libery_Frontend.Views
 
             using (var db = new Models.LibraryDBContext())
             {
-                aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
+               var aut = db.Authors.Select(x => new AuthorName { Firstname = x.Firstname, Lastname = x.Lastname, AuthorId = x.Id }).ToList();
 
                 pickerarray.ItemsSource = aut;
 
@@ -50,11 +50,13 @@ namespace Libery_Frontend.Views
             ProductType type = PickerProductType.SelectedItem as ProductType;
             ProductCategory category = PickerCategoryID.SelectedItem as ProductCategory;
 
+
             if (item != null)
             {
+
                 using (var db = new Models.LibraryDBContext())
                 {
-                    
+
                     aut = db.Authors.Where(x => x.Id == item.AuthorId).FirstOrDefault();
 
 
@@ -78,6 +80,7 @@ namespace Libery_Frontend.Views
                     {
                         db.Add(newProduct);
                         db.SaveChanges();
+                        await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
                     }
                     else { }
 
@@ -87,8 +90,10 @@ namespace Libery_Frontend.Views
             }
             else
             {
+
                 using (var db = new Models.LibraryDBContext())
                 {
+
                     var newProduct = new Product
                     {
                         ProductName = ProductNameEntry.Text,
@@ -102,6 +107,7 @@ namespace Libery_Frontend.Views
                         BookPages = Convert.ToInt32(BookPagesEntry.Text)
 
                     };
+
                     var svar = await DisplayAlert("Vill du lägga till produkten", "Är du helt säker?", "Ja", "Nej");
 
 
@@ -109,11 +115,15 @@ namespace Libery_Frontend.Views
                     {
                         db.Add(newProduct);
                         db.SaveChanges();
+
+                        await DisplayAlert("Produkt tillagd", "Produkten har lagts till i sortimentet", "OK");
                     }
                     else { }
                 }
             }
+
         }
+
         private void picker_SelectedIndexChanged(object sender, System.EventArgs e)
         {
 

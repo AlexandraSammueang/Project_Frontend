@@ -227,7 +227,7 @@ namespace Libery_Frontend.Views
         }
 
 
-        public async Task<List<ProductModel>> GetBooksFullListAsync( string prodName, string prodType, string prodCat, string authorName)
+        public async Task<List<ProductModel>> GetSingleBookView( string prodName, string prodType, string prodCat, string authorName)
         {
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
@@ -291,7 +291,7 @@ namespace Libery_Frontend.Views
         {
 
             ProductModel model = ProductListView.SelectedItem as ProductModel;
-            InspectProductListView.ItemsSource = await GetBooksFullListAsync( model.Name, model.Type, model.Category, "Författare: " + model.AuthorName);
+            InspectProductListView.ItemsSource = await GetSingleBookView( model.Name, model.Type, model.Category, "Författare: " + model.AuthorName);
 
             if (InspectProductListView.Opacity == 0)
             {
@@ -330,7 +330,7 @@ namespace Libery_Frontend.Views
 
          
             ProductModel model = EbooksListview.SelectedItem as ProductModel;
-            InspectProductListView.ItemsSource = await GetBooksFullListAsync( model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
+            InspectProductListView.ItemsSource = await GetSingleBookView( model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
 
         }
     }

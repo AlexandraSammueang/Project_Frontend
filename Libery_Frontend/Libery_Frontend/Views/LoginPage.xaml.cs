@@ -48,21 +48,30 @@ namespace Libery_Frontend.Views
                         Page pageToAdd = new LibrarianBossTabbedPage();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
+                        Page pageToAddThird = new NotACustomerEProductsPage();
 
                         var homePage = new MainPage();
 
+                        pageToAddThird.Title = "E-Media";
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekschef";
                         pageToAddFourth.Title = "Sök";
-                        pageToAddFifth.Title = "Alla produkter";
+                        pageToAddFifth.Title = "Böcker & Filmer";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
+                        pageToAdd.IconImageSource = "adminicon.png";
+                        pageToAddFifth.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "digitalicon.png";
+                        pageToAddFourth.IconImageSource = "searchicon.png";
+
                         homePage.Children.Insert(1, pageToAddFourth);
                         homePage.Children.Insert(2, pageToAddFifth);
+                        homePage.Children.Insert(3, pageToAddThird);
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
@@ -76,27 +85,34 @@ namespace Libery_Frontend.Views
                     {
 
                         Page pageToAdd = new LibrarianTabbedPage();
-                        // Page pageToAddSecond = new ProductDelete2();
                         Page pageToAddFourth = new NotACustomerSearchPage();
                         Page pageToAddFifth = new NotACustomerProductPage();
+                        Page pageToAddThird = new NotACustomerEProductsPage();
 
                         var homePage = new MainPage();
+
+                        pageToAddThird.Title = "E-Media";
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Bibliotekarie";
-                        //  pageToAddSecond.Title = "Ta bort/Lägg till";
                         pageToAddFourth.Title = "Sök";
-                        pageToAddFifth.Title = "Alla produkter";
+                        pageToAddFifth.Title = "Böcker & Filmer";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
+                        homePage.Children.RemoveAt(3);
                         homePage.Children.RemoveAt(2);
                         homePage.Children.RemoveAt(1);
 
                         homePage.Children.Insert(1, pageToAddFourth);
                         homePage.Children.Insert(2, pageToAddFifth);
+                        homePage.Children.Insert(3, pageToAddThird);
+
+                        pageToAdd.IconImageSource = "adminicon.png";
+                        pageToAddFifth.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "digitalicon.png";
+                        pageToAddFourth.IconImageSource = "searchicon.png";
 
                         homePage.Children.Add(pageToAdd);
-                        //homePage.Children.Add(pageToAddSecond);
                         await Navigation.PushAsync(homePage);
 
                         UsernameEntry.Text = "";
@@ -113,9 +129,14 @@ namespace Libery_Frontend.Views
                         var homePage = new MainPage();
                         homePage.Title = $"{userName} - Inloggad";
                         pageToAdd.Title = "Kundkorg";
-                        pageToAddSecond.Title = "Böcker";
+                        pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";
                         pageToAddFourth.Title = "E-Media";
+
+                        pageToAdd.IconImageSource = "shoppingcarticon.png";
+                        pageToAddSecond.IconImageSource = "booksicon.png";
+                        pageToAddThird.IconImageSource = "searchicon.png";
+                        pageToAddFourth.IconImageSource = "digitalicon.png";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
@@ -179,7 +200,11 @@ namespace Libery_Frontend.Views
         }
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
-            await Navigation.PushAsync(new RegisterPage());
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[5];
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+
         }
     }
 }

@@ -15,7 +15,7 @@
 
             <StackLayout>
                 <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
-                <Entry x:Name="PasswordEntry"/>
+                <Entry x:Name="PasswordEntry" IsPassword="True"/>
             </StackLayout>
 
             <Button x:Name="LoginButton" HorizontalOptions="Center" Text="Logga in" Margin="0,30,0,0" Clicked="LoginButton_Clicked"/>

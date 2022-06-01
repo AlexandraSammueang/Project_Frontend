@@ -9,6 +9,7 @@ namespace Libery_Frontend.SecondModels
         public string Image { get; set; } = default;
         public string Name { get; set; } = default;
         public string Info { get; set; } = default;
+        public string InfoConcat { get; set; } = default;
         public string Type { get; set; } = default;
         public int? ProId { get; set; } = default;
         public double? UnitPrice { get; set; } = default;
@@ -20,7 +21,7 @@ namespace Libery_Frontend.SecondModels
         public string ISBN { get; set; } = default;
         public int? Pages { get; set; } = default;
         public string Category { get; set; } = default;
-
+        public string AuthorName { get; set; }
 
     }
 

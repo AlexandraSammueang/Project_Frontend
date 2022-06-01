@@ -6,25 +6,22 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Libery_Frontend.SecondModels;
-using System.Globalization;
+
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserEProductsPage : ContentPage
+    public partial class NotACustomerEProductsPage : ContentPage
     {
-        public UserEProductsPage()
+        public List<ProductCategory> Category;
+        public List<Product> Products;
+        public List<ProductType> ProdType;
+        public List<Author> autName;
+        public List<Director> dirName;
+        public NotACustomerEProductsPage()
         {
             InitializeComponent();
         }
-
-        public List<Product> Products;
-        public List<ProductType> ProdType;
-        public List<ShoppingCart> ShoppingCarts;
-        public List<ProductCategory> Category;
-        public List<Author> autName;
-        public List<Director> dirName;
-
 
         public async Task<List<ProductModel>> GetBooksAsync()
         {
@@ -317,64 +314,7 @@ namespace Libery_Frontend.Views
 
 
         }
-
-        private async void BookProductButton_Clicked(object sender, EventArgs e)
-        {
-            ShoppingCart cart = new ShoppingCart();
-            DateTime returnDate = DateTime.Now.AddDays(30);
-            CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
-
-            Button btn = sender as Button;
-            ProductModel item = btn.BindingContext as ProductModel;
-
-
-
-            if (item.IsBookable != true)
-            {
-                await DisplayAlert("Går ej att boka", "Denna produkt går för tillfället inte att boka", "OK");
-                return;
-            }
-
-            else if (item != null)
-            {
-                MainThread.BeginInvokeOnMainThread(
-                    async () =>
-                    {
-                        using (var context = new LibraryDBContext())
-                        {
-                            cart.ProductId = item.ProId;
-                            cart.UserId = LoginPage.Username;
-                            cart.DateBooked = DateTime.Now;
-                            cart.ReturnDate = DateTime.Now.AddDays(30);
-
-                            ShoppingCarts = context.ShoppingCarts
-                                .Where(
-                                    x => x.ProductId == item.ProId && x.UserId == LoginPage.Username
-                                )
-                                .ToList();
-
-                            if (ShoppingCarts.Any())
-                            {
-                                await DisplayAlert(
-                                    "Redan lånad",
-                                    "Du har redan lånat denna produkt",
-                                    "OK"
-                                );
-                            }
-                            else
-                            {
-                                context.Add(cart);
-                                context.SaveChanges();
-
-                            var typeOfProduct = item.Type;
-                            await DisplayAlert($"{typeOfProduct} bokad",
-                                $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
-                        }
-                    }
-                });
-            }
-            else
-                await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
-        }
     }
+
+
 }

@@ -22,12 +22,12 @@
 
                 <StackLayout>
                     <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
-                    <Entry x:Name="PasswordEntry"/>
+                    <Entry x:Name="PasswordEntry" IsPassword="True"/>
                 </StackLayout>
 
                 <StackLayout>
                     <Label x:Name="ConfirmPaswordLabel" Text="Bekräfta Lösenord" FontSize="Small" FontAttributes="Bold"/>
-                    <Entry x:Name="ConfirmPasswordEntry"/>
+                    <Entry x:Name="ConfirmPasswordEntry" IsPassword="True"/>
                 </StackLayout>
 
                 <StackLayout>

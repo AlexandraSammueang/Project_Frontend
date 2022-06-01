@@ -5,14 +5,13 @@
             x:Class="Libery_Frontend.Views.MainPage">
 
     <TabbedPage.Children>
-        <Views:AboutPage Title="Hem"></Views:AboutPage>
-        <Views:SearchPage Title="Sök"/>
-        <Views:Books Title="Böcker"></Views:Books>
-        <Views:E_Media Title ="E-medier"></Views:E_Media>
-        <Views:LoginPage Title="Logga in"/>
-        <Views:RegisterPage Title="Registrering"/>
+        <Views:AboutPage  Title="Hem" IconImageSource="homeicon.png"></Views:AboutPage>
+        <Views:SearchPage IconImageSource="searchicon.png" Title="Sök"/>
+        <Views:Books IconImageSource="booksicon.png" Title="Böcker &amp; Filmer"></Views:Books>
+        <Views:E_Media IconImageSource="digitalicon.png"  Title ="E-medier"></Views:E_Media>
+        <Views:LoginPage IconImageSource="keyicon.png"  Title="Logga in"/>
+        <Views:UserSettingsPage IconImageSource="keyicon.png"  Title="Inställningar"/>
+        <Views:RegisterPage IsEnabled="False"/>
     </TabbedPage.Children>
     
-
-
 </TabbedPage>

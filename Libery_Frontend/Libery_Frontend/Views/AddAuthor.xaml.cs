@@ -19,7 +19,7 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
         }
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
             using (var db = new Models.LibraryDBContext())

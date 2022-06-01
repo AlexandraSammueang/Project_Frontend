@@ -28,7 +28,7 @@
                             <DataTemplate>
                                 <ViewCell>
                                     <Grid Padding="5">
-                                        <Frame CornerRadius="10" HasShadow="True" BackgroundColor="Bisque">
+                                        <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                             <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                 <Image Source="{Binding Image}" WidthRequest="90"/>
                                                 <StackLayout BackgroundColor="Transparent">

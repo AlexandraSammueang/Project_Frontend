@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.UserBooksPage"
+             x:Class="Libery_Frontend.Views.NotACustomerEProductsPage"
              xmlns:local="clr-namespace:Libery_Frontend.SecondModels">
 
     <ContentPage.Resources>
@@ -28,11 +28,11 @@
 
                 <StackLayout Grid.Column="0">
 
-                    <Button x:Name="BooksButton" Text="Böcker" FontAttributes="Bold" Clicked="BooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="LightSeaGreen"/>
-                    <Frame CornerRadius="20">
+                    <Button Text="E-böcker" x:Name="EBooksButton" FontAttributes="Bold" Clicked="EBooksButton_Clicked" CornerRadius="10" Margin="10" BackgroundColor="SeaGreen"/>
+                    <Frame Grid.Column="0" Margin="0,-10,0,0"  Padding="0,0,-10,0">
                         <StackLayout>
 
-                            <ListView x:Name="ProductListView" BackgroundColor="Transparent" IsVisible="false"  HasUnevenRows="True" ItemSelected="ProductListView_ItemSelected">
+                            <ListView x:Name="EBooksListview" BackgroundColor="Transparent" IsVisible="false"  HasUnevenRows="True" ItemSelected="EBooksListview_ItemSelected">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
@@ -46,7 +46,6 @@
                                                             <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" Padding="0"/>
                                                             <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" FontAttributes="Italic"   />
                                                             <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="15" WidthRequest="800"/>
-                                                            <Button BackgroundColor="LightSeaGreen" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </Frame>
@@ -62,7 +61,7 @@
                 <StackLayout Grid.Column="1">
                     <Frame  x:Name="SingleProdFrame" Grid.Column="2" Margin="0,52,0,0"  Padding="0,0,0,0" VerticalOptions="FillAndExpand">
                         <StackLayout  VerticalOptions="FillAndExpand">
-                            <ListView x:Name="InspectProductListView" Margin="0,10,0,0" IsVisible="true" Opacity="0" HasUnevenRows="True" >
+                            <ListView x:Name="InspectProductListView" IsVisible="true" Opacity="0" HasUnevenRows="True" >
                                 <ListView.ItemTemplate >
                                     <DataTemplate>
                                         <ViewCell>
@@ -102,10 +101,10 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="2">
-                    <Button Text="Filmer" x:Name="MovieButtons" FontAttributes="Bold" Clicked="MovieButtons_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="LightCoral"/>
+                    <Button Text="E-filmer" x:Name="EMoviesButton" FontAttributes="Bold" Clicked="EMoviesButton_Clicked" CornerRadius="10" Margin="10" BackgroundColor="LightCoral"/>
                     <Frame CornerRadius="20">
 
-                        <ListView x:Name="EbooksListview" IsVisible="false" ItemSelected="EbooksListview_ItemSelected">
+                        <ListView  Margin="-20" x:Name="EMoviesListview" IsVisible="false" ItemSelected="EMoviesListview_ItemSelected">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -119,7 +118,6 @@
                                                         <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" Padding="0"/>
                                                         <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" FontAttributes="Italic"   />
                                                         <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="15" WidthRequest="800"/>
-                                                        <Button BackgroundColor="LightCoral" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>
@@ -136,5 +134,4 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-
 

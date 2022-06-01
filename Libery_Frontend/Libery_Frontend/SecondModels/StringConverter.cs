@@ -1,32 +1,24 @@
 ﻿using System;
-using System.Globalization;
+using System.Collections.Generic;
+using System.Text;
 using Xamarin.Forms;
+using System.Globalization;
 
 namespace Libery_Frontend.SecondModels
 {
-    public class BoolConverter : IValueConverter
+    public class StringConverter : IValueConverter
     {
         #region IValueConverter implementation
+        private const int MaxLength = 100;
 
-        CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            string answer = null;
-
             if (value == null)
-            {
-                answer = "Information ej tillgänglig";
-                return answer;
-            }
+                return string.Empty;
 
-            var yesOrNo = (bool)value;
-
-            if (yesOrNo == true) answer = $"Ja";
-
-            else if (yesOrNo == false) answer = $"Nej";
-
+            //var longstring = (string)value;
             //put your custom formatting here
-            return answer;
+            return string.Concat(value.ToString().Substring(0, MaxLength-1), "...");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

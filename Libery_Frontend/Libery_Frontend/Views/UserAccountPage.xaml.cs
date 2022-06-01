@@ -74,60 +74,46 @@ namespace Libery_Frontend.Views
                         Users = db.Users.ToList();
                         ShoppingCarts = db.ShoppingCarts.ToList();
 
-                        cartResultone = ShoppingCarts
-                            .Join(
-                                Products,
-                                p => p.ProductId,
-                                pi => pi.Id,
-                                (p, pi) =>
-                                    new shoppingCartTestModel
-                                    {
-                                        AccountName = p.UserId,
-                                        Image = pi.Image,
-                                        ID = p.Id,
-                                        UnitPrice = (double)pi.Price,
-                                        ProductID = pi.Id,
-                                        AuthorID = (int)pi?.AuthorId,
-                                        ISBN = pi.Isbn,
-                                        ProductTypeID = (int)pi?.ProductTypeId,
-                                        ProductName = pi.ProductName,
-                                        CategoryID = (int)pi?.CategoryId,
-                                        ProductInfo = pi.ProductInfo,
-                                        ReleaseDate = pi.ReleaseDate.Value,
-                                        DateBooked = p.DateBooked.Value, //can use this syntax to get date
-                                        ReturnDate = (DateTime)p.ReturnDate //and this syntax
-                                    }
-                            )
-                            .Where(x => x.AccountName == LoginPage.Username)
-                            .ToList();
 
-                        cartResultone = cartResultone
-                            .Join(
-                                ProdType,
-                                p => p.ProductTypeID,
-                                pi => pi.Id,
-                                (p, pi) =>
-                                    new shoppingCartTestModel
-                                    {
-                                        AccountName = p.AccountName,
-                                        Image = p.Image,
-                                        UnitPrice = p.UnitPrice,
-                                        ID = p.ID,
-                                        ProductID = p.ProductID,
-                                        AuthorID = (int)p.AuthorID,
-                                        ISBN = p.ISBN,
-                                        ProductTypeID = (int)p.ProductTypeID,
-                                        ProductName = p.ProductName,
-                                        CategoryID = (int)p.CategoryID,
-                                        ProductInfo = p.ProductInfo,
-                                        ReleaseDate = p.ReleaseDate,
-                                        DateBooked = p.DateBooked,
-                                        ReturnDate = (DateTime)p.ReturnDate,
-                                        prodType = pi.Type
-                                    }
-                            )
-                            .ToList();
-                    }
+                    cartResultone = ShoppingCarts.Join(Products, p => p.ProductId, pi => pi.Id, (p, pi) => new shoppingCartTestModel
+                    {
+                        AccountName = p?.UserId,
+                        Image = pi.Image ?? "Ingen bild",
+                        ID = p?.Id,
+                        UnitPrice = pi.Price,
+                        ProductID = pi?.Id,
+                        AuthorID = pi?.AuthorId,
+                        ISBN = pi.Isbn ?? "Inget ISBN",
+                        ProductTypeID = pi?.ProductTypeId,
+                        ProductName = pi.ProductName ?? "Ingen titel",
+                        CategoryID = pi?.CategoryId,
+                        ProductInfo = pi.ProductInfo,
+                        ReleaseDate = pi?.ReleaseDate,
+                        DateBooked = p?.DateBooked, //can use this syntax to get date
+                        ReturnDate = (DateTime)p.ReturnDate //and this syntax
+                    }).Where(x => x.AccountName == LoginPage.Username).ToList();
+
+                    cartResultone = cartResultone.Join(ProdType, p => p.ProductTypeID, pi => pi.Id, (p, pi) => new shoppingCartTestModel
+                    {
+                        AccountName = p.AccountName,
+                        Image = p.Image,
+                        UnitPrice = p?.UnitPrice,
+                        ID = p?.ID,
+                        ProductID = p?.ProductID,
+                        AuthorID = p?.AuthorID,
+                        ISBN = p.ISBN,
+                        ProductTypeID = p?.ProductTypeID,
+                        ProductName = p.ProductName,
+                        CategoryID = p?.CategoryID,
+                        ProductInfo = p.ProductInfo,
+                        ReleaseDate = p?.ReleaseDate,
+                        DateBooked = p?.DateBooked,
+                        ReturnDate = p?.ReturnDate,
+                        prodType = pi.Type
+                    }).ToList();
+
+
+                }
 
                     return cartResultone;
                 }
@@ -203,24 +189,50 @@ namespace Libery_Frontend.Views
                     "OK"
                 );
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+                baba1.IsVisible = true;
+                baba2.IsVisible = true;
+                baba3.IsVisible = true;
+                baba4.IsVisible = true;
+                baba5.IsVisible = true;
+                baba6.IsVisible = true;
+
+            trollpic.IsVisible = false;
+            lolpic.IsVisible = true;
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            baba1.IsVisible = false;
+            baba2.IsVisible = false;
+            baba3.IsVisible = false;
+            baba4.IsVisible = false;
+            baba5.IsVisible = false;
+            baba6.IsVisible = false;
+
+            trollpic.IsVisible = true;
+            lolpic.IsVisible=false;
+        }
     }
 
     public class shoppingCartTestModel
     {
-        public int ID { get; set; } = default;
+        public int? ID { get; set; } = default;
         public string Image { get; set; } = default;
-        public double UnitPrice { get; set; }
-        public int AuthorID { get; set; } = default;
+        public double? UnitPrice { get; set; }
+        public int? AuthorID { get; set; } = default;
         public string ISBN { get; set; } = default;
-        public int ProductTypeID { get; set; } = default;
-        public int CategoryID { get; set; } = default;
+        public int? ProductTypeID { get; set; } = default;
+        public int? CategoryID { get; set; } = default;
         public string ProductName { get; set; } = default;
         public string ProductInfo { get; set; } = default;
-        public DateTime ReleaseDate { get; set; } = default;
-        public DateTime DateBooked { get; set; } = default;
-        public DateTime ReturnDate { get; set; } = default;
+        public DateTime? ReleaseDate { get; set; } = default;
+        public DateTime? DateBooked { get; set; } = default;
+        public DateTime? ReturnDate { get; set; } = default;
         public string UserID { get; set; } = default;
-        public int ProductID { get; set; } = default;
+        public int? ProductID { get; set; } = default;
         public string AccountName { get; set; }
         public string prodType { get; set; }
     }

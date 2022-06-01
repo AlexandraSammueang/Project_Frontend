@@ -303,6 +303,7 @@ namespace Libery_Frontend.Views
         {
             EbooksListview.Opacity = 0;
             EbooksListview.IsVisible = true;
+            SIsVisibleProperty. = false;
 
             ProductListView.ItemsSource = await GetBooksAsync();
             await Task.WhenAll(EbooksListview.FadeTo(1, 1000), ProductListView.FadeTo(0, 500));
@@ -332,6 +333,15 @@ namespace Libery_Frontend.Views
             ProductModel model = EbooksListview.SelectedItem as ProductModel;
             InspectProductListView.ItemsSource = await GetSingleBookView( model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
 
+        }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var booklist = await GetBooksAsync();
+            var filmlist = await GetMoviesAsync();
+
+            ProductListView.ItemsSource = booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue) || x.AuthorName.ToLower().Contains(e.NewTextValue));
+            EbooksListview.ItemsSource = filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue) || x.AuthorName.ToLower().Contains(e.NewTextValue));
         }
     }
 }

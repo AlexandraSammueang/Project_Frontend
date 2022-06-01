@@ -26,9 +26,7 @@ namespace Libery_Frontend.Views
 
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
-            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<
-                IEnumerable<IGrouping<string, Product>>
-            >.Factory.StartNew(
+            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(
                 () =>
                 {
                     IEnumerable<IGrouping<string, Product>> groupedResult = null;

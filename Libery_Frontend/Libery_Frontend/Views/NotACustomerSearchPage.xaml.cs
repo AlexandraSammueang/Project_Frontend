@@ -37,23 +37,26 @@ namespace Libery_Frontend.Views
                 {
                     using (var db = new LibraryDBContext())
                     {
-                        var query = from product in db.Products
-                                    where product.ProductName.ToLower().Contains(input.ToLower())
-                                    join prodType in db.ProductTypes on product.ProductType.Id equals prodType.Id
+                        var query =
+                            from product in db.Products
+                            where product.ProductName.ToLower().Contains(input.ToLower())
+                            join prodType in db.ProductTypes
+                                on product.ProductType.Id equals prodType.Id
+                            select new { ProductType = prodType.Type, Product = product };
 
-                            var grouped =
-                                from item in query.ToList()
-                                group item.Product by item.ProductType into g
-                                select g;
-                            //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
+                        var grouped =
+                            from item in query.ToList()
+                            group item.Product by item.ProductType into g
+                            select g;
+                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
-                            groupedResult = grouped;
-                        }
+                        groupedResult = grouped;
                     }
-                    catch (Exception ex)
-                    {
-                        // Display modal for error
-                    }
+                }
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
                     return groupedResult;
                 }
             );

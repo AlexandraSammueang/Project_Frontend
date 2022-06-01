@@ -78,6 +78,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <!--<Button x:Name="ExtendButton" Text="Förläng lånet" Clicked="ExtendButton_Clicked"></Button>-->
          
                 <Button x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" Clicked="InsertIntoOrderButton_Clicked"/>
 

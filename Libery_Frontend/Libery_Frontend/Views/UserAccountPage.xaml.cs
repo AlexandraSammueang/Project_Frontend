@@ -202,6 +202,51 @@ namespace Libery_Frontend.Views
             trollpic.IsVisible = true;
             lolpic.IsVisible=false;
         }
+
+        //private async void ExtendButton_Clicked(object sender, EventArgs e)
+        //{
+        //    ShoppingCart extendDate;
+        //    OrderDetail cart = new OrderDetail();
+        //    shoppingCartTestModel item = ProductListView.SelectedItem as shoppingCartTestModel;
+        //    if (item != null)
+        //    {
+        //        MainThread.BeginInvokeOnMainThread(async () =>
+        //        {
+        //            using (var context = new LibraryDBContext())
+        //            {
+
+        //                cart.ProductId = item.ProductID;
+        //                cart.OrderId = LoginPage.Username;
+        //                cart.CustomerDateBooked = item.DateBooked;
+        //                cart.CustomerReturnBooked = item.ReturnDate;
+
+        //                var orderList = context.Users.Where(x => x.Username == LoginPage.Username).FirstOrDefault();
+
+        //                item.ReturnDate = DateTime.Now.AddDays(30);
+
+                    
+
+        //                extendDate = context.ShoppingCarts.Where(x => x.Id == ca).FirstOrDefault();
+
+                        
+        //                context.Add(extendDate);
+        //                context.SaveChanges();
+
+        //                ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+        //                ListViewEmptyLabel.Text = await GetUserProductList();
+        //            }
+        //            ProductListView.SelectedItem = null;
+        //        });
+
+        //        var typeOfProduct = item.prodType;
+        //        await DisplayAlert($"{typeOfProduct}", "förlängd","OK");
+        //            //$"{item.ProductName} är återlämnad.\nTack!", "Gå vidare");
+
+
+        //    }
+
+        //    else await DisplayAlert("Produkt ej vald", "Välj en produkt för att lämna tillbaka", "OK");
+        //}
     }
 
     public class shoppingCartTestModel

@@ -12,6 +12,8 @@ namespace Libery_Frontend.Models
         public int? ProductId { get; set; }
         public int? Quantity { get; set; }
         public int? ItemsBookedAmount { get; set; }
+        public DateTime? DateBooked { get; set; }
+        public DateTime? ReturnDate { get; set; }
 
         public virtual Product Product { get; set; }
         public virtual User User { get; set; }

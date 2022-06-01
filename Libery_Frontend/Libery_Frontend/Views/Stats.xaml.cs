@@ -20,18 +20,57 @@ namespace Libery_Frontend.Views
         public List<Product> produtcs;
         public List<ProductCategory> categories;
         public List<ShoppingCart> shoppings;
-
+        
 
         public Stats()
         {
             InitializeComponent();
         }
+      
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
 
         }
+        public async Task<List<TopProduct>> GetStatsforUser(ActivityIndicator indicator)
+        {
+           
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+
+            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
+            {
+                List<TopProduct> tops = null;
+                {
+
+                    using (var db = new Models.LibraryDBContext())
+                        {
+                        var username = LoginPage.Username;
+                        var result = db.OrderDetails.Where(x => x.OrderId == username).ToList();
+
+                            var rest = (from ob in result
+                                        join prod in db.Products on ob.ProductId equals prod.Id
+                                        select new TopProduct { OrderId = ob.OrderId , ProductName = prod.ProductName,  }).ToList();
+
+
+
+                            return rest;
+                        }
+
+                }
+            }
+            );
+
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
+
+        }
+
 
 
         public async Task<List<TopProduct>> GetTopProductAsync(ActivityIndicator indicator)
@@ -183,37 +222,42 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
-        //public async Task<List<TopProduct>> BooksToReturnCategoryAsync(ActivityIndicator indicator)
-        //{
-        //    indicator.IsVisible = true;
-        //    indicator.IsRunning = true;
-        //    Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
-        //    {
-        //        List<TopProduct> result = null;
-        //        {
-        //            using (var db = new Models.LibraryDBContext())
-        //            {
+        public async Task<List<TopProduct>> BooksToReturnCategoryAsync(ActivityIndicator indicator)
+        {
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
+            {
+            List<TopProduct> result = null;
+            {
+                using (var db = new Models.LibraryDBContext())
+                {
 
-        //                shoppings = db.ShoppingCarts.ToList();
-        //                //var shopping = db.ShoppingCarts.ToList().GroupBy(x=> x.
+                    var shopping = db.ShoppingCarts.Select(x => new TopProduct { OrderId = x.UserId, DateBooked = x.DateBooked, ReturnDate = x.ReturnDate });
 
-        //                //return top3withname;
+                    var cart = shopping.OrderBy(x => x.ReturnDate).ToList();
 
-        //            }
+                    var c = (from ob in cart
+                            select new TopProduct { OrderId = ob.OrderId, ReturnDate = ob.ReturnDate, DateBooked = ob.DateBooked }).ToList();
+                       
+                        
+                        return c;
+
+                    }
 
 
 
-        //        }
-        //    }
-        //    );
+                }
+            }
+            );
 
-        //    var taskResult = await databaseTask;
+            var taskResult = await databaseTask;
 
-        //    indicator.IsRunning = false;
-        //    indicator.IsVisible = false;
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
 
-        //    return taskResult;
-        //}
+            return taskResult;
+        }
 
         public async Task<List<TopProduct>> GetLessLendProductAsync(ActivityIndicator indicator)
         {
@@ -314,6 +358,8 @@ namespace Libery_Frontend.Views
             public string ProductName { get; set; }
             public string ProductInfo { get; set; }
             public string Image { get; set; }
+
+
             public string Type { get; set; }
             public int? Category { get; set; }
             public string CategoryName { get; set; }
@@ -330,7 +376,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-
+            StatsforUser.IsVisible = false;
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetTopProductAsync(ActivityIndicator); });
 
         }
@@ -341,6 +387,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
+            StatsforUser.IsVisible = false;
 
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetLessLendProductAsync(ActivityIndicator); });
 
@@ -352,6 +399,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             ProductsListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
+            StatsforUser.IsVisible = false;
 
             MainThread.BeginInvokeOnMainThread(async () => { CategoryListView.ItemsSource = await GetTopCategoryAsync(ActivityIndicator); });
 
@@ -363,6 +411,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = true;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
+            StatsforUser.IsVisible = false;
             MainThread.BeginInvokeOnMainThread(async () => { UserListView.ItemsSource = await GetTopUserProductAsync(ActivityIndicator); });
 
         }
@@ -370,13 +419,26 @@ namespace Libery_Frontend.Views
         private void BooksToReturnButton_Clicked(object sender, EventArgs e)
         {
 
-            //BooksToReturnListView.IsVisible = true;
-            //ProductsListView.IsVisible = false;
-            //CategoryListView.IsVisible = false;
-            //UserListView.IsVisible = false;
-            //MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
+            BooksToReturnListView.IsVisible = true;
+            ProductsListView.IsVisible = false;
+            CategoryListView.IsVisible = false;
+            UserListView.IsVisible = false;
+            StatsforUser.IsVisible = false;
+
+            MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
 
 
+        }
+
+        private void UserStats_Clicked(object sender, EventArgs e)
+        {
+            
+            BooksToReturnListView.IsVisible = false;
+            ProductsListView.IsVisible = false;
+            CategoryListView.IsVisible = false;
+            UserListView.IsVisible = false;
+            StatsforUser.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { StatsforUser.ItemsSource = await GetStatsforUser(ActivityIndicator); });
         }
     }
 

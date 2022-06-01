@@ -28,6 +28,8 @@ namespace Libery_Frontend.Views
             var userPassword = new List<User>();
             string userName = UsernameEntry.Text;
 
+            Username = userName;
+
             using (var context = new LibraryDBContext())
             {
                 userPassword = context.Users

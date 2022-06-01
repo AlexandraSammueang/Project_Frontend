@@ -12,7 +12,6 @@
         <Views:LoginPage IconImageSource="keyicon.png"  Title="Logga in"/>
         <Views:UserSettingsPage IconImageSource="keyicon.png"  Title="Inställningar"/>
         <Views:RegisterPage IsEnabled="False"/>
-        <Views:LibrarianTabbedPage Title="bib"/>
     </TabbedPage.Children>
     
 </TabbedPage>

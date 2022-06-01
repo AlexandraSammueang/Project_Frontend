@@ -525,8 +525,9 @@ namespace Libery_Frontend.Views
 
         }
 
-        private void BackToListButton_Clicked(object sender, EventArgs e)
+        private async void BackToListButton_Clicked(object sender, EventArgs e)
         {
+
             E_MoviesLVSL.IsVisible = true;
             BooksLVSL.IsVisible = true;
             E_booksLVSL.IsVisible = true;
@@ -538,6 +539,12 @@ namespace Libery_Frontend.Views
             Grid.SetColumn(MoviesLVSL, 2);
             Grid.SetColumn(E_MoviesLVSL, 3);
             Grid.SetColumn(SingleProdFrame, 0);
+
+
+            BooksListview.ItemsSource = await GetBooksAsync();
+            E_bookslistview.ItemsSource = await GetE_BooksAsync();
+            Movieslistview.ItemsSource = await GetMoviesAsync();
+            E_Movieslistview.ItemsSource = await GetEMoviesAsync();
 
         }
 

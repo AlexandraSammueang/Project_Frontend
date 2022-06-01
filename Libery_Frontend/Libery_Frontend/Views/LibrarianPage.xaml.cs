@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Libery_Frontend.SecondModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.SecondModels;
 
 namespace Libery_Frontend.Views
 {
@@ -27,12 +26,12 @@ namespace Libery_Frontend.Views
             base.OnAppearing();
 
 
-            MainThread.BeginInvokeOnMainThread(async () => 
+            MainThread.BeginInvokeOnMainThread(async () =>
             {
                 BooksListview.ItemsSource = await GetBooksAsync();
-                E_bookslistview.ItemsSource = await GetBooksAsync();
-                Movieslistview.ItemsSource = await GetBooksAsync();
-                E_Movieslistview.ItemsSource = await GetBooksAsync();       
+                E_bookslistview.ItemsSource = await GetE_BooksAsync();
+                Movieslistview.ItemsSource = await GetMoviesAsync();
+                E_Movieslistview.ItemsSource = await GetEMoviesAsync();
             });
         }
 
@@ -112,6 +111,290 @@ namespace Libery_Frontend.Views
                             DirectorID = p.DirectorID,
                             AuthorName = pi.Firstname + " " + pi.Lastname
                         }).Where(x => x.Type == "Bok").ToList();
+
+
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
+            }
+            );
+
+            var taskResult = await databaseTask;
+            return taskResult;
+        }
+        public async Task<List<ProductModel>> GetMoviesAsync()
+        {
+
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            {
+                List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
+                try
+                {
+                    using (var db = new LibraryDBContext())
+                    {
+                        Category = db.ProductCategories.ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        dirName = db.Directors.ToList();
+
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            ProId = p.Id,
+                            InfoConcat = p.ProductInfo,
+                            Pages = p.BookPages,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            CategoryID = p.CategoryId,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable
+                        }).ToList();
+
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
+                        }).ToList();
+
+
+                        result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = p.Category,
+                            DirectorID = p.DirectorID,
+                            AuthorName = pi.Firstname + " " + pi.Lastname
+                        }).Where(x => x.Type == "Film").ToList();
+
+
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
+            }
+            );
+
+            var taskResult = await databaseTask;
+            return taskResult;
+        }
+        public async Task<List<ProductModel>> GetE_BooksAsync()
+        {
+
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            {
+                List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
+                try
+                {
+                    using (var db = new LibraryDBContext())
+                    {
+                        Category = db.ProductCategories.ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        autName = db.Authors.ToList();
+
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            ProId = p.Id,
+                            InfoConcat = p.ProductInfo,
+                            Pages = p.BookPages,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            CategoryID = p.CategoryId,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable
+                        }).ToList();
+
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            AuthorID = p.AuthorID,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
+                        }).ToList();
+
+
+                        result = result.Join(autName, pi => pi.AuthorID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            AuthorID = p.AuthorID,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = p.Category,
+                            DirectorID = p.DirectorID,
+                            AuthorName = pi.Firstname + " " + pi.Lastname
+                        }).Where(x => x.Type == "E-Bok").ToList();
+
+
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                        }
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
+            }
+            );
+
+            var taskResult = await databaseTask;
+            return taskResult;
+        }
+        public async Task<List<ProductModel>> GetEMoviesAsync()
+        {
+
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            {
+                List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
+                try
+                {
+                    using (var db = new LibraryDBContext())
+                    {
+                        Category = db.ProductCategories.ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        dirName = db.Directors.ToList();
+
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            ProId = p.Id,
+                            InfoConcat = p.ProductInfo,
+                            Pages = p.BookPages,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            CategoryID = p.CategoryId,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable
+                        }).ToList();
+
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
+                        }).Where(x => x.Type == "E-Film").ToList();
+
+
+                        result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = p.Category,
+                            DirectorID = p.DirectorID,
+                            AuthorName = pi.Firstname + " " + pi.Lastname
+                        }).ToList();
 
 
                         for (int i = 0; i < result.Count; i++)
@@ -239,6 +522,7 @@ namespace Libery_Frontend.Views
             Grid.SetColumnSpan(SingleProdFrame, 3);
             Grid.SetColumn(E_MoviesLVSL, 3);
             SingleProdFrame.IsVisible = true;
+
         }
 
         private void BackToListButton_Clicked(object sender, EventArgs e)
@@ -255,6 +539,49 @@ namespace Libery_Frontend.Views
             Grid.SetColumn(E_MoviesLVSL, 3);
             Grid.SetColumn(SingleProdFrame, 0);
 
+        }
+
+        private async void DeleteButton_Clicked(object sender, EventArgs e)
+        {
+
+            Button btn = sender as Button;
+            ProductModel item = btn.BindingContext as ProductModel;
+
+            try
+            {
+
+
+                using (var context = new LibraryDBContext())
+                {
+                    var removePost = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
+                    context.Products.Remove(removePost);
+                    var svar = await DisplayAlert("Ta bort vald produkt", "Är du helt säker?", "Ja", "Nej");
+                    if (svar == true)
+                    {
+                        context.SaveChanges();
+                        E_MoviesLVSL.IsVisible = true;
+                        BooksLVSL.IsVisible = true;
+                        E_booksLVSL.IsVisible = true;
+                        MoviesLVSL.IsVisible = true;
+                        SingleProdFrame.IsVisible = false;
+
+
+                        BooksListview.ItemsSource = await GetBooksAsync();
+                        E_bookslistview.ItemsSource = await GetE_BooksAsync();
+                        Movieslistview.ItemsSource = await GetMoviesAsync();
+                        E_Movieslistview.ItemsSource = await GetEMoviesAsync();
+
+                        Grid.SetColumn(BooksLVSL, 0);
+                        Grid.SetColumn(E_booksLVSL, 1);
+                        Grid.SetColumn(MoviesLVSL, 2);
+                        Grid.SetColumn(E_MoviesLVSL, 3);
+                        Grid.SetColumn(SingleProdFrame, 0);
+                    }
+                    else return;
+
+                }
+            }
+            catch (Exception ex) { await DisplayAlert("Fel", "Denna bok är för tillfället lånad. Kan inte tas bort.", "OK"); }
         }
     }
 }

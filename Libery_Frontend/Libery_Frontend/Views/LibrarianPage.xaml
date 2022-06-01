@@ -166,7 +166,7 @@
                                                         <Label VerticalOptions="Center" Text="{Binding Category, StringFormat='Kategori: {0}'}" FontSize="18" WidthRequest="800"/>
                                                         <Label VerticalOptions="Center" Text="{Binding ISBN, StringFormat='ISBN: {0}'}" FontSize="18" WidthRequest="800"/>
                                                         <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-                                                            <Button Text="Ta bort" x:Name="DeleteButton" BackgroundColor="Red"/>
+                                                            <Button Text="Ta bort" x:Name="DeleteButton" BackgroundColor="Red" Clicked="DeleteButton_Clicked"/>
                                                             <Button Text="Tillbaka till lista" x:Name="BackToListButton" BackgroundColor="Green" Clicked="BackToListButton_Clicked"/>
                                                         </StackLayout>
                                                     </StackLayout>

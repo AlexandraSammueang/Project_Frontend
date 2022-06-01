@@ -303,7 +303,7 @@ namespace Libery_Frontend.Views
         {
             EbooksListview.Opacity = 0;
             EbooksListview.IsVisible = true;
-            SIsVisibleProperty. = false;
+            
 
             ProductListView.ItemsSource = await GetBooksAsync();
             await Task.WhenAll(EbooksListview.FadeTo(1, 1000), ProductListView.FadeTo(0, 500));

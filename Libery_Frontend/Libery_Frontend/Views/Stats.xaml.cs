@@ -34,45 +34,7 @@ namespace Libery_Frontend.Views
 
         }
 
-        #region Shows history of products for a user
-        public async Task<List<TopProduct>> GetStatsforUser(ActivityIndicator indicator)
-        {
-           
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
-
-            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
-            {
-                List<TopProduct> tops = null;
-                {
-
-                    using (var db = new Models.LibraryDBContext())
-                        {
-                        var username = LoginPage.Username;
-                        var result = db.OrderDetails.Where(x => x.OrderId == username).ToList();
-
-                            var rest = (from ob in result
-                                        join prod in db.Products on ob.ProductId equals prod.Id
-                                        select new TopProduct { OrderId = ob.OrderId , ProductName = prod.ProductName,  }).ToList();
-
-
-
-                            return rest;
-                        }
-
-                }
-            }
-            );
-
-            var taskResult = await databaseTask;
-
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
-
-            return taskResult;
-
-        }
-        #endregion
+        
 
 
         #region This method shows which products whos has been most lend 
@@ -198,7 +160,7 @@ namespace Libery_Frontend.Views
                     var cart = shopping.OrderBy(x => x.ReturnDate).ToList();
 
                     var c = (from ob in cart
-                            select new TopProduct { OrderId = ob.OrderId, ReturnDate = ob.ReturnDate, DateBooked = ob.DateBooked }).ToList();
+                            select new TopProduct { OrderId = ob.OrderId, ReturnDate = ob.ReturnDate, DateBooked = ob.DateBooked}).ToList();
                        
                         
                         return c;
@@ -341,7 +303,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-            StatsforUser.IsVisible = false;
+         
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetTopProductAsync(ActivityIndicator); });
 
         }
@@ -352,7 +314,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-            StatsforUser.IsVisible = false;
+         
 
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetLessLendProductAsync(ActivityIndicator); });
 
@@ -364,7 +326,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             ProductsListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-            StatsforUser.IsVisible = false;
+      
 
             MainThread.BeginInvokeOnMainThread(async () => { CategoryListView.ItemsSource = await GetTopCategoryAsync(ActivityIndicator); });
 
@@ -376,7 +338,7 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = true;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-            StatsforUser.IsVisible = false;
+           
             MainThread.BeginInvokeOnMainThread(async () => { UserListView.ItemsSource = await GetTopUserProductAsync(ActivityIndicator); });
 
         }
@@ -388,23 +350,13 @@ namespace Libery_Frontend.Views
             ProductsListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             UserListView.IsVisible = false;
-            StatsforUser.IsVisible = false;
-
+         
             MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
 
 
         }
 
-        private async void UserStats_Clicked(object sender, EventArgs e)
-        {
-            
-            BooksToReturnListView.IsVisible = false;
-            ProductsListView.IsVisible = false;
-            CategoryListView.IsVisible = false;
-            UserListView.IsVisible = false;
-            StatsforUser.IsVisible = true;
-            MainThread.BeginInvokeOnMainThread(async () => { StatsforUser.ItemsSource = await GetStatsforUser(ActivityIndicator); });
-        }
+       
     }
 
 

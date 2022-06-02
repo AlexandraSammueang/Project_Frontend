@@ -9,13 +9,11 @@
 
             <Frame BackgroundColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
                 <StackLayout x:Name="Menu" IsVisible="true">
-                    <Label Text="Vilken statisk du vill se?" WidthRequest="100"  TextColor="Black"></Label>
-                    <Button x:Name="Mostlendproduct" Text="Mest lånade produkter" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="TopProduct_Clicked"></Button>
-                    <Button x:Name="LastlednProduct" Text="Minst lånade produkter" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="LastProduct_Clicked"></Button>
-                    <Button x:Name="TopCategoryProduct" Text="Topp kategori" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="TopCategoryProduct_Clicked"></Button>
-                    <Button x:Name="TopUser" Text="Vilken kund har lånat flest produkter" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="TopUser_Clicked"></Button>
-                    <Button x:Name="BooksToReturnButton" Text="Kunder som har böcker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="BooksToReturnButton_Clicked"></Button>
-                    <Button x:Name="UserStats" Text="Kundstatistik" FontAttributes="Bold" BackgroundColor="Black" TextColor="White" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
+                    <Button x:Name="Mostlendproduct" Text="Mest lånade produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopProduct_Clicked"></Button>
+                    <Button x:Name="LastlednProduct" Text="Minst lånade produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="LastProduct_Clicked"></Button>
+                    <Button x:Name="TopCategoryProduct" Text="Topp kategori" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopCategoryProduct_Clicked"></Button>
+                    <Button x:Name="TopUser" Text="Vilken kund har lånat flest produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopUser_Clicked"></Button>
+                    <Button x:Name="BooksToReturnButton" Text="Kunder som har böcker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="BooksToReturnButton_Clicked"></Button>
 
 
 
@@ -93,7 +91,7 @@
                                                         
                                                             <Label Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
                                                             <Label Grid.Row="2" Grid.Column="2"  Text="{Binding DateBooked, StringFormat='Bokad: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="3" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Senast returdag: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="3" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Senast returdag: {0:dddd,MM,yyyy} '}"  FontSize="Medium" TextColor="Black"/>
 
 
                                                         </StackLayout>
@@ -128,31 +126,7 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackLayout>
-                        <StackLayout x:Name="StatsforDifferentUser" IsVisible="true">
-                            <ListView x:Name="StatsforUser" BackgroundColor="Transparent"  HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
-                                                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                        <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
-                                                        <StackLayout BackgroundColor="Transparent">
-
-                                                            <Label Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                         
-
-
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </Frame>
-                                            </Grid>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
+                        
 
                     </StackLayout>
                 </StackLayout>

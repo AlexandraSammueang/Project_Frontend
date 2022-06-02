@@ -10,8 +10,6 @@
         <Views:Books IconImageSource="booksicon.png" Title="Böcker &amp; Filmer"></Views:Books>
         <Views:E_Media IconImageSource="digitalicon.png"  Title ="E-medier"></Views:E_Media>
         <Views:LoginPage IconImageSource="keyicon.png"  Title="Logga in"/>
-        <Views:UserSettingsPage IconImageSource="keyicon.png"  Title="Inställningar"/>
-        <Views:LibrarianBossTabbedPage IconImageSource="adminicon.png"  Title="chef"/>
         <Views:RegisterPage IsEnabled="False"/>
     </TabbedPage.Children>
     

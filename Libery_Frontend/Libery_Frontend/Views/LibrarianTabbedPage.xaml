@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibrarianTabbedPage"
              xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend">
+    
     <TabbedPage.Children>
         <mypages:AddAndDelete Title="Lägg till bok"/>
         <mypages:LibrarianPage Title="Ta bort bok"/>
@@ -10,4 +11,5 @@
         <mypages:AddProduct Title="Kategori/Författare/Typ"/>
         <mypages:Stats Title="Statistik"/>
     </TabbedPage.Children>
+    
 </TabbedPage>

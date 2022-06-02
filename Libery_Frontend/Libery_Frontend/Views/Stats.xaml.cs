@@ -34,7 +34,7 @@ namespace Libery_Frontend.Views
 
         }
 
-        #region Shows which user who has lend most products
+        #region Shows history of products for a user
         public async Task<List<TopProduct>> GetStatsforUser(ActivityIndicator indicator)
         {
            

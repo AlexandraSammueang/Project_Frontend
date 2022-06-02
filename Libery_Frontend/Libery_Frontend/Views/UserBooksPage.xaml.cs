@@ -116,7 +116,10 @@ namespace Libery_Frontend.Views
 
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }
@@ -212,7 +215,10 @@ namespace Libery_Frontend.Views
 
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }
@@ -284,7 +290,9 @@ namespace Libery_Frontend.Views
 
             ShoppingCart cart = new ShoppingCart();
             DateTime returnDate = DateTime.Now.AddDays(30);
+            DateTime bookedDate = DateTime.Now;
             CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
+
 
             Button btn = sender as Button;
             ProductModel item = btn.BindingContext as ProductModel;
@@ -305,8 +313,8 @@ namespace Libery_Frontend.Views
 
                         cart.ProductId = item.ProId;
                         cart.UserId = LoginPage.Username;
-                        cart.DateBooked = DateTime.Now;
-                        cart.ReturnDate = DateTime.Now.AddDays(30);
+                        cart.DateBooked = bookedDate;
+                        cart.ReturnDate = returnDate;
 
                         ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.ProId && x.UserId == LoginPage.Username).ToList();
 

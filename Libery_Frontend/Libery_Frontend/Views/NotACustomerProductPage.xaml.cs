@@ -113,7 +113,10 @@ namespace Libery_Frontend.Views
 
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }
@@ -209,7 +212,10 @@ namespace Libery_Frontend.Views
 
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }

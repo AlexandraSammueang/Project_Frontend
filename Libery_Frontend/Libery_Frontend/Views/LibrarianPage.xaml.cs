@@ -237,7 +237,7 @@ namespace Libery_Frontend.Views
                     using (var db = new LibraryDBContext())
                     {
                         Category = db.ProductCategories.ToList();
-                        Products = db.Products.ToList();
+                        Products = db.Products.ToList();    
                         ProdType = db.ProductTypes.ToList();
                         autName = db.Authors.ToList();
 
@@ -252,7 +252,7 @@ namespace Libery_Frontend.Views
                             InfoConcat = p.ProductInfo,
                             Pages = p.BookPages,
                             AuthorID = p.AuthorId,
-                            DirectorID = p.DirectorId,
+                          //  DirectorID = p.DirectorId,
                             CategoryID = p.CategoryId,
                             ReleaseDate = p.ReleaseDate,
                             UnitPrice = p.Price,
@@ -277,7 +277,7 @@ namespace Libery_Frontend.Views
                             ISBN = p.ISBN,
                             IsBookable = p.IsBookable,
                             Category = pi.Category,
-                            DirectorID = p.DirectorID
+                           // DirectorID = p.DirectorID
                         }).ToList();
 
 
@@ -298,14 +298,18 @@ namespace Libery_Frontend.Views
                             ISBN = p.ISBN,
                             IsBookable = p.IsBookable,
                             Category = p.Category,
-                            DirectorID = p.DirectorID,
+                           // DirectorID = p.DirectorID,
                             AuthorName = pi.Firstname + " " + pi.Lastname
                         }).Where(x => x.Type == "E-Bok").ToList();
 
 
+
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }
@@ -560,7 +564,7 @@ namespace Libery_Frontend.Views
 
                 using (var context = new LibraryDBContext())
                 {
-                    var removePost = context.Products.Where(x => x.ProductName == item.Name).FirstOrDefault();
+                    var removePost = context.Products.Where(x => x.Id == item.ProId).FirstOrDefault();
                     context.Products.Remove(removePost);
                     var svar = await DisplayAlert("Ta bort vald produkt", "Är du helt säker?", "Ja", "Nej");
                     if (svar == true)

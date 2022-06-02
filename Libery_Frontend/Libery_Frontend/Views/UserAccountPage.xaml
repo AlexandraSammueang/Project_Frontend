@@ -70,6 +70,7 @@
                                                 <Label VerticalOptions="Center" Text="{Binding prodType, StringFormat='{0}'}" FontSize="14" />
                                                 <Label VerticalOptions="Center" Text="{Binding DateBooked,Converter={StaticResource cnvDateTimeConverter},StringFormat='Bokad: {0:dddd, MMMM dd, yyyy}'}" FontSize="14" />
                                                 <Label VerticalOptions="Center" Text="{Binding ReturnDate,Converter={StaticResource cnvDateTimeConverter}, StringFormat='Återlämnas senast: {0}'}" FontSize="14" />
+                                                <Button x:Name="ExtendButton" Text="Förläng lånet" IsVisible="true" VerticalOptions="StartAndExpand"  Margin="0,0,0,0" Clicked="ExtendButton_Clicked"></Button>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>
@@ -78,8 +79,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <!--<Button x:Name="ExtendButton" Text="Förläng lånet" Clicked="ExtendButton_Clicked"></Button>-->
-         
+
                 <Button x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" Clicked="InsertIntoOrderButton_Clicked"/>
 
 

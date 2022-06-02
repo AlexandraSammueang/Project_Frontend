@@ -126,6 +126,7 @@ namespace Libery_Frontend.Views
         {
             ShoppingCart cartToRemove;
             OrderDetail cart = new OrderDetail();
+           
             shoppingCartTestModel item = ProductListView.SelectedItem as shoppingCartTestModel;
 
             if (item != null)
@@ -139,7 +140,7 @@ namespace Libery_Frontend.Views
                         cart.OrderId = LoginPage.Username;
                         cart.UnitPrice = item.UnitPrice;
                         cart.CustomerDateBooked = item.DateBooked;
-                        cart.CustomerReturnBooked = item.ReturnDate;
+                        cart.CustomerReturnBooked = DateTime.Now;
 
                         var orderList = context.Users.Where(x => x.Username == LoginPage.Username).FirstOrDefault();
 
@@ -170,7 +171,7 @@ namespace Libery_Frontend.Views
                 await DisplayAlert($"{typeOfProduct} återlämnad",
                     $"{item.ProductName} är återlämnad.\nTack!", "Gå vidare");
 
-                
+
             }
 
             else await DisplayAlert("Produkt ej vald", "Välj en produkt för att lämna tillbaka", "OK");
@@ -179,12 +180,12 @@ namespace Libery_Frontend.Views
 
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-                baba1.IsVisible = true;
-                baba2.IsVisible = true;
-                baba3.IsVisible = true;
-                baba4.IsVisible = true;
-                baba5.IsVisible = true;
-                baba6.IsVisible = true;
+            baba1.IsVisible = true;
+            baba2.IsVisible = true;
+            baba3.IsVisible = true;
+            baba4.IsVisible = true;
+            baba5.IsVisible = true;
+            baba6.IsVisible = true;
 
             trollpic.IsVisible = false;
             lolpic.IsVisible = true;
@@ -200,53 +201,46 @@ namespace Libery_Frontend.Views
             baba6.IsVisible = false;
 
             trollpic.IsVisible = true;
-            lolpic.IsVisible=false;
+            lolpic.IsVisible = false;
         }
 
-        //private async void ExtendButton_Clicked(object sender, EventArgs e)
-        //{
-        //    ShoppingCart extendDate;
-        //    OrderDetail cart = new OrderDetail();
-        //    shoppingCartTestModel item = ProductListView.SelectedItem as shoppingCartTestModel;
-        //    if (item != null)
-        //    {
-        //        MainThread.BeginInvokeOnMainThread(async () =>
-        //        {
-        //            using (var context = new LibraryDBContext())
-        //            {
-
-        //                cart.ProductId = item.ProductID;
-        //                cart.OrderId = LoginPage.Username;
-        //                cart.CustomerDateBooked = item.DateBooked;
-        //                cart.CustomerReturnBooked = item.ReturnDate;
-
-        //                var orderList = context.Users.Where(x => x.Username == LoginPage.Username).FirstOrDefault();
-
-        //                item.ReturnDate = DateTime.Now.AddDays(30);
-
-                    
-
-        //                extendDate = context.ShoppingCarts.Where(x => x.Id == ca).FirstOrDefault();
-
-                        
-        //                context.Add(extendDate);
-        //                context.SaveChanges();
-
-        //                ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
-        //                ListViewEmptyLabel.Text = await GetUserProductList();
-        //            }
-        //            ProductListView.SelectedItem = null;
-        //        });
-
-        //        var typeOfProduct = item.prodType;
-        //        await DisplayAlert($"{typeOfProduct}", "förlängd","OK");
-        //            //$"{item.ProductName} är återlämnad.\nTack!", "Gå vidare");
+        private async void ExtendButton_Clicked(object sender, EventArgs e)
+        {
+            ShoppingCart cart = new ShoppingCart();
 
 
-        //    }
+            Button btn = sender as Button;
+            shoppingCartTestModel item = btn.BindingContext as shoppingCartTestModel;
+            
 
-        //    else await DisplayAlert("Produkt ej vald", "Välj en produkt för att lämna tillbaka", "OK");
-        //}
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                using (var context = new LibraryDBContext())
+                {
+
+                    cart.ProductId = item.ProductID;
+                    cart.UserId = LoginPage.Username;
+                    cart.DateBooked = item.DateBooked;
+                    cart.ReturnDate = item.ReturnDate;
+
+                    cart = context.ShoppingCarts.Where(x => x.UserId == LoginPage.Username && x.ProductId == item.ProductID).ToList().FirstOrDefault();
+
+                    //cart.ReturnDate = DateTime.Now.AddDays(30);
+                    cart.ReturnDate = item.ReturnDate.Value.AddDays(30);
+                  
+
+                    context.Update(cart);
+                    context.SaveChanges();
+
+                    var typeOfProduct = item.ProductName;
+                    await DisplayAlert($"{typeOfProduct} förlängd",
+                        $"{item.ProductName} är förlängd.\nLämnas tillbaks senast {cart.ReturnDate}", "OK");
+
+                    ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
+                }
+            });
+
+        }
     }
 
     public class shoppingCartTestModel

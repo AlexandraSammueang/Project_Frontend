@@ -33,6 +33,8 @@ namespace Libery_Frontend.Views
 
 
         }
+
+        #region Shows which user who has lend most products
         public async Task<List<TopProduct>> GetStatsforUser(ActivityIndicator indicator)
         {
            
@@ -70,9 +72,10 @@ namespace Libery_Frontend.Views
             return taskResult;
 
         }
+        #endregion
 
 
-
+        #region This method shows which products whos has been most lend 
         public async Task<List<TopProduct>> GetTopProductAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -121,6 +124,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
+
+        #region This method shows top category 
         public async Task<List<TopProduct>> GetTopCategoryAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -171,57 +177,11 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
-        public async Task<List<TopProduct>> GetLeastCategoryAsync(ActivityIndicator indicator)
-        {
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
-            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
-            {
-                List<TopProduct> result = null;
-                {
-                    using (var db = new Models.LibraryDBContext())
-                    {
+     
+        #region This method shows which products a user should be returned
 
-                        orderDetails = db.OrderDetails.ToList();
-                        produtcs = db.Products.ToList();
-                        categories = db.ProductCategories.ToList();
-
-                        var newresult = db.OrderDetails.ToList()
-                           .GroupBy(l => l.ProductId)
-                                 .Select(g => new TopProduct
-                                 {
-                                     ProductID = g.Key,
-                                     orderCount = g.Select(l => l.ProductId).Count()
-                                 });
-                        var top3 = newresult.OrderBy(x => x.orderCount).Take(3).ToList();
-
-                        var top3withname = (from ob in top3
-                                            join prod in db.Products on ob.ProductID equals prod.Id
-                                            join category in db.ProductCategories on prod.CategoryId equals category.Id
-                                            join t in db.ProductTypes on prod.ProductTypeId equals t.Id
-                                            where prod.CategoryId != 0
-
-
-                                            select new TopProduct { Type = t.Type, orderCount = ob.orderCount, CategoryName = category.Category }).ToList();
-
-                        return top3withname;
-
-                    }
-
-
-
-                }
-            }
-            );
-
-            var taskResult = await databaseTask;
-
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
-
-            return taskResult;
-        }
         public async Task<List<TopProduct>> BooksToReturnCategoryAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -258,7 +218,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
+        #region This method shows which products has been least lend
         public async Task<List<TopProduct>> GetLessLendProductAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -306,7 +268,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
+        #region This method shows which user who has lend the most products
         public async Task<List<TopProduct>> GetTopUserProductAsync(ActivityIndicator indicator)
         {
 
@@ -350,6 +314,7 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
         public class TopProduct
         {
@@ -405,7 +370,7 @@ namespace Libery_Frontend.Views
 
         }
 
-        private void TopUser_Clicked(object sender, EventArgs e)
+        private async void TopUser_Clicked(object sender, EventArgs e)
         {
             ProductsListView.IsVisible = false;
             UserListView.IsVisible = true;
@@ -416,7 +381,7 @@ namespace Libery_Frontend.Views
 
         }
 
-        private void BooksToReturnButton_Clicked(object sender, EventArgs e)
+        private async void BooksToReturnButton_Clicked(object sender, EventArgs e)
         {
 
             BooksToReturnListView.IsVisible = true;
@@ -430,7 +395,7 @@ namespace Libery_Frontend.Views
 
         }
 
-        private void UserStats_Clicked(object sender, EventArgs e)
+        private async void UserStats_Clicked(object sender, EventArgs e)
         {
             
             BooksToReturnListView.IsVisible = false;

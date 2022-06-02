@@ -127,11 +127,6 @@ namespace Libery_Frontend.Views
                         Page pageToAddFourth = new UserEProductsPage();
 
                         var homePage = new MainPage();
-                        homePage.Title = $"{userName} - Inloggad";
-                        pageToAdd.Title = "Kundkorg";
-                        pageToAddSecond.Title = "Böcker & Flmer";
-                        pageToAddThird.Title = "Sök";
-                        pageToAddFourth.Title = "E-Media";
 
                         pageToAdd.IconImageSource = "shoppingcarticon.png";
                         pageToAddSecond.IconImageSource = "booksicon.png";
@@ -149,6 +144,12 @@ namespace Libery_Frontend.Views
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
+
+                        homePage.Title = $"{userName} - Inloggad";
+                        pageToAdd.Title = "Kundkorg";
+                        pageToAddSecond.Title = "Böcker & Flmer";
+                        pageToAddThird.Title = "Sök";
+                        pageToAddFourth.Title = "E-Media";
 
                         Username = userName;
 

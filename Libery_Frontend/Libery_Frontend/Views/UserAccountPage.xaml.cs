@@ -237,7 +237,6 @@ namespace Libery_Frontend.Views
 
                     cart = context.ShoppingCarts.Where(x => x.UserId == LoginPage.Username && x.ProductId == item.ProductID).ToList().FirstOrDefault();
 
-                    //cart.ReturnDate = DateTime.Now.AddDays(30);
                     cart.ReturnDate = item.ReturnDate.Value.AddDays(30);
                   
 

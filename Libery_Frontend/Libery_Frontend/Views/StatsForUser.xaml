@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.Views.StatsLibrarianAndBoss">
+             x:Class="Libery_Frontend.Views.StatsForUser">
     <ContentPage.Content>
         <Grid>
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
@@ -9,8 +9,8 @@
             <Frame BackgroundColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
                 <StackLayout x:Name="Menu" IsVisible="true">
                    
-                    <Button x:Name="UserStats" Text="Kundstatistik" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
-
+                    <Button x:Name="UserStats" Text="Lånehistorik" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
+                    <Button x:Name="BooksStats" Text="Producker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="BooksStats_Clicked"></Button>
 
 
                 </StackLayout>
@@ -35,8 +35,34 @@
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
 
-                                                            <Label Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0}'}"  FontSize="Medium" TextColor="Black"/>
+
+
+
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="BooksForAUserToreturn" IsVisible="true">
+                            <ListView x:Name="BooksToReturnUser" BackgroundColor="Transparent"  HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="5">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                                        <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
+                                                        <StackLayout BackgroundColor="Transparent">
+
+                                                            <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0}'}"  FontSize="Medium" TextColor="Black"/>
 
 
 

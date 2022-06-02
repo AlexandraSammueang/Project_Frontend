@@ -113,7 +113,10 @@ namespace Libery_Frontend.Views
 
                         for (int i = 0; i < result.Count; i++)
                         {
-                            result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
                 }
@@ -354,5 +357,6 @@ namespace Libery_Frontend.Views
             ProductListView.ItemsSource = booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
             EbooksListview.ItemsSource = filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
         }
+
     }
 }

@@ -83,6 +83,9 @@
 	<EmbeddedResource Update="Views\Stats.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
+	<EmbeddedResource Update="Views\StatsForUser.xaml">
+	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	</EmbeddedResource>
 	<EmbeddedResource Update="Views\UpdateProductPage.xaml">
 	  <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
 	</EmbeddedResource>
@@ -112,6 +115,9 @@
 		</Compile>
 		<Compile Update="Views\LibraryPage.xaml.cs">
 			<DependentUpon>LibraryPage.xaml</DependentUpon>
+		</Compile>
+		<Compile Update="Views\StatsForUser.xaml.cs">
+		  <DependentUpon>StatsForUser.xaml</DependentUpon>
 		</Compile>
 	</ItemGroup>
 </Project>

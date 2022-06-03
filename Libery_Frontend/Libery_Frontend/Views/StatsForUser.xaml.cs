@@ -1,28 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Libery_Frontend.Models;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Diagnostics;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StatsLibrarianAndBoss : ContentPage
+    public partial class StatsForUser : ContentPage
     {
-        public StatsLibrarianAndBoss()
+        public StatsForUser()
         {
             InitializeComponent();
         }
@@ -52,7 +41,7 @@ namespace Libery_Frontend.Views
 
                         var rest = (from ob in result
                                     join prod in db.Products on ob.ProductId equals prod.Id
-                                    select new TopProduct { OrderId = ob.OrderId, ProductName = prod.ProductName, }).ToList();
+                                    select new TopProduct { ProductName = prod.ProductName, ReturnDate = ob.CustomerReturnBooked }).ToList();
 
 
 
@@ -69,10 +58,51 @@ namespace Libery_Frontend.Views
             indicator.IsVisible = false;
 
             return taskResult;
-
         }
         #endregion
 
+        #region This method shows which products a user should be returned
+
+        public async Task<List<TopProduct>> BooksToReturnForAUser(ActivityIndicator indicator)
+        {
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
+            {
+                List<TopProduct> result = null;
+                {
+                    using (var db = new Models.LibraryDBContext())
+                    {
+
+                        //var shopping = db.ShoppingCarts.Select(x => new TopProduct { OrderId = x.UserId, ReturnDate = x.ReturnDate });
+
+                        var username = LoginPage.Username;
+                        var userinfo = db.Users.Where(x => x.Username == LoginPage.Username).ToList();
+
+                        var c = (from ob in userinfo
+                                 join s in db.ShoppingCarts on ob.Username equals s.UserId
+                                 join p in db.Products on s.ProductId equals p.Id
+                                 select new TopProduct { ProductName = p.ProductName, ReturnDate = s.ReturnDate }).ToList();
+
+
+                        return c;
+
+                    }
+
+
+
+                }
+            }
+            );
+
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
+        }
+        #endregion
         private async void UserStats_Clicked(object sender, EventArgs e)
         {
 
@@ -95,6 +125,13 @@ namespace Libery_Frontend.Views
 
             public DateTime? DateBooked { get; set; }
             public DateTime? ReturnDate { get; set; }
+
+        }
+
+        private void BooksStats_Clicked(object sender, EventArgs e)
+        {
+            BooksToReturnUser.IsVisible = true;
+            MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnUser.ItemsSource = await BooksToReturnForAUser(ActivityIndicator); });
 
         }
     }

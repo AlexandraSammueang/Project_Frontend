@@ -127,6 +127,7 @@ namespace Libery_Frontend.Views
                         Page pageToAddSecond = new UserBooksPage();
                         Page pageToAddThird = new UserSearchPage();
                         Page pageToAddFourth = new UserEProductsPage();
+                        Page pageToAddFive = new TappedPageForUser();
 
                         var homePage = new MainPage();
 
@@ -143,6 +144,8 @@ namespace Libery_Frontend.Views
                         homePage.Children.Insert(1, pageToAddThird);
                         homePage.Children.Insert(2, pageToAddSecond);
                         homePage.Children.Insert(3, pageToAddFourth);
+                        homePage.Children.Insert(4, pageToAddFive);
+
 
                         homePage.Children.Add(pageToAdd);
                         await Navigation.PushAsync(homePage);
@@ -152,6 +155,7 @@ namespace Libery_Frontend.Views
                         pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";
                         pageToAddFourth.Title = "E-Media";
+                        pageToAddFive.Title = "Min profil";
 
                         Username = userName;
 

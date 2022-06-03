@@ -89,8 +89,8 @@
                                                         <StackLayout BackgroundColor="Transparent">
                                                         
                                                             <Label Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding DateBooked, StringFormat='Bokad: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="3" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Senast returdag: {0:dddd,MM,yyyy} '}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding DateBooked, StringFormat='Bokad: {0:dd/MM/yyyy}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="3" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnas senast: {0:dd/MM/yyyy} '}"  FontSize="Medium" TextColor="Black"/>
 
 
                                                         </StackLayout>

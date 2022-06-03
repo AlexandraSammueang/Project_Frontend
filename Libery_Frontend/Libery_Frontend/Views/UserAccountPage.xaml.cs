@@ -127,6 +127,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        #region Method to return a product
         private async void InsertIntoOrderButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cartToRemove;
@@ -189,7 +190,7 @@ namespace Libery_Frontend.Views
                     "OK"
                 );
         }
-
+        #endregion
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             baba1.IsVisible = true;
@@ -216,6 +217,7 @@ namespace Libery_Frontend.Views
             lolpic.IsVisible = false;
         }
 
+        #region Method to extend returndate on a product
         private async void ExtendButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
@@ -253,6 +255,7 @@ namespace Libery_Frontend.Views
 
         }
     }
+    #endregion
 
     public class shoppingCartTestModel
     {

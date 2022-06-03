@@ -10,7 +10,7 @@
                 <StackLayout x:Name="Menu" IsVisible="true">
                    
                     <Button x:Name="UserStats" Text="Lånehistorik" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
-                    <Button x:Name="BooksStats" Text="Producker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="BooksStats_Clicked"></Button>
+                    <Button x:Name="BooksStats" Text="Produker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="BooksStats_Clicked"></Button>
 
 
                 </StackLayout>

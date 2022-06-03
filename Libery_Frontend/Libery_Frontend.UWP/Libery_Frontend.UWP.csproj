@@ -148,6 +148,7 @@
     <Content Include="searchicon.png" />
     <Content Include="shoppingcarticon.png" />
     <Content Include="trollpic.png" />
+    <Content Include="usericon.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

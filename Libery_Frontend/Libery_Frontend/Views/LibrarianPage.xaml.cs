@@ -594,5 +594,19 @@ namespace Libery_Frontend.Views
             }
             catch (Exception ex) { await DisplayAlert("Fel", "Denna bok är för tillfället lånad. Kan inte tas bort.", "OK"); }
         }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var booklist = await GetBooksAsync();
+            var filmlist = await GetMoviesAsync();
+            var E_filmlist = await GetEMoviesAsync();
+            var E_booklist = await GetE_BooksAsync();
+
+            BooksListview.ItemsSource = booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            E_bookslistview.ItemsSource = E_booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            Movieslistview.ItemsSource = filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            E_Movieslistview.ItemsSource = E_filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+
+        }
     }
 }

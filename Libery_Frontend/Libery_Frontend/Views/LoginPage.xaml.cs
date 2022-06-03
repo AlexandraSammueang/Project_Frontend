@@ -123,7 +123,7 @@ namespace Libery_Frontend.Views
 
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
-                        Page pageToAdd = new UserAccountPage(userName);
+                       // Page pageToAdd = new UserAccountPage(userName);
                         Page pageToAddSecond = new UserBooksPage();
                         Page pageToAddThird = new UserSearchPage();
                         Page pageToAddFourth = new UserEProductsPage();
@@ -131,7 +131,7 @@ namespace Libery_Frontend.Views
 
                         var homePage = new MainPage();
 
-                        pageToAdd.IconImageSource = "shoppingcarticon.png";
+                       // pageToAdd.IconImageSource = "shoppingcarticon.png";
                         pageToAddSecond.IconImageSource = "booksicon.png";
                         pageToAddThird.IconImageSource = "searchicon.png";
                         pageToAddFourth.IconImageSource = "digitalicon.png";
@@ -147,11 +147,11 @@ namespace Libery_Frontend.Views
                         homePage.Children.Insert(4, pageToAddFive);
 
 
-                        homePage.Children.Add(pageToAdd);
+                        homePage.Children.Add(pageToAddFive);
                         await Navigation.PushAsync(homePage);
 
                         homePage.Title = $"{userName} - Inloggad";
-                        pageToAdd.Title = "Kundkorg";
+                        pageToAddFive.Title = "Min profil";
                         pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";
                         pageToAddFourth.Title = "E-Media";

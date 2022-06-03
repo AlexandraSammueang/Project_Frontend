@@ -36,7 +36,7 @@
                                                         <StackLayout BackgroundColor="Transparent">
 
                                                             <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0:dd/MM/yyyy}'}"  FontSize="Medium" TextColor="Black"/>
 
 
 
@@ -62,7 +62,7 @@
                                                         <StackLayout BackgroundColor="Transparent">
 
                                                             <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0:dd/MM/yyyy}'}"  FontSize="Medium" TextColor="Black"/>
 
 
 

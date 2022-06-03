@@ -130,7 +130,7 @@ namespace Libery_Frontend.Views
 
         private void BooksStats_Clicked(object sender, EventArgs e)
         {
-
+            BooksToReturnUser.IsVisible = true;
             MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnUser.ItemsSource = await BooksToReturnForAUser(ActivityIndicator); });
 
         }

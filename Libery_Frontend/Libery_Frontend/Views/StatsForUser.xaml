@@ -19,39 +19,11 @@
             <Frame  Grid.Column="1">
                 <StackLayout>
 
-
-
                     <StackLayout x:Name="AddProdFrame" IsVisible="true">
 
                        
                         <StackLayout x:Name="StatsforDifferentUser" IsVisible="true">
                             <ListView x:Name="StatsforUser" BackgroundColor="Transparent"  HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
-                                                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                                                        <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
-                                                        <StackLayout BackgroundColor="Transparent">
-
-                                                            <Label Grid.Row="1" Grid.Column="2"  Text="{Binding ProductName, StringFormat='Produkt: {0}'}"  FontSize="Medium" TextColor="Black"/>
-                                                            <Label Grid.Row="2" Grid.Column="2"  Text="{Binding ReturnDate, StringFormat='Återlämnad: {0:dd/MM/yyyy}'}"  FontSize="Medium" TextColor="Black"/>
-
-
-
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </Frame>
-                                            </Grid>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-
-                        <StackLayout x:Name="BooksForAUserToreturn" IsVisible="true">
-                            <ListView x:Name="BooksToReturnUser" BackgroundColor="Transparent"  HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>

@@ -61,48 +61,7 @@ namespace Libery_Frontend.Views
         }
         #endregion
 
-        #region This method shows which products a user should be returned
-
-        public async Task<List<TopProduct>> BooksToReturnForAUser(ActivityIndicator indicator)
-        {
-            indicator.IsVisible = true;
-            indicator.IsRunning = true;
-            Task<List<TopProduct>> databaseTask = Task<List<TopProduct>>.Factory.StartNew(() =>
-            {
-                List<TopProduct> result = null;
-                {
-                    using (var db = new Models.LibraryDBContext())
-                    {
-
-                        //var shopping = db.ShoppingCarts.Select(x => new TopProduct { OrderId = x.UserId, ReturnDate = x.ReturnDate });
-
-                        var username = LoginPage.Username;
-                        var userinfo = db.Users.Where(x => x.Username == LoginPage.Username).ToList();
-
-                        var c = (from ob in userinfo
-                                 join s in db.ShoppingCarts on ob.Username equals s.UserId
-                                 join p in db.Products on s.ProductId equals p.Id
-                                 select new TopProduct { ProductName = p.ProductName, ReturnDate = s.ReturnDate }).ToList();
-
-
-                        return c;
-
-                    }
-
-
-
-                }
-            }
-            );
-
-            var taskResult = await databaseTask;
-
-            indicator.IsRunning = false;
-            indicator.IsVisible = false;
-
-            return taskResult;
-        }
-        #endregion
+       
         private async void UserStats_Clicked(object sender, EventArgs e)
         {
 
@@ -128,11 +87,6 @@ namespace Libery_Frontend.Views
 
         }
 
-        private void BooksStats_Clicked(object sender, EventArgs e)
-        {
-            BooksToReturnUser.IsVisible = true;
-            MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnUser.ItemsSource = await BooksToReturnForAUser(ActivityIndicator); });
-
-        }
+        
     }
 }

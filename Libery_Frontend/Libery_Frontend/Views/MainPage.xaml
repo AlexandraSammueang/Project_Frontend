@@ -10,7 +10,7 @@
         <Views:Books IconImageSource="booksicon.png" Title="Böcker &amp; Filmer"></Views:Books>
         <Views:E_Media IconImageSource="digitalicon.png"  Title ="E-medier"></Views:E_Media>
         <Views:LoginPage IconImageSource="keyicon.png"  Title="Logga in"/>
-        <Views:RegisterPage IsEnabled="False"/>
+        <Views:RegisterPage/>
     </TabbedPage.Children>
     
 </TabbedPage>

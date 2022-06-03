@@ -96,7 +96,7 @@
                                                             <Label VerticalOptions="Center" Text="{Binding Type, StringFormat='{0}'}" FontSize="18" WidthRequest="800"/>
                                                             <Label VerticalOptions="Center" Text="{Binding Category, StringFormat='Kategori: {0}'}" FontSize="18" WidthRequest="800"/>
                                                             <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" WidthRequest="800" IsVisible="true"/>
-                                                            <Label VerticalOptions="Center" Text="{Binding UnitPrice, StringFormat='{0}kr'}" FontSize="18" WidthRequest="800"/>
+                                                            <!--<Label VerticalOptions="Center" Text="{Binding UnitPrice, StringFormat='{0}kr'}" FontSize="18" WidthRequest="800"/>-->
                                                             <Label VerticalOptions="Center" Text="{Binding ReleaseDate, Converter={StaticResource dateConverter}, StringFormat='Utgiven: {0}'}" FontSize="18" WidthRequest="800"/>
                                                             <Label VerticalOptions="Center" Text="{Binding IsBookable,Converter={StaticResource boolConverter}, StringFormat='Går att boka: {0}'}" FontSize="18" WidthRequest="800"/>
                                                             <Label VerticalOptions="Center" Text="{Binding ISBN, StringFormat='ISBN: {0}'}" FontSize="18" WidthRequest="800" Margin="0,15,0,0"/>

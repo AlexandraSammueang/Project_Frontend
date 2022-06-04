@@ -11,15 +11,24 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StatsForUser : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
+
         public StatsForUser()
         {
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
+            _timeOnPage = new Models.MetaStats("userstats", "Statistiksida (användare)");
             base.OnAppearing();
 
 
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         #region Shows history of products for a user

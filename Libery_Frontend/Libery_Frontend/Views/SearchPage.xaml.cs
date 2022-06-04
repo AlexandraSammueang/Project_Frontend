@@ -9,17 +9,31 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Libery_Frontend.SecondModels;
 using System.Threading;
+using Xamarin.Essentials;
 
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         private CancellationTokenSource _tokenSource;
 
         public SearchPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("search", "Söksidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         public int i = 0;

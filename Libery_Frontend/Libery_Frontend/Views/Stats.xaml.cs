@@ -278,6 +278,81 @@ namespace Libery_Frontend.Views
         }
         #endregion
 
+        #region This method shows the average of all on site time for all significant pages
+        public async Task<List<SiteMetaStatistic>> GetOnPageTimes(ActivityIndicator indicator)
+        {
+
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<SiteMetaStatistic>> databaseTask = Task<List<SiteMetaStatistic>>.Factory.StartNew(() =>
+            {
+                List<SiteMetaStatistic> result = null;
+                {
+                    using (var db = new Models.LibraryDBContext())
+                    {
+                        result = (from item in db.MetaStatistics
+                                 orderby item.Mean descending
+                                 select new SiteMetaStatistic() { 
+                                     PageName = item.PageName,
+                                     Mean = item.Mean,
+                                     Visits = item.Visits
+                                 }
+                                 ).ToList();
+
+                        return result;
+                    }
+
+                }
+            }
+            );
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
+        }
+
+        #endregion
+
+        #region This method shows the visit count for significant pages
+        public async Task<List<SiteMetaStatistic>> GetSiteVisits(ActivityIndicator indicator)
+        {
+
+            indicator.IsVisible = true;
+            indicator.IsRunning = true;
+            Task<List<SiteMetaStatistic>> databaseTask = Task<List<SiteMetaStatistic>>.Factory.StartNew(() =>
+            {
+                List<SiteMetaStatistic> result = null;
+                {
+                    using (var db = new Models.LibraryDBContext())
+                    {
+                        result = (from item in db.MetaStatistics
+                                  orderby item.Visits descending
+                                  select new SiteMetaStatistic()
+                                  {
+                                      PageName = item.PageName,
+                                      Mean = item.Mean,
+                                      Visits = item.Visits
+                                  }
+                                 ).ToList();
+
+                        return result;
+                    }
+
+                }
+            }
+            );
+            var taskResult = await databaseTask;
+
+            indicator.IsRunning = false;
+            indicator.IsVisible = false;
+
+            return taskResult;
+        }
+
+        #endregion
+
         public class TopProduct
         {
             public int? ProductID { get; set; }
@@ -297,12 +372,22 @@ namespace Libery_Frontend.Views
 
         }
 
+        public class SiteMetaStatistic
+        {
+            private double _mean;
+            public string PageName { get; set; }
+            public double Mean { get { return Math.Round(_mean, 2); } set { _mean = value; } }
+            public long Visits { get; set; }
+        }
+
         private async void TopProduct_Clicked(object sender, EventArgs e)
         {
             ProductsListView.IsVisible = true;
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = false;
          
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetTopProductAsync(ActivityIndicator); });
 
@@ -314,7 +399,9 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-         
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = false;
+
 
             MainThread.BeginInvokeOnMainThread(async () => { ProductsListView.ItemsSource = await GetLessLendProductAsync(ActivityIndicator); });
 
@@ -326,7 +413,9 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = false;
             ProductsListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-      
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = false;
+
 
             MainThread.BeginInvokeOnMainThread(async () => { CategoryListView.ItemsSource = await GetTopCategoryAsync(ActivityIndicator); });
 
@@ -338,7 +427,9 @@ namespace Libery_Frontend.Views
             UserListView.IsVisible = true;
             CategoryListView.IsVisible = false;
             BooksToReturnListView.IsVisible = false;
-           
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = false;
+
             MainThread.BeginInvokeOnMainThread(async () => { UserListView.ItemsSource = await GetTopUserProductAsync(ActivityIndicator); });
 
         }
@@ -350,13 +441,37 @@ namespace Libery_Frontend.Views
             ProductsListView.IsVisible = false;
             CategoryListView.IsVisible = false;
             UserListView.IsVisible = false;
-         
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = false;
+
             MainThread.BeginInvokeOnMainThread(async () => { BooksToReturnListView.ItemsSource = await BooksToReturnCategoryAsync(ActivityIndicator); });
 
 
         }
 
-       
+        private void TimeOnSitesButton_Clicked(object sender, EventArgs e)
+        {
+            BooksToReturnListView.IsVisible = false;
+            ProductsListView.IsVisible = false;
+            CategoryListView.IsVisible = false;
+            UserListView.IsVisible = false;
+            TimeOnSitesListView.IsVisible = true;
+            SiteVisitsListView.IsVisible = false;
+
+            MainThread.BeginInvokeOnMainThread(async () => { TimeOnSitesListView.ItemsSource = await GetOnPageTimes(ActivityIndicator); });
+        }
+
+        private void SiteVisitsButton_Clicked(object sender, EventArgs e)
+        {
+            BooksToReturnListView.IsVisible = false;
+            ProductsListView.IsVisible = false;
+            CategoryListView.IsVisible = false;
+            UserListView.IsVisible = false;
+            TimeOnSitesListView.IsVisible = false;
+            SiteVisitsListView.IsVisible = true;
+
+            MainThread.BeginInvokeOnMainThread(async () => { SiteVisitsListView.ItemsSource = await GetSiteVisits(ActivityIndicator); });
+        }
     }
 
 

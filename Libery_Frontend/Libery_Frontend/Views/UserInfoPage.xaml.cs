@@ -12,6 +12,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserInfoPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         public List<Models.User> users;
         public UserInfoPage()
         {
@@ -20,9 +21,15 @@ namespace Libery_Frontend.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-
+            _timeOnPage = new Models.MetaStats("userpage", "Kontosidan");
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
+        }
+
         public async Task<List<UserInfo>> GetInfoAboutUser(ActivityIndicator indicator)
         {
 

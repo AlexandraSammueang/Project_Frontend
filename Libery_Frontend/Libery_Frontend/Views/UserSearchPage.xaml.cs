@@ -17,6 +17,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserSearchPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         private CancellationTokenSource _tokenSource;
         public List<Product> Products;
         public List<ProductType> ProdType;
@@ -25,6 +26,18 @@ namespace Libery_Frontend.Views
         public UserSearchPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("search", "Söksidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         public int i = 0;

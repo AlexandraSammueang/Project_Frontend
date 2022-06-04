@@ -12,6 +12,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class E_Media : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         public List<ProductCategory> Category;
         public List<Product> Products;
         public List<ProductType> ProdType;
@@ -20,6 +21,18 @@ namespace Libery_Frontend.Views
         public E_Media()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("emedia", "E-Media sidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         public async Task<List<ProductModel>> GetBooksAsync()

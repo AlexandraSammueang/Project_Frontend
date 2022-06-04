@@ -19,6 +19,7 @@ namespace Libery_Frontend.Models
 
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Director> Directors { get; set; }
+        public virtual DbSet<MetaStatistic> MetaStatistics { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
@@ -64,6 +65,23 @@ namespace Libery_Frontend.Models
                 entity.Property(e => e.Firstname).HasMaxLength(20);
 
                 entity.Property(e => e.Lastname).HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<MetaStatistic>(entity =>
+            {
+                /*entity.HasIndex(e => e.PageId, "UQ__MetaStat__C565B105023CBF54")
+                    .IsUnique();*/
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.PageId)
+                    .IsRequired()
+                    .HasMaxLength(128)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PageName)
+                    .IsRequired()
+                    .HasMaxLength(128);
             });
 
             modelBuilder.Entity<Order>(entity =>

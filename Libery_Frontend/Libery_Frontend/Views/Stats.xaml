@@ -14,6 +14,8 @@
                     <Button x:Name="TopCategoryProduct" Text="Topp kategori" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopCategoryProduct_Clicked"></Button>
                     <Button x:Name="TopUser" Text="Vilken kund har lånat flest produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopUser_Clicked"></Button>
                     <Button x:Name="BooksToReturnButton" Text="Kunder som har böcker att lämna tillbaka" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="BooksToReturnButton_Clicked"></Button>
+                    <Button x:Name="TimeOnSitesButton" Text="Genomsnittlig användartid på olika sidor" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TimeOnSitesButton_Clicked"></Button>
+                    <Button x:Name="SiteVisitsButton" Text="Totalt antal besök hos olika sidor" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="SiteVisitsButton_Clicked"></Button>
 
 
 
@@ -64,7 +66,7 @@
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
 
-                                                            <Label  Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label  Grid.Row="1" Grid.Column="2"  Text="{Binding PageName, StringFormat='Sida: {0}'}"  FontSize="Medium" TextColor="Black"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </Frame>
@@ -125,7 +127,49 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackLayout>
-                        
+
+                        <StackLayout x:Name="TimeOnSites" IsVisible="true">
+                            <ListView x:Name="TimeOnSitesListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="5">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                                        <StackLayout BackgroundColor="Transparent">
+                                                            <Label Grid.Row="6" Grid.Column="2"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
+                                                            <Label Grid.Row="7" Grid.Column="2"  Text="{Binding Mean, StringFormat='{0} Sek'}" FontSize="Medium" TextColor="Black"></Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="SiteVisits" IsVisible="true">
+                            <ListView x:Name="SiteVisitsListView" BackgroundColor="Transparent"  HasUnevenRows="True">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Padding="5">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                                                        <StackLayout BackgroundColor="Transparent">
+                                                            <Label Grid.Row="6" Grid.Column="2"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
+                                                            <Label Grid.Row="7" Grid.Column="2"  Text="{Binding Visits, StringFormat='{0} Besök'}" FontSize="Medium" TextColor="Black"></Label>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
 
                     </StackLayout>
                 </StackLayout>

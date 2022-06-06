@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Libery_Frontend.SecondModels;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Libery_Frontend.SecondModels;
-using System.Globalization;
 
 namespace Libery_Frontend.Views
 {
@@ -25,7 +25,9 @@ namespace Libery_Frontend.Views
         public List<Author> autName;
         public List<Director> dirName;
 
-
+        //GET BOOKS FUNCTIONS
+        //Several joins from database tables
+        #region
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -42,6 +44,8 @@ namespace Libery_Frontend.Views
                         ProdType = db.ProductTypes.ToList();
                         autName = db.Authors.ToList();
 
+
+                        //Products table joined with Producttypes table
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -61,6 +65,8 @@ namespace Libery_Frontend.Views
                             IsBookable = p.IsBookable
                         }).ToList();
 
+                        //Result of products + producttype join extended with second join.
+                        //Result joined with Category table
                         result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -81,7 +87,8 @@ namespace Libery_Frontend.Views
                             DirectorID = p.DirectorID
                         }).ToList();
 
-
+                        //Result of previous joins extended with third join.
+                        //Result joined with Authors table
                         result = result.Join(autName, pi => pi.AuthorID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -103,6 +110,9 @@ namespace Libery_Frontend.Views
                             AuthorName = pi.Firstname + " " + pi.Lastname
                         }).Where(x => x.Type == "E-Bok").ToList();
 
+
+                        //For visual purposes, reduce string length of item description to 60.
+                        //Substring is saved into a separate variable so the full description can still be accessed.
                         for (int i = 0; i < result.Count; i++)
                         {
                             if (result[i].Info != null && result[i].Info.Length > 60)
@@ -125,7 +135,13 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        #endregion
 
+
+        //GET E-MOVIES FUNCTION
+        //SAME AS REGION ABOVE WITH SMALL MODERATION
+        //TABLES JOINED WITH END RESULT BEING CONNECTED TO DIRECTOR TABLE INSTEAD OF AUTHOR TABLE
+        #region
         public async Task<List<ProductModel>> GetEMoviesAsync()
         {
 
@@ -181,6 +197,7 @@ namespace Libery_Frontend.Views
                         }).Where(x => x.Type == "E-Film").ToList();
 
 
+                        //Main change of the #region. Get Result based on Director table instead of Author
                         result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -223,8 +240,15 @@ namespace Libery_Frontend.Views
             var taskResult = await databaseTask;
             return taskResult;
         }
+        #endregion
 
 
+        //GET SINGLE PRODUCT INFO FUNCTION
+        #region
+
+
+        //When an item is selected from the list, this function is called in order to dynamically display a full-info section
+        //of that specific item.
         public async Task<List<ProductModel>> GetBooksFullListAsync(string prodName, string prodType, string prodCat, string authorName)
         {
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
@@ -271,7 +295,11 @@ namespace Libery_Frontend.Views
             var taskResult = await databaseTask;
             return taskResult;
         }
+        #endregion
 
+
+        //Show detailed product info based on item selected
+        #region
         private async void EBooksButton_Clicked(object sender, EventArgs e)
         {
             EBooksListview.Opacity = 0;
@@ -323,6 +351,16 @@ namespace Libery_Frontend.Views
 
         }
 
+        #endregion
+        
+        //BOOK PRODUCT FUNCTIONS
+        #region
+
+        //If item is bookable (true/false) and book button is clicked, insert info from the buttons binding context into Shoppingcart table
+        //and connect it to the user currently logged in (Database)
+        //
+        //If user is not logged in, prompt user to login before booking item. If admin is logged in, no button is showed.
+
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
@@ -371,15 +409,16 @@ namespace Libery_Frontend.Views
                                 context.Add(cart);
                                 context.SaveChanges();
 
-                            var typeOfProduct = item.Type;
-                            await DisplayAlert($"{typeOfProduct} bokad",
-                                $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                                var typeOfProduct = item.Type;
+                                await DisplayAlert($"{typeOfProduct} bokad",
+                                    $"{item.Name} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                            }
                         }
-                    }
-                });
+                    });
             }
             else
                 await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
         }
+        #endregion
     }
 }

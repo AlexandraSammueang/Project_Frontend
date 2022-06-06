@@ -2,9 +2,11 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             xmlns:Views="clr-namespace:Libery_Frontend.Views"
-            x:Class="Libery_Frontend.Views.MainPage">
-
-    <TabbedPage.Children>
+            x:Class="Libery_Frontend.Views.MainPage"
+            >
+    
+    
+        <TabbedPage.Children>
         <Views:AboutPage  Title="Hem" IconImageSource="homeicon.png"></Views:AboutPage>
         <Views:SearchPage IconImageSource="searchicon.png" Title="Sök"/>
         <Views:Books IconImageSource="booksicon.png" Title="Böcker &amp; Filmer"></Views:Books>

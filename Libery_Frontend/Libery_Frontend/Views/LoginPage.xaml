@@ -6,28 +6,63 @@
         <ResourceDictionary Source="ResourcePage.xaml"/>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout>
+        <ScrollView>
+            <RelativeLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Grid>
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="Center" >
+                            <AbsoluteLayout>
+                    <Grid >
+                        
 
-                <Label x:Name="UsernameLabel" Text="Användarnamn" FontSize="Small" FontAttributes="Bold"/>
-                <Entry x:Name="UsernameEntry"/>
-            </StackLayout>
+                        <BoxView CornerRadius="10" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="2" Margin="300,-10,350,-30">
+                            <BoxView.Background>
+                                <LinearGradientBrush >
 
-            <StackLayout>
-                <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
-                <Entry x:Name="PasswordEntry" IsPassword="True"/>
-            </StackLayout>
+                                    <GradientStop Color="LightCoral" Offset=".68" />
+                                    <GradientStop  Offset=".2" Color="#3D999B" />
 
-            <Button x:Name="LoginButton" HorizontalOptions="Center" Text="Logga in" Margin="0,30,0,0" Clicked="LoginButton_Clicked"/>
+                                </LinearGradientBrush>
+                            </BoxView.Background>
 
-            <Label Text="Registrera dig" TextDecorations="Underline" TextColor="Black" HorizontalOptions="Center">
-                <Label.GestureRecognizers>
+                        </BoxView>
+                            <Image Source="bookpic1done.jpg"  HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
 
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        
+                        <StackLayout HorizontalOptions="EndAndExpand" Grid.Row="2" Grid.Column="2" Margin="0">
 
-                </Label.GestureRecognizers>
-            </Label>
 
+                            <StackLayout  Margin="0,0,0,0">
+                                <StackLayout >
+
+                                    <Label x:Name="UsernameLabel" Text="Användarnamn" FontSize="Small" FontAttributes="Bold"/>
+                                    
+                                    <Entry x:Name="UsernameEntry" />
+                                    
+                                </StackLayout>
+
+                                <StackLayout >
+                                    <Label x:Name="PaswordLabel" Text="Lösenord" FontSize="Small" FontAttributes="Bold"/>
+                                    <Entry x:Name="PasswordEntry" IsPassword="True"/>
+                                </StackLayout>
+
+                                <Button x:Name="LoginButton" HorizontalOptions="Center" TextColor="White" Text="Logga in" Margin="0,20,0,0" CornerRadius="10" Clicked="LoginButton_Clicked" BackgroundColor="#104D56" FontFamily="DINpro" FontAttributes="Bold"/>
+
+                                <Label Text="Registrera dig" TextDecorations="Underline" TextColor="Black" HorizontalOptions="Center" >
+                                    <Label.GestureRecognizers>
+
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </Grid></AbsoluteLayout>
+
+                </StackLayout>
+            </Grid>
         </StackLayout>
+            </RelativeLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

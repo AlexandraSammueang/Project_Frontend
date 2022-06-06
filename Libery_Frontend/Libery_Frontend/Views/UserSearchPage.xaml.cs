@@ -27,8 +27,12 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
+        //SEARCH FUNCTIONS
+        #region
+
         public int i = 0;
 
+        //Query available search items
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
             Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(
@@ -50,7 +54,6 @@ namespace Libery_Frontend.Views
                                 from item in query.ToList()
                                 group item.Product by item.ProductType into g
                                 select g;
-                            //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
                             groupedResult = grouped;
                         }
@@ -68,6 +71,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        //Display items from search query that matches search input
         public async Task Search(String input)
         {
             await Task.Delay(600);
@@ -96,18 +100,29 @@ namespace Libery_Frontend.Views
             }
         }
 
+        //asynchronously check for changes in the search field and display results corresponding to matching items
         private async void Entry_TextChanged(object sender, TextChangedEventArgs e)
         {
             string input = e.NewTextValue;
             await Search(input);
         }
 
+        // same functionality as above but only issued when the search icon is actually clicked
         private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
         {
             string input = SearchBarInput.Text;
             await Search(input);
         }
+        #endregion
 
+
+        //BOOK PRODUCT FUNCTIONS
+        #region
+
+        //If item is bookable (true/false) and book button is clicked, insert info from the buttons binding context into Shoppingcart table
+        //and connect it to the user currently logged in (Database)
+        //
+        //If user is not logged in, prompt user to login before booking item. If admin is logged in, no button is showed.
         private async void BookProductButton_Clicked_1(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
@@ -170,5 +185,6 @@ namespace Libery_Frontend.Views
             else
                 await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
         }
+        #endregion
     }
 }

@@ -71,7 +71,7 @@
                         </BoxView>
 
                         <Frame Padding="0" Margin="0,0,0,0" Grid.Row="0" CornerRadius="10" Scale="1" >
-                            <SearchBar Placeholder="Sök på titel, regissör, författare" TextChanged="SearchBar_TextChanged" Scale="1.005" Margin="0,-2,0,0">
+                            <SearchBar Placeholder="Sök på titel, regissör, författare" TextChanged="SearchBar_TextChanged" Scale="1.008" Margin="0,-1,0,0">
 
                             </SearchBar>
                         </Frame>

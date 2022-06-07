@@ -20,9 +20,8 @@
                     </BoxView>
 
                     <Frame Padding="0" Margin="0,0,0,0" Grid.Row="0" CornerRadius="10" Scale="1" >
-                        <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque"  SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100" Scale="1.008" Margin="0,-1,0,0">
+                        <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque"  SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100" Scale="1.008" Margin="0,-1,0,0"/>
 
-                        </SearchBar>
                     </Frame>
                 </Grid>
             </RelativeLayout>

@@ -70,7 +70,10 @@
                                                 <Label VerticalOptions="Center" Text="{Binding prodType, StringFormat='{0}'}" FontSize="14" />
                                                 <Label VerticalOptions="Center" Text="{Binding DateBooked,Converter={StaticResource cnvDateTimeConverter},StringFormat='Bokad: {0:dddd, MMMM dd, yyyy}'}" FontSize="14" />
                                                 <Label VerticalOptions="Center" Text="{Binding ReturnDate,Converter={StaticResource cnvDateTimeConverter}, StringFormat='Återlämnas senast: {0}'}" FontSize="14" />
-                                                <Button x:Name="ExtendButton" Text="Förläng lånet" IsVisible="true" VerticalOptions="StartAndExpand"  Margin="0,0,0,0" Clicked="ExtendButton_Clicked"></Button>
+                                                <StackLayout Orientation="Horizontal" Margin="5,15,5,0">
+                                                    <Button CornerRadius="5" x:Name="ExtendButton" Text="Förläng lånet" IsVisible="true" VerticalOptions="StartAndExpand"   Clicked="ExtendButton_Clicked" BackgroundColor="LightSeaGreen"></Button>
+                                                    <Button CornerRadius="5" x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" Clicked="InsertIntoOrderButton_Clicked" BackgroundColor="LightCoral"/>
+                                                </StackLayout>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>
@@ -79,9 +82,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-                <Button x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" Clicked="InsertIntoOrderButton_Clicked"/>
-
 
             </StackLayout>
             <StackLayout BackgroundColor="Pink" Grid.Column="2">

@@ -16,6 +16,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="400" />
                 </Grid.ColumnDefinitions>
 
@@ -91,15 +92,14 @@
                         </Frame>
                     </Grid>
                 </Frame>
+                
                 <Frame Grid.Column="1">
-                    <StackLayout>
-                        
-                    </StackLayout>
-                    
-                </Frame>
-                <Frame Grid.Column="2">
                     <WebView x:Name="webSite"/>
+                </Frame> 
+                <Frame Grid.Column="2">
+                    <WebView x:Name="webSite2"/>
                 </Frame>
+                
             </Grid>
         </ScrollView>
     </ContentPage.Content>

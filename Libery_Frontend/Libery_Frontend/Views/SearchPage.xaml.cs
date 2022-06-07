@@ -128,45 +128,16 @@ namespace Libery_Frontend.Views
         //prompt user to login before being able to book item
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
-            bool answer = await DisplayAlert(
-                "Inloggning krävs",
-                "Du måste logga in för att kunna låna en produkt.\n Vill du logga in?",
-                "Logga in",
-                "Avbryt"
-            );
-            if (answer)
-            {
-                //navigate user to loginpage
-                var tab = new MainPage();
-                tab.CurrentPage = tab.Children[4];
 
-                await Application.Current.MainPage.Navigation.PushModalAsync(
-                    new NavigationPage(tab)
-                );
-            }
-            else
-                return;
+            //navigate user to loginpage
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[4];
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(
+                new NavigationPage(tab)
+            );
+
         }
 
-        private async void BookProductButton_Clicked2(object sender, EventArgs e)
-        {
-            bool answer = await DisplayAlert(
-                "Inloggning krävs",
-                "Du måste logga in för att kunna låna en produkt.\n Vill du logga in?",
-                "Logga in",
-                "Avbryt"
-            );
-            if (answer)
-            {
-                var tab = new MainPage();
-                tab.CurrentPage = tab.Children[4];
-
-                await Application.Current.MainPage.Navigation.PushModalAsync(
-                    new NavigationPage(tab)
-                );
-            }
-            else
-                return;
-        }
     }
 }

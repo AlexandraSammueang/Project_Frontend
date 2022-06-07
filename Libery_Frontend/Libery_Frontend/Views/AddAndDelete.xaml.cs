@@ -23,6 +23,7 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
             WebSite();
+            WebSite2();
 
             using (var db = new Models.LibraryDBContext())
             {
@@ -201,6 +202,12 @@ namespace Libery_Frontend.Views
         {
 
             webSite.Source = $"http://libris.kb.se/hitlist?q=Greatest%20hits";
+            
+        }
+        public void WebSite2()
+        {
+                        
+            webSite2.Source = $"http://www.fact21.se/";
         }
 
     }

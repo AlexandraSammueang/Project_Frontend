@@ -5,6 +5,7 @@
             x:Class="Libery_Frontend.Views.MainPage"
             NavigationPage.HasBackButton="False"
             IconImageSource="Icons\useronline.png"
+            
             >
 
     <TabbedPage.ToolbarItems>

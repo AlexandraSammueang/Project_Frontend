@@ -75,7 +75,7 @@
                                             </StackLayout>
                                         </Frame>
                                         <StackLayout HorizontalOptions="End" VerticalOptions="End" WidthRequest="200">
-                                            <Button BackgroundColor="SeaGreen" Grid.Column="2" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton2" Text="Logga in" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked2" WidthRequest="200"/>
+                                            <Button BackgroundColor="SeaGreen" Grid.Column="2" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton2" Text="Logga in" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked" WidthRequest="200"/>
 
                                         </StackLayout>
                                     </Grid>

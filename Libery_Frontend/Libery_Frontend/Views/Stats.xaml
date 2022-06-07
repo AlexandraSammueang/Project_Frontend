@@ -13,12 +13,14 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="1300"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
 
             </Grid.ColumnDefinitions>
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
 
-            <Frame BackgroundColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
+            <Frame  HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
+                
                 <StackLayout x:Name="Menu" IsVisible="true">
                     <Button x:Name="Mostlendproduct" Text="Mest lånade produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="TopProduct_Clicked"></Button>
                     <Button x:Name="LastlednProduct" Text="Minst lånade produkter" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="LastProduct_Clicked"></Button>
@@ -46,7 +48,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
@@ -72,7 +74,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
@@ -96,7 +98,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
@@ -122,7 +124,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
@@ -145,7 +147,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <StackLayout BackgroundColor="Transparent">
                                                             <Label Grid.Row="6" Grid.Column="2"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
@@ -166,7 +168,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <StackLayout BackgroundColor="Transparent">
                                                             <Label Grid.Row="6" Grid.Column="1"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>

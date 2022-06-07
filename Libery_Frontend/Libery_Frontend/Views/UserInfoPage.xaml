@@ -7,10 +7,10 @@
         <Grid>
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
 
-            <Frame BackgroundColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
+            <Frame BackgroundColor="AntiqueWhite" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
                 <StackLayout x:Name="Menu" IsVisible="true">
 
-                    <Button x:Name="UserStats" Text="Användarinformation" FontAttributes="Bold" BackgroundColor="AntiqueWhite" TextColor="Black" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
+                    <Button x:Name="UserStats" Text="Användarinformation" FontAttributes="Bold" BackgroundColor="Coral" TextColor="Black" WidthRequest="50" Clicked="UserStats_Clicked"></Button>
 
 
 

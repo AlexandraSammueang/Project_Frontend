@@ -136,7 +136,7 @@
                                                         <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" Padding="0"/>
                                                         <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" FontAttributes="Italic"   />
                                                         <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="15" WidthRequest="800"/>
-                                                        <Button BackgroundColor="LightCoral" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton" Text="Låna" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
+                                                        <Button BackgroundColor="LightCoral" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton" Text="Reservera" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>

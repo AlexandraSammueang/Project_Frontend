@@ -8,7 +8,7 @@
             >
 
     <TabbedPage.ToolbarItems>
-        <ToolbarItem x:Name="LogoutButton" IconImageSource="Icons/logout-white.png" Text="Logga Ut" Order="Primary" Clicked="ToolbarItem_Clicked" />
+        <ToolbarItem x:Name="LogoutButton" IconImageSource="Icons/logout.png" Text="Logga Ut" Order="Primary" Clicked="ToolbarItem_Clicked" />
     </TabbedPage.ToolbarItems>
 
 

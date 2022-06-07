@@ -150,6 +150,7 @@
     <Content Include="Icons\e-tablet.png" />
     <Content Include="Icons\home.png" />
     <Content Include="Icons\login.png" />
+    <Content Include="Icons\logout-white.png" />
     <Content Include="Icons\logout.png" />
     <Content Include="Icons\password.png" />
     <Content Include="Icons\passwordx1.png" />

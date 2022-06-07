@@ -27,7 +27,7 @@
                                 <Grid >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="1"/>
-                                        <RowDefinition Height="200"/>
+                                        <RowDefinition Height="250"/>
                                         <RowDefinition Height="180"/>
 
 
@@ -38,9 +38,8 @@
                                         <ColumnDefinition Width="700"/>
                                         <ColumnDefinition Width="300"/>
 
-
-
                                     </Grid.ColumnDefinitions>
+                                    
                                     <BoxView CornerRadius="10" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="3" >
                                         <BoxView.Background>
                                             <LinearGradientBrush >
@@ -50,25 +49,24 @@
 
                                             </LinearGradientBrush>
                                         </BoxView.Background>
-
                                     </BoxView>
                                     <Image Source="bookpic1done.jpg" Scale=".6" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
 
-                                    <RelativeLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Fill" Margin="0,0,0,0">
-                                        <StackLayout Scale=".9" HorizontalOptions="CenterAndExpand" Margin="0,0,0,100">
+                                    <RelativeLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Fill" Margin="30,0,0,0">
+                                        <StackLayout Scale=".9" HorizontalOptions="CenterAndExpand" >
                                             <StackLayout Orientation="Horizontal" >
                                                 <Image Source="Icons/user.png" Scale="1" HorizontalOptions="Start" />
-                                                <Entry x:Name="UsernameEntry" Placeholder="Användarnamn" HorizontalOptions="CenterAndExpand" FontFamily="calibri" TextColor="Black" BackgroundColor="SeaGreen"/>
+                                                <Entry x:Name="UsernameEntry" Placeholder="Användarnamn" HorizontalOptions="CenterAndExpand" FontFamily="calibri" TextColor="Black" WidthRequest="170"/>
                                             </StackLayout>
 
-                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal" Margin="0,5,0,0">
                                                 <Image Source="Icons/password.png" Scale="1" HorizontalOptions="Start" />
-                                                <Entry x:Name="PasswordEntry" BackgroundColor="SeaGreen" HorizontalOptions="StartAndExpand" IsPassword="True" Placeholder="Lösenord"  FontFamily="calibri" TextColor="black"/>
+                                                <Entry x:Name="PasswordEntry"  HorizontalOptions="StartAndExpand" IsPassword="True" Placeholder="Lösenord"  FontFamily="calibri" TextColor="black" WidthRequest="170"/>
                                             </StackLayout>
 
-                                            <Button x:Name="LoginButton" HorizontalOptions="Center" TextColor="White" Text="Logga in"  CornerRadius="10" Clicked="LoginButton_Clicked" BackgroundColor="#104D56" FontFamily="DINpro" FontAttributes="Bold"/>
+                                            <Button x:Name="LoginButton" HorizontalOptions="Center" Margin="30,20,0,0" TextColor="White" Text="Logga in"  CornerRadius="10" Clicked="LoginButton_Clicked" BackgroundColor="#104D56" FontFamily="DINpro" FontAttributes="Bold"/>
 
-                                            <Label Text="Registrera dig" TextDecorations="Underline" TextColor="Black"  HorizontalOptions="Center" >
+                                            <Label Text="Registrera dig" TextDecorations="Underline" TextColor="Black" Margin="30,0,0,0" HorizontalOptions="Center" >
                                                 <Label.GestureRecognizers>
 
                                                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />

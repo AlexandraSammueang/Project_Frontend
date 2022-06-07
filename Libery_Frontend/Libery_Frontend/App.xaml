@@ -5,6 +5,10 @@
              >
     <Application.Resources>
 
+        <Style TargetType="Shell">
+            <Setter Property="BackgroundColor" Value="Aquamarine"/>
+
+        </Style>
         <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
             <Setter Property="BackgroundImageSource" Value="BibliotekStor3skärpa.jpg" />
             <Setter Property="SelectedTabColor" Value="DarkCyan"/>
@@ -27,11 +31,12 @@
         </Style>
 
         <Style TargetType="Picker">
-            <Setter Property="BackgroundColor" Value="DarkGray"></Setter>
+            <Setter Property="BackgroundColor" Value="Beige"></Setter>
+            <Setter Property="TextColor" Value="Black"/>
         </Style>
 
         <Style TargetType="Entry">
-            <Setter Property="BackgroundColor" Value="LightCoral"></Setter>
+            <Setter Property="BackgroundColor" Value="Beige"></Setter>
             <Setter Property="TextColor" Value="Black"></Setter>
         </Style>
         

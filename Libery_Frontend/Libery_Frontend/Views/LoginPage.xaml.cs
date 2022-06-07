@@ -164,7 +164,8 @@ namespace Libery_Frontend.Views
                         homePage.Children.Add(pageToAddFive);
                         await Navigation.PushAsync(homePage);
 
-                        homePage.Title = $"{userName} - Inloggad";
+                        homePage.Title = $"{userName}";
+                        homePage.IconImageSource = "Icons/useronline.png";
                         pageToAddFive.Title = "Min profil";
                         pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";

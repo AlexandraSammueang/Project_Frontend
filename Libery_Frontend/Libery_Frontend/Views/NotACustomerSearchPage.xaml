@@ -5,12 +5,12 @@
              xmlns:view="using:Libery_Frontend.Views">
     <ContentPage.Content>
         <StackLayout Margin="0,10,0,0">
-            <RelativeLayout HorizontalOptions="CenterAndExpand">
-                <Grid Padding="0" Margin="0,11,0,10" WidthRequest="700">
+            <RelativeLayout HorizontalOptions="CenterAndExpand" Scale="1.6" Margin="0,40,0,0">
+                <Grid Padding="0" Margin="0,11,0,10" WidthRequest="700" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
-                    <BoxView CornerRadius="10" Margin="0" Grid.Row="0">
+                    <BoxView CornerRadius="10" Margin="0" Grid.Row="0" >
                         <BoxView.Background>
                             <LinearGradientBrush>
                                 <GradientStop Color="LightCoral" Offset="1" />

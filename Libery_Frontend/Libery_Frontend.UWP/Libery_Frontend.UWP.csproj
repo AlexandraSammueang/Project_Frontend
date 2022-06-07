@@ -137,6 +137,7 @@
     <Content Include="BibliotekStor.jpg" />
     <Content Include="BibliotekStor2.jpg" />
     <Content Include="BibliotekStor3.jpg" />
+    <Content Include="BibliotekStor3skärpa-opacitet.png" />
     <Content Include="BibliotekStor3skärpa.jpg" />
     <Content Include="bookpic1done.jpg" />
     <Content Include="bookpic2done.jpg" />
@@ -146,13 +147,38 @@
     <Content Include="bossicon.png" />
     <Content Include="digitalicon.png" />
     <Content Include="homeicon.png" />
+    <Content Include="Icons\book.png" />
+    <Content Include="Icons\e-tablet.png" />
+    <Content Include="Icons\home.png" />
+    <Content Include="Icons\login.png" />
+    <Content Include="Icons\logout-white.png" />
+    <Content Include="Icons\logout.png" />
+    <Content Include="Icons\password.png" />
+    <Content Include="Icons\passwordx1.png" />
+    <Content Include="Icons\passwordx2.png" />
+    <Content Include="Icons\search.png" />
+    <Content Include="Icons\shopingbag.png" />
+    <Content Include="Icons\stats.png" />
+    <Content Include="Icons\user.png" />
+    <Content Include="Icons\useradmin.png" />
+    <Content Include="Icons\userdata.png" />
+    <Content Include="Icons\useronline.png" />
+    <Content Include="Icons\userprofile.png" />
+    <Content Include="Icons\userx2.png" />
     <Content Include="keyicon.png" />
+    <Content Include="loginlogo.png" />
     <Content Include="lolpic.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="searchicon.png" />
+    <Content Include="shopingbag.png" />
     <Content Include="shoppingcarticon.png" />
     <Content Include="trollpic.png" />
+    <Content Include="user.png" />
+    <Content Include="useradmin.png" />
+    <Content Include="userdata.png" />
     <Content Include="usericon.png" />
+    <Content Include="useronline.png" />
+    <Content Include="userprofile.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

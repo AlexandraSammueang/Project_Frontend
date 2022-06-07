@@ -60,6 +60,25 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="1">
+                    <Grid Padding="0" Margin="0,11,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
+                        <BoxView CornerRadius="10" Margin="0" Grid.Row="0">
+                            <BoxView.Background>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="LightCoral" Offset="1" />
+                                    <GradientStop Color="LightSeaGreen" />
+                                </LinearGradientBrush>
+                            </BoxView.Background>
+                        </BoxView>
+
+                        <Frame Padding="0" Margin="0,0,0,0" Grid.Row="0" CornerRadius="10" Scale="1" >
+                            <SearchBar Placeholder="Sök på titel, regissör, författare" TextChanged="SearchBar_TextChanged" Scale="1.005" Margin="0,-2,0,0">
+
+                            </SearchBar>
+                        </Frame>
+                    </Grid>
                     <Frame  x:Name="SingleProdFrame" Grid.Column="2" Margin="0,52,0,0"  Padding="0,0,0,0" VerticalOptions="FillAndExpand">
                         <StackLayout  VerticalOptions="FillAndExpand">
                             <ListView x:Name="InspectProductListView" Margin="0,10,0,0" IsVisible="true" Opacity="0" HasUnevenRows="True" >

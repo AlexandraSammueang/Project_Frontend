@@ -28,7 +28,7 @@
 
                 <StackLayout Grid.Column="0">
 
-                    <Button Text="E-böcker" x:Name="EBooksButton" FontAttributes="Bold" Clicked="EBooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="LightSeaGreen"/>
+                    <Button Text="E-böcker" x:Name="EBooksButton" FontAttributes="Bold" Clicked="EBooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="SeaGreen"/>
                     <Frame CornerRadius="20">
                         <StackLayout>
 
@@ -60,7 +60,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="1">
-                    <Grid Padding="0" Margin="0,10,0,10">
+                    <Grid Padding="0" Margin="0,11,0,10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
@@ -68,7 +68,7 @@
                             <BoxView.Background>
                                 <LinearGradientBrush>
                                     <GradientStop Color="LightCoral" Offset="1" />
-                                    <GradientStop Color="LightSeaGreen" />
+                                    <GradientStop Color="SeaGreen" />
                                 </LinearGradientBrush>
                             </BoxView.Background>
                         </BoxView>

@@ -12,7 +12,7 @@
         <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
             
             <Setter Property="BackgroundColor" Value="LightSkyBlue"/>
-            <Setter Property="SelectedTabColor" Value="DarkGray"/>
+            <Setter Property="SelectedTabColor" Value="White"/>
             <Setter Property="UnselectedTabColor" Value="Black"/>
             <Setter Property="SelectedItem" Value=""/>
         </Style>

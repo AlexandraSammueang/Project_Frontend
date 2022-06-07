@@ -50,7 +50,7 @@
                                             </LinearGradientBrush>
                                         </BoxView.Background>
                                     </BoxView>
-                                    <Image Source="bookpic1done.jpg" Scale=".6" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
+                                    <Image Source="loginlogo.png" Scale=".67" HorizontalOptions="FillAndExpand" VerticalOptions="Fill" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"/>
 
                                     <RelativeLayout Grid.Row="2" Grid.Column="2" HorizontalOptions="Fill" Margin="30,0,0,0">
                                         <StackLayout Scale=".9" HorizontalOptions="CenterAndExpand" >

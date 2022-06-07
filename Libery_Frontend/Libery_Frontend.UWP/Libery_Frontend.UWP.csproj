@@ -166,6 +166,7 @@
     <Content Include="Icons\userprofile.png" />
     <Content Include="Icons\userx2.png" />
     <Content Include="keyicon.png" />
+    <Content Include="loginlogo.png" />
     <Content Include="lolpic.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="searchicon.png" />

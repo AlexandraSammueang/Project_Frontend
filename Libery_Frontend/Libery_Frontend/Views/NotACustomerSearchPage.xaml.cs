@@ -18,9 +18,13 @@ namespace Libery_Frontend.Views
     public partial class NotACustomerSearchPage : ContentPage
     {
         private Models.MetaStats _timeOnPage = null;
-        private CancellationTokenSource _tokenSource;
+        private CancellationTokenSource _tokenSource; 
+
+        public List<ProductCategory> Category;
         public List<Product> Products;
         public List<ProductType> ProdType;
+        public List<Author> autName;
+        public List<Director> dirName;
         public List<ShoppingCart> ShoppingCarts;
         public NotACustomerSearchPage()
         {
@@ -31,6 +35,9 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
             _timeOnPage = new Models.MetaStats("search", "Söksidan");
+
+            MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetBooksAsync(); });
+            MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
         }
 
         protected override void OnDisappearing()
@@ -39,144 +46,311 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
-
-        #region Search function as admin/boss
-        //same functionality as search function for non-logged in user. Only difference is the booking function --- see below
-        public int i = 0;
-
-        public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
+        public async Task<List<ProductModel>> GetBooksAsync()
         {
-            Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(() =>
+
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
-                IEnumerable<IGrouping<string, Product>> groupedResult = null;
+                List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
                 try
                 {
                     using (var db = new LibraryDBContext())
                     {
-                        var query =
-                            from product in db.Products
-                            where product.ProductName.ToLower().Contains(input.ToLower())
-                            join prodType in db.ProductTypes
-                                on product.ProductType.Id equals prodType.Id
-                            select new { ProductType = prodType.Type, Product = product };
+                        Category = db.ProductCategories.ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        autName = db.Authors.ToList();
 
-                        var grouped =
-                            from item in query.ToList()
-                            group item.Product by item.ProductType into g
-                            select g;
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            ProId = p.Id,
+                            InfoConcat = p.ProductInfo,
+                            Pages = p.BookPages,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            CategoryID = p.CategoryId,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable
+                        }).ToList();
 
-                        groupedResult = grouped;
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            AuthorID = p.AuthorID,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
+                        }).ToList();
+
+
+                        result = result.Join(autName, pi => pi.AuthorID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            AuthorID = p.AuthorID,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = p.Category,
+                            //DirectorID = p.DirectorID,
+                            AuthorName = pi.Firstname + " " + pi.Lastname
+                        }).Where(x => x.Type == "Bok" || x.Type == "E-Bok").ToList();
+
+
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            if (result[i].Info != null && result[i].Info.Length > 60)
+                            {
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
+                        }
                     }
                 }
+
                 catch (Exception ex)
                 {
                     // Display modal for error
                 }
-                    return groupedResult;
-                }
+                return result;
+            }
             );
 
             var taskResult = await databaseTask;
-
             return taskResult;
         }
 
-        public async Task Search(String input)
+
+        public async Task<List<ProductModel>> GetMoviesAsync()
         {
-            await Task.Delay(600);
 
-            if (!input.Equals(SearchBarInput.Text))
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
             {
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(input))
-            {
-                SearchListView.BeginRefresh();
-                ActivityIndicator.IsRunning = true;
-                ActivityIndicator.IsVisible = true;
-
-                var result = await SearchProductsAsync(input);
-                SearchListView.ItemsSource = result ?? null;
-
-                ActivityIndicator.IsVisible = false;
-                ActivityIndicator.IsRunning = false;
-                SearchListView.EndRefresh();
-            }
-            else
-            {
-                SearchListView.ItemsSource = null;
-            }
-        }
-
-        private async void Entry_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            string input = e.NewTextValue;
-            await Search(input);
-        }
-
-        private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
-        {
-            string input = SearchBarInput.Text;
-            await Search(input);
-        }
-
-
-        //book product button is not displayed for any logged in authority other than user.
-        //design decision based on use. we did not think it relevant for an admin to be able to book an item
-        private async void BookProductButton_Clicked_1(object sender, EventArgs e)
-        {
-            ShoppingCart cart = new ShoppingCart();
-            DateTime returnDate = DateTime.Now.AddDays(30);
-            CultureInfo dateTimeLanguage = CultureInfo.GetCultureInfo("sv-SE");
-
-            Button btn = sender as Button;
-            Product item = btn.BindingContext as Product;
-
-            if (item != null)
-            {
-
-                MainThread.BeginInvokeOnMainThread(async () =>
+                List<ProductModel> result = null;
+                List<ProductModel> catRes = null;
+                try
                 {
-                    using (var context = new LibraryDBContext())
+                    using (var db = new LibraryDBContext())
                     {
-                        ProdType = context.ProductTypes.ToList();
-                        Products = context.Products.ToList();
+                        Category = db.ProductCategories.ToList();
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        dirName = db.Directors.ToList();
 
-                        cart.ProductId = item.Id;
-                        cart.UserId = LoginPage.Username;
-                        cart.DateBooked = DateTime.Now;
-                        cart.ReturnDate = DateTime.Now.AddDays(30);
-
-                        ShoppingCarts = context.ShoppingCarts.Where(x => x.ProductId == item.Id && x.UserId == LoginPage.Username).ToList();
-
-                        if (ShoppingCarts.Any())
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
                         {
-                            await DisplayAlert("Redan bokad", "Du har redan bokat denna produkt", "OK");
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            ProId = p.Id,
+                            InfoConcat = p.ProductInfo,
+                            Pages = p.BookPages,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            CategoryID = p.CategoryId,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.Price,
+                            ISBN = p.Isbn,
+                            IsBookable = p.IsBookable
+                        }).ToList();
 
-                        }
-                        else
+                        result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
+                        new ProductModel
                         {
-                            context.Add(cart);
-                            context.SaveChanges();
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = pi.Category,
+                            DirectorID = p.DirectorID
+                        }).ToList();
 
-                            var typeOfProduct = context.ProductTypes.Where(x => x.Id == item.ProductTypeId).FirstOrDefault();
-                            var ProdTypeName = new ProductType
+
+                        result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            Image = p.Image,
+                            Name = p.Name,
+                            Info = p.Info,
+                            InfoConcat = p.Info,
+                            Type = p.Type,
+                            ProId = p.ProId,
+                            Pages = p.Pages,
+                            CategoryID = p.CategoryID,
+                            ReleaseDate = p.ReleaseDate,
+                            UnitPrice = p.UnitPrice,
+                            ISBN = p.ISBN,
+                            IsBookable = p.IsBookable,
+                            Category = p.Category,
+                            DirectorID = p.DirectorID,
+                            AuthorName = pi.Firstname + " " + pi.Lastname
+                        }).Where(x => x.Type == "Film" || x.Type == "E-Film").ToList();
+
+
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            if (result[i].Info != null && result[i].Info.Length > 60)
                             {
-                                Type = typeOfProduct.Type
-                            };
-
-                            await DisplayAlert($"{ProdTypeName.Type} bokad",
-                                $"{item.ProductName} är bokad.\nLämnas tillbaks senast {returnDate.ToString("dddd, MMMM dd, yyyy", dateTimeLanguage)}", "OK");
+                                result[i].InfoConcat = String.Concat(result[i].Info.Substring(0, 60), "...");
+                            }
                         }
                     }
-                    SearchListView.SelectedItem = null;
-                });
+                }
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
             }
-            else
-                await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
+            );
+
+            var taskResult = await databaseTask;
+            return taskResult;
+        }
+
+
+        public async Task<List<ProductModel>> GetSingleBookView(string prodName, string prodType, string prodCat, string authorName)
+        {
+            Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
+            {
+                List<ProductModel> result = null;
+                try
+                {
+                    using (var db = new LibraryDBContext())
+                    {
+
+                        Products = db.Products.ToList();
+                        ProdType = db.ProductTypes.ToList();
+                        Category = db.ProductCategories.ToList();
+
+                        var pCat = Category.Where(x => x.Id == Products.FirstOrDefault().CategoryId).ToList();
+
+                        result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
+                        new ProductModel
+                        {
+                            ProId = p.Id,
+                            Image = p.Image,
+                            Name = p.ProductName,
+                            Info = p.ProductInfo,
+                            Type = pi.Type,
+                            UnitPrice = p.Price,
+                            AuthorID = p.AuthorId,
+                            DirectorID = p.DirectorId,
+                            ReleaseDate = p.ReleaseDate,
+                            IsBookable = p.IsBookable,
+                            Category = prodCat,
+                            ISBN = p.Isbn,
+                            AuthorName = authorName
+                        }).Where(x => x.Name == prodName && x.Type == prodType).ToList();
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    // Display modal for error
+                }
+                return result;
+            }
+            );
+            var taskResult = await databaseTask;
+            return taskResult;
+        }
+
+       
+        private async void ProductListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
+            ProductModel model = ProductListView.SelectedItem as ProductModel;
+            InspectProductListView.ItemsSource = await GetSingleBookView(model.Name, model.Type, model.Category, "Författare: " + model.AuthorName);
+
+            if (InspectProductListView.Opacity == 0)
+            {
+                await Task.WhenAll(InspectProductListView.FadeTo(1, 1000));
+            }
+        }
+
+        private async void MovieButtons_Clicked(object sender, EventArgs e)
+        {
+            EbooksListview.Opacity = 0;
+            EbooksListview.IsVisible = true;
+
+
+            ProductListView.ItemsSource = await GetBooksAsync();
+            await Task.WhenAll(EbooksListview.FadeTo(1, 1000), ProductListView.FadeTo(0, 500));
+
+            ProductListView.IsVisible = false;
+        }
+
+        private async void BooksButton_Clicked(object sender, EventArgs e)
+        {
+            ProductListView.Opacity = 0;
+            ProductListView.IsVisible = true;
+
+            ProductListView.ItemsSource = await GetBooksAsync();
+            await Task.WhenAll(ProductListView.FadeTo(1, 1000), EbooksListview.FadeTo(0, 500));
+
+            EbooksListview.IsVisible = false;
+        }
+
+        private async void EbooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (InspectProductListView.Opacity == 0)
+            {
+                await Task.WhenAll(InspectProductListView.FadeTo(1, 1000));
+            }
+
+
+            ProductModel model = EbooksListview.SelectedItem as ProductModel;
+            InspectProductListView.ItemsSource = await GetSingleBookView(model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
 
         }
-        #endregion
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var booklist = await GetBooksAsync();
+            var filmlist = await GetMoviesAsync();
+
+            ProductListView.ItemsSource = booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            EbooksListview.ItemsSource = filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+        }
+
     }
 }
+

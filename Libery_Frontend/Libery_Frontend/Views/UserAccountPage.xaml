@@ -69,10 +69,10 @@
                                                 <Label VerticalOptions="Center" Text="{Binding ProductName, StringFormat='{0}'}" FontAttributes="Bold" FontSize="18"  />
                                                 <Label VerticalOptions="Center" Text="{Binding prodType, StringFormat='{0}'}" FontSize="14" />
                                                 <Label VerticalOptions="Center" Text="{Binding DateBooked,Converter={StaticResource cnvDateTimeConverter},StringFormat='Bokad: {0:dddd, MMMM dd, yyyy}'}" FontSize="14" />
-                                                <StackLayout Orientation="Horizontal" Margin="5,10,5,0">
                                                     <Label VerticalOptions="Center" Text="{Binding ReturnDate,Converter={StaticResource cnvDateTimeConverter}, StringFormat='Återlämnas senast: {0}'}" FontSize="14" />
-                                                    <Button CornerRadius="5" x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" Clicked="InsertIntoOrderButton_Clicked" BackgroundColor="LightCoral"/>
+                                                <StackLayout Orientation="Horizontal" Margin="5,10,5,0">
                                                     <Button CornerRadius="5" x:Name="ExtendButton" Text="Förläng lånet" IsVisible="true" VerticalOptions="StartAndExpand"  Margin="0,0,0,0" Clicked="ExtendButton_Clicked" BackgroundColor="LightSeaGreen"></Button>
+                                                    <Button CornerRadius="5" x:Name="InsertIntoOrderButton" Text="Lämna tillbaka produkt" VerticalOptions="StartAndExpand" Clicked="InsertIntoOrderButton_Clicked" BackgroundColor="LightCoral"/>
                                                 </StackLayout>
                                             </StackLayout>
                                         </StackLayout>

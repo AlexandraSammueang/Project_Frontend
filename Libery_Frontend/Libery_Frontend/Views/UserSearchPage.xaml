@@ -37,11 +37,11 @@
 
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="325"/>
+                    <ColumnDefinition Width="1240"/>
                 </Grid.ColumnDefinitions>
 
-                <StackLayout Grid.Column="0">
+                <StackLayout Grid.Column="1">
                     <ListView x:Name="SearchListView" IsGroupingEnabled="true" HasUnevenRows="true" Margin="0, 10, 0, 0">
                         <ListView.GroupHeaderTemplate>
                             <DataTemplate>
@@ -69,11 +69,15 @@
                                                     <Label Grid.Row="4" Grid.Column="2"  Text="{Binding ReleaseDate, StringFormat='Utgiven: {0}'}" FontSize="12" Margin="0,10,0,0"/>
                                                 </StackLayout>
                                                 <StackLayout HorizontalOptions="End" VerticalOptions="Center" Orientation="Vertical" Padding="100,0,0,0" x:Name="stackBookButton">
-                                                    <Button BackgroundColor="Azure" x:Name="BookProductButton" Text="Boka" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1"/>
+                                                    
 
                                                 </StackLayout>
                                             </StackLayout>
                                         </Frame>
+                                        <StackLayout HorizontalOptions="End" VerticalOptions="End" WidthRequest="200">
+                                            <Button BackgroundColor="SeaGreen" Grid.Column="2" CornerRadius="10" HorizontalOptions="End" VerticalOptions="End"  x:Name="BookProductButton" Text="Låna" FontSize="Medium" FontAttributes="Bold" IsVisible="true" Clicked="BookProductButton_Clicked_1" WidthRequest="200"/>
+
+                                        </StackLayout>
                                     </Grid>
                                 </ViewCell>
                             </DataTemplate>

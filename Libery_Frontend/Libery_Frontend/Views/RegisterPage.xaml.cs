@@ -30,10 +30,10 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
-        //Registration
+        #region Registration
         private async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
-     
+
             //Check availability for selected username. If username already exists, prompt user to select a different one.
             using (var context = new LibraryDBContext())
             {
@@ -94,8 +94,9 @@ namespace Libery_Frontend.Views
                     }
                 }
 
-                
+
             }
         }
+        #endregion
     }
 }

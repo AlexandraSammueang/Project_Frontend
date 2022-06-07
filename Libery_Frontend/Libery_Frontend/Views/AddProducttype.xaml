@@ -16,8 +16,7 @@
                         <Label x:Name="Producttype" Text="Produkttyp" FontAttributes="Bold"/>
                         <Entry x:Name="TypeEntry" HorizontalOptions="Start" WidthRequest="300"/>
                         <Label Text="Tillgängliga produkttyper" FontAttributes="Bold"/>
-                        <Picker x:Name="Allproducttype"  HorizontalOptions="Start" WidthRequest="300"
-                            SelectedIndexChanged="Allproducttype_SelectedIndexChanged">
+                        <Picker x:Name="Allproducttype"  HorizontalOptions="Start" WidthRequest="300">
                         </Picker>
                     </StackLayout>
                     <StackLayout HorizontalOptions="Start" Orientation="Vertical" >
@@ -29,8 +28,7 @@
                         <Label x:Name="CategoryLabel" Text="Produktkategori" FontAttributes="Bold"/>
                         <Entry x:Name="CategoryEntry" HorizontalOptions="Start" WidthRequest="300"/>
                         <Label Text="Tillgängliga produktkategorier" FontAttributes="Bold"/>
-                        <Picker x:Name="PickerCategory"  HorizontalOptions="Start" WidthRequest="300"
-                            SelectedIndexChanged="PickerCategory_SelectedIndexChanged">
+                        <Picker x:Name="PickerCategory"  HorizontalOptions="Start" WidthRequest="300">
                         </Picker>
                     </StackLayout>
                     <StackLayout HorizontalOptions="Start" Orientation="Vertical" >
@@ -49,8 +47,7 @@
                         <Label x:Name="LastName" Text="Författare efternamn" FontAttributes="Bold"/>
                         <Entry x:Name="LastNameEntry" HorizontalOptions="Start" WidthRequest="300"/>
                         <Label Text="Tillgängliga författare" FontAttributes="Bold"/>
-                        <Picker x:Name="AllAuthor"  HorizontalOptions="Start" WidthRequest="300"
-                            SelectedIndexChanged="Allproducttype_SelectedIndexChanged">
+                        <Picker x:Name="AllAuthor"  HorizontalOptions="Start" WidthRequest="300">
                         </Picker>
                     </StackLayout>
                     <StackLayout HorizontalOptions="Start" Orientation="Vertical" >
@@ -64,8 +61,7 @@
                         <Label x:Name="dirLastName" Text="Regissör efternamn" FontAttributes="Bold"/>
                         <Entry x:Name="dirLastNameEntry" HorizontalOptions="Start" WidthRequest="300"/>
                         <Label Text="Tillgängliga regissörer" FontAttributes="Bold"/>
-                        <Picker x:Name="AllDirector"  HorizontalOptions="Start" WidthRequest="300"
-                            SelectedIndexChanged="AllDirector_SelectedIndexChanged">
+                        <Picker x:Name="AllDirector"  HorizontalOptions="Start" WidthRequest="300">
                         </Picker>
                     </StackLayout>
                     <StackLayout HorizontalOptions="Start" Orientation="Vertical" >

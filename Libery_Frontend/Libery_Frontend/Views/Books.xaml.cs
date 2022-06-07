@@ -292,6 +292,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        //prompt user to login before booking item
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert(

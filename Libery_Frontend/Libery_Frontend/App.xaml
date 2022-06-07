@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Libery_Frontend.App"
+             x:Class="Libery_Frontend.App"             
              >
     <Application.Resources>
 
         <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
             <Setter Property="BackgroundImageSource" Value="BibliotekStor3skärpa.jpg" />
-            <Setter Property="SelectedTabColor" Value="DarkGoldenrod"/>
+            <Setter Property="SelectedTabColor" Value="DarkCyan"/>
             <Setter Property="UnselectedTabColor" Value="Black"/>
+            <Setter Property="SelectedItem" Value=""/>
         </Style>
         <Style TargetType="Image" ApplyToDerivedTypes="True">
             <Setter Property="Opacity" Value="1"/>
@@ -26,11 +27,11 @@
         </Style>
 
         <Style TargetType="Picker">
-            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+            <Setter Property="BackgroundColor" Value="DarkGray"></Setter>
         </Style>
 
         <Style TargetType="Entry">
-            <Setter Property="BackgroundColor" Value="Bisque"></Setter>
+            <Setter Property="BackgroundColor" Value="LightCoral"></Setter>
             <Setter Property="TextColor" Value="Black"></Setter>
         </Style>
         

@@ -14,14 +14,22 @@ namespace Libery_Frontend.Views
     {
         public MainPage()
         {
-           InitializeComponent();
-           
+            InitializeComponent();
+
         }
 
         async void LoggaUt(object sender, System.EventArgs e)
         {
             await Navigation.PushAsync(new MainPage());
         }
-        
+
+        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            
+            await Navigation.PopAsync();
+            var tab = new MainPage();
+            tab.CurrentPage = tab.Children[0];
+            await Application.Current.MainPage.Navigation.PushModalAsync(new NavigationPage(tab));
+        }
     }
 }

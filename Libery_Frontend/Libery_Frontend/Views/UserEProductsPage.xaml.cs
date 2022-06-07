@@ -392,5 +392,14 @@ namespace Libery_Frontend.Views
             else
                 await DisplayAlert("Produkt ej vald", "Välj en produkt för att låna", "OK");
         }
+
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var ebooklist = await GetBooksAsync();
+            var efilmlist = await GetEMoviesAsync();
+
+            EBooksListview.ItemsSource = ebooklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            EMoviesListview.ItemsSource = efilmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+        }
     }
 }

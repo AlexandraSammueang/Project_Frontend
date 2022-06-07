@@ -3,16 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             xmlns:Views="clr-namespace:Libery_Frontend.Views"
             x:Class="Libery_Frontend.Views.MainPage"
+            NavigationPage.HasBackButton="False"
+            
             >
-    
-    
-        <TabbedPage.Children>
-        <Views:AboutPage  Title="Hem" IconImageSource="homeicon.png"></Views:AboutPage>
-        <Views:SearchPage IconImageSource="searchicon.png" Title="Sök"/>
-        <Views:Books IconImageSource="booksicon.png" Title="Böcker &amp; Filmer"></Views:Books>
-        <Views:E_Media IconImageSource="digitalicon.png"  Title ="E-medier"></Views:E_Media>
-        <Views:LoginPage IconImageSource="keyicon.png"  Title="Logga in"/>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="LogoutButton" Text="Logga Ut" Order="Primary" Clicked="ToolbarItem_Clicked" />
+    </TabbedPage.ToolbarItems>
+
+
+    <TabbedPage.Children>
+        <Views:AboutPage  Title="Hem" IconImageSource="Icons/home.png"></Views:AboutPage>
+        <Views:SearchPage IconImageSource="Icons/search.png" Title="Sök"/>
+        <Views:Books IconImageSource="Icons/book.png"  Title="Böcker &amp; Filmer"></Views:Books>
+        <Views:E_Media IconImageSource="Icons/e-tablet.png"  Title ="E-medier"></Views:E_Media>
+        <Views:LoginPage IconImageSource="Icons/login.png"  Title="Logga in"/>
         <Views:RegisterPage/>
     </TabbedPage.Children>
-    
+
 </TabbedPage>

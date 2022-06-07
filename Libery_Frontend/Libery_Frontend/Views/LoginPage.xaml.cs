@@ -149,6 +149,7 @@ namespace Libery_Frontend.Views
                         pageToAddSecond.IconImageSource = "Icons/book.png";
                         pageToAddThird.IconImageSource = "Icons/search.png";
                         pageToAddFourth.IconImageSource = "Icons/e-tablet.png";
+                        pageToAddFive.IconImageSource = "Icons/useronline.png";
 
                         homePage.Children.RemoveAt(5);
                         homePage.Children.RemoveAt(4);
@@ -165,7 +166,7 @@ namespace Libery_Frontend.Views
                         await Navigation.PushAsync(homePage);
 
                         homePage.Title = $"{userName}";
-                        homePage.IconImageSource = "Icons/useronline.png";
+                        homePage.IconImageSource = "Icons/logout-white.png"; 
                         pageToAddFive.Title = "Min profil";
                         pageToAddSecond.Title = "Böcker & Flmer";
                         pageToAddThird.Title = "Sök";

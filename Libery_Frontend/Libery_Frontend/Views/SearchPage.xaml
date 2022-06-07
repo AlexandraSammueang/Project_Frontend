@@ -5,10 +5,30 @@
              xmlns:view="using:Libery_Frontend.Views">
     <ContentPage.Content>
         <StackLayout Margin="0,10,0,0">
-            <Frame BackgroundColor="Aquamarine">
-                <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque" SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100"></SearchBar>
-                <!-- Search result-->
-            </Frame>
+
+            <Grid Padding="0" Margin="0,10,0,10" HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="600"/>
+                </Grid.ColumnDefinitions>
+                <BoxView CornerRadius="10" Margin="0" Grid.Row="0">
+                    <BoxView.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="LightCoral" Offset="1" />
+                            <GradientStop Color="SeaGreen" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+
+                <SearchBar x:Name="SearchBarInput" HorizontalOptions="CenterAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque" SearchButtonPressed="SearchBar_SearchButtonPressed"/>
+
+            </Grid>
+
+            <!--<SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque" SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100"></SearchBar>-->
+            <!-- Search result-->
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="true" HorizontalOptions="FillAndExpand"></ActivityIndicator>
             <Grid>
 

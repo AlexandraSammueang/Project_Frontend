@@ -16,5 +16,6 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
         }
+        //tab page displayed only when logged in as librarian
     }
 }

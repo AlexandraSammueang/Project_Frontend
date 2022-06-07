@@ -16,5 +16,6 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
         }
+        //tab only shown when logged in as boss
     }
 }

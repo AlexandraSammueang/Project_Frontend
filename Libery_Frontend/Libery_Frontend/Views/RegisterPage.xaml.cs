@@ -27,6 +27,7 @@ namespace Libery_Frontend.Views
         private async void RegisterButton_Clicked(object sender, System.EventArgs e)
         {
      
+            //Check availability for selected username. If username already exists, prompt user to select a different one.
             using (var context = new LibraryDBContext())
             {
                 var checkUsernameAvailability = context.Users.Where(x => x.Username == UsernameEntry.Text);
@@ -50,7 +51,10 @@ namespace Libery_Frontend.Views
                     {
                         user.Username = UsernameEntry.Text;
                         user.Password = PasswordEntry.Text;
+
+                        //encrypt password via BCrypt hash method
                         user.Password = BCrypt.Net.BCrypt.HashPassword(PasswordEntry.Text, 10);
+
                         user.Firstname = FirstnameEntry.Text ?? FirstnameEntry.Placeholder;
                         user.Lastname = LastnameEntry.Text ?? LastnameEntry.Placeholder;
                         user.PhoneNumber = PhonenumberEntry.Text ?? PhonenumberEntry.Placeholder;
@@ -66,6 +70,8 @@ namespace Libery_Frontend.Views
 
                         await DisplayAlert("Registrerad", "Registrering klar", "OK");
                     }
+
+                    //fail safes for inadequate entry information
                     catch (ArgumentNullException)
                     {
                         await DisplayAlert($"Felaktig info",

@@ -33,6 +33,8 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
         }
 
+        #region physical product list based on authority
+        // same functionality as UserBooksPage with key difference on book product function. see below
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -280,6 +282,8 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+
+        //this method is not displayed due to relevancy. code remains due to ability to easily change this functionality
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
@@ -340,4 +344,5 @@ namespace Libery_Frontend.Views
 
         }
     }
+    #endregion
 }

@@ -9,6 +9,10 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+//THIS PAGE IS NO LONGER ACTIVELY USED BUT IS USED AS
+//REFERENCE FOR SOURCE CODE
+#region
+
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -140,3 +144,4 @@ namespace Libery_Frontend.Views
         }
     }
 }
+#endregion

@@ -11,6 +11,8 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+
+        //static property to ensure info is displayed based on user authority
         private static string _username;
         public static string Username
         {
@@ -40,11 +42,15 @@ namespace Libery_Frontend.Views
                 if (usernameToCheck.Any())
                 {
                     string password = PasswordEntry.Text;
+
+                    //verify user password matches requirements of BCrypt hash
                     bool correctPassword = BCrypt.Net.BCrypt.Verify(
                         password,
                         userPassword[0].Password
                     );
 
+
+                    //Change visual display based on authority of boss
                     if (correctPassword == true && userPassword[0].UserGroup == "chef")
                     {
                         Page pageToAdd = new LibrarianBossTabbedPage();
@@ -83,6 +89,7 @@ namespace Libery_Frontend.Views
 
                     }
 
+                    //Change visual display based on authority of librarian
                     else if (correctPassword == true && userPassword[0].UserGroup == "bibliotekarie")
                     {
 
@@ -121,6 +128,7 @@ namespace Libery_Frontend.Views
                         PasswordEntry.Text = "";
                     }
 
+                    //Change visual display based on authority of user
                     else if (correctPassword == true && userPassword[0].UserGroup == "användare")
                     {
                        // Page pageToAdd = new UserAccountPage(userName);
@@ -182,6 +190,8 @@ namespace Libery_Frontend.Views
             }
         }
 
+
+        //Not actively used for other than reference of hiding/showing (deleteing/creating instances of pages) tabs
         public void HideTab(int index)
         {
             TabbedPage theTabbedPage = App.Current.MainPage as TabbedPage;
@@ -205,6 +215,8 @@ namespace Libery_Frontend.Views
 
 
         }
+
+        //on "register" click, navigate user to register page
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
             var tab = new MainPage();

@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+#region not actively used
+//code structure implemented into AddProducttype.cs
+//this page only used for code reference. this class can safely be removed
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -67,3 +70,4 @@ namespace Libery_Frontend.Views
         }
     }
 }
+#endregion

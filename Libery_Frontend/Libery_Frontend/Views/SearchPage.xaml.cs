@@ -24,6 +24,8 @@ namespace Libery_Frontend.Views
 
         public int i = 0;
 
+
+        //framework for what results the search function filters through to obtain results
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
         {
             Task<IEnumerable<IGrouping<string, Product>>> databaseTask = Task<IEnumerable<IGrouping<string, Product>>>.Factory.StartNew(
@@ -63,6 +65,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        //extract and display result
         public async Task Search(String input)
         {
             await Task.Delay(600);
@@ -92,18 +95,23 @@ namespace Libery_Frontend.Views
             }
         }
 
+
+        //populate search result reactively without the need of button presses
         private async void Entry_TextChanged(object sender, TextChangedEventArgs e)
         {
             string input = e.NewTextValue;
             await Search(input);
         }
 
+        //populate search result based on search click
         private async void SearchBar_SearchButtonPressed(object sender, EventArgs e)
         {
             string input = SearchBarInput.Text;
             await Search(input);
         }
 
+
+        //prompt user to login before being able to book item
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert(
@@ -114,6 +122,7 @@ namespace Libery_Frontend.Views
             );
             if (answer)
             {
+                //navigate user to loginpage
                 var tab = new MainPage();
                 tab.CurrentPage = tab.Children[4];
 

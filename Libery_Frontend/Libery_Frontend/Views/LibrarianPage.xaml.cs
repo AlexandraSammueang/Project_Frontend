@@ -35,6 +35,7 @@ namespace Libery_Frontend.Views
             });
         }
 
+        #region populate lists
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -419,7 +420,8 @@ namespace Libery_Frontend.Views
             var taskResult = await databaseTask;
             return taskResult;
         }
-
+        
+        //display specific info regarding the selected item
         public async Task<List<ProductModel>> GetProductsFullListAsync(ActivityIndicator indicator, string prodName, string prodType, string prodCat)
         {
             indicator.IsVisible = true;
@@ -471,7 +473,8 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-
+        #endregion
+        #region change visual layout based on which listview item is clicked
         private async void BooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             E_booksLVSL.IsVisible = false;
@@ -528,7 +531,9 @@ namespace Libery_Frontend.Views
             SingleProdFrame.IsVisible = true;
 
         }
+        #endregion
 
+        //change visual layout and repopulate lists
         private async void BackToListButton_Clicked(object sender, EventArgs e)
         {
 
@@ -552,6 +557,7 @@ namespace Libery_Frontend.Views
 
         }
 
+        //function to delete selected item from listview. updates listviews after confirmation complete
         private async void DeleteButton_Clicked(object sender, EventArgs e)
         {
 
@@ -595,6 +601,8 @@ namespace Libery_Frontend.Views
             catch (Exception ex) { await DisplayAlert("Fel", "Denna bok är för tillfället lånad. Kan inte tas bort.", "OK"); }
         }
 
+
+        //populate all lists based on search values
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             var booklist = await GetBooksAsync();

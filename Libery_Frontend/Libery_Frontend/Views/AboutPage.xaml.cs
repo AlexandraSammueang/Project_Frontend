@@ -6,11 +6,15 @@ using Xamarin.Forms.Xaml;
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
+    #region main page
     public partial class AboutPage : ContentPage
     {
+        //populate label with formatting and info regarding opening hours
         public AboutPage()
         {
             InitializeComponent();
+
 
             timeLabel.Text =
                            "Öppettider \n\n\n" +
@@ -25,6 +29,8 @@ namespace Libery_Frontend.Views
 
         }
 
+
+        //Logs out the current user and displays standard layout
         private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
@@ -34,6 +40,10 @@ namespace Libery_Frontend.Views
 
         }
 
+
+        #region library events
+        //placeholder images with navigation readily available for redirection to specified events.
+        //at this time, this navigation is not implemented due to lack of specifed library events
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await DisplayAlert("Bra klickat", "Du har klickat på en bild", "OK");
@@ -56,5 +66,7 @@ namespace Libery_Frontend.Views
         {
             await DisplayAlert("Bra klickat", "Du har klickat på en bild", "OK");
         }
+        #endregion
     }
+    #endregion
 }

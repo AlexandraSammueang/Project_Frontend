@@ -10,6 +10,8 @@ using Xamarin.Forms.Xaml;
 using Libery_Frontend.Models;
 using System.Threading;
 
+#region not actively used
+//code is not actively used other than code references. functionality has been updated and moved to different page
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -112,3 +114,4 @@ namespace Libery_Frontend.Views
         }
     }
 }
+#endregion

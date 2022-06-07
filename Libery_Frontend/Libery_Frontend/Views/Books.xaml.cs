@@ -8,6 +8,9 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+#region same functionality as E-Media page
+//code explanation and references available in E_MediaPage
+//exact same code structure except for final selection from database
 namespace Libery_Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -360,3 +363,4 @@ namespace Libery_Frontend.Views
 
     }
 }
+#endregion

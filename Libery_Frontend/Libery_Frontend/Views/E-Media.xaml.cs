@@ -22,6 +22,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
+        //populate listview with e-books
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -122,7 +123,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-
+        //populate listview with e-movies
         public async Task<List<ProductModel>> GetEMoviesAsync()
         {
 
@@ -222,7 +223,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-
+        //populate listview with specific info regarding the selected item
         public async Task<List<ProductModel>> GetBooksFullListAsync(string prodName, string prodType, string prodCat, string authorName)
         {
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
@@ -270,6 +271,7 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        //change visual layout
         private async void EBooksButton_Clicked(object sender, EventArgs e)
         {
             EBooksListview.Opacity = 0;
@@ -282,6 +284,7 @@ namespace Libery_Frontend.Views
             EMoviesListview.IsVisible = false;
         }
 
+        //change visual layout
         private async void EMoviesButton_Clicked(object sender, EventArgs e)
         {
             EMoviesListview.Opacity = 0;
@@ -294,6 +297,8 @@ namespace Libery_Frontend.Views
             EBooksListview.IsVisible = false;
         }
 
+
+        //display specific info regarding selected item
         private async void EBooksListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (InspectProductListView.Opacity == 0)
@@ -307,6 +312,7 @@ namespace Libery_Frontend.Views
 
         }
 
+        //display specific info regarding selected item
         private async void EMoviesListview_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (InspectProductListView.Opacity == 0)
@@ -321,6 +327,8 @@ namespace Libery_Frontend.Views
 
         }
 
+
+        //prompt user to login before booking. upon agreement, navigate user to login page
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             bool answer = await DisplayAlert("Inloggning krävs", "Du måste logga in för att kunna boka en produkt.\n Vill du logga in?", "Logga in", "Avbryt");
@@ -334,6 +342,8 @@ namespace Libery_Frontend.Views
             else return;
         }
 
+
+        //reactively change listview population based on search input
         private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             var ebooklist = await GetBooksAsync();

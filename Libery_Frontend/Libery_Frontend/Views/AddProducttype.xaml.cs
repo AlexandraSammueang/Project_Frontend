@@ -17,6 +17,8 @@ namespace Libery_Frontend.Views
         public List<Director> dirNames;
         protected override async void OnAppearing()
         {
+
+            //populate pickers based on author/director/product type/product category
             base.OnAppearing();
             using (var db = new Models.LibraryDBContext())
             {
@@ -39,6 +41,7 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
+        //Add product type to database
         private async void AddProducttype_Clicked(object sender, EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
@@ -71,10 +74,7 @@ namespace Libery_Frontend.Views
             }
         }
 
-        private void Allproducttype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        //Add author to database
         private async void AddAuthor_Clicked(object sender, EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
@@ -105,6 +105,7 @@ namespace Libery_Frontend.Views
 
         }
 
+        //select already available author
         private void AllAuthor_SelectedIndexChanged(object sender, EventArgs e)
         {
             var s = (Picker)sender;
@@ -125,11 +126,7 @@ namespace Libery_Frontend.Views
             }
         }
 
-        private void PickerCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //remove product type from database
         private async void RemoveProducttype_Clicked(object sender, EventArgs e)
         {
 
@@ -163,6 +160,7 @@ namespace Libery_Frontend.Views
             catch (Exception ex) { await DisplayAlert($"Fel", $"Kunde inte ta bort {typeToBeRemoved} från listan", "OK"); }
         }
 
+        //Add product category to database
         private async void AddCategoryButton_Clicked(object sender, EventArgs e)
         {
             using (var db = new Models.LibraryDBContext())
@@ -195,6 +193,7 @@ namespace Libery_Frontend.Views
             }
         }
 
+        //Remove product category from database
         private async void RemoveCategoryButton_Clicked(object sender, EventArgs e)
         {
             ProductCategory item = PickerCategory.SelectedItem as ProductCategory;
@@ -228,6 +227,7 @@ namespace Libery_Frontend.Views
             catch (Exception ex) { await DisplayAlert($"Fel", $"Kunde inte ta bort {typeToBeRemoved} från listan", "OK"); }
         }
 
+        //Remove author from database
         private async void RemoveAuthorButton_Clicked(object sender, EventArgs e)
         {
             AuthorName item = AllAuthor.SelectedItem as AuthorName;
@@ -261,11 +261,7 @@ namespace Libery_Frontend.Views
             catch (Exception ex) { await DisplayAlert($"Fel", $"Kunde inte ta bort {typeToBeRemoved} från listan", "OK"); }
         }
 
-        private void AllDirector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //Remove director from database
         private async void RemoveDirectorButton_Clicked(object sender, EventArgs e)
         {
             {
@@ -301,6 +297,7 @@ namespace Libery_Frontend.Views
             }
         }
 
+        //Add director to database
         private async void AddDirectorButton_Clicked(object sender, EventArgs e)
         {
             

@@ -43,6 +43,8 @@ namespace Libery_Frontend.Views
             );
         }
 
+
+        //Code to change label text depending on wether or not the user has an empty shopping cart or not.
         public async Task<string> GetUserProductList()
         {
             List<shoppingCartTestModel> userCart = null;
@@ -55,6 +57,8 @@ namespace Libery_Frontend.Views
                 return $"Dina lånade produkter";
         }
 
+
+        //Returns a list of products connected to the specific logged in user
         public async Task<List<shoppingCartTestModel>> GetProductsAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -89,8 +93,8 @@ namespace Libery_Frontend.Views
                         CategoryID = pi?.CategoryId,
                         ProductInfo = pi.ProductInfo,
                         ReleaseDate = pi?.ReleaseDate,
-                        DateBooked = p?.DateBooked, //can use this syntax to get date
-                        ReturnDate = (DateTime)p.ReturnDate //and this syntax
+                        DateBooked = p?.DateBooked, 
+                        ReturnDate = (DateTime)p.ReturnDate 
                     }).Where(x => x.AccountName == LoginPage.Username).ToList();
 
                     cartResultone = cartResultone.Join(ProdType, p => p.ProductTypeID, pi => pi.Id, (p, pi) => new shoppingCartTestModel
@@ -128,6 +132,7 @@ namespace Libery_Frontend.Views
         }
 
         #region Method to return a product
+        //Method to insert product and user info into orders table (database) once the user has atively returned an item
         private async void InsertIntoOrderButton_Clicked(object sender, EventArgs e)
         {
             ShoppingCart cartToRemove;
@@ -191,6 +196,11 @@ namespace Libery_Frontend.Views
                 );
         }
         #endregion
+
+        #region visual elements
+        //Below methods dictate which elements become visible to user and which elements
+        //that shall remain hidden. The method is based on tap gestures on phones/tablets
+        //and click motions on laptops/desktops
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             baba1.IsVisible = true;
@@ -216,7 +226,7 @@ namespace Libery_Frontend.Views
             trollpic.IsVisible = true;
             lolpic.IsVisible = false;
         }
-
+        #endregion
         #region Method to extend returndate on a product
         private async void ExtendButton_Clicked(object sender, EventArgs e)
         {
@@ -257,6 +267,8 @@ namespace Libery_Frontend.Views
     }
     #endregion
 
+
+    //Class to model a shoppingcart
     public class shoppingCartTestModel
     {
         public int? ID { get; set; } = default;
@@ -277,6 +289,7 @@ namespace Libery_Frontend.Views
         public string prodType { get; set; }
     }
 
+    //Class to model a shoppingcart based on logged in user
     public class UserShoppingCartModel
     {
         public string OrderID { get; set; }

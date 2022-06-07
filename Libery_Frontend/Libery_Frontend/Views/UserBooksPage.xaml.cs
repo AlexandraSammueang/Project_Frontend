@@ -30,11 +30,15 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
 
-            // Load products asynchronously
+            // Load two separate listviews with books and movies respectively
             MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetBooksAsync(); });
             MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
         }
 
+
+        //GET BOOKS FUNCTIONS
+        //Several joins from database tables
+        #region
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -51,6 +55,7 @@ namespace Libery_Frontend.Views
                         ProdType = db.ProductTypes.ToList();
                         autName = db.Authors.ToList();
 
+                        //Products table joined with Producttypes table
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -70,6 +75,8 @@ namespace Libery_Frontend.Views
                             IsBookable = p.IsBookable
                         }).ToList();
 
+                        //Result of products + producttype join extended with second join.
+                        //Result joined with Category table
                         result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -91,6 +98,8 @@ namespace Libery_Frontend.Views
                         }).ToList();
 
 
+                        //Result of previous joins extended with third join.
+                        //Result joined with Authors table
                         result = result.Join(autName, pi => pi.AuthorID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -112,7 +121,8 @@ namespace Libery_Frontend.Views
                             AuthorName = pi.Firstname + " " + pi.Lastname
                         }).Where(x => x.Type == "Bok").ToList();
 
-
+                        //For visual purposes, reduce string length of item description to 60.
+                        //Substring is saved into a separate variable so the full description can still be accessed.
                         for (int i = 0; i < result.Count; i++)
                         {
                             if (result[i].Info != null && result[i].Info.Length > 60)
@@ -135,7 +145,10 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        #endregion
 
+        //GET MOVIES FUNCTIONS
+        #region
         public async Task<List<ProductModel>> GetMoviesAsync()
         {
 
@@ -152,6 +165,7 @@ namespace Libery_Frontend.Views
                         ProdType = db.ProductTypes.ToList();
                         dirName = db.Directors.ToList();
 
+                        //Products table joined with Producttypes table
                         result = Products.Join(ProdType, p => p.ProductTypeId, pi => pi.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -171,6 +185,8 @@ namespace Libery_Frontend.Views
                             IsBookable = p.IsBookable
                         }).ToList();
 
+                        //Result of products + producttype join extended with second join.
+                        //Result joined with Category table
                         result = result.Join(Category, pi => pi.CategoryID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -191,6 +207,8 @@ namespace Libery_Frontend.Views
                         }).ToList();
 
 
+                        //Result of previous joins extended with third join.
+                        //Result joined with Director table
                         result = result.Join(dirName, pi => pi.DirectorID, p => p.Id, (p, pi) =>
                         new ProductModel
                         {
@@ -212,6 +230,8 @@ namespace Libery_Frontend.Views
                         }).Where(x => x.Type == "Film").ToList();
 
 
+                        //For visual purposes, reduce string length of item description to 60.
+                        //Substring is saved into a separate variable so the full description can still be accessed.
                         for (int i = 0; i < result.Count; i++)
                         {
                             if (result[i].Info != null && result[i].Info.Length > 60)
@@ -233,8 +253,14 @@ namespace Libery_Frontend.Views
             var taskResult = await databaseTask;
             return taskResult;
         }
+        #endregion
 
 
+        //GET SINGLE PRODUCT INFO FUNCTION
+        #region
+
+        //When an item is selected from the list, this function is called in order to dynamically display a full-info section
+        //of that specific item.
         public async Task<List<ProductModel>> GetBooksFullListAsync(string prodName, string prodType, string prodCat, string authorName)
         {
             Task<List<ProductModel>> databaseTask = Task<List<ProductModel>>.Factory.StartNew(() =>
@@ -282,7 +308,10 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        #endregion
 
+        //BOOK PRODUCT FUNCTIONS
+        #region
         private async void BookProductButton_Clicked(object sender, EventArgs e)
         {
             InspectProductListView.SelectedItem = null;
@@ -348,6 +377,11 @@ namespace Libery_Frontend.Views
 
 
         }
+        #endregion
+
+
+        //Show detailed product info based on item selected
+        #region
 
         private async void ProductListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
@@ -397,5 +431,7 @@ namespace Libery_Frontend.Views
             InspectProductListView.ItemsSource = await GetBooksFullListAsync(model.Name, model.Type, model.Category, "Regissör: " + model.AuthorName);
 
         }
+
+        #endregion
     }
 }

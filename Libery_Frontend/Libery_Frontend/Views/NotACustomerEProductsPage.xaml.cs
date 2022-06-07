@@ -23,6 +23,9 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
+        #region E-products based on authority
+        //same methodlogy for displaying info regarding products as every other page. Key difference with book product function.
+        //book product function is not displayed due to relevancy. can be switched on easily.
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -322,5 +325,5 @@ namespace Libery_Frontend.Views
         }
     }
 
-
+    #endregion
 }

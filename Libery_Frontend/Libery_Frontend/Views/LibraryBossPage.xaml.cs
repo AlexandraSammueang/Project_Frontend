@@ -21,12 +21,13 @@ namespace Libery_Frontend.Views
         {
             base.OnAppearing();
 
-            // Load products asynchronously
+            // return lists based on user authority
             MainThread.BeginInvokeOnMainThread(async () => { UserGroupBossLV.ItemsSource = await GetBossAsync(ActivityIndicator); });
             MainThread.BeginInvokeOnMainThread(async () => { UserGroupLibrarianListview.ItemsSource = await GetLibrarianAsync(ActivityIndicator); });
             MainThread.BeginInvokeOnMainThread(async () => { UserGroupUserLV.ItemsSource = await GetUserAsync(ActivityIndicator); });
         }
 
+        #region get user authority: user
         public async Task<List<User>> GetUserAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -71,7 +72,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
+        #region get user authority: librarian
         public async Task<List<User>> GetLibrarianAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -116,7 +119,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
+        #region get user authority: boss
         public async Task<List<User>> GetBossAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -161,89 +166,9 @@ namespace Libery_Frontend.Views
 
             return taskResult;
         }
+        #endregion
 
-        //private async void AddProdButton_Clicked(object sender, EventArgs e)
-        //{
-        //    RemoveProdFrame.IsVisible = false;
-        //    UpdateProdFrame.IsVisible = false;
-        //    DefaultFrameText.IsVisible = false;
-
-        //    AddProdFrame.IsVisible = true;
-
-        //    UserModel item = ProductListView.SelectedItem as UserModel;
-
-        //    if (item != null)
-        //    {
-        //        using (var context = new Models.LibraryDBContext())
-        //        {
-        //            var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-        //            personToUpdate.UserGroup = "bibliotekarie";
-        //            context.SaveChanges();
-
-        //            ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        await DisplayAlert("Ingen användare vald", "Välj en användare för att uppgradera behörighet", "OK");
-        //    }
-        //}
-
-        //private void RemoveProdButton_Clicked(object sender, EventArgs e)
-        //{
-        //    AddProdFrame.IsVisible = false;
-        //    UpdateProdFrame.IsVisible = false;
-        //    DefaultFrameText.IsVisible = false;
-
-        //    RemoveProdFrame.IsVisible = true;
-
-        //}
-
-        //private void UpdateProdButton_Clicked(object sender, EventArgs e)
-        //{
-        //    AddProdFrame.IsVisible = false;
-        //    RemoveProdFrame.IsVisible = false;
-        //    DefaultFrameText.IsVisible = false;
-
-        //    UpdateProdFrame.IsVisible = true;
-        //}
-
-        //private async void RemoveLiberianButton_Clicked(object sender, EventArgs e)
-        //{
-        //    RemoveProdFrame.IsVisible = false;
-        //    UpdateProdFrame.IsVisible = false;
-        //    DefaultFrameText.IsVisible = false;
-
-        //    AddProdFrame.IsVisible = true;
-
-        //    UserModel item = ProductListView.SelectedItem as UserModel;
-
-        //    if (item != null)
-        //    {
-        //        using (var context = new Models.LibraryDBContext())
-        //        {
-        //            var personToUpdate = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-        //            personToUpdate.UserGroup = "användare";
-
-        //            context.SaveChanges();
-
-        //            //REMOVES USER FROM DATABASE
-        //            //
-        //            //var removePost = context.Users.SingleOrDefault(x => x.UserGroup == item.UserGroup.ToString());
-        //            //var removePost = context.Users.Where(x => x.Username == item.Username).FirstOrDefault();
-        //            //context.Users.Remove(removePost);
-        //            //context.SaveChanges();
-
-        //            ProductListView.ItemsSource = await GetUserAsync(ActivityIndicator);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        await DisplayAlert("Ingen vald användare", "Välj en användare för att ta bort behörighet", "Ok");
-        //    }
-
-
-        //}
+        #region display single user
         public async Task<List<User>> GetSingleUser(ActivityIndicator indicator, string userName)
         {
             indicator.IsVisible = true;
@@ -287,7 +212,9 @@ namespace Libery_Frontend.Views
             indicator.IsVisible = false;
             return taskResult;
         }
+        #endregion
 
+        #region populate single user list based on which listview is clicked
         private async void UserGroupUserLV_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             UserGroupAdminLVSL.IsVisible = false;
@@ -326,7 +253,10 @@ namespace Libery_Frontend.Views
             Grid.SetColumn(UserGroupBossLVSL, 3);
             SingleBossGroup.IsVisible = true;
         }
+        #endregion
 
+
+        //Reduces authority from "librarian" to "user"
         private async void ReduceAuthorityButton_Clicked(object sender, EventArgs e)
         {
 
@@ -350,6 +280,7 @@ namespace Libery_Frontend.Views
             SingleAdminGroupLV.ItemsSource = await GetSingleUser(ActivityIndicator, item.Username);
         }
 
+        //Increase authority from "user" to "librarian"
         private async void IncreaseAuthorityButton_Clicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -372,6 +303,7 @@ namespace Libery_Frontend.Views
 
         }
 
+        //change the visual layout and repopulate listviews
         private async void BackToListButton_Clicked(object sender, EventArgs e)
         {
             UserGroupAdminLVSL.IsVisible = true;
@@ -392,6 +324,7 @@ namespace Libery_Frontend.Views
             UserGroupBossLV.ItemsSource = await GetBossAsync(ActivityIndicator);
         }
 
+        //Increase authority from "librarian" to "boss"
         private async void IncreaseAuthorityButton2_Clicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;

@@ -29,6 +29,8 @@ namespace Libery_Frontend.Views
             // Load products asynchronously
             MainThread.BeginInvokeOnMainThread(async () =>
             {
+
+                //populate pickers with producttypes and productcategories respectively from database
                 using (var db = new LibraryDBContext())
                 {
                     ProductTypePicker.ItemsSource = db.ProductTypes.Select(x => new ProductType { Id = x.Id, Type = x.Type }).ToList();
@@ -38,6 +40,9 @@ namespace Libery_Frontend.Views
             });
         }
 
+
+        //Returns every product available
+        //Result is joined with producttypes
         public async Task<List<ProductModel>> GetProductsAsync(ActivityIndicator indicator)
         {
             indicator.IsVisible = true;
@@ -108,6 +113,9 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        //GET SINGLE PRODUCT INFO FUNCTION
+        //When an item is selected from the list, this function is called in order to dynamically display a full-info section
+        //of that specific item.
         public async Task<List<ProductModel>> GetProductsFullListAsync(ActivityIndicator indicator, string prodName, string prodType, string prodCat)
         {
             indicator.IsVisible = true;
@@ -159,20 +167,25 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
+        #region populate entry info based on selected item
         private async void ProductListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
-
             Product prod;
             Product dirProd;
             ProductCategory cat;
             ProductType prodType;
 
+            //define what type of listview has been selected
             ProductModel model = ProductListView.SelectedItem as ProductModel;
+            
+            //populate second listview with more specific info concerning selected item
             SecondProductListView.ItemsSource = await GetProductsFullListAsync(ActivityIndicator, model.Name, model.Type, model.Category);
+            
+            //change visual elements
             AllProdsFrame.IsVisible = false;
             SingleProdFrame.IsVisible = true;
 
+            //info that populates second listview
             ISBNEntry.Text = model.ISBN;
             PriceEntry.Text = model.UnitPrice.ToString();
             AmountOfPagesEntry.Text = model.Pages.ToString();
@@ -190,6 +203,8 @@ namespace Libery_Frontend.Views
 
             }
 
+
+            //automatically set type picker to the index where selected item matches property
             var prodTypePicker = ProductTypePicker;
 
             for (int i = 0; i < ProductTypePicker.Items.Count; i++)
@@ -201,6 +216,9 @@ namespace Libery_Frontend.Views
                 }
             }
 
+
+            //automatically set author/director picker to the index where selected item matches property
+            //determine wether picker is connected to Director table or Author table
             if (model.Type.ToLower() == "bok" || model.Type.ToLower() == "e-bok")
             {
                 AuthorIDPicker.ItemsSource = aut;
@@ -238,7 +256,7 @@ namespace Libery_Frontend.Views
 
 
 
-
+            //automatically set category picker to the index where selected item matches property
             var categoryIDPicker = CategoryIDPicker;
 
             for (int i = 0; i < CategoryIDPicker.Items.Count; i++)
@@ -250,7 +268,7 @@ namespace Libery_Frontend.Views
                 }
             }
 
-
+            //Check for null references. If value is not null, populate datepicker
             if (prod.ReleaseDate != null)
             {
                 RealeseDatePicker.Date = (DateTime)prod.ReleaseDate;
@@ -261,12 +279,16 @@ namespace Libery_Frontend.Views
                 BookableCBX.IsChecked = model.IsBookable.Value;
             }
         }
+        #endregion
 
+        //Change visual layout
         private void EditButton_Clicked(object sender, EventArgs e)
         {
             EntryView.IsVisible = true;
         }
 
+
+        //Change visual layout and re-populate first listview
         private async void BackToListButton_Clicked(object sender, EventArgs e)
         {
             ProductListView.ItemsSource = await GetProductsAsync(ActivityIndicator);
@@ -277,6 +299,8 @@ namespace Libery_Frontend.Views
 
         }
 
+
+        //Updates the details of selected itema
         private async void UpdateButton_Clicked(object sender, EventArgs e)
         {
             string[] authorname = new string[5];
@@ -344,6 +368,7 @@ namespace Libery_Frontend.Views
             }
         }
 
+        //change visual elements
         private void DescriptionEntry_Focused(object sender, FocusEventArgs e)
         {
             DescriptionEntry.BackgroundColor = Color.Beige;
@@ -354,6 +379,8 @@ namespace Libery_Frontend.Views
             DescriptionEntry.BackgroundColor = Color.Wheat;
         }
 
+
+        //Change picker values based on the selection of a different picker
         private void ProductTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var s = (Picker)sender;
@@ -363,6 +390,8 @@ namespace Libery_Frontend.Views
 
             string typeSelected = s.Items[s.SelectedIndex];
 
+
+            //If product type of selected item is book or e-book, change the pickers itemssource
             if (producttype.Type.ToLower() == "bok" || producttype.Type.ToLower() == "e-bok")
             {
                 using (var db = new LibraryDBContext())
@@ -373,6 +402,8 @@ namespace Libery_Frontend.Views
                 AuthorLab.Text = "Författare";
             }
 
+
+            //if product type of selected item is movie or e-movie, change the pickers itemssource
             if (producttype.Type.ToLower() == "film" || producttype.Type.ToLower() == "e-film")
             {
                 using (var db = new LibraryDBContext())

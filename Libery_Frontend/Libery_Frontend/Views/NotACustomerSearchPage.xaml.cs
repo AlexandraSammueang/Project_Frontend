@@ -26,6 +26,9 @@ namespace Libery_Frontend.Views
             InitializeComponent();
         }
 
+
+        #region Search function as admin/boss
+        //same functionality as search function for non-logged in user. Only difference is the booking function --- see below
         public int i = 0;
 
         public async Task<IEnumerable<IGrouping<string, Product>>> SearchProductsAsync(string input)
@@ -48,7 +51,6 @@ namespace Libery_Frontend.Views
                             from item in query.ToList()
                             group item.Product by item.ProductType into g
                             select g;
-                        //select new GroupedProducts { ProductType = g.Key, Products = g.ToList() };
 
                         groupedResult = grouped;
                     }
@@ -106,6 +108,9 @@ namespace Libery_Frontend.Views
             await Search(input);
         }
 
+
+        //book product button is not displayed for any logged in authority other than user.
+        //design decision based on use. we did not think it relevant for an admin to be able to book an item
         private async void BookProductButton_Clicked_1(object sender, EventArgs e)
         {
             ShoppingCart cart = new ShoppingCart();
@@ -159,5 +164,6 @@ namespace Libery_Frontend.Views
                 await DisplayAlert("Produkt ej vald", "Välj en produkt för att boka", "OK");
 
         }
+        #endregion
     }
 }

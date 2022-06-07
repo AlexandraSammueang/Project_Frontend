@@ -2,7 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.LibrarianTabbedPage"
-             xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend">
+             xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend"
+            BackgroundImageSource=""
+            BackgroundColor="Transparent">
     
     <TabbedPage.Children>
         <mypages:AddAndDelete Title="Lägg till bok"/>

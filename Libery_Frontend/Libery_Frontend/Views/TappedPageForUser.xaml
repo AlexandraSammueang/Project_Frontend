@@ -2,7 +2,9 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Libery_Frontend.Views.TappedPageForUser"
-             xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend" IconImageSource="usericon.png">
+             xmlns:mypages="clr-namespace:Libery_Frontend.Views;assembly=Libery_Frontend" IconImageSource="usericon.png"
+            BackgroundImageSource=""
+            BackgroundColor="Transparent">
     <TabbedPage.Children>
         <mypages:UserInfoPage Title="Mina uppgifter"/>
         <mypages:StatsForUser Title="Lånehistorik"/>

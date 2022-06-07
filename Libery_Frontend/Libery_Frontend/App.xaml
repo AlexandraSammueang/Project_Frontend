@@ -10,7 +10,7 @@
 
         </Style>
         <Style TargetType="TabbedPage" ApplyToDerivedTypes="True">
-            <Setter Property="BackgroundImageSource" Value="BibliotekStor3skärpa.jpg" />
+            <Setter Property="BackgroundImageSource" Value="BibliotekStor3Opacitet30.png" />
             <Setter Property="SelectedTabColor" Value="DarkCyan"/>
             <Setter Property="UnselectedTabColor" Value="Black"/>
             <Setter Property="SelectedItem" Value=""/>

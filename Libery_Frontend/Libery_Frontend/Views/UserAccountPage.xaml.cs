@@ -144,8 +144,9 @@ namespace Libery_Frontend.Views
         {
             ShoppingCart cartToRemove;
             OrderDetail cart = new OrderDetail();
-           
-            shoppingCartTestModel item = ProductListView.SelectedItem as shoppingCartTestModel;
+
+            Button btn = sender as Button;
+            shoppingCartTestModel item = btn.BindingContext as shoppingCartTestModel;
 
             if (item != null)
             {

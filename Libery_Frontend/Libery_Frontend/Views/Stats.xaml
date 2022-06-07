@@ -5,6 +5,17 @@
     <ContentPage.Content>
 
         <Grid>
+
+            <Grid.RowDefinitions>
+                
+
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="1300"/>
+
+            </Grid.ColumnDefinitions>
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
 
             <Frame BackgroundColor="White" HorizontalOptions="StartAndExpand" VerticalOptions="StartAndExpand"  Grid.Column="0" WidthRequest="300">
@@ -158,8 +169,8 @@
                                                 <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AliceBlue">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <StackLayout BackgroundColor="Transparent">
-                                                            <Label Grid.Row="6" Grid.Column="2"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
-                                                            <Label Grid.Row="7" Grid.Column="2"  Text="{Binding Visits, StringFormat='{0} Besök'}" FontSize="Medium" TextColor="Black"></Label>
+                                                            <Label Grid.Row="6" Grid.Column="1"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
+                                                            <Label Grid.Row="7" Grid.Column="1"  Text="{Binding Visits, StringFormat='{0} Besök'}" FontSize="Medium" TextColor="Black"></Label>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </Frame>

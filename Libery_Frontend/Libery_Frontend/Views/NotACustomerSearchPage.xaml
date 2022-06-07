@@ -11,73 +11,30 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
+        <StackLayout Margin="0,10,0,0">
+            <RelativeLayout HorizontalOptions="CenterAndExpand" Scale="1.6" Margin="0,40,0,0">
+                <Grid Padding="0" Margin="0,11,0,10" WidthRequest="700" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <BoxView CornerRadius="10" Margin="0" Grid.Row="0" >
+                        <BoxView.Background>
+                            <LinearGradientBrush>
+                                <GradientStop Color="LightCoral" Offset="1" />
+                                <GradientStop Color="SeaGreen" />
+                            </LinearGradientBrush>
+                        </BoxView.Background>
+                    </BoxView>
 
-            <Grid>
+                    <Frame Padding="0" Margin="0,0,0,0" Grid.Row="0" CornerRadius="10" Scale="1" >
+                        <SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque"  SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100" Scale="1.008" Margin="0,-1,0,0"/>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <StackLayout Grid.Column="0">
-
-                    <Button x:Name="BooksButton" Text="Böcker/E-böcker" FontAttributes="Bold" Clicked="BooksButton_Clicked" CornerRadius="10" Margin="0,10,0,10" BackgroundColor="LightSeaGreen"/>
-                    <Frame  CornerRadius="20">
-                        <StackLayout>
-                            <ListView x:Name="ProductListView" BackgroundColor="Transparent" IsVisible="false"  HasUnevenRows="True" ItemSelected="ProductListView_ItemSelected">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite" Padding="0">
-                                                    <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="0">
-                                                        <StackLayout HorizontalOptions="Start" Orientation="Vertical" Padding="8,8,0,0" >
-                                                            <Image Source="{Binding Image}" HorizontalOptions="CenterAndExpand" WidthRequest="90" />
-                                                        </StackLayout>
-                                                        <StackLayout HorizontalOptions="StartAndExpand" Padding="0">
-                                                            <Label Text="{Binding Name}" FontSize="22" FontAttributes="Bold" Padding="0"/>
-                                                            <Label VerticalOptions="Center" Text="{Binding AuthorName}" FontSize="18" FontAttributes="Italic"   />
-                                                            <Label VerticalOptions="Center" Text="{Binding InfoConcat}" FontSize="15" WidthRequest="800"/>
-                                                        </StackLayout>
-                                                    </StackLayout>
-                                                </Frame>
-                                            </Grid>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
                     </Frame>
-                </StackLayout>
-
-                <StackLayout Grid.Column="1">
-                    <Grid Padding="0" Margin="0,10,0,10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                        </Grid.RowDefinitions>
-                        <BoxView CornerRadius="10" Margin="0" Grid.Row="0">
-                            <BoxView.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="LightCoral" Offset="1" />
-                                    <GradientStop Color="LightSeaGreen" />
-                                </LinearGradientBrush>
-                            </BoxView.Background>
-                        </BoxView>
-
-                        <Frame Padding="0" Margin="0,0,0,0" Grid.Row="0" CornerRadius="10" Scale="1" >
-                            <SearchBar Placeholder="Sök på titel, regissör, författare" TextChanged="SearchBar_TextChanged" Scale="1.005" Margin="0,-2,0,0">
-
-                            </SearchBar>
-                        </Frame>
-                    </Grid>
-                    <Frame  x:Name="SingleProdFrame" Grid.Column="2" Margin="0,52,0,0"  Padding="0,0,0,0" VerticalOptions="FillAndExpand">
-                        <StackLayout  VerticalOptions="FillAndExpand">
+                </Grid>
+            </RelativeLayout>
+            <!--<SearchBar x:Name="SearchBarInput" HorizontalOptions="FillAndExpand" Placeholder="Sök efter produkt" TextChanged="Entry_TextChanged" BackgroundColor="Bisque" SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="100"></SearchBar>-->
+            <!-- Search result-->
+            <ActivityIndicator x:Name="ActivityIndicator" IsVisible="true" HorizontalOptions="FillAndExpand"></ActivityIndicator>
 
                             <ListView x:Name="InspectProductListView" Margin="0,10,0,0" IsVisible="true" Opacity="0" HasUnevenRows="True" >
                                 <ListView.ItemTemplate >

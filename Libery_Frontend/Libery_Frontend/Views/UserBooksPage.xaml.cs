@@ -437,6 +437,14 @@ namespace Libery_Frontend.Views
 
         }
 
+        private async void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var booklist = await GetBooksAsync();
+            var filmlist = await GetMoviesAsync();
+
+            ProductListView.ItemsSource = booklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+            EbooksListview.ItemsSource = filmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
+        }
         #endregion
     }
 }

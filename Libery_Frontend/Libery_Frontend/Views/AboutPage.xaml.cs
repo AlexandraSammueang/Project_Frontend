@@ -1,5 +1,6 @@
-﻿using System;
-
+﻿using Libery_Frontend.Models;
+using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,7 @@ namespace Libery_Frontend.Views
     #region main page
     public partial class AboutPage : ContentPage
     {
+        private MetaStats _timeOnPage = null;
         //populate label with formatting and info regarding opening hours
         public AboutPage()
         {
@@ -25,8 +27,18 @@ namespace Libery_Frontend.Views
                            "FRE 10:00-17:00 \n" +
                            "LÖR 11:00-15:00 \n" +
                            "SÖN 12:00-15:00";
+        }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new MetaStats("about", "Hemsidan");
+        }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
 

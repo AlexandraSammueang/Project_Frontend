@@ -13,6 +13,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserAccountPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<User> Users;
@@ -32,7 +33,7 @@ namespace Libery_Frontend.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            _timeOnPage = new Models.MetaStats("userinfo", "Konto infosidan");
             // Load products asynchronously
             MainThread.BeginInvokeOnMainThread(
                 async () =>
@@ -41,6 +42,12 @@ namespace Libery_Frontend.Views
                     ListViewEmptyLabel.Text = await GetUserProductList();
                 }
             );
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
 

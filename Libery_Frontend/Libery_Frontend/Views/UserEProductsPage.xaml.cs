@@ -17,13 +17,25 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
         }
-
+        private Models.MetaStats _timeOnPage = null;
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<ShoppingCart> ShoppingCarts;
         public List<ProductCategory> Category;
         public List<Author> autName;
         public List<Director> dirName;
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("emedia", "E-Media sidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
+        }
 
         //GET BOOKS FUNCTIONS
         //Several joins from database tables

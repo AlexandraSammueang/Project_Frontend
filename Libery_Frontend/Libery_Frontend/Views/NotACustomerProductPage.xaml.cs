@@ -13,6 +13,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NotACustomerProductPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         public List<ProductCategory> Category;
         public List<Product> Products;
         public List<ProductType> ProdType;
@@ -27,10 +28,16 @@ namespace Libery_Frontend.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            _timeOnPage = new Models.MetaStats("products", "Produkt sidan");
             // Load products asynchronously
             MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetBooksAsync(); });
             MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         #region physical product list based on authority

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         User user = new User();
         public RegisterPage()
         {
@@ -19,8 +21,13 @@ namespace Libery_Frontend.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("register", "Registreringssida");
+        }
 
-
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         //Registration

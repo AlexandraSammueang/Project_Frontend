@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Libery_Frontend.Models;
 using System.Threading;
+using Xamarin.Essentials;
 
 #region not actively used
 //code is not actively used other than code references. functionality has been updated and moved to different page
@@ -17,10 +18,23 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CustomerAccountSearchPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         private CancellationTokenSource _tokenSource;
         public CustomerAccountSearchPage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("search", "Söksidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         public int i = 0;

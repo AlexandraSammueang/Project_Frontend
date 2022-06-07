@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,6 +12,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
 
         //static property to ensure info is displayed based on user authority
         private static string _username;
@@ -23,6 +25,18 @@ namespace Libery_Frontend.Views
         {
             InitializeComponent();
 
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("login", "inloggningssidan");
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
         private async void LoginButton_Clicked(object sender, EventArgs e)

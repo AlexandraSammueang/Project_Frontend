@@ -14,6 +14,7 @@ namespace Libery_Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserBooksPage : ContentPage
     {
+        private Models.MetaStats _timeOnPage = null;
         public List<Product> Products;
         public List<ProductType> ProdType;
         public List<ShoppingCart> ShoppingCarts;
@@ -29,16 +30,20 @@ namespace Libery_Frontend.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            _timeOnPage = new Models.MetaStats("products", "Produkt sidan");
+            // Load products asynchronously
 
             // Load two separate listviews with books and movies respectively
             MainThread.BeginInvokeOnMainThread(async () => { ProductListView.ItemsSource = await GetBooksAsync(); });
             MainThread.BeginInvokeOnMainThread(async () => { EbooksListview.ItemsSource = await GetMoviesAsync(); });
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
+        }
 
-        //GET BOOKS FUNCTIONS
-        //Several joins from database tables
-        #region
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 

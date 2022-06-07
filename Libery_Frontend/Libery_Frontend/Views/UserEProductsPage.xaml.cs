@@ -440,5 +440,6 @@ namespace Libery_Frontend.Views
             EBooksListview.ItemsSource = ebooklist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
             EMoviesListview.ItemsSource = efilmlist.Where(x => x.Name.ToLower().Contains(e.NewTextValue.ToLower()) || x.AuthorName.ToLower().Contains(e.NewTextValue.ToLower()));
         }
+        #endregion
     }
 }

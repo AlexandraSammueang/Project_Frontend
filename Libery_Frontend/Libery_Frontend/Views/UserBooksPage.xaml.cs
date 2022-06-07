@@ -44,6 +44,7 @@ namespace Libery_Frontend.Views
             MainThread.BeginInvokeOnMainThread(async () => { await _timeOnPage.Finish(); _timeOnPage = null; });
         }
 
+        //GET BOOKS FUNCTIONS
         public async Task<List<ProductModel>> GetBooksAsync()
         {
 
@@ -150,7 +151,6 @@ namespace Libery_Frontend.Views
             return taskResult;
         }
 
-        #endregion
 
         //GET MOVIES FUNCTIONS
         #region

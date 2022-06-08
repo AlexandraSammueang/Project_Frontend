@@ -170,6 +170,7 @@
     <Content Include="loginlogo.png" />
     <Content Include="lolpic.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="register.png" />
     <Content Include="searchicon.png" />
     <Content Include="shopingbag.png" />
     <Content Include="shoppingcarticon.png" />

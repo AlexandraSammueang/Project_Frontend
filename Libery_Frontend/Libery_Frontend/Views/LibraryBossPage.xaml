@@ -10,8 +10,7 @@
 
         <StackLayout BackgroundColor="Transparent">
             <ActivityIndicator x:Name="ActivityIndicator" IsVisible="false"/>
-            <SearchBar Margin="20,10,20,10"/>
-
+            
             <Grid>
                 <Grid.RowDefinitions>
 

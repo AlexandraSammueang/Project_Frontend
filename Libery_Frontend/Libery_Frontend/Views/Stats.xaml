@@ -124,7 +124,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
@@ -147,7 +147,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <StackLayout BackgroundColor="Transparent">
                                                             <Label Grid.Row="6" Grid.Column="2"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>
@@ -168,7 +168,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <Grid Padding="5">
-                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#AntiqueWhite">
+                                                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="AntiqueWhite">
                                                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
                                                         <StackLayout BackgroundColor="Transparent">
                                                             <Label Grid.Row="6" Grid.Column="1"  Text="{Binding PageName, StringFormat='{0}'}" FontSize="Medium" FontAttributes="Bold" TextColor="Black"></Label>

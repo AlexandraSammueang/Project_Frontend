@@ -79,7 +79,8 @@
                                                         <Image Source="{Binding Image}" WidthRequest="150" Aspect="AspectFill"/>
                                                         <StackLayout BackgroundColor="Transparent">
 
-                                                            <Label  Grid.Row="1" Grid.Column="2"  Text="{Binding PageName, StringFormat='Sida: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label  Grid.Row="1" Grid.Column="2"  Text="{Binding OrderId, StringFormat='Kund: {0}'}"  FontSize="Medium" TextColor="Black"/>
+                                                            <Label  Grid.Row="2" Grid.Column="2"  Text="{Binding orderCount, StringFormat='Antal lån: {0}'}"  FontSize="Medium" TextColor="Black"/>
                                                         </StackLayout>
                                                     </StackLayout>
                                                 </Frame>

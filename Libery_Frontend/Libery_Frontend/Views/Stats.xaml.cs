@@ -254,12 +254,14 @@ namespace Libery_Frontend.Views
 
                         var newresult = result1.OrderByDescending(x => x.orderCount).Take(4).ToList();
 
+                        /*
                         var rest = (from ob in newresult
                                     select new TopProduct { OrderId = ob.OrderId }).ToList();
+                        */
 
 
 
-                        return rest;
+                        return newresult;
 
                     }
 
